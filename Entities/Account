@@ -1,0 +1,7 @@
+bảng account
+
+AccountID(string): id của bảng account
+UserName(String): tên đăng nhập
+Password(string): mật khẩu
+FullName(string): tên người dùng
+

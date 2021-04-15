@@ -1,8 +1,8 @@
 <?php 
 	$servername = "localhost";
-$database = "Laragon\qlapp";
+$database = "duan2021";
 $username = "root";
-$password = "123456";
+$password = "";
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $database);
 

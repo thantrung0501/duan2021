@@ -14,7 +14,7 @@
 	
 	<div class="login-partial">
 		<div class="logo">
-			<img src="./images/common/Logo-VNU-1995.jpg" width="243px" height="245px">
+			<img src="./images/common/Logo-VNU-1995(1).jpg" style="max-width:40%;height:auto;">
 			<p>Đăng ký thi đánh giá năng lực
 			<br>
 			Đại học Quốc gia Hà Nội

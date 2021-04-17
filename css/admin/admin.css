@@ -1,0 +1,207 @@
+
+
+header {
+	height: 130px;
+	display: flex;
+	background: linear-gradient(180deg, #219653 35.42%, #219653 81.25%, rgba(33, 150, 83, 0) 100%);
+}
+
+.title {
+	display: flex;
+
+}
+h1.title {
+	padding: 0.5em;
+	color: white;
+	width: 90%;
+	min-width: 50%;
+}
+
+div.admin-user {
+	display: flex;
+	color: white;
+	width: 10%;
+	padding: 0 20em;
+	margin: 1em;
+}
+
+li.dropdown {
+	list-style: none;
+}
+
+a.dropdown-toggle {
+	color: white;
+
+}
+
+a.pass {
+	color: black;
+}
+
+.navbar-light .navbar-nav .nav-link {
+	color: white;
+	border-radius: 15px;
+	margin: 0 1em;
+}
+
+a.nav-link.btn-success {
+	box-shadow: 1px 1px 1px 1px black;
+}
+nav {
+	height: 4em;
+}
+nav ul {
+	list-style: none;
+}
+nav ul li {
+	float: left;
+}
+
+.table {
+	margin: 1em;
+	width: 80%;
+	text-align: center;
+	border: 2px solid black;
+}
+.table td {
+	border: 2px solid black;
+}
+.table th {
+	border: 2px solid black;
+}
+.table thead th {
+	border: 2px solid black;
+	background: white;
+}
+
+input {
+	border: 0px;
+	background: white;
+}
+
+input[type=text] {
+  border: 0px;
+}
+
+
+
+div.add {
+	float: right;
+	width: 30%;
+}
+
+div.change {
+	float: right;
+	margin: 3em;
+}
+
+.opentitle, .opendate, .changePass {
+	position: absolute;
+}
+
+div.opendate {
+	border: 1px solid black;
+	background: #F0E68C;
+	margin-top: 20%;
+	margin-left: 35%;
+	width: 25%;
+	height: 35%;
+	border-radius: 20px;
+}
+
+h3.titleOpen {
+	margin-left: 10%;
+}
+
+label {
+	margin-left: 1em;
+}
+
+input#fromDate {
+	margin: 1em;
+}
+
+a#btn.btn.btn-success {
+	margin-left: 35%;
+	margin-top: 5%;
+}
+
+h3.list {
+	margin-left: 40%;
+}
+
+div.list-group {
+	margin-left: 5%;
+}
+
+div.bt-print {
+	margin-left: 68%;
+}
+
+button.btn.btn-light {
+	margin-left: 5%;
+}
+
+div.changePass {
+	border: 1px solid black;
+	background: #F0E68C;
+	margin-top: 20%;
+	margin-left: 35%;
+	width: 25%;
+	height: 35%;
+	border-radius: 20px;
+}
+
+h3.pass {
+	margin-left: 15%;
+}
+
+.pass1 {
+	margin-left: 12%;
+}
+.pass2 {
+	margin-left: 9%;
+}
+.pass3 {
+	margin-left: 0%;
+}
+.accept {
+	margin-left: 40%;
+	margin-top: 5%;
+
+}
+a.btn.btn-danger {
+	box-shadow: 1px 1px 1px 1px black;
+}
+a.btn.btn-success {
+	box-shadow: 1px 1px 1px 1px black;
+}
+
+button.btn.btn-success {
+	box-shadow: 1px 1px 1px 1px black;
+}
+
+button.btn.btn-light {
+	box-shadow: 1px 1px 1px 1px black;
+}
+
+a.nav-link.btn-danger {
+	box-shadow: 1px 1px 1px 1px black;
+}
+
+img.imgC {
+	height: 25px;
+	float: left;
+
+}
+
+h5.timeSign {
+	color: black;
+	float: left;
+}
+
+div.timeSignC {
+	float: right;
+	margin-right: 20em;
+	margin-bottom: 2em;
+}

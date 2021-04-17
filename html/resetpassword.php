@@ -16,11 +16,11 @@
 		<h5>VNU <small>test center</small></h5>
 	</div>
 	<div class="email">
-		<form action="">
+		<form action="../action/repassword_submit.php" method="POST">
 			<p>Đặt lại mật khẩu</p>
 			<label for="taikhoan">Email:</label><br>
 			<input type="text" id="email" name="email">
-			<input type="submit" value="Gửi yêu cầu">
+			<input type="submit" name="submit" value="Gửi yêu cầu">
 		</form>
 	</div>
 </body>

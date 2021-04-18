@@ -2,109 +2,22 @@
 <html> 
 	<head> 
 		<meta charset="utf-8">
-		<style type="text/css">
-			.header {
-				background-color: #219653;
-				width: 100%;
-				height: 130px;
-				display: inline-block;
-			}
-			.header img{
-				float: left;
-				width: 130px;
-				height: 130px;
-			}
-			.header p{
-				font-size: 50px;
-				font-family: Times New Roman;
-				color: white;
-				line-height: 17px;
-				margin-left: 150px;
-			}
-			.information {
-				width: 100%;
-				height: 970px;
-			}
-			.information fieldset{
-				margin-top: 10px;	
-			}
-			.information input{
-				margin: 5px;
-			}
-			.information p{
-				text-align: center;
-			}
-			.information input[name="diemhk"]{
-				width: 100px;
-				margin: 0px 15px 0px 15px;
-			}
-			.information input[name="diemtn"]{
-				width: 100px;
-				margin: 0px 15px 0px 15px;
-			}
-			.information input[type=submit]{
-				border: 1px solid #000000;
-				box-shadow: 0px 5px 4px 0px #000000 60%;
-				position: absolute;
-				width: 140px;
-				height: 40px;
-				font-size: 20px;
-				margin-left: 500px;
-				margin-top: 10px;
-				background-color: #219653;
-				color: white;
-			    transition: 0.5s all;
-			    -webkit-transition: 0.5s all;
-			    -moz-transition: 0.5s all;
-			    -o-transition: 0.5s all;
-			    display: inline-block;
-			    cursor: pointer;
-			    outline: none;
-			    border: none;
-			    border-radius: 3px;
-			}
-			.information input[type="submit"]:hover {
-			    background: #006633;
-			    transition: 0.5s all;
-			    -webkit-transition: 0.5s all;
-			    -moz-transition: 0.5s all;
-			    -o-transition: 0.5s all;
-			}
-			.information input[type=button]{
-				border: 1px solid #000000;
-				box-shadow: 0px 5px 4px 0px #000000 60%;
-				position: absolute;
-				width: 120px;
-				height: 40px;
-				margin-left: 680px;
-				margin-top: 10px;
-				font-size: 20px;
-				background-color: #219653;
-				color: white;
-			    transition: 0.5s all;
-			    -webkit-transition: 0.5s all;
-			    -moz-transition: 0.5s all;
-			    -o-transition: 0.5s all;
-			    display: inline-block;
-			    cursor: pointer;
-			    outline: none;
-			    border: none;
-			    border-radius: 3px;
-			}
-			.information input[type="button"]:hover {
-			    background: #006633;
-			    transition: 0.5s all;
-			    -webkit-transition: 0.5s all;
-			    -moz-transition: 0.5s all;
-			    -o-transition: 0.5s all;
-			}
-		</style>
+		<link rel="stylesheet" href="../../css/student/studentChangeProfile.css">
+		<title>Hồ sơ</title>
 	</head>
 	<body>
-		<div class="header">
-			<img src="E:\Dự án\image\logo trường ĐHCN.jpg">
-			<p>Đăng ký thi đánh giá năng lực</p>
-		</div>
+    <ul class="navbar">
+      <li><a class="logo-container" href="#home"><img class="logo" src="../../images/common/Logo-VNU-1995.jpg" /></a></li>
+      <li><div class="web-name">Đăng ký thi đánh giá năng lực</div></li>
+      <li class="dropdown" style="float:right">
+        <a href="javascript:void(0)" class="dropbtn">Student</a>
+        <div class="dropdown-content">
+          <a href="#">Đổi mật khẩu</a>
+          <a href="#">Cập nhật thông tin</a>
+          <a href="#">Xem giấy báo dự thi</a>
+        </div>
+      </li>
+    </ul>
 		<div class="information">
 			<form action="">
 				<fieldset>
@@ -113,24 +26,18 @@
 				    	<tr>
 				    		<td>1.Tên đăng nhập:</td>
 				    		<td>
-				    			<input type="text" name="tendangnhap" style="width: 250px; height: 18px">
+				    			<input type="text" name="username" style="width: 250px; height: 18px">
 				    		</td>
 				    	</tr>
 				    	<tr>
 				    		<td>2.Họ, chữ đệm và tên:</td>
 				    		<td>
-				    			<input type="text" name="ten" style="width: 200px; height: 18px">
-				    		</td>
-				    	</tr>
-				    	<tr>
-				    		<td>2.Họ, chữ đệm và tên:</td>
-				    		<td>
-				    			<input type="text" name="ten" style="width: 200px; height: 18px">
+				    			<input type="text" name="name" style="width: 200px; height: 18px">
 				    		</td>
 				    		<td style="padding-left: 50px">3.Giới tính:</td>
 				    		<td>
-				    			<input name="gioitinh" type="radio" value="Nam" />Nam
-				    			<input name="gioitinh" type="radio" value="Nữ" />Nữ
+				    			<input name="gender" type="radio" value="Nam" />Nam
+				    			<input name="gender" type="radio" value="Nữ" />Nữ
 				    		</td>
 				    	</tr>
 				    	<tr>
@@ -199,7 +106,7 @@
 				    		</td>
 				    		<td style="padding-left: 50px">5.Dân tộc:</td>
 				    		<td>
-				    			<input type="text" name="dantoc" style="width: 100px; height: 18px">
+				    			<input type="text" name="race" style="width: 100px; height: 18px">
 				    		</td>
 				    	</tr>
 				    	<tr>
@@ -211,11 +118,11 @@
 				    	<tr>
 				    		<td>7.Hộ khẩu thường trú (Huyện - Tỉnh):</td>
 				    		<td>
-				    			<input type="text" name="hktt" style="width: 300px; height: 18px">
+				    			<input type="text" name="residence" style="width: 300px; height: 18px">
 				    		</td>
 				    		<td style="padding-left: 50px">8.Nơi sinh:</td>
 				    		<td>
-				    			<input type="text" name="noisinh" style="width: 400px; height: 18px">
+				    			<input type="text" name="birthplace" style="width: 400px; height: 18px">
 				    		</td>
 				    	</tr>
 				    </table>
@@ -224,21 +131,21 @@
 					<legend>B.THÔNG TIN LIÊN HỆ</legend>
 					<table>
 						<tr>
-							<td>9.Địa chỉ Emial:</td>
+							<td>9.Địa chỉ Email:</td>
 							<td>
-								<input type="text" name="emial" style="width: 250px; height: 18px">
+								<input type="text" name="email" style="width: 250px; height: 18px">
 							</td>
 						</tr>
 						<tr>
 							<td>10.Số điện thoại:</td>
 							<td>
-								<input type="text" name="sdt" style="width: 150px; height: 18px">
+								<input type="text" name="phone" style="width: 150px; height: 18px">
 							</td>
 						</tr>
 						<tr>
 							<td>11.Địa chỉ (cụ thể):</td>
 							<td>
-								<input type="text" name="diachi" style="width: 400px; height: 18px">
+								<input type="text" name="address" style="width: 400px; height: 18px">
 							</td>
 						</tr>
 					</table>
@@ -268,39 +175,39 @@
 	                	<tr>
 	                		<td>
 	                			<p>HKI<p>
-	                			<input type="text" name="diemhk">
+	                			<input type="text" name="score">
 	                		</td>
 	                		<td>
 	                			<p>HKII<p>
-	                			<input type="text" name="diemhk">
+	                			<input type="text" name="score">
 	                		</td>
 	                		<td>
 	                			<p>Cả năm<p>
-	                			<input type="text" name="diemhk">
+	                			<input type="text" name="score">
 	                		</td>
 	                		<td>
 	                			<p>HKI<p>
-	                			<input type="text" name="diemhk">
+	                			<input type="text" name="score">
 	                		</td>
 	                		<td>
 	                			<p>HKII<p>
-	                			<input type="text" name="diemhk">
+	                			<input type="text" name="score">
 	                		</td>
 	                		<td>
 	                			<p>Cả năm<p>
-	                			<input type="text" name="diemhk">
+	                			<input type="text" name="score">
 	                		</td>
 	                		<td>
 	                			<p>HKI<p>
-	                			<input type="text" name="diemhk">
+	                			<input type="text" name="score">
 	                		</td>
 	                		<td>
 	                			<p>HKII(*)<p>
-	                			<input type="text" name="diemhk">
+	                			<input type="text" name="score">
 	                		</td>
 	                		<td>
 	                			<p>Cả năm(*)<p>
-	                			<input type="text" name="diemhk">
+	                			<input type="text" name="score">
 	                		</td>
 	                	</tr>
 	                </table>
@@ -308,7 +215,7 @@
 				<fieldset>
 					<legend>D.THÔNG TIN TỐT NGHIỆP</legend>
 					15.Năm tốt nghiệp THPT(*): 
-					<input type="text" name="namTN" style="width: 100px; height: 18px; margin-left: 25px">
+					<input type="text" name="gradYear" style="width: 100px; height: 18px; margin-left: 25px">
 					<br>
 					16.Kết quả tốt nghiệp THPT(*):
 					<br>
@@ -316,46 +223,47 @@
 						<tr>
 							<td>
 								<p>Toán</p>
-								<input type="text" name="diemtn">
+								<input type="text" name="result">
 							</td>
 							<td>
 								<p>Văn</p>
-								<input type="text" name="diemtn">
+								<input type="text" name="result">
 							</td>
 							<td>
 								<p>Ngoại ngữ</p>
-								<input type="text" name="diemtn">
+								<input type="text" name="result">
 							</td>
 							<td>
 								<p>Lý</p>
-								<input type="text" name="diemtn">
+								<input type="text" name="result">
 							</td>
 							<td>
 								<p>Hóa</p>
-								<input type="text" name="diemtn">
+								<input type="text" name="result">
 							</td>
 							<td>
 								<p>Sinh</p>
-								<input type="text" name="diemtn">
+								<input type="text" name="result">
 							</td>
 							<td>
 								<p>Sử</p>
-								<input type="text" name="diemtn">
+								<input type="text" name="result">
 							</td>
 							<td>
 								<p>Địa</p>
-								<input type="text" name="diemtn">
+								<input type="text" name="result">
 							</td>
 							<td>
 								<p>GDCD</p>
-								<input type="text" name="diemtn">
+								<input type="text" name="result">
 							</td>
 						</tr>
 					</table>
 				</fieldset>
 				<h4>Chú ý: Một số trường thông tin đánh dấu (*) là không bắt buộc nên có thể bỏ qua hoặc cập nhật sau</h4>
-				<input type="submit" value="Đăng ký">
-				<input type="button" value="Hủy">
+
+        		<button type="reset" class="cancel-btn">Hủy</button>
+				<button type="submit" class="cf-btn">Lưu</button>		
 			</form>
 		</div>
 	</body>

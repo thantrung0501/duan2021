@@ -1,0 +1,3 @@
+bảng lưu thông tin đợt thi: RegistExam			
+RegistExamID	varchar(36)	primarykey	
+RegistNumber	int	        đợt thi	

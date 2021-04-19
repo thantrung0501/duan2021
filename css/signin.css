@@ -1,3 +1,6 @@
+body {
+	margin: 0;
+}
 .login-partial {
 	width: 100%;
 	margin: 0px;
@@ -80,7 +83,7 @@
 	margin-bottom: 2%;
 	font-size: 1.5vw;
 }
-.sign_in input[type=submit]{
+.sign_in button[type=submit]{
 	border: 1px solid #000000;
 	box-shadow: 0px 5px 4px 0px #000000 60%;
 	position: absolute;
@@ -102,7 +105,7 @@
     border-radius: 3px;
     font-family: Times New Roman;
 }
-.sign_in input[type="submit"]:hover {
+.sign_in button[type="submit"]:hover {
     background: #006633;
     transition: 0.5s all;
     -webkit-transition: 0.5s all;

@@ -1,0 +1,11 @@
+Bảng lưu thông tin chi tiết tài khoản: AccountDetail			
+AccountDetailID	int				primarykey	
+AccountID	    varchar(36)		Id bảng account	
+Email	        varchar(100)	tài khoản email	
+DateOfBirth	    Date			ngày sinh	
+Gender	        bit(1)			giới tính	
+FullName		varchar(255)	tên người dùng	
+Address			longtext		địa chỉ	
+Identification	varchar(50)		số cmt	
+PhoneNumber		varchar(11)		số điện thoại	
+Jdetail			longtext		thông tin cá nhân chi tiết	

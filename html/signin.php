@@ -39,12 +39,12 @@
 			<input type="text" id="username" name="username"><br>
 			<label >Mật khẩu:</label><br>
 			<input type="password" id="password" name="password"><br>
-			<a href="ResetPassword.html">Quên mật khẩu</a><br>
+			<a href="../html/resetpassword.html">Quên mật khẩu</a><br>
 			<button class="btn-login" type="submit" value="" name="submit">Đăng nhập</button>
 			<br>
 			<div class="dangky">
 				<p>
-				Chưa có tài khoản? Đăng ký ngay <a href="../html/signup.php"><button class="buttonLogin" id="signup" name="buttonLogin" type="button" >SIGN UP</button></a>
+				Chưa có tài khoản? Đăng ký ngay <a href="../html/signup.php">tại đây</a>
 				</p>
 			</div>
 		</form>  

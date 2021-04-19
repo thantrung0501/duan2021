@@ -55,7 +55,7 @@
                 '{$address}'
             )";
 
-            $data = "INSERT INTO account (
+            $member = "INSERT INTO account (
                 username,
                 password,
                 AccountType
@@ -65,8 +65,10 @@
                 '{$password}',
                 '2'
             )";
-            $result = mysqli_multi_query($conn,$data);
-            if ($result){
+
+            $addmember = mysqli_query($conn,$member);
+            $addaccount = mysqli_query($conn,$data);
+            if ($addaccount && $addmember){
                 echo "Bạn đã đăng ký thành công";
             } else {
                 echo "Có lỗi trong quá trình đăng ký. Vui lòng thử lại sau";

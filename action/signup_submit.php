@@ -34,28 +34,28 @@
             echo "Tài khoản đã tồn tại";
             exit;
         } else {
-            // $data = "INSERT INTO users (
-            //     username,
-            //     email,
-            //     fullname,
-            //     dateofBirth,
-            //     gender,
-            //     phone,
-            //     CMND,   
-            //     address
-            // )
-            // VALUES (
-            //     '{$username}',
-            //     '{$email}',
-            //     '{$name}',
-            //     '{$dateofBirth}',
-            //     '{$gender}',
-            //     '{$phone}',
-            //     '{$cmnd}',
-            //     '{$address}'
-            // )";
+            $data = "INSERT INTO users (
+                username,
+                email,
+                fullname,
+                dateofBirth,
+                gender,
+                phone,
+                CMND,   
+                address
+            )
+            VALUES (
+                '{$username}',
+                '{$email}',
+                '{$name}',
+                '{$dateofBirth}',
+                '{$gender}',
+                '{$phone}',
+                '{$cmnd}',
+                '{$address}'
+            )";
 
-            $member = "INSERT INTO account (
+            $data = "INSERT INTO account (
                 username,
                 password,
                 AccountType
@@ -64,11 +64,9 @@
                 '{$username}',
                 '{$password}',
                 '2'
-            )
             )";
-            $addaccount = mysqli_query($conn,$member);
-            // $addmember = mysqli_query($conn,$data);
-            if ($addaccount){
+            $result = mysqli_multi_query($conn,$data);
+            if ($result){
                 echo "Bạn đã đăng ký thành công";
             } else {
                 echo "Có lỗi trong quá trình đăng ký. Vui lòng thử lại sau";

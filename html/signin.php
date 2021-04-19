@@ -7,14 +7,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Đăng nhập</title>
-	<link rel="stylesheet" href="./css/login.css">
+	<link rel="stylesheet" href="../css/signin.css">
 	<script type=”text/javascript” src="/js/jquery-3.5.1.min.js"></script>
 </head>
 <body>
 	
 	<div class="login-partial">
 		<div class="logo">
-			<img src="./images/common/Logo-VNU-1995(1).jpg" style="max-width:40%;height:auto;">
+			<img src="../images/common/Logo-VNU-1995(1).jpg" style="max-width:40%;height:auto;">
 			<p>Đăng ký thi đánh giá năng lực
 			<br>
 			Đại học Quốc gia Hà Nội
@@ -25,7 +25,7 @@
 
 
 		<div class="sign_in">
-			<form action="./action/login_submit.php" method="POST">
+			<form action="../action/signin_submit.php" method="POST">
 			<p>Đăng nhập</p>
 			<div class="notice">
 				<?php 	
@@ -44,7 +44,7 @@
 			<br>
 			<div class="dangky">
 				<p>
-				Chưa có tài khoản? Đăng ký ngay <a href="./html/signup.php"><button class="buttonLogin" id="signup" name="buttonLogin" type="button" >SIGN UP</button></a>
+				Chưa có tài khoản? Đăng ký ngay <a href="../html/signup.php"><button class="buttonLogin" id="signup" name="buttonLogin" type="button" >SIGN UP</button></a>
 				</p>
 			</div>
 		</form>  

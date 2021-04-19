@@ -34,13 +34,13 @@
 				{
 					// nếu không có data thì không có tài khoản đăng nhập
 					$_SESSION["notice"]  =  "thông tin tài khoản mật khẩu không chính xác";
-					header("location: ../login.php");	
+					header("location: ../html/signin.php");	
 				}
 		}
 		else
 			{
 				$_SESSION["notice"]  =  "Vui lòng điền đầy đủ thông tin";
-				header("location: ../login.php");
+				header("location: ../html/signin.php");
 			}
 	}
 	

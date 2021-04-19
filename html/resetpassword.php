@@ -3,11 +3,11 @@
 	<head> 
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="./css/resetpassword.css">
+		<link rel="stylesheet" href="../css/resetpassword.css">
 	</head>
 <body class="reset_password">
 	<div class="logo">
-		<img src="./images/common/Logo-VNU-1995(1).jpg" style="max-width:40%;height:auto;">
+		<img src="../images/common/Logo-VNU-1995(1).jpg" style="max-width:40%;height:auto;">
 		<p>Đăng ký thi đánh giá năng lực
 		<br>
 		Đại học Quốc gia Hà Nội

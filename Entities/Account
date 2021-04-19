@@ -1,7 +1,7 @@
 bảng account
 
-AccountID(string): id của bảng account
-UserName(String): tên đăng nhập
-Password(string): mật khẩu
-FullName(string): tên người dùng
+AccountID	varchar(36)	primarykey
+UserName	varchar(255)	tên đăng nhập
+Password	varchar(50)	mật khẩu
+AccountType	int	loại người dùng
 

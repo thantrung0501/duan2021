@@ -2,21 +2,27 @@
     include '../config.php';
 
     $name = $_POST["name"];
+    $gender = $_POST["gender"];
+    $phone = $_POST["phone"];
+    $cmnd = $_POST["cmnd"];
+    $address = $_POST["address"];
+    $email = $_POST["email"];
     $username = $_POST["username"];
     $password = $_POST["password"];
-    $repassword = $_POST["repassword"];
+    $enterpassword = $_POST["enterpassword"];
+    $dateofBirth = $_POST['day'].'/'.$_POST['month'].'/'.$_POST['year'];
 
     //mã hóa
     $password = md5($password);
-    $repassword = md5($repassword);
+    $enterpassword = md5($enterpassword);
 
     if(isset($_POST["submit"])){
-        if ( $name=='' || $username=='' || $password =='' || $repassword=='' ){
-            echo "Vui lòng nhập đủ thông tin cá nhân";
+        if ( $name=='' || $username=='' || $password =='' || $enterpassword=='' ){
+            echo "Vui lòng nhập đủ thông tin cần thiết";
             exit;
         }
         
-        if ( $password != $repassword){
+        if ( $password != $enterpassword){
             echo "Mật khẩu xác thực không chính xác";
             exit;
         }
@@ -28,20 +34,41 @@
             echo "Tài khoản đã tồn tại";
             exit;
         } else {
-            $data = "INSERT INTO account (
-                UserName,
-                PassWord,
-                AccountType,
-                FullName
+            // $data = "INSERT INTO users (
+            //     username,
+            //     email,
+            //     fullname,
+            //     dateofBirth,
+            //     gender,
+            //     phone,
+            //     CMND,   
+            //     address
+            // )
+            // VALUES (
+            //     '{$username}',
+            //     '{$email}',
+            //     '{$name}',
+            //     '{$dateofBirth}',
+            //     '{$gender}',
+            //     '{$phone}',
+            //     '{$cmnd}',
+            //     '{$address}'
+            // )";
+
+            $member = "INSERT INTO account (
+                username,
+                password,
+                AccountType
             )
             VALUES (
                 '{$username}',
                 '{$password}',
-                '2',
-                '{$name}'
+                '2'
+            )
             )";
-            $addmember = mysqli_query($conn,$data);
-            if ($addmember){
+            $addaccount = mysqli_query($conn,$member);
+            // $addmember = mysqli_query($conn,$data);
+            if ($addaccount){
                 echo "Bạn đã đăng ký thành công";
             } else {
                 echo "Có lỗi trong quá trình đăng ký. Vui lòng thử lại sau";

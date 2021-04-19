@@ -11,16 +11,17 @@
 			<p>Đăng ký thi đánh giá năng lực</p>
 		</div>
 		<div class="information">
+		<form action="../action/signup_submit.php" method="POST">
 			<h1>Đăng ký tài khoản dự thi</h1>
 			<table align="center">
 				<tr>
-					<td>Tên đăng nhập:</td>
+					<td>Tên đăng nhập(*):</td>
 					<td>
 						<input type="text" name="username" id="username">
 					</td>
 				</tr>
 				<tr>
-					<td>Họ và tên:</td>
+					<td>Họ và tên(*):</td>
 					<td>
 						<input type="text" name="name" id="name">
 					</td>
@@ -28,7 +29,7 @@
 				<tr>
 					<td>Ngày sinh:</td>
 					<td>
-						<select style="margin-right: 1%">
+						<select type="text" name="year" style="margin-right: 1%">
 	                        <option value="2005">2005</option>
 	                        <option value="2004">2004</option>
 	                        <option value="2003">2003</option>
@@ -41,7 +42,7 @@
 	                        <option value="1996">1996</option>
 	                        <option value="1995">1995</option>
 	                    </select>Năm
-	                    <select style="margin-right: 1%">
+	                    <select type="text" name="month" style="margin-right: 1%">
 	                        <option value="1">1</option>
 		                    <option value="2">2</option>
 		                    <option value="3">3</option>
@@ -55,7 +56,7 @@
 		                    <option value="11">11</option>
 		                    <option value="12">12</option>
 	                    </select>Tháng
-	                    <select style="margin-right: 1%">
+	                    <select type="text" name="day" style="margin-right: 1%">
 							<option>1</option>
 	                    	<option>2</option>
 	                    	<option>3</option>
@@ -93,7 +94,7 @@
 				<tr>
 					<td>Giới tính:</td>
 					<td>
-						<input name="gender" id="gender" type="radio" value="Nam" />Nam
+						<input name="gender" id="gender" type="radio" checked value="Nam" />Nam
 				    	<input name="gender" id="gender" type="radio" value="Nữ" />Nữ
 					</td>
 				</tr>
@@ -122,20 +123,21 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Mật khẩu:</td>
+					<td>Mật khẩu(*):</td>
 					<td>
 						<input type="password" name="password" id="password">
 					</td>
 				</tr>
 				<tr>
-					<td>Nhập lại mật khẩu:</td>
+					<td>Nhập lại mật khẩu(*):</td>
 					<td>
 						<input type="password" name="enterpassword" id="enterpassword">
 					</td>
 				</tr>
 			</table>
-			<input type="submit" value="Đăng ký">
-			<input type="button" value="Hủy">
+			<p align="center" style="color: red;">(*) không thể bỏ trống</p>
+			<input type="submit" name="submit" value="Đăng ký">
+			<input type="button" name="back" value="Hủy">
 		</div>
 	</body>
 </html>

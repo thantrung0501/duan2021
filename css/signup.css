@@ -15,14 +15,14 @@
 	float: left;
 }
 .header p{
-	font-size: 3.3vw;
+	font-size: 2.5vw;
 	font-family: Times New Roman;
 	color: white;
 	line-height: 50%;
-	margin-left: 12vw;
+	margin-left: 9vw;
 }
 .information h1{
-	font-size: 2.8vw;
+	font-size: 2.5vw;
 	font-weight: 400;
 	margin-top: 0.5%;
 	font-family: Times New Roman;
@@ -48,7 +48,7 @@
 	width: 40vw;
 	height: 4vh;
 	margin-left: 3%;
-	margin-bottom: 1%;
+	margin-bottom: 0.9%;
 	font-size: 1.2vw;
 	font-family: Times New Roman;
 }
@@ -69,7 +69,7 @@
 	width: 9%;
 	height: 5vh;
 	left: 40%;
-	margin-top: 1%;
+	margin-top: 0.3%;
 	font-size: 1.6vw;
 	background-color: #219653;
 	color: white;
@@ -98,7 +98,7 @@
 	width: 9%;
 	height: 5vh;
 	left: 52%;
-	margin-top: 1%;
+	margin-top: 0.3%;
 	font-size: 1.6vw;
 	background-color: #219653;
 	color: white;
@@ -119,4 +119,7 @@
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;
+}
+.information p{
+	margin-left: 38vw;
 }

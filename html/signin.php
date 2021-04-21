@@ -40,7 +40,7 @@
 			<label >Mật khẩu:</label><br>
 			<input type="password" id="password" name="password"><br>
 			<a href="../html/resetpassword.html">Quên mật khẩu</a><br>
-			<button class="btn-login" type="submit" value="" name="submit">Đăng nhập</button>
+			<button class="btn-login" type="submit" value="" name="submit" onclick="send()">Đăng nhập</button>
 			<br>
 			<div class="dangky">
 				<p>

@@ -7,7 +7,7 @@
 	</head>
 	<body class="sign_up">
 		<div class="header">
-			<img src="../images/common/Logo-VNU-1995(1).jpg" style="max-width:8.5%;height:auto;">
+			<img src="../images/common/Logo-VNU-1995(1).jpg" style="max-width:7%;height:auto;">
 			<p>Đăng ký thi đánh giá năng lực</p>
 		</div>
 		<div class="information">
@@ -135,7 +135,7 @@
 					</td>
 				</tr>
 			</table>
-			<p align="center" style="color: red;">(*) không thể bỏ trống</p>
+			<p style="color: red;">(*) Không thể bỏ trống</p>
 			<input type="submit" name="submit" value="Đăng ký">
 			<input type="button" name="back" value="Hủy">
 		</div>

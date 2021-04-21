@@ -85,13 +85,17 @@ ul.navbar {
 .information p{
     text-align: center;
 }
-.information input[name="diemhk"]{
+.score-table input{
     width: 100px;
-    margin: 0px 15px 0px 15px;
+    margin: 15px;
 }
-.information input[name="diemtn"]{
+.score-table input{
     width: 100px;
-    margin: 0px 15px 0px 15px;
+    margin: 15px;
+}
+
+.score-table {
+  margin: 15px;
 }
 
 .information button {
@@ -120,4 +124,8 @@ ul.navbar {
   
   .cancel-btn:hover {
     background-color: #cc0000;
+  }
+
+  .score-table, .score-table th, .score-table td {
+    border: 1px solid #111;
   }

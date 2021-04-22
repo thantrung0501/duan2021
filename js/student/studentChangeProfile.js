@@ -36,6 +36,7 @@ validateForm = () => {
             }
         }
     } 
+    return true;
 }
 
 validateEmail = email => {
@@ -74,8 +75,11 @@ validateNonCompulsoryScore = (score) => {
 $().ready(function(){
     $("form").submit(function(event){
         try {
-            validateForm();
-            console.log(JSON.stringify($("form").serializeJSON()));
+            if(validateForm()){
+               console.log(JSON.stringify($("form").serializeJSON())); 
+            }else{
+                console.log("fail");
+            }
             event.preventDefault();
             event.stopPropagation();    
         } catch (error) {

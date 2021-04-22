@@ -14,9 +14,9 @@
     <li class="dropdown" style="float:right">
       <a href="javascript:void(0)" class="dropbtn">Student</a>
       <div class="dropdown-content">
-        <a href="#">Đổi mật khẩu</a>
-        <a href="#">Cập nhật thông tin</a>
-        <a href="#">Xem giấy báo dự thi</a>
+        <a href="./studentChangePassword.html">Đổi mật khẩu</a>
+        <a href="./studentChangeProfile.php">Cập nhật thông tin</a>
+        <a href="./entranceExaminationPaper.html">Xem giấy báo dự thi</a>
       </div>
     </li>
   </ul>

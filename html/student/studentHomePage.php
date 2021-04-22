@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
 </head>
 <body>
   <ul class="navbar">
-    <li><a class="logo-container" href="#home"><img class="logo" src="../../images/common/Logo-VNU-1995.jpg" /></a></li>
+    <li><a class="logo-container" href="./studentHomepage.php"><img class="logo" src="../../images/common/Logo-VNU-1995.jpg" /></a></li>
     <li><div class="web-name">Đăng ký thi đánh giá năng lực</div></li>
     <li class="dropdown" style="float:right">
       <a href="javascript:void(0)" class="dropbtn">Student</a>

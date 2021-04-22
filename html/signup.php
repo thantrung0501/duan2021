@@ -1,3 +1,6 @@
+<?php 
+session_start();
+ ?>
 <!DOCTYPE html> 
 <html> 
 	<head> 
@@ -13,17 +16,26 @@
 		<div class="information">
 		<form action="../action/signup_submit.php" method="POST">
 			<h1>Đăng ký tài khoản dự thi</h1>
+			<div class="notice" style="color: red;text-align: center;">
+				<?php 
+					if(isset($_SESSION["notice"])){
+						echo $_SESSION["notice"];
+						unset($_SESSION['notice']);
+					}
+				 ?>
+			</div>
+
 			<table align="center">
 				<tr>
 					<td>Tên đăng nhập(*):</td>
 					<td>
-						<input type="text" name="username" id="username">
+						<input required="" type="text" name="username" id="username">
 					</td>
 				</tr>
 				<tr>
 					<td>Họ và tên(*):</td>
 					<td>
-						<input type="text" name="name" id="name">
+						<input required type="text" name="fullName" id="name">
 					</td>
 				</tr>
 				<tr>
@@ -125,13 +137,13 @@
 				<tr>
 					<td>Mật khẩu(*):</td>
 					<td>
-						<input type="password" name="password" id="password">
+						<input required type="password" name="password" id="password">
 					</td>
 				</tr>
 				<tr>
 					<td>Nhập lại mật khẩu(*):</td>
 					<td>
-						<input type="password" name="enterpassword" id="enterpassword">
+						<input required type="password" name="enterpassword" id="enterpassword">
 					</td>
 				</tr>
 			</table>

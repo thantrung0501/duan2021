@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 19, 2021 lúc 04:46 PM
+-- Thời gian đã tạo: Th4 22, 2021 lúc 06:16 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -37,20 +37,13 @@ DELIMITER ;
 --
 
 CREATE TABLE `account` (
-  `AccountID` varchar(36) DEFAULT NULL COMMENT 'khóa chính',
-  `UserName` varchar(100) DEFAULT NULL COMMENT 'tên đăng nhập',
-  `PassWord` varchar(50) DEFAULT NULL COMMENT 'mật khẩu',
+  `AccountID` varchar(36) NOT NULL COMMENT 'khóa chính',
+  `Username` varchar(100) DEFAULT NULL COMMENT 'tên đăng nhập',
+  `Password` varchar(100) DEFAULT NULL COMMENT 'mật khẩu',
   `AccountType` int(11) DEFAULT NULL COMMENT 'Loại người dùng đăng nhập 1- trung tâm khảo thí, 2- thí sinh',
-  `FullName` varchar(255) NOT NULL COMMENT 'tên người dùng'
+  `FullName` varchar(255) NOT NULL COMMENT 'tên người dùng',
+  `AccountDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `account`
---
-
-INSERT INTO `account` (`AccountID`, `UserName`, `PassWord`, `AccountType`, `FullName`) VALUES
-('7147456c-9ba8-11eb-a3fd-9840bb0282e0', 'ptthuy@gmail.com', '1234', 2, 'Pham trung thuy'),
-('7147456c-9ba8-11eb-a4fd-9840bb0282e0', 'ptthuy2@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 2, 'Pham trung thuy');
 
 -- --------------------------------------------------------
 
@@ -59,13 +52,16 @@ INSERT INTO `account` (`AccountID`, `UserName`, `PassWord`, `AccountType`, `Full
 --
 
 CREATE TABLE `accountdetail` (
-  `AccountDetailID` varchar(36) DEFAULT NULL COMMENT 'khoa chính',
-  `AccountD` int(11) NOT NULL COMMENT 'id bảng account',
+  `AccountDetailID` int(11) NOT NULL COMMENT 'khoa chính',
+  `AccountID` varchar(36) NOT NULL COMMENT 'id bảng account',
   `Email` varchar(100) NOT NULL COMMENT 'địa chỉ email',
   `DateOfBirth` date NOT NULL COMMENT 'ngày sinh',
-  `Gender` int(11) NOT NULL COMMENT 'Gioi tinh',
+  `Gender` varchar(20) NOT NULL COMMENT 'Gioi tinh',
   `FullName` varchar(500) NOT NULL COMMENT 'ho va ten',
-  `JDetail` longtext NOT NULL COMMENT 'thông tin cá nhân chi tiết'
+  `Identification` varchar(50) NOT NULL COMMENT 'cmnd',
+  `PhoneNumber` varchar(11) NOT NULL COMMENT 'sđt',
+  `JDetail` longtext NOT NULL COMMENT 'thông tin cá nhân chi tiết',
+  `Address` varchar(255) NOT NULL COMMENT 'địa chỉ'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -115,6 +111,12 @@ CREATE TABLE `registexaminfor` (
 --
 
 --
+-- Chỉ mục cho bảng `accountdetail`
+--
+ALTER TABLE `accountdetail`
+  ADD PRIMARY KEY (`AccountDetailID`);
+
+--
 -- Chỉ mục cho bảng `registexamdetail`
 --
 ALTER TABLE `registexamdetail`
@@ -129,6 +131,12 @@ ALTER TABLE `registexaminfor`
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
+
+--
+-- AUTO_INCREMENT cho bảng `accountdetail`
+--
+ALTER TABLE `accountdetail`
+  MODIFY `AccountDetailID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'khoa chính', AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `registexaminfor`

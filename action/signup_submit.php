@@ -1,7 +1,9 @@
 <?php
+    session_start();
     include '../config.php';
-
-    $name = $_POST["name"];
+    $accountID = bin2hex(openssl_random_pseudo_bytes(16));
+    $accountDate = date("Y-m-d H:i:s");
+    $fullName = $_POST["fullName"];
     $gender = $_POST["gender"];
     $phone = $_POST["phone"];
     $cmnd = $_POST["cmnd"];
@@ -10,69 +12,76 @@
     $username = $_POST["username"];
     $password = $_POST["password"];
     $enterpassword = $_POST["enterpassword"];
-    $dateofBirth = $_POST['day'].'/'.$_POST['month'].'/'.$_POST['year'];
+    $stringDate = $_POST['day'].'/'.$_POST['month'].'/'.$_POST['year'];
+    $dateofBirth = date('Y-m-d',strtotime($stringDate));
 
     //mã hóa
     $password = md5($password);
     $enterpassword = md5($enterpassword);
-
+ 
     if(isset($_POST["submit"])){
-        if ( $name=='' || $username=='' || $password =='' || $enterpassword=='' ){
-            echo "Vui lòng nhập đủ thông tin cần thiết";
-            exit;
-        }
         
         if ( $password != $enterpassword){
-            echo "Mật khẩu xác thực không chính xác";
-            exit;
-        }
+             $_SESSION["notice"] = "Mật khẩu xác thực không chính xác";
+             header("location: ../html/signup.php");
+        }else{
 
         $sql = "SELECT * FROM account WHERE username = '$username'";
         $user = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($user)>0){
-            echo "Tài khoản đã tồn tại";
-            exit;
+            $_SESSION["notice"] = "Tài khoản đã tồn tại";
         } else {
-            $data = "INSERT INTO users (
-                username,
-                email,
-                fullname,
-                dateofBirth,
-                gender,
-                phone,
-                CMND,   
-                address
-            )
-            VALUES (
-                '{$username}',
-                '{$email}',
-                '{$name}',
-                '{$dateofBirth}',
-                '{$gender}',
-                '{$phone}',
-                '{$cmnd}',
-                '{$address}'
-            )";
 
-            $member = "INSERT INTO account (
-                username,
-                password,
-                AccountType
-            )
-            VALUES (
-                '{$username}',
-                '{$password}',
-                '2'
-            )";
+            // insert vào bảng account
+               $accountData = "INSERT INTO account(
+                  AccountID, 
+                  Username,
+                  Password,
+                  AccountType,
+                  AccountDate
+                  ) 
+               VALUES (
+                  '$accountID',
+                  '$username',
+                  '$password',
+                   2, 
+                  '$accountDate')";
 
-            $addmember = mysqli_query($conn,$member);
-            $addaccount = mysqli_query($conn,$data);
-            if ($addaccount && $addmember){
-                echo "Bạn đã đăng ký thành công";
-            } else {
-                echo "Có lỗi trong quá trình đăng ký. Vui lòng thử lại sau";
+               $addMember = mysqli_query($conn, $accountData);
+                 // insert vào bảng accountdetail
+                $data = "INSERT INTO accountdetail(
+                   AccountID, 
+                   Email,
+                   FullName,
+                   DateOfBirth,
+                   Gender,
+                   PhoneNumber,
+                   Identification,
+                   Address) 
+               VALUES ('$accountID',
+                    '$email',
+                    '$fullName',
+                    '$dateofBirth',
+                    '$gender',
+                    '$phone',
+                    '$cmnd',
+                    '$address')";
+             
+                $addAccount = mysqli_query($conn, $data);
+                
+                if ($addMember&&$addAccount){
+                     $_SESSION["notice"] = "Bạn đã đăng ký thành công";
+
+                } else {
+                     $_SESSION["notice"] =  "Có lỗi trong quá trình đăng ký. Vui lòng thử lại sau";
+
+                }
+                
             }
+            header("location: ../html/signup.php");
         }
+
     }
+ 
 ?>

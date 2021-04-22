@@ -20,6 +20,7 @@
 				$dataUser = mysqli_fetch_array($user);
 				$_SESSION["user"] = $username;
 				$_SESSION["AccountID"] = $dataUser["AccountID"];
+				$_SESSION["AccountType"] = $dataUser["AccountType"];
 				// check màn hình đăng nhập: 1 là của cục khảo thí, 2 là của thí sinh
 				if($dataUser['AccountType']==1){
 					// active vào màn hình đăng nhập của cục khảo thí

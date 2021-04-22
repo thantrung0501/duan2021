@@ -27,7 +27,7 @@
 		<div class="sign_in">
 			<form action="../action/signin_submit.php" method="POST">
 			<p>Đăng nhập</p>
-			<div class="notice">
+			<div class="notice" style="color: red;text-align: center;">
 				<?php 	
 					if(isset($_SESSION["notice"])){
 						echo $_SESSION["notice"];

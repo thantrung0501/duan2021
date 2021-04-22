@@ -1,6 +1,6 @@
 <?php 
 	$servername = "localhost";
-$database = "duan2021";
+$database = "qlappproject";
 $username = "root";
 $password = "";
 // Create connection

@@ -39,7 +39,7 @@
 			<input type="text" id="username" name="username"><br>
 			<label >Mật khẩu:</label><br>
 			<input type="password" id="password" name="password"><br>
-			<a href="../html/resetpassword.html">Quên mật khẩu</a><br>
+			<a href="../html/resetpassword.php">Quên mật khẩu</a><br>
 			<button class="btn-login" type="submit" value="" name="submit">Đăng nhập</button>
 			<br>
 			<div class="dangky">

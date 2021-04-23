@@ -10,6 +10,7 @@
 	if(mysqli_num_rows($result) >0){
 
 		$dataRegist = mysqli_fetch_array($user);
+		echo json_encode($dataRegist);
 	}else{
 
 		echo("không có bản ghi");

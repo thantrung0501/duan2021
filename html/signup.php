@@ -1,3 +1,6 @@
+<?php 
+session_start();
+ ?>
 <!DOCTYPE html> 
 <html> 
 	<head> 
@@ -7,23 +10,32 @@
 	</head>
 	<body class="sign_up">
 		<div class="header">
-			<img src="../images/common/Logo-VNU-1995(1).jpg" style="max-width:8.5%;height:auto;">
+			<img src="../images/common/Logo-VNU-1995(1).jpg" style="max-width:7%;height:auto;">
 			<p>Đăng ký thi đánh giá năng lực</p>
 		</div>
 		<div class="information">
 		<form action="../action/signup_submit.php" method="POST">
 			<h1>Đăng ký tài khoản dự thi</h1>
+			<div class="notice" style="color: red;text-align: center;">
+				<?php 
+					if(isset($_SESSION["notice"])){
+						echo $_SESSION["notice"];
+						unset($_SESSION['notice']);
+					}
+				 ?>
+			</div>
+
 			<table align="center">
 				<tr>
 					<td>Tên đăng nhập(*):</td>
 					<td>
-						<input type="text" name="username" id="username">
+						<input required="" type="text" name="username" id="username">
 					</td>
 				</tr>
 				<tr>
 					<td>Họ và tên(*):</td>
 					<td>
-						<input type="text" name="name" id="name">
+						<input required type="text" name="fullName" id="name">
 					</td>
 				</tr>
 				<tr>
@@ -125,17 +137,17 @@
 				<tr>
 					<td>Mật khẩu(*):</td>
 					<td>
-						<input type="password" name="password" id="password">
+						<input required type="password" name="password" id="password">
 					</td>
 				</tr>
 				<tr>
 					<td>Nhập lại mật khẩu(*):</td>
 					<td>
-						<input type="password" name="enterpassword" id="enterpassword">
+						<input required type="password" name="enterpassword" id="enterpassword">
 					</td>
 				</tr>
 			</table>
-			<p align="center" style="color: red;">(*) không thể bỏ trống</p>
+			<p style="color: red;">(*) Không thể bỏ trống</p>
 			<input type="submit" name="submit" value="Đăng ký">
 			<input type="button" name="back" value="Hủy">
 		</div>

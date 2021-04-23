@@ -14,19 +14,16 @@
 	
 	<div class="login-partial">
 		<div class="logo">
-			<img src="../images/common/Logo-VNU-1995(1).jpg" style="max-width:40%;height:auto;">
-			<p>Đăng ký thi đánh giá năng lực
-			<br>
-			Đại học Quốc gia Hà Nội
-			</p>
-			<br>
-			<h5>VNU <small>test center</small></h5>
+			<img src="../images/common/Logo-VNU-1995.jpg" style="max-width:40%;height:auto;">
+			<p class="web-name">Đăng ký thi đánh giá năng lực</p>
+			<p class="web-name">Đại học Quốc gia Hà Nội</p> 
+			<h1>VNU<small>test center</small></h1>
 		</div>
 
 
-		<div class="sign_in">
+		<div class="sign-in-form">
 			<form action="../action/signin_submit.php" method="POST">
-			<p>Đăng nhập</p>
+			<h1>Đăng nhập</h1>
 			<div class="notice" style="color: red;text-align: center;">
 				<?php 	
 					if(isset($_SESSION["notice"])){
@@ -35,17 +32,20 @@
 					}
 				 ?>
 			</div>
-			<label >Tài khoản:</label><br>
-			<input type="text" id="username" name="username"><br>
-			<label >Mật khẩu:</label><br>
-			<input type="password" id="password" name="password"><br>
-			<a href="../html/resetpassword.html">Quên mật khẩu</a><br>
-			<button class="btn-login" type="submit" value="" name="submit" onclick="send()">Đăng nhập</button>
-			<br>
-			<div class="dangky">
-				<p>
+			<div class="form-element">
+				<label for="username">Tài khoản:</label>
+			<input type="text" id="username" name="username">
+			</div>
+			<div class="form-element">
+				<label for="password">Mật khẩu:</label>
+				<input type="password" id="password" name="password">
+				<a href="../html/resetpassword.html">Quên mật khẩu?</a>
+			</div>
+			<div class="form-element">
+				<button class="btn-login" type="submit" value="" name="submit" onclick="send()">Đăng nhập</button>
+			</div>
+			<div class="sign-up-suggest">
 				Chưa có tài khoản? Đăng ký ngay <a href="../html/signup.php">tại đây</a>
-				</p>
 			</div>
 		</form>  
 		</div>

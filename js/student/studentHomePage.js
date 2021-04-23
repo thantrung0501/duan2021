@@ -30,3 +30,7 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+$.get( "../../action/student/GetAccountDetail.php", function( data ) {
+  console.log(data);
+});

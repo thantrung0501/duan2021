@@ -181,7 +181,7 @@
 	                </select>
 	                <br>
 	                13.Trung bình chung học tập:
-	                <table class="score-table" style="margin-top: 10px">
+	                <table class="score-table">
 	                	<tr>
 	                		<th colspan="3">Lớp 10</th>
 	                		<th colspan="3">Lớp 11</th>

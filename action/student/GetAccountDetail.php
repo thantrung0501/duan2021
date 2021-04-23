@@ -1,5 +1,5 @@
 <?php 
-	include '../config.php';
+	include '../../config.php';
 	$accountID = $_SESSION["AccountID"];
 
 	$sql = "SELECT * FROM accountdetail WHERE AccountID = '$accountID'";

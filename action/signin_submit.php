@@ -10,7 +10,6 @@
 
    //nếu điền đủ thông tin và nhấn nút submit thì đi tiếp, nếu không thì văng cảnh báo điền đầy đủ thông tin
 	if (isset($_POST["submit"])) {
-		if ($_POST["username"]!='' && $_POST["password"]!=''){
 
 		$sql = "SELECT * FROM account WHERE username = '$username' AND password = '$password'";
 		$user = mysqli_query($conn, $sql);
@@ -34,15 +33,9 @@
 			else 
 				{
 					// nếu không có data thì không có tài khoản đăng nhập
-					$_SESSION["notice"]  =  "thông tin tài khoản mật khẩu không chính xác";
+					$_SESSION["notice"]  =  "Thông tin tài khoản mật khẩu không chính xác";
 					header("location: ../html/signin.php");	
 				}
-		}
-		else
-			{
-				$_SESSION["notice"]  =  "Vui lòng điền đầy đủ thông tin";
-				header("location: ../html/signin.php");
-			}
 	}
 	
 

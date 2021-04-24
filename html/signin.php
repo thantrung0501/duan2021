@@ -8,7 +8,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Đăng nhập</title>
 	<link rel="stylesheet" href="../css/signin.css">
-	<script type=”text/javascript” src="/js/jquery-3.5.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="../js/serializeJSONPlugin.js"></script>
 </head>
 <body>
 	
@@ -24,14 +25,16 @@
 		<div class="sign-in-form">
 			<form action="../action/signin_submit.php" method="POST">
 			<h1>Đăng nhập</h1>
-			<div class="notice" style="color: red;text-align: center;">
 				<?php 	
 					if(isset($_SESSION["notice"])){
-						echo $_SESSION["notice"];
+						echo '<div class="alert">
+							<span class="closebtn">&times;</span>' 
+							.$_SESSION["notice"].
+							'</div>';
 						unset($_SESSION['notice']);
 					}
 				 ?>
-			</div>
+			
 			<div class="form-element">
 				<label for="username">Tài khoản:</label>
 			<input type="text" id="username" name="username">
@@ -42,7 +45,7 @@
 				<a href="../html/resetpassword.html">Quên mật khẩu?</a>
 			</div>
 			<div class="form-element">
-				<button class="btn-login" type="submit" value="" name="submit" onclick="send()">Đăng nhập</button>
+				<button class="btn-login" type="submit" value="" name="submit">Đăng nhập</button>
 			</div>
 			<div class="sign-up-suggest">
 				Chưa có tài khoản? Đăng ký ngay <a href="../html/signup.php">tại đây</a>
@@ -54,5 +57,5 @@
 
 </body>
 
-<script type="text/javascript" src="../js/index.js"></script>
+<script type="text/javascript" src="../js/signin.js"></script>
 </html>

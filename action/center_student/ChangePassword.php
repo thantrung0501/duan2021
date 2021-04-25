@@ -1,7 +1,7 @@
 <?php 
 
 	session_start();
-	include '../config.php';
+	include '../../config.php';
 	$accountID = $_SESSION["AccountID"];
 	$accountType = $_SESSION["AccountType"];
 	$sql = "SELECT * FROM account WHERE AccountID = '$accountID'";

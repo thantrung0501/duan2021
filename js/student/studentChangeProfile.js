@@ -72,6 +72,17 @@ validateNonCompulsoryScore = (score) => {
     return true;
 }
 
+$.ajax({
+    url : "../../action/student/GetAccountDetail.php",
+        method: 'GET',
+            data: {},
+            dataType: "json",
+            success: function(data){
+                    
+                    
+                }
+        });
+
 $().ready(function(){
     $("form").submit(function(event){
         try {

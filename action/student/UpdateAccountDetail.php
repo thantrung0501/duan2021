@@ -1,6 +1,6 @@
 <?php 
 	session_start();
-	include '../config.php';
+	include '../../config.php';
 	$accountID = $_SESSION["AccountID"];
 	$accountType = $_SESSION["AccountType"];
 	if(isset($_POST["submit"])){

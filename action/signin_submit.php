@@ -17,7 +17,7 @@
 			// nếu tồn tại user thì thực hiện 
 			if(mysqli_num_rows($user) >0){
 				$dataUser = mysqli_fetch_array($user);
-				$_SESSION["user"] = $username;
+				$_SESSION["Username"] = $username;
 				$_SESSION["AccountID"] = $dataUser["AccountID"];
 				$_SESSION["AccountType"] = $dataUser["AccountType"];
 				// check màn hình đăng nhập: 1 là của cục khảo thí, 2 là của thí sinh

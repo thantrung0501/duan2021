@@ -1,5 +1,7 @@
 <?php 
+	// cái này để lấy profile của thí sinh
 	include '../../config.php';
+	session_start();
 	$accountID = $_SESSION["AccountID"];
 
 	$sql = "SELECT * FROM accountdetail WHERE AccountID = '$accountID'";

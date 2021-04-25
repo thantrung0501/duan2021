@@ -1,5 +1,6 @@
 <?php
-	include '../config.php';
+	include '../../config.php';
+	session_start();
 	// lấy ra id đăng nhập
 	$accountID = $_SESSION["AccountID"];
 

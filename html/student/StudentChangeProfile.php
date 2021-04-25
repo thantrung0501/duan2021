@@ -181,6 +181,7 @@
 	                </select>
 	                <br>
 	                13.Trung bình chung học tập:
+					<div>
 	                <table class="score-table">
 	                	<tr>
 	                		<th colspan="3">Lớp 10</th>
@@ -226,14 +227,17 @@
 	                		</td>
 	                	</tr>
 	                </table>
+					</div>
 				</fieldset>
 				<fieldset>
 					<legend>D.THÔNG TIN TỐT NGHIỆP</legend>
+					
 					14.Năm tốt nghiệp THPT(*): 
 					<input type="number" id="gradYear" name="gradYear" min="1" style="width: 100px; height: 18px; margin-left: 25px">
 					<br>
 					15.Kết quả tốt nghiệp THPT(*):
 					<br>
+				<div>	
 					<table class="score-table">
 						<tr>
 							<td>
@@ -274,6 +278,7 @@
 							</td>
 						</tr>
 					</table>
+				</div>
 				</fieldset>
 				<h4>Chú ý: Một số trường thông tin đánh dấu (*) là không bắt buộc nên có thể bỏ qua hoặc cập nhật sau</h4>
 

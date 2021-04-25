@@ -2,6 +2,14 @@ body {
     margin: 0;
 }
 
+fieldset {
+  display: block;
+}
+
+fieldset div {
+  margin: 15px;
+}
+
 .information {
     margin: 30px;
 }
@@ -16,12 +24,12 @@ body {
 }
 
 .score-table input{
-    width: 3vw;
+    width: 3.5vw;
     margin: 15px;
 }
 
 .score-table {
-  margin: 15px;
+  width: 100%;
 }
 
 .information button {

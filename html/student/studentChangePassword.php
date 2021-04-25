@@ -28,26 +28,22 @@
     <div class="container"> 
       <div class="form-container">
         <form id="pwform" name="pwform" action="">
-          <table>
-            <tr>
-              <td class="label-cell"><label for="oldpw">Mật khẩu cũ:</label></td>
-              <td><input type="password" name="oldpw" id="oldpw"></td>
-            </tr>
-            <tr>
-              <td class="label-cell"><label for="newpw">Mật khẩu mới:</label></td>
-              <td><input type="password" name="newpw" id="newpw"></td>
-            </tr>
-            <tr>
-              <td class="label-cell"><label for="renewpw">Nhập lại mật khẩu mới:</label></td>
-              <td><input type="password" name="renewpw" id="renewpw"></td>
-            </tr>
-            <tr>
-              <td colspan="2">
-                <button type="reset" name="rsbtn" id="rsbtn" class="rsbtn">Hủy</button>
-                <button type="submit" name="savebtn" id="savebtn" class="savebtn">Lưu</button> 
-              </td>
-            </tr>
-          </table>
+          <div class="form-element">
+            <label for="oldpw">Mật khẩu cũ:</label>
+            <input type="password" name="oldpw" id="oldpw">
+          </div>
+          <div class="form-element">
+              <label for="newpw">Mật khẩu mới:</label>  
+              <input type="password" name="newpw" id="newpw">
+          </div>
+          <div class="form-element">
+              <label for="renewpw">Nhập lại mật khẩu mới:</label>
+              <input type="password" name="renewpw" id="renewpw">
+          </div>
+          <div class="form-element">
+              <button type="submit" name="savebtn" id="savebtn" class="savebtn">Lưu</button> 
+              <button type="reset" name="rsbtn" id="rsbtn" class="rsbtn">Hủy</button>
+          </div>        
         </form>
       </div>
     </div>

@@ -2,12 +2,19 @@ body {
     margin: 0;
 }
 
+fieldset {
+  display: block;
+}
+
+fieldset div {
+  margin: 15px;
+}
+
 .information {
-    height: 970px;
     margin: 30px;
 }
 .information fieldset{
-    margin-top: 10px;	
+    margin-top: 2vh;	
 }
 .information input{
     margin: 5px;
@@ -17,22 +24,22 @@ body {
 }
 
 .score-table input{
-    width: 100px;
+    width: 3.5vw;
     margin: 15px;
 }
 
 .score-table {
-  margin: 15px;
-  width: 95%;
+  width: 100%;
 }
 
 .information button {
     float: right;
-    margin-left: 10px;
-    margin-top: 15px;
+    margin-left: 1vw;
+    margin-top: 1vh;
+    margin-bottom: 2vh;
     border-radius: 3px;
-    padding: 10px;
-    width: 6%;
+    padding: 7px;
+    width: 5vw;
     color: white;
   }
   

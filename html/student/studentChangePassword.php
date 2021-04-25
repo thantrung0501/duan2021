@@ -30,15 +30,15 @@
         <form id="pwform" name="pwform" action="">
           <table>
             <tr>
-              <td><label for="oldpw">Mật khẩu cũ:</label></td>
+              <td class="label-cell"><label for="oldpw">Mật khẩu cũ:</label></td>
               <td><input type="password" name="oldpw" id="oldpw"></td>
             </tr>
             <tr>
-              <td><label for="newpw">Mật khẩu mới:</label></td>
+              <td class="label-cell"><label for="newpw">Mật khẩu mới:</label></td>
               <td><input type="password" name="newpw" id="newpw"></td>
             </tr>
             <tr>
-              <td><label for="renewpw">Nhập lại mật khẩu mới:</label></td>
+              <td class="label-cell"><label for="renewpw">Nhập lại mật khẩu mới:</label></td>
               <td><input type="password" name="renewpw" id="renewpw"></td>
             </tr>
             <tr>

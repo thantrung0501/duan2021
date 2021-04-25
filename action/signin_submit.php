@@ -23,10 +23,12 @@
 				// check màn hình đăng nhập: 1 là của cục khảo thí, 2 là của thí sinh
 				if($dataUser['AccountType']==1){
 					// active vào màn hình đăng nhập của cục khảo thí
+					header("location: ../html/admin/admin.php");
 				} 
 				else
 					{
 						//active vào màn hình đăng nhập của thí sinh
+						
 						header("location: ../html/student/studentHomePage.php");
 					}
 			} 

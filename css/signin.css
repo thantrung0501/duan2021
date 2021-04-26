@@ -21,7 +21,7 @@ body {
 	margin-bottom: 5vh;
 }
 .logo .web-name{
-	font-size: 2.3em;
+	font-size: 3em;
 	color: white;
 	margin: 1vh;
 	font-family: Times New Roman;
@@ -46,8 +46,8 @@ body {
 }
 
 .sign-in-form h1{
-	width: 50%;
-	font-size: 3.5em;
+	width: 60%;
+	font-size: 4.5em;
 	font-weight: lighter;
 	margin: auto;
 	margin-top: 20vh;
@@ -56,7 +56,7 @@ body {
 }
 
 .form-element {
-	width: 50%;
+	width: 60%;
 	margin: auto;
 	margin-top: 2vh;
 	margin-bottom: 2vh;
@@ -70,7 +70,7 @@ body {
 
 .form-element label {
 	width: 100%;
-	font-size: 1.5em;
+	font-size: 2em;
 	display: block;
 	font-weight: bold;
 	margin: auto;
@@ -82,7 +82,7 @@ body {
 	width: 100%;
 	margin: auto;
 	display: block;
-	height: 4vh;
+	height: 4.5vh;
 }
 
 .form-element a {
@@ -93,7 +93,7 @@ body {
 	font-style: italic;
 	text-decoration: none;
 	color: #000;
-	margin-top: 2vh;
+	margin-top: 1vh;
 	margin-bottom: 1vh;
 	font-family: Times New Roman;
 }
@@ -101,10 +101,10 @@ body {
 .form-element button {
 	background-color: #219653;
 	color: white;
-	padding: 15px;
-	font-size: 1.1em;
+	padding: 2%;
+	font-size: 1.4em;
 	border-radius: 10px;
-	width: 40%;
+	width: 30%;
 	border: 1px solid #111;
 	float: right;
 	font-family: Times New Roman;
@@ -115,12 +115,13 @@ body {
 }
 
 .sign-up-suggest {
-	width: 50%;
+	width: 60%;
 	margin: auto;
 	display: block;
 	margin-top: 10vh;
 	font-size: 1.2em;
 	font-style: italic;
+	font-family: Times New Roman;
 }
 
 /* The alert message box */

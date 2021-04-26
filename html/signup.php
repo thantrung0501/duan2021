@@ -10,7 +10,7 @@ session_start();
 	</head>
 	<body class="sign_up">
 		<div class="header">
-			<img src="../images/common/Logo-VNU-1995(1).jpg" style="max-width:7%;height:auto;">
+			<img src="../images/common/Logo-VNU-1995.jpg" style="max-width:7%;height:auto;">
 			<p>Đăng ký thi đánh giá năng lực</p>
 		</div>
 		<div class="information">

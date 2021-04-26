@@ -6,6 +6,7 @@ body {
 .login-partial {
 	width: 100%;
 	margin: 0px;
+	height: 100vh;
 }
 .logo {
 	background-color: #219653;
@@ -23,6 +24,7 @@ body {
 	font-size: 2.3em;
 	color: white;
 	margin: 1vh;
+	font-family: Times New Roman;
 }
 .logo h1{
 	margin-top: 4vh;
@@ -33,6 +35,7 @@ body {
 }
 .logo h1 small{
 	font-size: 40%;
+	font-family: Times New Roman;
 }
 
 .sign-in-form {
@@ -49,6 +52,7 @@ body {
 	margin: auto;
 	margin-top: 20vh;
 	margin-bottom: 5vh;
+	font-family: Times New Roman;
 }
 
 .form-element {
@@ -71,6 +75,7 @@ body {
 	font-weight: bold;
 	margin: auto;
 	margin-bottom: 1vh;
+	font-family: Times New Roman;
 }
 
 .form-element input {
@@ -90,6 +95,7 @@ body {
 	color: #000;
 	margin-top: 2vh;
 	margin-bottom: 1vh;
+	font-family: Times New Roman;
 }
 
 .form-element button {
@@ -101,6 +107,7 @@ body {
 	width: 40%;
 	border: 1px solid #111;
 	float: right;
+	font-family: Times New Roman;
 }
 
 .form-element button:hover {

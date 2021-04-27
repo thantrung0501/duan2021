@@ -3,6 +3,7 @@
     include '../config.php';
     $accountID = bin2hex(openssl_random_pseudo_bytes(16));
     $accountDate = date("Y-m-d H:i:s");
+    $groupDate =  date('m/y');
     $fullName = $_POST["fullName"];
     $gender = $_POST["gender"];
     $phone = $_POST["phone"];
@@ -39,14 +40,17 @@
                   Username,
                   Password,
                   AccountType,
-                  AccountDate
+                  AccountDate,
+                  GroupDate
                   ) 
                VALUES (
                   '$accountID',
                   '$username',
                   '$password',
                    2, 
-                  '$accountDate')";
+                  '$accountDate',
+                  '$groupDate'
+              )";
 
                $addMember = mysqli_query($conn, $accountData);
                  // insert vào bảng accountdetail

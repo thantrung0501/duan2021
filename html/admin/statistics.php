@@ -1,3 +1,6 @@
+<?php 
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="vi">
   <head>
@@ -23,7 +26,12 @@
         <li><a class="logo-container" href="./admin.html"><img class="logo" src="../../images/common/Logo-VNU-1995.jpg" /></a></li>
         <li><div class="web-name">Đăng ký thi đánh giá năng lực</div></li>
         <li class="dropdown" style="float:right">
-          <a href="javascript:void(0)" class="dropbtn">Admin</a>
+          <a href="javascript:void(0)" class="dropbtn">
+          <?php 
+            if(isset($_SESSION["user"])) echo $_SESSION["user"];
+            else echo "Có lỗi xảy ra"
+            ?>
+          </a>
           <div class="dropdown-content">
             <a href="#">Đổi mật khẩu</a>
           </div>

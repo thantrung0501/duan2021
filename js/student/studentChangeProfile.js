@@ -1,7 +1,9 @@
-const elementList = ["fullname", "year", "month", "day", "gender", "race", "cmnd/cccd", "residence", "birthplace", 
+const elementList = ["fullName", "year", "month", "day", "gender", "race", "cmnd", "PermanentResidence", "ProvinceName", 
                     "email", "phone", "address",
-                    "priority", "area", "10hk1", "10hk2", "10all", "11hk1", "11hk2", "11all", "12hk1", "12hk2", "12all",
-                    "gradYear", "math", "liturature", "foreignLan", "physic", "chemistry", "biologu", "history", "geography", "morality"];
+                    "IsPrioritize", "Area", 
+                    "HKIGrade10", "HKIIGrade10", "TBGrade10", "HKIGrade11", "HKIIGrade11", "TBGrade11", "HKIGrade12", "HKIIGrade12", "TBGrade12",
+                    "GraduatingYear", 
+                    "Math", "Literature", "English", "Physics", "Chemistry", "Biology", "History", "Geography", "GDCD"];
 
 validateForm = () => {
     var x = document.forms["profileForm"];
@@ -11,7 +13,7 @@ validateForm = () => {
             return false;
         }
     }
-    if(!validateCitizenID(x["cmnd/cccd"].value)){
+    if(!validateCitizenID(x["cmnd"].value)){
         alert("Chứng minh nhân dân/Căn cước công dân không hợp lệ");
         return false;
     }
@@ -23,14 +25,9 @@ validateForm = () => {
         alert("Số điện thoại không hợp lệ");
         return false;
     }
-    for(let i = 14; i<elementList.length-10; i++){
-        if(i<23) {
-            if(!validateNonCompulsoryScore(x[elementList[i]].value)){
-                alert("Điểm học tập không hợp lệ");
-                return false;
-            }
-        }else if(i>23){
-            if(!validateNonCompulsoryScore(x[elementList[i]].value)){
+    for(let i = 14; i<elementList.length; i++){
+        if(i!=23) {
+            if(!validateCompulsoryScore(x[elementList[i]].value)){
                 alert("Điểm học tập không hợp lệ");
                 return false;
             }
@@ -67,32 +64,59 @@ validateCompulsoryScore = (score) => {
     return true;
 }
 
-validateNonCompulsoryScore = (score) => {
-    if(score!="" && (score<0 || score>10)) return false;
-    return true;
-}
-
 $.ajax({
     url : "../../action/student/GetAccountDetail.php",
         method: 'GET',
             data: {},
             dataType: "json",
             success: function(data){
-                    
-                    
-                }
+               var dateOfBirth = new Date(data.DateOfBirth);
+               $("#fullname").val(data.FullName);
+               $("#"+data.Gender).prop("checked", true);
+               $("#year").val(dateOfBirth.getFullYear());
+               $("#month").val(dateOfBirth.getMonth()+1);
+               $("#day").val(dateOfBirth.getDate());
+               $("#race").val("Kinh");
+               $("#cmnd").val(data.Identification);
+               $("#residence").val(data.PermanentResidence);
+               $("#placeOfBirth").val(data.ProvinceName);
+               $("#email").val(data.Email); 
+               $("#phone").val(data.PhoneNumber); 
+               $("#address").val(data.Address);
+               $("#priority").val(data.IsPrioritize);
+               $("#area").val(data.Area);
+               $("#10hk1").val(data.HKIGrade10);
+               $("#10hk2").val(data.HKIIGrade10);   
+               $("#10all").val(data.TBGrade10);   
+               $("#11hk1").val(data.HKIGrade11);   
+               $("#11hk2").val(data.HKIIGrade11);            
+               $("#11all").val(data.TBGrade11);   
+               $("#12hk1").val(data.HKIGrade12);   
+               $("#12hk2").val(data.HKIIGrade12);   
+               $("#12all").val(data.TBGrade12);   
+               $("#gradYear").val(data.GraduatingYear);   
+               $("#math").val(data.Math); 
+               $("#literature").val(data.Literature); 
+               $("#foreignLan").val(data.English); 
+               $("#physic").val(data.Physics); 
+               $("#chemistry").val(data.Chemistry); 
+               $("#biology").val(data.Biology); 
+               $("#history").val(data.History); 
+               $("#geography").val(data.Geography); 
+               $("#morality").val(data.GDCD);   
+            }
         });
 
 $().ready(function(){
     $("form").submit(function(event){
         try {
             if(validateForm()){
-               console.log(JSON.stringify($("form").serializeJSON())); 
+                console.log("success");
+                event.preventDefault();
             }else{
-                console.log("fail");
-            }
-            event.preventDefault();
-            event.stopPropagation();    
+                console.log("fail"); 
+                return false;
+            }   
         } catch (error) {
             console.log(error);
             event.preventDefault();
@@ -100,3 +124,4 @@ $().ready(function(){
         } 
     });
 });
+

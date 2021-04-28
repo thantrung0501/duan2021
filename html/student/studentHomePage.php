@@ -19,7 +19,7 @@
     <li class="dropdown" style="float:right">
       <a href="javascript:void(0)" class="dropbtn">
       <?php 
-      if(isset($_SESSION["user"])) echo $_SESSION["user"];
+      if(isset($_SESSION["Username"])) echo $_SESSION["Username"];
       else echo "Có lỗi xảy ra"
       ?>
       </a>

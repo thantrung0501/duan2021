@@ -12,13 +12,14 @@
 		<title>Hồ sơ</title>
 	</head>
 	<body>
+	<?php if(isset($_SESSION["notice"])) echo '<script> var x ='.$_SESSION["notice"].';</script>'; ?>
     <ul class="navbar">
       <li><a class="logo-container" href="./studentHomepage.php"><img class="logo" src="../../images/common/Logo-VNU-1995.jpg" /></a></li>
       <li><div class="web-name">Đăng ký thi đánh giá năng lực</div></li>
       <li class="dropdown" style="float:right">
         <a href="javascript:void(0)" class="dropbtn">
 		<?php 
-			if(isset($_SESSION["user"])) echo $_SESSION["user"];
+			if(isset($_SESSION["Username"])) echo $_SESSION["Username"];
 			else echo "Có lỗi xảy ra"
 			?>
 		</a>
@@ -30,119 +31,50 @@
       </li>
     </ul>
 		<div class="information">
-			<form name="profileForm" id="profileForm" action="" method="post">
+			<form name="profileForm" id="profileForm" action="../../action/student/UpdateAccountDetail.php" method="post">
 				<fieldset>
 				    <legend>A.THÔNG TIN CÁ NHÂN</legend>
 				    <table>
 				    	<tr>
 				    		<td>1.Họ, chữ đệm và tên:</td>
 				    		<td>
-				    			<input type="text" name="fullname" style="width: 200px; height: 18px">
+				    			<input type="text" id="fullname" name="fullName" style="width: 200px; height: 18px">
 				    		</td>
 				    		<td style="padding-left: 50px">2.Giới tính:</td>
 				    		<td>
-				    			<input name="gender" type="radio" value="Nam" />Nam
-				    			<input name="gender" type="radio" value="Nữ" />Nữ
+				    			<input id="Nam" name="gender" type="radio" value="Nam" />Nam
+				    			<input id="Nữ" name="gender" type="radio" value="Nữ" />Nữ
 				    		</td>
 				    	</tr>
 				    	<tr>
 				    		<td>3.Ngày sinh:</td>
 				    		<td>
-				    			<select style="height: 20px; margin-right: 5px; margin-left: 5px" name="year">
-			                        <option value="2005">2005</option>
-			                        <option value="2004">2004</option>
-			                        <option value="2003">2003</option>
-			                        <option value="2002">2002</option>
-			                        <option value="2001">2001</option>
-			                        <option value="2000">2000</option>
-			                        <option value="1999">1999</option>
-			                        <option value="1998">1998</option>
-			                        <option value="1997">1997</option>
-			                        <option value="1996">1996</option>
-			                        <option value="1995">1995</option>
-									<option value="1994">1994</option>
-									<option value="1993">1993</option>
-									<option value="1992">1992</option>
-									<option value="1991">1991</option>
-									<option value="1990">1990</option>
-									<option value="1989">1989</option>
-									<option value="1988">1988</option>
-									<option value="1987">1987</option>
-									<option value="1986">1986</option>
-									<option value="1985">1985</option>
-									<option value="1984">1984</option>
-									<option value="1983">1983</option>
-									<option value="1982">1982</option>
-									<option value="1981">1981</option>
-									<option value="1980">1980</option>		
+				    			<select style="height: 20px; margin-right: 5px; margin-left: 5px" name="year" id="year">
 			                    </select>Năm
-			                    <select style="height: 20px; margin-right: 5px; margin-left: 10px" name="month">
-			                        <option value="1">1</option>
-				                    <option value="2">2</option>
-				                    <option value="3">3</option>
-				                    <option value="4">4</option>
-				                    <option value="5">5</option>
-				                    <option value="6">6</option>
-				                    <option value="7">7</option>
-				                    <option value="8">8</option>
-				                    <option value="9">9</option>
-				                    <option value="10">10</option>
-				                    <option value="11">11</option>
-				                    <option value="12">12</option>
+			                    <select style="height: 20px; margin-right: 5px; margin-left: 10px" name="month" id="month">
 			                    </select>Tháng
-			                    <select style="height: 20px; margin-right: 5px; margin-left: 10px" name="day">
-									<option>1</option>
-			                    	<option>2</option>
-			                    	<option>3</option>
-			                    	<option>4</option>
-			                    	<option>5</option>
-			                    	<option>6</option>
-			                    	<option>7</option>
-			                    	<option>8</option>
-			                    	<option>9</option>
-			                    	<option>10</option>
-			                    	<option>11</option>
-			                    	<option>12</option>
-			                    	<option>13</option>
-			                    	<option>14</option>
-			                    	<option>15</option>
-			                    	<option>16</option>
-			                    	<option>17</option>
-			                    	<option>18</option>
-			                    	<option>19</option>
-			                    	<option>20</option>
-			                    	<option>21</option>
-			                    	<option>22</option>
-			                    	<option>23</option>
-			                    	<option>24</option>
-			                    	<option>25</option>
-			                    	<option>26</option>
-			                    	<option>27</option>
-			                    	<option>28</option>
-			                    	<option>29</option>
-			                    	<option>30</option>
-			                    	<option>31</option>
+			                    <select style="height: 20px; margin-right: 5px; margin-left: 10px" name="day" id="day">
 			                    </select>Ngày
 				    		</td>
 				    		<td style="padding-left: 50px">4.Dân tộc:</td>
 				    		<td>
-				    			<input type="text" name="race" style="width: 100px; height: 18px">
+				    			<input type="text" id="race" name="race" style="width: 100px; height: 18px">
 				    		</td>
 				    	</tr>
 				    	<tr>
 				    		<td>5.CMND/CCCD:</td>
 				    		<td>
-				    			<input type="text" name="cmnd/cccd" style="width: 200px; height: 18px">
+				    			<input type="text" id="cmnd" name="cmnd" style="width: 200px; height: 18px">
 				    		</td>
 				    	</tr>
 				    	<tr>
 				    		<td>6.Hộ khẩu thường trú (Huyện - Tỉnh):</td>
 				    		<td>
-				    			<input type="text" name="residence" style="width: 300px; height: 18px">
+				    			<input type="text" id="residence" name="PermanentResidence" style="width: 300px; height: 18px">
 				    		</td>
 				    		<td style="padding-left: 50px">7.Nơi sinh:</td>
 				    		<td>
-				    			<input type="text" name="birthplace" style="width: 400px; height: 18px">
+				    			<input type="text" id="placeOfBirth" name="ProvinceName" style="width: 400px; height: 18px">
 				    		</td>
 				    	</tr>
 				    </table>
@@ -159,13 +91,13 @@
 						<tr>
 							<td>9.Số điện thoại:</td>
 							<td>
-								<input type="text" name="phone" style="width: 150px; height: 18px">
+								<input type="text" id="phone" name="phone" style="width: 150px; height: 18px">
 							</td>
 						</tr>
 						<tr>
 							<td>10.Địa chỉ (cụ thể):</td>
 							<td>
-								<input type="text" name="address" style="width: 400px; height: 18px">
+								<input type="text" id="address" name="address" id="address" style="width: 400px; height: 18px">
 							</td>
 						</tr>
 					</table>
@@ -173,12 +105,13 @@
 				<fieldset>
 					<legend>C.THÔNG TIN PHỤC VỤ THI ĐGNL</legend>
 					11.Đối tượng ưu tiên:
-					<select style="margin-left: 20px; margin-right: 150px" name="priority">
-                        <option value="1" style="height: 20px">Không ưu tiên</option>
-	                    <option value="2" style="height: 20px">Có ưu tiên</option>
+					<select style="margin-left: 20px; margin-right: 150px" name="IsPrioritize" id="priority">
+                        <option value="0" style="height: 20px">Không ưu tiên</option>
+	                    <option value="1" style="height: 20px">Có ưu tiên</option>
 	                </select>
 					12.Khu vực:
-					<select style="margin-left: 20px" name="area">
+					<select style="margin-left: 20px" name="Area" id="area">
+						<option value="0"></option>
                         <option value="1">KV1</option>
 	                    <option value="2">KV2-NT</option>
 	                    <option value="3">KV2</option>
@@ -196,39 +129,39 @@
 	                	<tr>
 	                		<td>
 	                			<p>HKI<p>
-	                			<input type="number" name="10hk1">
+	                			<input type="number" name="HKIGrade10" id="10hk1" step=0.01>
 	                		</td>
 	                		<td>
 	                			<p>HKII<p>
-	                			<input type="number" name="10hk2">
+	                			<input type="number" name="HKIIGrade10" id="10hk2" step=0.01>
 	                		</td>
 	                		<td>
 	                			<p>Cả năm<p>
-	                			<input type="number" name="10all">
+	                			<input type="number" name="TBGrade10" id="10all" step=0.01>
 	                		</td>
 	                		<td>
 	                			<p>HKI<p>
-	                			<input type="number" name="11hk1">
+	                			<input type="number" name="HKIGrade11" id="11hk1" step=0.01>
 	                		</td>
 	                		<td>
 	                			<p>HKII<p>
-	                			<input type="number" name="11hk2">
+	                			<input type="number" name="HKIIGrade11" id="11hk2" step=0.01>
 	                		</td>
 	                		<td>
 	                			<p>Cả năm<p>
-	                			<input type="number" name="11all">
+	                			<input type="number" name="TBGrade11" id="11all" step=0.01>
 	                		</td>
 	                		<td>
 	                			<p>HKI<p>
-	                			<input type="number" name="12hk1">
+	                			<input type="number" name="HKIGrade12" id="12hk1" step=0.01>
 	                		</td>
 	                		<td>
 	                			<p>HKII(*)<p>
-	                			<input type="number" name="12hk2">
+	                			<input type="number" name="HKIIGrade12" id="12hk2" step=0.01>
 	                		</td>
 	                		<td>
 	                			<p>Cả năm(*)<p>
-	                			<input type="number" name="12all">
+	                			<input type="number" name="TBGrade12" id="12all" step=0.01>
 	                		</td>
 	                	</tr>
 	                </table>
@@ -238,7 +171,7 @@
 					<legend>D.THÔNG TIN TỐT NGHIỆP</legend>
 					
 					14.Năm tốt nghiệp THPT(*): 
-					<input type="number" id="gradYear" name="gradYear" min="1" style="width: 100px; height: 18px; margin-left: 25px">
+					<input type="number" id="gradYear" name="GraduatingYear" min="0" style="width: 100px; height: 18px; margin-left: 25px">
 					<br>
 					15.Kết quả tốt nghiệp THPT(*):
 					<br>
@@ -247,39 +180,39 @@
 						<tr>
 							<td>
 								<p>Toán</p>
-								<input type="number" name="math">
+								<input type="number" name="Math" id="math" step=0.01>
 							</td>
 							<td>
 								<p>Văn</p>
-								<input type="number" name="literature">
+								<input type="number" name="Literature" id="literature" step=0.01>
 							</td>
 							<td>
 								<p>Ngoại ngữ</p>
-								<input type="number" name="foreignLan">
+								<input type="number" name="English" id="foreignLan" step=0.01>
 							</td>
 							<td>
 								<p>Lý</p>
-								<input type="number" name="physic">
+								<input type="number" name="Physics" id="physic" step=0.01>
 							</td>
 							<td>
 								<p>Hóa</p>
-								<input type="number" name="chemistry">
+								<input type="number" name="Chemistry" id="chemistry" step=0.01>
 							</td>
 							<td>
 								<p>Sinh</p>
-								<input type="number" name="biology">
+								<input type="number" name="Biology" id="biology" step=0.01>
 							</td>
 							<td>
 								<p>Sử</p>
-								<input type="number" name="history">
+								<input type="number" name="History" id="history" step=0.01>
 							</td>
 							<td>
 								<p>Địa</p>
-								<input type="number" name="geography">
+								<input type="number" name="Geography" id="geography" step=0.01>
 							</td>
 							<td>
 								<p>GDCD</p>
-								<input type="number" name="morality">
+								<input type="number" name="GDCD" id="morality" step=0.01>
 							</td>
 						</tr>
 					</table>
@@ -293,4 +226,5 @@
 		</div>
 	</body>
 	<script src="../../js/student/studentChangeProfile.js"></script>
+	<script src="../../js/daySelectorControl.js"></script>
 </html>

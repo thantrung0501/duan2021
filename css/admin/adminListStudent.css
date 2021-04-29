@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+}
+  
+.container {
+    margin: 30px;
+}
+
+table {
+	font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border: 2px solid #111;
+}
+
+th {
+    border: 2px solid #111;
+    text-align: center;
+    padding: 8px;
+}
+  
+td {
+    border-top: 1px solid #dddddd;
+    border-left: 2px solid #111;
+    border-right: 2px solid #111;
+    text-align: left;
+    padding: 8px;
+}

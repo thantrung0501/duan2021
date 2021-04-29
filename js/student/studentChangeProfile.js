@@ -112,6 +112,7 @@ $().ready(function(){
         try {
             if(validateForm()){
                 console.log("success");
+                console.log(notice);
                 event.preventDefault();
             }else{
                 console.log("fail"); 

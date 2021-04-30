@@ -85,4 +85,5 @@ session_start();
 	</div>
 </body>
 <script src="../js/daySelectorControl.js"></script>
+<script src="../js/signup.js"></script>
 </html>

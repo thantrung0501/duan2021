@@ -13,7 +13,8 @@ ul.menu-bar {
   overflow: auto;
 }
 
-.menu-bar li h3 {
+.menu-bar li p {
+  font-family: Verdana, Geneva, sans-serif;
   display: block;
   color: #000;
   padding: 8px 16px;
@@ -22,6 +23,7 @@ ul.menu-bar {
 }
 
 .menu-bar li div {
+  font-family: "Segoe UI", Arial, sans-serif;
   display: block;
   color: #000;
   padding: 8px 16px;
@@ -39,10 +41,12 @@ ul.menu-bar {
 }
 
 .menu-bar li a {
+  font-family: "Segoe UI", Arial, sans-serif;
   display: block;
   color: #000;
   padding: 8px 16px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .menu-bar li a:hover {
@@ -124,119 +128,116 @@ ul.menu-bar {
     transform: rotate(45deg);
   }
 
-/* Style modal */
-    /* The Modal (background) */
-    .modal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1; /* Sit on top */
-      padding-top: 100px; /* Location of the box */
-      left: 0;
-      top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgb(0,0,0); /* Fallback color */
-      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
-    
-    /* Modal Content */
-    .modal-content {
-      background-color: #fefefe;
-      overflow: hidden;
-      margin: auto;
-      padding: 6px 14px;
-      border: 1px solid #888;
-      width: 30%;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
-
-    .modal-main {
-      margin: 4vh 3vw 4vh 3vw;
-    }
-
-/*     .modal h1 {
-      margin-top: 5vh;
-    } */
-
-    .modal form div{
-      display: block;
-      margin-top: 2vh;
-    }
-
-    .modal form div::after {
-      content: "";
-      clear: both;
-      display: table;
-    }
-
-    .modal .inputLabel {
-      font-size: 1.2em;
-    }
-
-    .modal input[type = "number"] {
-      height: 2.5vh;
-      margin-left: 1vw;
-    }
-
-    .modal form table {
-      display: block;
-      margin-top: 2vh;
-      border-spacing: 10px;
-      width: 100%;
-      border-style: double;
-    }
-
-    .modal form table td {
-      width: 10vw;
-    }
-
-    .modal form label {
-      display: inline-block;
-    }
-    
-    /* The Close Button */
-    .close {
-      color: #aaaaaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-    
-    .close:hover,
-    .close:focus {
-      color: #000;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .query-btn, .cancel-btn {
-      float: right;
-      padding: 10px 15px;
-      margin-left: 10px;
-      border-radius: 3px;
-      color: white;
-      font-size: 1em;
-      border: 1px solid #111;
-  }
-
-  .query-btn {
-    background-color: #219653;
-  }
-
-  .query-btn:hover {
-    background-color: #1c7d46;
-  }
-
-  .cancel-btn {
-    background-color: #ff3333;
-  }
-
-  .cancel-btn:hover {
-    background-color: #cc0000;
-  }
-
 /* Style chart */
   .chart-container {
     margin: 5vh 10vw 5vh 10vw;
   }
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width:40%;
+}
+
+.modal-content::after{
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Style modal */
+.modal-content h2 {
+  margin-left: 0.5vw;
+  margin-bottom: 1vh;
+  padding: 3px 0 3px 6px;
+  border-left: 6px solid #4caf50;
+  background-image: linear-gradient(to right, #b8e0b9 , white);
+}
+
+.inputLabel {
+  font-size: 1.2em;
+  margin-left: 20px;
+  display: inline-block;
+  margin-top: 2vh;
+}
+
+form input[type = "number"] {
+  height: 2.5vh;
+  margin-left: 0.5vw;
+}
+
+form table {
+  display: block;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  border-spacing: 10px;
+}
+
+form table td {
+  width: 10vw;
+}
+
+form select {
+  display: inline-block;
+  margin-left: 0.5vw;
+  padding: 3px;
+}
+
+.query-btn, .cancel-btn {
+  float: right;
+  padding: 5px 15px;
+  margin-left: 10px;
+  border-radius: 3px;
+  color: white;
+  font-size: 1em;
+  border: 1px solid #111;
+}
+
+.query-btn {
+background-color: #4caf50;
+}
+
+.query-btn:hover {
+background-color: #3e8e41;
+}
+
+.cancel-btn {
+background-color: #ff3333;
+}
+
+.cancel-btn:hover {
+background-color: #cc0000;
+}

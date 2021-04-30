@@ -3,153 +3,87 @@ session_start();
  ?>
 <!DOCTYPE html> 
 <html> 
-	<head> 
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="../css/signup.css">
-	</head>
-	<body class="sign_up">
-		<div class="header">
-			<img src="../images/common/Logo-VNU-1995.jpg" style="max-width:7%;height:auto;">
-			<p>Đăng ký thi đánh giá năng lực</p>
+<head> 
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../css/signup.css">
+	<link rel="stylesheet" href="../css/topNavBar.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="../js/serializeJSONPlugin.js"></script>
+</head>
+<body class="sign_up">
+	<ul class="navbar">
+      <li><a class="logo-container" href="./studentHomepage.php"><img class="logo" src="../images/common/Logo-VNU-1995.jpg" /></a></li>
+      <li><div class="web-name">Đăng ký thi đánh giá năng lực</div></li>
+    </ul>
+	<div class="container">
+		<div class="form-container">
+			<form action="../action/signup_submit.php" method="POST">
+				<h1>Đăng ký tài khoản dự thi</h1>
+				<?php 	
+						if(isset($_SESSION["notice"])){
+							echo '<div class="alert">
+								<span class="closebtn">&times;</span>' 
+								.$_SESSION["notice"].
+								'</div>';
+							unset($_SESSION['notice']);
+						}
+				?>
+				<div class="form-element">
+					<label>Tên đăng nhập(*):</label>
+					<input required type="text" name="username" id="username">
+				</div>
+				<div class="form-element">
+					<label>Họ và tên(*):</label>
+					<input required type="text" name="fullName" id="name">
+				</div>
+				<div class="form-element">
+					<label>Ngày sinh:</label>
+					<select type="text" name="year" id="year">
+	                </select>Năm
+	                <select type="text" name="month" id="month" style="margin-left: 1vw">
+	                </select>Tháng
+	                <select type="text" name="day" id="day" style="margin-left: 1vw">
+	                </select>Ngày
+				</div>
+				<div class="form-element">
+					<label>Giới tính:</label>
+					<input name="gender" id="male" type="radio" checked value="Nam" />Nam
+				    <input name="gender" id="frmale" type="radio" value="Nữ" />Nữ
+				</div>
+				<div class="form-element">
+					<label>Số điện thoại:</label>
+					<input type="text" name="phone" id="phone">
+				</div>
+				<div class="form-element">
+					<label>CMND/CCCD:</label>
+					<input type="text" name="cmnd" id="cmnd">
+				</div>
+				<div class="form-element">
+					<label>Địa chỉ:</label>
+					<input type="text" name="address" id="address">
+				</div>
+				<div class="form-element">
+					<label>Email:</label>
+					<input type="text" name="email" id="email">
+				</div>
+				<div class="form-element">
+					<label>Mật khẩu(*):</label>
+					<input required type="password" name="password" id="password">
+				</div>
+				<div class="form-element">
+					<label>Nhập lại mật khẩu(*):</label>
+					<input required type="password" name="enterpassword" id="enterpassword">
+					<p style="color: red; font-style: italic;">(*) Không được bỏ trống</p>
+				</div>
+				<div class="form-element">
+					<button type="submit" name="sdmbtn" id="sdmbtn" class="submit-btn">Đăng ký</button>
+					<button type="reset" name="exitbtn" id="exitbtn" class="exit-btn">Hủy</button>
+				</div>
+			</form>
 		</div>
-		<div class="information">
-		<form action="../action/signup_submit.php" method="POST">
-			<h1>Đăng ký tài khoản dự thi</h1>
-			<div class="notice" style="color: red;text-align: center;">
-				<?php 
-					if(isset($_SESSION["notice"])){
-						echo $_SESSION["notice"];
-						unset($_SESSION['notice']);
-					}
-				 ?>
-			</div>
-
-			<table align="center">
-				<tr>
-					<td>Tên đăng nhập(*):</td>
-					<td>
-						<input required="" type="text" name="username" id="username">
-					</td>
-				</tr>
-				<tr>
-					<td>Họ và tên(*):</td>
-					<td>
-						<input required type="text" name="fullName" id="name">
-					</td>
-				</tr>
-				<tr>
-					<td>Ngày sinh:</td>
-					<td>
-						<select type="text" name="year" style="margin-right: 1%">
-	                        <option value="2005">2005</option>
-	                        <option value="2004">2004</option>
-	                        <option value="2003">2003</option>
-	                        <option value="2002">2002</option>
-	                        <option value="2001">2001</option>
-	                        <option value="2000">2000</option>
-	                        <option value="1999">1999</option>
-	                        <option value="1998">1998</option>
-	                        <option value="1997">1997</option>
-	                        <option value="1996">1996</option>
-	                        <option value="1995">1995</option>
-	                    </select>Năm
-	                    <select type="text" name="month" style="margin-right: 1%">
-	                        <option value="1">1</option>
-		                    <option value="2">2</option>
-		                    <option value="3">3</option>
-		                    <option value="4">4</option>
-		                    <option value="5">5</option>
-		                    <option value="6">6</option>
-		                    <option value="7">7</option>
-		                    <option value="8">8</option>
-		                    <option value="9">9</option>
-		                    <option value="10">10</option>
-		                    <option value="11">11</option>
-		                    <option value="12">12</option>
-	                    </select>Tháng
-	                    <select type="text" name="day" style="margin-right: 1%">
-							<option>1</option>
-	                    	<option>2</option>
-	                    	<option>3</option>
-	                    	<option>4</option>
-	                    	<option>5</option>
-	                    	<option>6</option>
-	                    	<option>7</option>
-	                    	<option>8</option>
-	                    	<option>9</option>
-	                    	<option>10</option>
-	                    	<option>11</option>
-	                    	<option>12</option>
-	                    	<option>13</option>
-	                    	<option>14</option>
-	                    	<option>15</option>
-	                    	<option>16</option>
-	                    	<option>17</option>
-	                    	<option>18</option>
-	                    	<option>19</option>
-	                    	<option>20</option>
-	                    	<option>21</option>
-	                    	<option>22</option>
-	                    	<option>23</option>
-	                    	<option>24</option>
-	                    	<option>25</option>
-	                    	<option>26</option>
-	                    	<option>27</option>
-	                    	<option>28</option>
-	                    	<option>29</option>
-	                    	<option>30</option>
-	                    	<option>31</option>
-	                    </select>Ngày
-		    		</td>
-				</tr>
-				<tr>
-					<td>Giới tính:</td>
-					<td>
-						<input name="gender" id="gender" type="radio" checked value="Nam" />Nam
-				    	<input name="gender" id="gender" type="radio" value="Nữ" />Nữ
-					</td>
-				</tr>
-				<tr>
-					<td>Số điện thoại:</td>
-					<td>
-						<input type="text" name="phone" id="phone">
-					</td>
-				</tr>
-				<tr>
-					<td>CMND/CCCD:</td>
-					<td>
-						<input type="text" name="cmnd" id="cmnd">
-					</td>
-				</tr>
-				<tr>
-					<td>Địa chỉ:</td>
-					<td>
-						<input type="text" name="address" id="address">
-					</td>
-				</tr>
-				<tr>
-					<td>Email:</td>
-					<td>
-						<input type="text" name="email" id="email">
-					</td>
-				</tr>
-				<tr>
-					<td>Mật khẩu(*):</td>
-					<td>
-						<input required type="password" name="password" id="password">
-					</td>
-				</tr>
-				<tr>
-					<td>Nhập lại mật khẩu(*):</td>
-					<td>
-						<input required type="password" name="enterpassword" id="enterpassword">
-					</td>
-				</tr>
-			</table>
-			<p style="color: red;">(*) Không thể bỏ trống</p>
-			<input type="submit" name="submit" value="Đăng ký">
-			<input type="button" name="back" value="Hủy">
-		</div>
-	</body>
+	</div>
+</body>
+<script src="../js/daySelectorControl.js"></script>
+<script src="../js/signup.js"></script>
 </html>

@@ -20,7 +20,15 @@
 			<p class="web-name">Đại học Quốc gia Hà Nội</p> 
 			<h1>VNU<small>test center</small></h1>
 		</div>
-
+		<?php 
+			/* if(isset($_SESSION["AccountID"])){
+				if($_SESSION["AccountType"]==1){
+					header("location: ../html/admin/admin.php");
+				}else{
+					header("location: ../html/student/studentHomePage.php");
+				}
+			} */
+		?>
 
 		<div class="sign-in-form">
 			<form action="../action/signin_submit.php" method="POST">

@@ -1,11 +1,72 @@
-var slider = document.getElementById("scoreRange");
-var output = document.getElementById("score-value");
-output.innerHTML = slider.value; // Display the default slider value
+// Get the modal
+var pointCombiModal = document.getElementById("pointCombination");
+var pointAverModal = document.getElementById("pointAverage");
 
-// Update the current slider value (each time you drag the slider handle)
-slider.oninput = function() {
-  output.innerHTML = this.value;
+// Get the button that opens the modal
+var combiQuery = document.getElementById("combiQuery");
+var averQuery = document.getElementById("averQuery");
+
+// Get the <span> element that closes the modal
+var span1 = document.getElementsByClassName("close")[0];
+var span2 = document.getElementsByClassName("close")[1];
+
+var cancelBtn1 = document.getElementById("cancelBtn1");
+var queryBtn1 = document.getElementById("queryBtn1");
+
+var cancelBtn2 = document.getElementById("cancelBtn2");
+var queryBtn2 = document.getElementById("queryBtn2");
+
+$().ready(function () {
+  var thisYear = new Date().getFullYear();
+  for(i=thisYear; i>2009; i--){
+    $("#from").append($('<option/>', { 
+        value: i,
+        text : i 
+    }));
+    $("#to").append($('<option/>', { 
+      value: i,
+      text : i 
+    }));
+  }
+
+// When the user clicks the button, open the modal 
+combiQuery.onclick = function(event) {
+  event.preventDefault();
+  pointCombiModal.style.display = "block";
 }
+
+averQuery.onclick = function(event) {
+  event.preventDefault();
+  pointAverModal.style.display = "block";
+}
+
+cancelBtn1.onclick = () => pointCombiModal.style.display = "none";
+queryBtn1.onclick = () => pointCombiModal.style.display = "none";
+
+cancelBtn2.onclick = () => pointAverModal.style.display = "none";
+queryBtn2.onclick = () => pointAverModal.style.display = "none";
+
+// When the user clicks on <span> (x), close the modal
+span1.onclick = function() {
+  pointCombiModal.style.display = "none";
+}
+
+span2.onclick = function() {
+  pointAverModal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == pointCombiModal) {
+    pointCombiModal.style.display = "none";
+  }
+  if (event.target == pointAverModal) {
+    pointAverModal.style.display = "none";
+  }
+}
+
+});
+
 
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawChart);

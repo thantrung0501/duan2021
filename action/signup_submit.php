@@ -62,7 +62,8 @@
                    Gender,
                    PhoneNumber,
                    Identification,
-                   Address) 
+                   Address,
+                   AccountDate) 
                VALUES ('$accountID',
                     '$email',
                     '$fullName',
@@ -70,7 +71,8 @@
                     '$gender',
                     '$phone',
                     '$cmnd',
-                    '$address')";
+                    '$address',
+                    '$accountDate')";
              
                 $addAccount = mysqli_query($conn, $data);
                 

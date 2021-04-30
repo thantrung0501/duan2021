@@ -106,7 +106,7 @@ $.ajax({
                $("#morality").val(data.GDCD);   
             }
         });
-
+/*
 $().ready(function(){
     $("form").submit(function(event){
         try {
@@ -123,5 +123,5 @@ $().ready(function(){
             event.stopPropagation();   
         } 
     });
-});
+});*/
 

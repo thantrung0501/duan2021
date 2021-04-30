@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 27, 2021 lúc 04:55 PM
+-- Thời gian đã tạo: Th4 30, 2021 lúc 04:16 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -25,6 +25,8 @@ DELIMITER $$
 --
 -- Thủ tục
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Pro_Get_ListProvinceName` ()  SELECT * from province$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Pro_Get_ListRegistExamDetail` ()  SELECT * from registexamdetail r1 INNER join registexam r2 ON
 r1.RegistExamID = r2.RegistExamID order by r2.RegistNumber, r1.UnitExam$$
 
@@ -94,18 +96,20 @@ CREATE TABLE `accountdetail` (
   `Biology` double NOT NULL,
   `History` double NOT NULL,
   `Geography` double NOT NULL,
-  `GDCD` double NOT NULL
+  `GDCD` double NOT NULL,
+  `Nation` varchar(100) NOT NULL COMMENT 'dan toc',
+  `AccountDate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `accountdetail`
 --
 
-INSERT INTO `accountdetail` (`AccountDetailID`, `AccountID`, `Email`, `DateOfBirth`, `Gender`, `FullName`, `Identification`, `PhoneNumber`, `PermanentResidence`, `Address`, `ProvinceName`, `IsPrioritize`, `Area`, `GraduatingYear`, `HKIGrade10`, `HKIIGrade10`, `TBGrade10`, `HKIGrade11`, `HKIIGrade11`, `TBGrade11`, `HKIGrade12`, `HKIIGrade12`, `TBGrade12`, `Math`, `Literature`, `English`, `Physics`, `Chemistry`, `Biology`, `History`, `Geography`, `GDCD`) VALUES
-(8, '6a1ea72d66d3531dbb879edba1660eaa', '', '2005-01-01', 'Nam', 'kieu trinh', '', '', '', '', '', b'0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(9, 'f3db119b44b7f23e1aa72d7a0346939c', '', '2005-01-01', 'Nam', '123', '', '', '', '', '', b'0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(10, '63cdaaabdde8cc10383783072795074b', '', '2005-01-01', 'Nam', '123', '', '', '', '', '', b'0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(11, '7034490c975d7a63e33e8c27544963a8', '', '2005-01-01', 'Nam', 'Phạm Trung Thủy', '', '', '', '', '', b'0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `accountdetail` (`AccountDetailID`, `AccountID`, `Email`, `DateOfBirth`, `Gender`, `FullName`, `Identification`, `PhoneNumber`, `PermanentResidence`, `Address`, `ProvinceName`, `IsPrioritize`, `Area`, `GraduatingYear`, `HKIGrade10`, `HKIIGrade10`, `TBGrade10`, `HKIGrade11`, `HKIIGrade11`, `TBGrade11`, `HKIGrade12`, `HKIIGrade12`, `TBGrade12`, `Math`, `Literature`, `English`, `Physics`, `Chemistry`, `Biology`, `History`, `Geography`, `GDCD`, `Nation`, `AccountDate`) VALUES
+(8, '6a1ea72d66d3531dbb879edba1660eaa', 'trungthuy99xx@gmail.com', '1970-01-01', 'Nam', 'Phạm Trung Thủy', '1', '0378734454', '1', 'Binh giang-hd', 'Hải Dương', b'1', 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'Kinh', NULL),
+(9, 'f3db119b44b7f23e1aa72d7a0346939c', '', '2005-01-01', 'Nam', '123', '', '', '', '', '', b'0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', NULL),
+(10, '63cdaaabdde8cc10383783072795074b', '', '2005-01-01', 'Nam', '123', '', '', '', '', '', b'0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', NULL),
+(11, '7034490c975d7a63e33e8c27544963a8', '', '2005-01-01', 'Nam', 'Phạm Trung Thủy', '', '', '', '', '', b'0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', NULL);
 
 -- --------------------------------------------------------
 

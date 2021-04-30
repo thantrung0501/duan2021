@@ -58,7 +58,7 @@
 				    		</td>
 				    		<td style="padding-left: 50px">4.Dân tộc:</td>
 				    		<td>
-				    			<input type="text" id="race" name="race" style="width: 100px; height: 18px">
+				    			<input type="text" id="race" name="Nation" style="width: 100px; height: 18px">
 				    		</td>
 				    	</tr>
 				    	<tr>

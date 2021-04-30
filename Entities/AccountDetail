@@ -4,6 +4,7 @@ AccountID		varchar(36)	Id bảng account
 Email			varchar(100)	tài khoản email
 DateOfBirth		Date	ngày sinh
 Gender			bit(1)	giới tính
+Nation          varchar(100)  dân tộc
 FullName		varchar(255)	tên người dùng
 Address			longtext	địa chỉ
 Identification	varchar(50)	số cmt
@@ -31,3 +32,4 @@ Biology			double	sinh
 History			double	lịch sử
 Geography		double	môn địa lí
 GDCD			double	giáo dục cd
+AccountDate     datetime ngày đăng ký tài khoản

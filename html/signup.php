@@ -13,7 +13,7 @@ session_start();
 </head>
 <body class="sign_up">
 	<ul class="navbar">
-      <li><a class="logo-container" href="./studentHomepage.php"><img class="logo" src="../images/common/Logo-VNU-1995.jpg" /></a></li>
+      <li><a class="logo-container" href="student/studentHomepage.php"><img class="logo" src="../images/common/Logo-VNU-1995.jpg" /></a></li>
       <li><div class="web-name">Đăng ký thi đánh giá năng lực</div></li>
     </ul>
 	<div class="container">
@@ -77,7 +77,7 @@ session_start();
 					<p style="color: red; font-style: italic;">(*) Không được bỏ trống</p>
 				</div>
 				<div class="form-element">
-					<button type="submit" name="sdmbtn" id="sdmbtn" class="submit-btn">Đăng ký</button>
+					<button type="submit" name="sbmbtn" id="sdmbtn" class="submit-btn" onclick="return validate()">Đăng ký</button>
 					<button type="reset" name="exitbtn" id="exitbtn" class="exit-btn">Hủy</button>
 				</div>
 			</form>

@@ -13,6 +13,7 @@
 	<title>Trang chủ</title>
 </head>
 <body>
+<?php if(!isset($_SESSION["AccountID"])) header("location: ../signin.php")?>
   <ul class="navbar">
     <li><a class="logo-container" href="./studentHomepage.php"><img class="logo" src="../../images/common/Logo-VNU-1995.jpg" /></a></li>
     <li><div class="web-name">Đăng ký thi đánh giá năng lực</div></li>
@@ -27,6 +28,7 @@
         <a href="./studentChangePassword.php">Đổi mật khẩu</a>
         <a href="./studentChangeProfile.php">Cập nhật thông tin</a>
         <a href="./entranceExaminationPaper.php">Xem giấy báo dự thi</a>
+        <a href="../../action/logout.php">Đăng xuất</a>
       </div>
     </li>
   </ul>

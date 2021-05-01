@@ -12,7 +12,11 @@
 		<title>Hồ sơ</title>
 	</head>
 	<body>
-	<?php if(isset($_SESSION["notice"])) echo '<script> var notice ='.$_SESSION["notice"].';</script>'; ?>
+	<?php if(isset($_SESSION["notice"])){
+		echo '<script>  alert("'.$_SESSION["notice"].'");</script>';
+		unset($_SESSION["notice"]);	
+	}  
+	?>
     <ul class="navbar">
       <li><a class="logo-container" href="./studentHomepage.php"><img class="logo" src="../../images/common/Logo-VNU-1995.jpg" /></a></li>
       <li><div class="web-name">Đăng ký thi đánh giá năng lực</div></li>

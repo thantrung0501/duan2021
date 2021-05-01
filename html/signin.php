@@ -21,13 +21,13 @@
 			<h1>VNU<small>test center</small></h1>
 		</div>
 		<?php 
-			/* if(isset($_SESSION["AccountID"])){
+			 if(isset($_SESSION["AccountID"])){
 				if($_SESSION["AccountType"]==1){
 					header("location: ../html/admin/admin.php");
 				}else{
 					header("location: ../html/student/studentHomePage.php");
 				}
-			} */
+			} 
 		?>
 
 		<div class="sign-in-form">
@@ -50,7 +50,7 @@
 			<div class="form-element">
 				<label for="password">Mật khẩu:</label>
 				<input type="password" id="password" name="password">
-				<a href="../html/resetpassword.html">Quên mật khẩu?</a>
+				<a href="../html/resetpassword.php">Quên mật khẩu?</a>
 			</div>
 			<div class="form-element">
 				<button class="btn-login" type="submit" value="" name="submit">Đăng nhập</button>

@@ -1,4 +1,4 @@
-$().ready(function () {
+/*$().ready(function () {
     $("form").submit(function (e) { 
         e.preventDefault();
         try {
@@ -14,7 +14,7 @@ $().ready(function () {
             e.stopPropagation();
         }
     });
-});
+});*/
 
 validate = () => {
     if($("#password").val().length < 8){

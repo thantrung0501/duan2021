@@ -20,7 +20,7 @@
     $password = md5($password);
     $enterpassword = md5($enterpassword);
  
-    if(isset($_POST["submit"])){
+    if(isset($_POST["sdmbtn"])){
         
         if ( $password != $enterpassword){
              $_SESSION["notice"] = "Mật khẩu xác thực không chính xác";

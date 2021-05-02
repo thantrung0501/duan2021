@@ -241,3 +241,7 @@ background-color: #ff3333;
 .cancel-btn:hover {
 background-color: #cc0000;
 }
+
+.table-container table, .table-container tr, .table-container th, .table-container td {
+  border: 2px solid #111;
+}

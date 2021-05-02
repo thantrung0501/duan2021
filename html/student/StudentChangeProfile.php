@@ -79,7 +79,9 @@
 				    		</td>
 				    		<td style="padding-left: 50px">7.Nơi sinh:</td>
 				    		<td>
-								<select name="ProvinceName" id="placeOfBirth"></select>
+								<select name="ProvinceName" id="placeOfBirth">
+									<option value="0"></option>
+								</select>
 				    		</td>
 				    	</tr>
 				    </table>

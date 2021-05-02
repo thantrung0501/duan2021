@@ -58,8 +58,8 @@
         </li>
         
         <li><a id="fetchForProvince">Tỉnh/Thành phố</a></li>
-        <li><a>Khu vực</a></li>
-        <li><a>Đối tượng ưu tiên</a></li>
+        <li><a id="fetchForArea">Khu vực</a></li>
+        <li><a id="fetchForPriority">Đối tượng ưu tiên</a></li>
         <li><a>Tình trạng học tập</a></li>
         <li><a class="myBtn_multi">Tổ hợp điểm</a></li>
         <li><a class="myBtn_multi">Trung bình học tập</a></li>
@@ -71,19 +71,7 @@
         <div class="chart-container">
           <div id="chart_div"></div>
         </div>
-        <div class="table-container">
-          <table>
-            <tr>
-              <th>Thời điểm</th>
-              <th>Phân loại</th>
-              <th>Số lượng</th>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </table>
+        <div class="table-container" id="tableContainer">
         </div>
       </div>
     </div>

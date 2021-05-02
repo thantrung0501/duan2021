@@ -75,12 +75,54 @@ function selectiveCheck (event) {
     return false;
 }
 
+/* Control fetching */
 $("#fetchForProvince").click(function (e) { 
   e.preventDefault();
-  console.log("FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val());
   $.ajax({
     type: "POST",
     url: "../../action/center/GetDataStatisticalForProvince.php",
+    data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
+    dataType: "json",
+    success: function (response) {
+      var year;
+      console.log(response);
+      $("#tableContainer").append("<table><tr><th>Thời gian</th><th>Tỉnh/Thành phố</th><th>Số lượng</th></tr></table>");
+      for (let i = 0; i < response.length; i++) {
+        if(response[i].Year != year){
+          year=response[i].Year; 
+          var x = i;
+          var sum = 0;
+          while(response[x]==year){
+            sum++;
+            x++;
+          }
+          $("#tableContainer tr:last").after('<tr><td rowspan='+sum+'>'+response[i].Year+"</td><td>"+response[i].ProvinceName+'</td><td>'+response[i].Number+'</td></tr>');
+        }else{
+          $("#tableContainer tr:last").after('<tr><td>'+response[i].ProvinceName+'</td><td>'+response[i].Number+'</td></tr>');
+        }
+      }
+    }
+  });
+});
+
+$("#fetchForArea").click(function (e) { 
+  e.preventDefault();
+  $.ajax({
+    type: "POST",
+    url: "../../action/center/GetDataStatisticalForArea.php",
+    data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
+    dataType: "json",
+    success: function (response) {
+      console.log(response);
+    }
+  });
+});
+
+$("#fetchForPriority").click(function (e) { 
+  e.preventDefault();
+  $.ajax({
+    type: "POST",
+    url: "../../action/center/GetDataStatisticalForPrioritize.php",
     data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
     dataType: "json",
     success: function (response) {

@@ -19,7 +19,7 @@
       <a href="#">Chỉnh sửa lịch thi</a>
       <a href="#">Mở đăng ký thi</a>
       <a href="#">Hồ sơ người đăng ký</a>
-      <a href="#">Thống kê lượt đăng ký</a>
+      <a href="statistics.php">Thống kê lượt đăng ký</a>
     </div>
 
     
@@ -32,13 +32,13 @@
         <li class="dropdown" style="float:right">
           <a href="javascript:void(0)" class="dropbtn">
           <?php 
-            if(isset($_SESSION["user"])) echo $_SESSION["user"];
+            if(isset($_SESSION["Username"])) echo $_SESSION["Username"];
             else echo "Có lỗi xảy ra"
             ?>
           </a>
           <div class="dropdown-content">
             <a href="#">Đổi mật khẩu</a>
-            <a href="#">Đăng xuất</a>
+            <a href="../../action/logout.php">Đăng xuất</a>
           </div>
         </li>
       </ul>
@@ -57,7 +57,7 @@
             </div>  
         </li>
         
-        <li><a>Tỉnh/Thành phố</a></li>
+        <li><a id="fetchForProvince">Tỉnh/Thành phố</a></li>
         <li><a>Khu vực</a></li>
         <li><a>Đối tượng ưu tiên</a></li>
         <li><a>Tình trạng học tập</a></li>

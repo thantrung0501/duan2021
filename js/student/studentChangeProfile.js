@@ -64,6 +64,24 @@ validateCompulsoryScore = (score) => {
     return true;
 }
 
+$(function () {
+    $.ajax({
+        method: "GET",
+        url: "../../action/center_student/GetListProvinceName.php",
+        data: {},
+        dataType: "json",
+        success: function (response) {
+            for(i=0; i<64; i++){
+                $("#placeOfBirth").append($('<option/>', { 
+                    value: i,
+                    text : i 
+                }));
+            }
+        }
+    });
+    
+});
+
 $.ajax({
     url : "../../action/student/GetAccountDetail.php",
         method: 'GET',
@@ -105,8 +123,9 @@ $.ajax({
                $("#geography").val(data.Geography); 
                $("#morality").val(data.GDCD);   
             }
-        });
+});
 
 $("cfBtn").click(function () { 
     return validateForm();
 });
+

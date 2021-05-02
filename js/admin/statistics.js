@@ -75,6 +75,20 @@ function selectiveCheck (event) {
     return false;
 }
 
+$("#fetchForProvince").click(function (e) { 
+  e.preventDefault();
+  console.log("FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val());
+  $.ajax({
+    type: "POST",
+    url: "../../action/center/GetDataStatisticalForProvince.php",
+    data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
+    dataType: "json",
+    success: function (response) {
+      console.log(response);
+    }
+  });
+});
+
 /* Control chart */
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawChart);

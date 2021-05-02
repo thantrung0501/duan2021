@@ -6,9 +6,9 @@
 
 	$result = mysqli_query($conn, $sql);
 
-	if(mysqli_num_rows($result) >0){
+	if(mysqli_num_rows($result)>0){
 
-		$dataRegist = mysqli_fetch_array($user);
+		$dataRegist = mysqli_fetch_array($result);
 		echo json_encode($dataRegist);
 	}
 

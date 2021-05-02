@@ -79,7 +79,7 @@
 				    		</td>
 				    		<td style="padding-left: 50px">7.Nơi sinh:</td>
 				    		<td>
-				    			<input type="text" id="placeOfBirth" name="ProvinceName" style="width: 400px; height: 18px">
+								<select name="ProvinceName" id="placeOfBirth"></select>
 				    		</td>
 				    	</tr>
 				    </table>

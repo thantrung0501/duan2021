@@ -130,7 +130,7 @@ ul.menu-bar {
 
 /* Style chart */
   .chart-container {
-    margin: 5vh 10vw 5vh 10vw;
+    margin: 0 10vw 2vh 10vw;
   }
 
 /* The Modal (background) */
@@ -242,6 +242,35 @@ background-color: #ff3333;
 background-color: #cc0000;
 }
 
-.table-container table, .table-container tr, .table-container th, .table-container td {
+.table-container {
+  padding: 30px;
+}
+
+.table-container table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
   border: 2px solid #111;
+}
+
+.table-container th {
+  border: 2px solid #111;
+  text-align: center;
+  padding: 8px;
+}
+
+.table-container td {
+  border-top: 1px solid #dddddd;
+  border-left: 2px solid #111;
+  border-right: 2px solid #111;
+  text-align: left;
+  padding: 8px;
+}
+
+.table-container tr:last-child td{
+  border-bottom: 2px solid #111;;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }

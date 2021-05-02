@@ -1,3 +1,22 @@
+/* Declare chart property */
+var property = {
+  data: [],
+}
+
+/* Init chart */
+function drawChart(data) {
+  var data = google.visualization.arrayToDataTable(data);
+  var options = {
+    title: 'BIỂU ĐỒ THỐNG KÊ SỐ LƯỢNG HỌC SINH ĐĂNG KÝ',
+    curveType: 'function',
+    legend: { position: 'bottom' }
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+  chart.draw(data, options);
+}
+
 /* Render option */
 $().ready(function () {
   var thisYear = new Date().getFullYear();
@@ -84,26 +103,50 @@ $("#fetchForProvince").click(function (e) {
     data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
     dataType: "json",
     success: function (response) {
+      /* Clear screen */
+      $("#tableContainer table").remove();
+      $("#curve_chart").css("display", "none");
+      /* Establish content table */
       var year;
-      console.log(response);
-      $("#tableContainer").append("<table><tr><th>Thời gian</th><th>Tỉnh/Thành phố</th><th>Số lượng</th></tr></table>");
+      $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Tỉnh/Thành phố</th style='width: 30%'><th>Số lượng</th></tr></table>");
       for (let i = 0; i < response.length; i++) {
         if(response[i].Year != year){
-          year=response[i].Year; 
-          var x = i;
-          var sum = 0;
-          while(response[x]==year){
-            sum++;
-            x++;
-          }
-          $("#tableContainer tr:last").after('<tr><td rowspan='+sum+'>'+response[i].Year+"</td><td>"+response[i].ProvinceName+'</td><td>'+response[i].Number+'</td></tr>');
+          year=response[i].Year;
+          $("#tableContainer tr:last").after('<tr><td id='+year+' style="text-align:center;">'+year+"</td><td>"+convertProvince(response[i].ProvinceName)+'</td><td>'+response[i].Number+'</td></tr>');
         }else{
-          $("#tableContainer tr:last").after('<tr><td>'+response[i].ProvinceName+'</td><td>'+response[i].Number+'</td></tr>');
+          $("#tableContainer tr:last").after('<tr><td>'+convertProvince(response[i].ProvinceName)+'</td><td>'+response[i].Number+'</td></tr>');
+        }
+      }
+      year = 0;
+      var count = 0;
+      for (let x = 0; x < response.length; x++) {
+        if(response[x].Year != year){
+          if(year == 0){
+            year = response[x].Year;
+            count++;
+          }else{
+            $("#"+year).attr("rowspan", count);
+            year = 0;
+            count = 0;
+          }
+        }else{
+          count ++;
+        }
+        if(x==response.length-1){
+          $("#"+year).attr("rowspan", count);
         }
       }
     }
   });
 });
+
+function convertProvince(p) {
+  if(p!=""){
+    return p;
+  }else{
+    return "Chưa điền";
+  }
+}
 
 $("#fetchForArea").click(function (e) { 
   e.preventDefault();
@@ -113,10 +156,79 @@ $("#fetchForArea").click(function (e) {
     data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
     dataType: "json",
     success: function (response) {
-      console.log(response);
+      /* Clear screen */
+      $("#tableContainer table").remove();
+      /* Clear chart property */
+      property.data = [];
+      property.element = [];
+      /* Refill chart property */
+      property.element.push("KV3");
+      property.element.push("KV2");
+      property.element.push("KV2-NT");
+      property.element.push("Chưa điền");
+      property.element.push("KV1");
+      /* Establish content of chart and table */
+      var year;
+      $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Khu vực</th><th style='width: 30%'>Số lượng</th></tr></table>");
+      for (let i = 0; i < response.length; i++) {
+        if(response[i].Year != year){
+          year=response[i].Year;
+          $("#tableContainer tr:last").after('<tr><td id='+year+' style="text-align:center;">'+year+"</td><td>"+convertArea(response[i].Area)+'</td><td>'+response[i].Number+'</td></tr>');
+        }else{
+          $("#tableContainer tr:last").after('<tr><td>'+convertArea(response[i].Area)+'</td><td>'+response[i].Number+'</td></tr>');
+        }
+      }
+      year = 0;
+      var count = 1;
+      var column = [];
+      for (let x = 0; x < response.length; x++) {
+        if(response[x].Year != year){
+          if(year == 0){
+            year = response[x].Year;
+            column.push(year);
+            column.push(parseInt(response[x].Number));
+          }else{
+            $("#"+year).attr("rowspan", count);
+            if(count == 4) column.splice(4, 0, 0);
+            property.data.push(column);
+            year = response[x].Year;
+            column = [year, response[x].Number];
+            count = 1;
+          }
+        }else{
+          column.push(parseInt(response[x].Number));
+          count ++;
+        }
+        if(x==response.length-1){
+          $("#"+year).attr("rowspan", count);
+          if(count == 4) column.splice(4, 0, 0);
+          property.data.push(column);
+        }
+      }
+      property.data.unshift(['Year', 'KV3', 'KV2', 'KV2-NT', 'Chưa điền', 'KV1']);
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(function(){drawChart(property.data)});
+      $("#curve_chart").css("display", "block");
     }
   });
 });
+
+function convertArea(n) {
+  switch (n) {
+    case "1":
+      return 'KV1';
+    case "2":
+      return 'KV2-NT';
+    case "3":
+      return 'KV2';
+    case "4":
+      return 'KV3';
+    case "0":
+      return 'Chưa điền'     
+    default:
+      return "";
+  }
+}
 
 $("#fetchForPriority").click(function (e) { 
   e.preventDefault();
@@ -126,44 +238,70 @@ $("#fetchForPriority").click(function (e) {
     data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
     dataType: "json",
     success: function (response) {
-      console.log(response);
+      /* Clear screen */
+      $("#tableContainer table").remove();
+      /* Clear chart property */
+      property.data = [];
+      property.element = [];
+      /* Refill chart property */
+      property.element.push("Có ưu tiên");
+      property.element.push("Không ưu tiên");
+      property.element.push("Chưa điền");
+      /* Establish content of chart and table */
+      var year;
+      $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Khu vực</th><th style='width: 30%'>Số lượng</th></tr></table>");
+      for (let i = 0; i < response.length; i++) {
+        if(response[i].Year != year){
+          year=response[i].Year; 
+          $("#tableContainer tr:last").after('<tr><td id='+year+' style="text-align:center;">'+year+"</td><td>"+convertPriority(response[i].Prioritize)+'</td><td>'+response[i].Number+'</td></tr>');
+        }else{
+          $("#tableContainer tr:last").after('<tr><td>'+convertPriority(response[i].Prioritize)+'</td><td>'+response[i].Number+'</td></tr>');
+        }
+      }
+      year = 0;
+      var count = 1;
+      var column = [];
+      for (let x = 0; x < response.length; x++) {
+        if(response[x].Year != year){
+          if(year == 0){
+            year = response[x].Year;
+            column.push(year);
+            column.push(parseInt(response[x].Number));
+          }else{
+            $("#"+year).attr("rowspan", count);
+            if(count == 2) column.splice(2, 0, 0);
+            property.data.push(column);
+            year = response[x].Year;
+            column = [year, response[x].Number];
+            count = 1;
+          }
+        }else{
+          column.push(parseInt(response[x].Number));
+          count ++;
+        }
+        if(x==response.length-1){
+          $("#"+year).attr("rowspan", count);
+          if(count == 2) column.splice(2, 0, 0);
+          property.data.push(column);
+        }
+      }
+      property.data.unshift(['Year', 'Có ưu tiên', 'Không ưu tiên', 'Chưa điền']);
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(function(){drawChart(property.data)});
+      $("#curve_chart").css("display", "block");
     }
   });
 });
 
-/* Control chart */
-google.charts.load('current', {packages: ['corechart', 'line']});
-google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-      var data = new google.visualization.DataTable();
-      data.addColumn('number', 'X');
-      data.addColumn('number', '2021');
-      data.addColumn('number', '2020');
-
-      data.addRows([
-        [1, 10, 5],   [2, 23, 15],  [3, 17, 9],   [4, 18, 10],  [5, 9, 5],
-        [6, 11, 3],   [7, 27, 19],  [8, 33, 25],  [9, 40, 32],  [10, 32, 24], [11, 35, 27],
-        [12, 30, 22]
-      ]);
-
-      var options = {
-        hAxis: {
-          title: 'Tháng'
-        },
-        vAxis: {
-          title: 'Số lượng (người)'
-        },
-        title: "BIỂU ĐỒ THỐNG KÊ SỐ LƯỢNG HỌC SINH ĐĂNG KÝ THI ĐÁNH GIÁ NĂNG LỰC",
-        colors: ['#a52714', '#097138'],
-        crosshair: {
-          color: '#000',
-          trigger: 'selection'
-        }
-      };
-
-      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-
-      chart.draw(data, options);
-
-    }
+function convertPriority(p) {
+  switch (p) {
+    case "0":
+      return "Chưa điền";
+    case "1":
+      return "Có ưu tiên";
+    case "2":
+      return "Không ưu tiên";
+    default:
+      return "";
+  }
+}

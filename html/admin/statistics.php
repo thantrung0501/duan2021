@@ -69,7 +69,7 @@
       <!-- ContentPage -->
       <div class="container">
         <div class="chart-container">
-          <div id="chart_div"></div>
+          <div id="curve_chart" style="height: 500px"></div>
         </div>
         <div class="table-container" id="tableContainer">
         </div>

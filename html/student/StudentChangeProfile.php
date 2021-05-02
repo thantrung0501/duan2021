@@ -113,8 +113,9 @@
 					<legend>C.THÔNG TIN PHỤC VỤ THI ĐGNL</legend>
 					11.Đối tượng ưu tiên:
 					<select style="margin-left: 20px; margin-right: 150px" name="IsPrioritize" id="priority">
-                        <option value="0" style="height: 20px">Không ưu tiên</option>
-	                    <option value="1" style="height: 20px">Có ưu tiên</option>
+						<option value="0"></option>
+                        <option value="1">Không ưu tiên</option>
+	                    <option value="2">Có ưu tiên</option>
 	                </select>
 					12.Khu vực:
 					<select style="margin-left: 20px" name="Area" id="area">

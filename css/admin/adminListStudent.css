@@ -18,7 +18,7 @@ table td {
     width: 20vw;
     height: 40vh;
     vertical-align: top;
-    overflow: scroll;
+    overflow: auto;
 }
 
 table td:last-child {

@@ -41,7 +41,32 @@
       <button class="side-bar-toggle" id="sideBarBtn">&#9776;</button>
 
       <div class="container">
-        <h2>Danh sách người đăng ký</h2>
+        <form>
+          <label for="">Danh sách đăng ký:</label>
+          <select name="month">
+            <option value="january">Tháng 1</option>
+            <option value="february">Tháng 2</option>
+            <option value="march">Tháng 3</option>
+            <option value="aprial">Tháng 4</option>
+            <option value="may">Tháng 5</option>
+            <option value="june">Tháng 6</option>         
+            <option value="july">Tháng 7</option>
+            <option value="august">Tháng 8</option>
+            <option value="september">Tháng 9</option>
+            <option value="october">Tháng 10</option>
+            <option value="november">Tháng 11</option>
+            <option value="december">Tháng 12</option>
+
+          </select>
+          <select name="year">
+            <option value="2019">Năm 2019</option>
+            <option value="2020">Năm 2020</option>
+            <option value="2021">Năm 2021</option>
+
+          </select>
+
+          <button class="search" id="search">Tìm kiếm</button>
+        </form>
           <div class="month1">
             <h4>Tháng 1</h4>
 
@@ -136,4 +161,6 @@
     </div>
 </body>
 
-<script src="../../js/sideNavBar.js"></script></html>
+<script src="../../js/sideNavBar.js"></script>
+<script src="../../js/admin/adminListStudent.js"></script>
+</html>

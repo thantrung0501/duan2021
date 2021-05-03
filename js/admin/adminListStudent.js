@@ -73,21 +73,22 @@ $(window).click(function (e) {
             /* Fetch */
             if (lastYearSelect!="" && lastYearSelect!=undefined) {
                 searchTerm = lastMonthSelect + "/" + lastYearSelect;
-                console.log(searchTerm);
+                $("#participantList").empty();
+                $.ajax({
+                    type: "POST",
+                    url: "../../action/center/GetListRegistAccount.php",
+                    data: "GroupDate="+searchTerm+"",
+                    dataType: "json",
+                    success: function (response) {
+                        for (let i = 0; i < response.length; i++) {
+                            $("#participantList").append('<li><a href=studentInfoDetail.php/id='+response[i].AccountID+'>'+response[i].FullName+"&nbsp;&nbsp;&nbsp;"+ response[i].DateOfBirth +'</a></li>');
+                        }   
+                    },
+                    error: function() { 
+                        $("#participantList").append('<li><p style="text-align: center">Không có thí sinh nào</p></li>');
+                    }  
+                });
             }
         }   
     }
 });
-
-if (searchTerm!="") {
-    console.log(searchTerm);
-    $.ajax({
-        type: "POST",
-        url: "../../action/center/GetListRegistAccount.php",
-        data: "GroupDate="+searchTerm,
-        dataType: "json",
-        success: function (response) {
-            console.log(response);
-        }
-    });
-}

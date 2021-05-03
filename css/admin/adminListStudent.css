@@ -16,7 +16,9 @@ table {
 
 table td {
     width: 20vw;
+    height: 40vh;
     vertical-align: top;
+    overflow: scroll;
 }
 
 table td:last-child {
@@ -25,7 +27,7 @@ table td:last-child {
 
 ul.list {
     list-style-type: none;
-    width: 100%;
+    width: 90%;
     margin: 0;
     padding: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif

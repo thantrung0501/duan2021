@@ -16,29 +16,29 @@
   <body>
     <div id="mySidenav" class="sidenav">
       <a href="#">Chỉnh sửa lịch thi</a>
-      <a href="../../html/admin/adminOpen.php">Mở đăng ký thi</a>
-      <a href="#">Hồ sơ người đăng ký</a>
-      <a href="#">Thống kê lượt đăng ký</a>
+      <a href="adminOpen.php">Mở đăng ký thi</a>
+      <a href="adminListStudent.php">Hồ sơ người đăng ký</a>
+      <a href="Statistics.php">Thống kê lượt đăng ký</a>
     </div>
     <div id="main" class="main">
       <ul class="navbar">
-        <!--<li><button class="side-bar-toggle" id="sideBarBtn">&#9776;</button></li>-->
+        <li><button class="side-bar-toggle" id="sideBarBtn">&#9776;</button></li>
         <li><a class="logo-container" href="./admin.html"><img class="logo" src="../../images/common/Logo-VNU-1995.jpg" /></a></li>
         <li><div class="web-name">Đăng ký thi đánh giá năng lực</div></li>
         <li class="dropdown" style="float:right">
           <a href="javascript:void(0)" class="dropbtn">
           <?php 
-            if(isset($_SESSION["user"])) echo $_SESSION["user"];
+            if(isset($_SESSION["Username"])) echo $_SESSION["Username"];
             else echo "Có lỗi xảy ra"
             ?>
           </a>
           <div class="dropdown-content">
             <a href="#">Đổi mật khẩu</a>
+            <a href="../../action/logout.php">Đăng xuất</a>
           </div>
         </li>
       </ul>
 
-      <button class="side-bar-toggle" id="sideBarBtn">&#9776;</button>
     <table class="table table-bordered table-hover">
         <thead>
             <tr>

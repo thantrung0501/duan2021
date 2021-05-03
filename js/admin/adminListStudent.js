@@ -14,7 +14,7 @@ $().ready(function () {
                 if(date[1]!=y){
                     y = date[1];
                     yearList[y] = false;
-                    $("#yearList").append('<li><a class="yearItem" id="'+y+'">Năm 20'+ y +'</a></li>');  
+                    $("#yearList").append('<li><a class="yearItem" id="'+y+'">Năm '+ y +'</a></li>');  
                 }
             }
         }
@@ -73,6 +73,7 @@ $(window).click(function (e) {
             /* Fetch */
             if (lastYearSelect!="" && lastYearSelect!=undefined) {
                 searchTerm = lastMonthSelect + "/" + lastYearSelect;
+                console.log(searchTerm);
                 $("#participantList").empty();
                 $.ajax({
                     type: "POST",
@@ -81,7 +82,7 @@ $(window).click(function (e) {
                     dataType: "json",
                     success: function (response) {
                         for (let i = 0; i < response.length; i++) {
-                            $("#participantList").append('<li><a href=studentInfoDetail.php/id='+response[i].AccountID+'>'+response[i].FullName+"&nbsp;&nbsp;&nbsp;"+ response[i].DateOfBirth +'</a></li>');
+                            $("#participantList").append('<li><a href=adminProfileStudent.php?id='+response[i].AccountID+'>'+response[i].FullName+"&nbsp;&nbsp;&nbsp;"+ response[i].DateOfBirth +'</a></li>');
                         }   
                     },
                     error: function() { 

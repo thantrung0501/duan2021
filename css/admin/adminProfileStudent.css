@@ -3,22 +3,56 @@ body {
 }
 
 .container {
-    margin: 30px;
+    display: block;
+    width: 100%;
+    margin: auto;
+    padding-top: 2vh;   
+}
+
+.container a {
+    display: inline-block;
+    margin-left: 2vw;
+    text-decoration: none;
+    background-color: #219653;
+    color: white;
+    width: 6vw;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.container a:hover{
+    box-shadow: 0 0 4px 2px rgb(102, 255, 156), 0 0px 8px 4px rgb(102, 255, 155);
+    background-color: #00ff55;
 }
 
 table {
     border-spacing: 5px;
+    width: 50%;
     margin: 15px;
   }
   
 th {
     text-align: left;
     font-size: 1.1em;
+    padding-left: 1vw;
+}
+
+.infoTable td {
+    padding-left: 1vw;
+}
+
+.infoTable td p {
+    margin: 0;
+}
+
+.infotable tr div {
+    width: 100%;
 }
 
 .final-score {
+    margin-left: 2vw;
     border-spacing: 1px;
-    width: 50%;
     border: 1px solid #111;
 }
 

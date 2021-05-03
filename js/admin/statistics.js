@@ -106,6 +106,7 @@ $("#fetchForProvince").click(function (e) {
       /* Clear screen */
       $("#tableContainer table").remove();
       $("#curve_chart").css("display", "none");
+      $("#tableContainer h1").remove();
       /* Establish content table */
       var year;
       $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Tỉnh/Thành phố</th style='width: 30%'><th>Số lượng</th></tr></table>");
@@ -158,6 +159,7 @@ $("#fetchForArea").click(function (e) {
     success: function (response) {
       /* Clear screen */
       $("#tableContainer table").remove();
+      $("#tableContainer h1").remove();
       /* Clear chart property */
       property.data = [];
       property.element = [];
@@ -240,6 +242,7 @@ $("#fetchForPriority").click(function (e) {
     success: function (response) {
       /* Clear screen */
       $("#tableContainer table").remove();
+      $("#tableContainer h1").remove();
       /* Clear chart property */
       property.data = [];
       property.element = [];
@@ -303,5 +306,42 @@ function convertPriority(p) {
       return "Không ưu tiên";
     default:
       return "";
+  }
+}
+
+$("#fetchForGraduating").click(function (e) { 
+  e.preventDefault();
+  $.ajax({
+    type: "POST",
+    url: "../../action/center/GetDataStatisticalForGraduating.php",
+    data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
+    dataType: "json",
+    success: function (response) {
+      console.log(response);
+    }
+  }); 
+});
+
+$("#queryBtn02").click(function (e) { 
+  e.preventDefault();
+  if (validateAverForm()) {
+    $.ajax({
+      type: "POST",
+      url: "../../action/center/GetDataStatisticalForMediumCore.php",
+      data: $("#averForm").serialize(),
+      dataType: "json",
+      success: function (response) {
+        console.log(response);
+      }
+    });
+  }else{
+    alert("Điểm không hợp lệ");
+  } 
+});
+
+function validateAverForm() {  
+  if($("#average").val()<0 || $("#average").val()>10 || $("#average").val()=="") return false;
+  else{
+    return true;
   }
 }

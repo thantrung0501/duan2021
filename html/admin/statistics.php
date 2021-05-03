@@ -60,18 +60,19 @@
         <li><a id="fetchForProvince">Tỉnh/Thành phố</a></li>
         <li><a id="fetchForArea">Khu vực</a></li>
         <li><a id="fetchForPriority">Đối tượng ưu tiên</a></li>
-        <li><a>Tình trạng học tập</a></li>
+        <li><a id="fetchForGraduating">Tình trạng học tập</a></li>
         <li><a class="myBtn_multi">Tổ hợp điểm</a></li>
         <li><a class="myBtn_multi">Trung bình học tập</a></li>
-        <li><a>Trạng thái hồ sơ</a></li>
+        <li><a id="fetchForFill">Trạng thái hồ sơ</a></li>
       </ul>
 
       <!-- ContentPage -->
       <div class="container">
         <div class="chart-container">
-          <div id="curve_chart" style="height: 500px"></div>
+          <div id="curve_chart" style="height: 500px; display: none"></div>
         </div>
         <div class="table-container" id="tableContainer">
+          <h1 style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif">Chọn một danh mục để bắt đầu</h1>
         </div>
       </div>
     </div>
@@ -83,55 +84,55 @@
 <div class="modal-content">
     <span class="close close_multi">&times;</span>
     <h2>Tham số bổ sung</h2>
-    <form action="">
+    <form id="combiForm">
         <label class="inputLabel" for="combi">Tổng điểm:</label>
         <input type="number" name="combi" id="combi" step=0.01>
         <table>
             <tr>
               <td>
                 <label  class="box">Toán
-                <input type="checkbox" name="pick" class="check">
+                <input type="checkbox" name="Math" class="check">
                 <span class="checkmark"></span>
                 </label>
               </td>
               <td>
                 <label  class="box">Văn
-                <input type="checkbox" name="pick" class="check">
+                <input type="checkbox" name="Literature" class="check">
                 <span class="checkmark"></span>
               </label>
               </td>
               <td>
                 <label  class="box">Ngoại ngữ
-                <input type="checkbox" name="pick" class="check">
+                <input type="checkbox" name="English" class="check">
                 <span class="checkmark"></span>
               </label>
               </td>
             </tr>
             <tr>
               <td><label  class="box">Lý
-                <input type="checkbox" name="pick" class="check">
+                <input type="checkbox" name="Physics" class="check">
                 <span class="checkmark"></span>
               </label></td>
               <td><label  class="box">Hóa
-                <input type="checkbox" name="pick" class="check">
+                <input type="checkbox" name="Chemistry" class="check">
                 <span class="checkmark"></span>
               </label></td>
               <td><label  class="box">Sinh
-                <input type="checkbox" name="pick" class="check">
+                <input type="checkbox" name="Biology" class="check">
                 <span class="checkmark"></span>
               </label></td>
             </tr>
             <tr>
               <td><label  class="box">Sử
-                <input type="checkbox" name="pick" class="check"> 
+                <input type="checkbox" name="History" class="check"> 
                 <span class="checkmark"></span>
               </label></td>
               <td><label  class="box">Địa
-                <input type="checkbox" name="pick" class="check">
+                <input type="checkbox" name="Geography" class="check">
                 <span class="checkmark"></span>
               </label></td>
               <td><label  class="box">GDCD
-                <input type="checkbox" name="pick" class="check">
+                <input type="checkbox" name="GDCD" class="check">
                 <span class="checkmark"></span>
               </label></td>
             </tr>
@@ -150,16 +151,16 @@
 <div class="modal-content">
     <span class="close close_multi">&times;</span>
     <h2>Tham số bổ sung</h2>
-    <form action="">
+    <form id="averForm">
       <label for="grade" class="inputLabel">Lớp:</label>
-        <select name="grade" id="grade">
+        <select name="Grade" id="grade">
           <option value="10">10</option>
           <option value="11">11</option>
           <option value="12">12</option>
         </select>
       <br>
       <label class="inputLabel" for="average">Tổng điểm:</label>
-      <input type="number" name="average" id="average" step=0.01>
+      <input type="number" name="MediumCore" id="average" step=0.01>
       <br>
       <br>
       <button class="cancel-btn" id="cancelBtn02">Hủy</button>

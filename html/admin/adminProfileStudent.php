@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="../../css/admin/adminProfileStudent.css">
     <link rel="stylesheet" href="../../css/topNavBar.css">
     <link rel="stylesheet" href="../../css/sideNavBar.css">
@@ -38,34 +37,35 @@
           </div>
         </li>
       </ul>
-
-    <table class="personal">
+  <div class="container">
+    <a href="adminListStudent.php">Quay lại</a>
+    <table class="infoTable personal">
       <tr><th colspan="4">THÔNG TIN CÁ NHÂN</th></tr>
       <tr>
         <td style="width: 30%">Họ, chữ đệm và tên:</td>
         <td style="width: 35%"><p id="fullName"></p></td>
         <td style="width: 9%">Giới tính:</td>
-        <td style="width: 26%"><p id="sex"></p></td>
+        <td style="width: 26%"><p id="gender"></p></td>
       </tr>
       <tr>
         <td>Ngày sinh:</td>
-        <td><p id="dateTime"></p></td>
+        <td><p id="birthday"></p></td>
         <td>Dân tộc:</td>
         <td><p id="nation"></p></td>
       </tr>
       <tr>
         <td>CMND/CCCD:</td>
-        <td><p id="CMND"></p></td>
+        <td colspan="3"><p id="CMND"></p></td>
       </tr>
       <tr>
         <td>Hộ khẩu thường trú (Huyện - Tỉnh):</td>
-        <td><p id="adaress"></p></td>
+        <td><p id="residence"></p></td>
         <td>Nơi sinh:</td>
-        <td><p id="dateBorn"></p></td>
+        <td><p id="placeOfBirth"></p></td>
       </tr>
     </table>
 
-    <table class="contact">
+    <table class="infoTable contact">
       <tr><th colspan="2">THÔNG TIN LIÊN HỆ</th></tr>
       <tr>
         <td style="width: 15%;">Địa chỉ email:</td>
@@ -77,89 +77,94 @@
       </tr>
       <tr>
         <td>Địa chỉ (cụ thể):</td>
-        <td><p id="address1"></p></td>
+        <td><p id="address"></p></td>
       </tr>
     </table>
 
-    <table class="evaluate">
+    <table class="infoTable evaluate">
       <tr><th colspan="4">THÔNG TIN PHỤC VỤ THI ĐGNL</th></tr>
       <tr>
         <td style="width: 25%">Đội tượng ưu tiên:</td>
-        <td style="width: 18%;"><p id="dtut"></p></td>
+        <td style="width: 18%;"><p id="priority"></p></td>
         <td style="width: 10%;">Khu vực:</td>
-        <td style="width: 47%;"><p id="erea"></p></td>
+        <td style="width: 47%;"><p id="area"></p></td>
       </tr>
       <tr><td>Trung bình chung học tập:</td></tr>
       <tr>
-        <table class="final-score">
-          <tr>
-            <th colspan="3">Lớp 10</th>
-            <th colspan="3">Lớp 11</th>
-            <th colspan="3">Lớp 12</th>
-          </tr>
-          <tr>
-            <td>HKI</td>
-            <td>HKII</td>
-            <td>Cả năm</td>
-            <td>HKI</td>
-            <td>HKII</td>
-            <td>Cả năm</td>
-            <td>HKI</td>
-            <td>HKII</td>
-            <td>Cả năm</td>
-          </tr>
-          <tr>
-            <td><p id="hk1L10"></p>&nbsp;</td>
-            <td><p id="hk2L10"></p></td>
-            <td><p id="l10"></p></td>
-            <td><p id="hk1L11"></p></td>
-            <td><p id="hk2L11"></p></td>
-            <td><p id="l11"></p></td>
-            <td><p id="hk1L12"></p></td>
-            <td><p id="hk2L12"></p></td>
-            <td><p id="l12"></p></td>
-          </tr>
-        </tr>
-      </table>
+        <div>
+          <table class="final-score">
+            <tr>
+              <th colspan="3">Lớp 10</th>
+              <th colspan="3">Lớp 11</th>
+              <th colspan="3">Lớp 12</th>
+            </tr>
+            <tr>
+              <td>HKI</td>
+              <td>HKII</td>
+              <td>Cả năm</td>
+              <td>HKI</td>
+              <td>HKII</td>
+              <td>Cả năm</td>
+              <td>HKI</td>
+              <td>HKII</td>
+              <td>Cả năm</td>
+            </tr>
+            <tr>
+              <td><p id="hk1L10"></p></td>
+              <td><p id="hk2L10"></p></td>
+              <td><p id="l10"></p></td>
+              <td><p id="hk1L11"></p></td>
+              <td><p id="hk2L11"></p></td>
+              <td><p id="l11"></p></td>
+              <td><p id="hk1L12"></p></td>
+              <td><p id="hk2L12"></p></td>
+              <td><p id="l12"></p></td>
+            </tr>
+          </table>
+        </div>
+      </tr>
     </table>
-    <table class="graduation">
+    <table class="infoTable graduation">
       <tr><th colspan="2">THÔNG TIN TỐT NGHIỆP</th></tr>
       <tr>
-        <td style="width: 50%;">Năm tốt nghiệp THPT:</td>
-        <td style="width: 50%;"><p id="dateOut"></p></td>
+        <td style="width: 25%;">Năm tốt nghiệp THPT:</td>
+        <td style="width: 75%;"><p id="gradYear"></p></td>
       </tr>
       <tr><td>Kết quả tốt nghiệp THPT:</td></tr>
       <tr>
-        <table class="final-score">
-          <tr>
-            <td>Toán</td>
-            <td>Văn</td>
-            <td>Ngoại ngữ</td>
-            <td>Lý</td>
-            <td>Hóa</td>
-            <td>Sinh</td>
-            <td>Sử</td>
-            <td>Địa</td>
-            <td>GDCD</td>
-          </tr>
-          <tr>
-            <td><p id="math"></p>&nbsp;</td>
-            <td><p id="liter"></p></td>
-            <td><p id="eng"></p></td>
-            <td><p id="physic"></p></td>
-            <td><p id="chem"></p></td>
-            <td><p id="bio"></p></td>
-            <td><p id="his"></p></td>
-            <td><p id="geo"></p></td>
-            <td><p id="GDCD"></p></td>
-          </tr>
-        </table>
+        <div>
+          <table class="final-score">
+            <tr>
+              <td>Toán</td>
+              <td>Văn</td>
+              <td>Ngoại ngữ</td>
+              <td>Lý</td>
+              <td>Hóa</td>
+              <td>Sinh</td>
+              <td>Sử</td>
+              <td>Địa</td>
+              <td>GDCD</td>
+            </tr>
+            <tr>
+              <td><p id="math"></p></td>
+              <td><p id="liter"></p></td>
+              <td><p id="eng"></p></td>
+              <td><p id="physic"></p></td>
+              <td><p id="chem"></p></td>
+              <td><p id="bio"></p></td>
+              <td><p id="his"></p></td>
+              <td><p id="geo"></p></td>
+              <td><p id="GDCD"></p></td>
+            </tr>
+          </table>
+        </div>  
       </tr>
     </table>
+  </div>    
 </div>
 
 </body>
-
+<script src="../../js/admin/adminProfileStudent.js"></script>
 <script src="../../js/sideNavBar.js"></script>
 
 </html>

@@ -32,6 +32,7 @@
 
         if (mysqli_num_rows($user)>0){
             $_SESSION["notice"] = "Tài khoản đã tồn tại";
+            header("location: ../html/signup.php");
         } else {
 
             // insert vào bảng account
@@ -78,15 +79,12 @@
                 
                 if ($addMember&&$addAccount){
                      $_SESSION["notice"] = "Bạn đã đăng ký thành công";
+                     header("location: ../html/signin.php");
                 } else {
                      $_SESSION["notice"] =  "Có lỗi trong quá trình đăng ký. Vui lòng thử lại sau";
-
+                     header("location: ../html/signup.php");
                 }
-                
             }
-            header("location: ../html/signup.php");
         }
-
     }
- 
 ?>

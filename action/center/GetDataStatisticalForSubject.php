@@ -13,5 +13,14 @@
 
 	$SumSubject = $Grade2 + $Grade3 + $Grade1;
 
-	$sql = "SELECT MONTH(accountdetail.AccountDate) as 'month', COUNT(accountdetail.AccountID) as 'number' FROM accountdetail "
+	$sql = "SELECT YEAR(accountdetail.AccountDate) as 'Year', COUNT(accountdetail.AccountID) as 'Number' FROM accountdetail WHERE $Subject1 + $Subject2 + $Subject3 >= $SumSubject GROUP BY YEAR(accountdetail.AccountDate) ORDER BY YEAR(accountdetail.AccountDate) DESC";
+	
+	$query = mysqli_query($conn, $sql);
+	$listGroupAccount = array();
+	if(mysqli_num_rows($query) > 0){
+		while ($row = mysqli_fetch_array($query)) {
+			array_push($listGroupAccount, $row);
+		}
+		echo json_encode($listGroupAccount);
+	}
  ?>

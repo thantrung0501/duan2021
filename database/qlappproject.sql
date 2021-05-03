@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 01, 2021 lúc 04:36 AM
+-- Thời gian đã tạo: Th5 03, 2021 lúc 11:14 AM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -29,6 +29,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `Pro_GetData_StaticForPrioritize` (I
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Pro_GetData_StatisticalForArea` (IN `$StartYear` INT(11), IN `$EndYear` INT(11))  SELECT accountdetail.Area, YEAR(accountdetail.AccountDate) as 'Year', COUNT(accountdetail.AccountID) as Number FROM accountdetail WHERE YEAR(accountdetail.AccountDate) BETWEEN $StartYear and $EndYear GROUP bY accountdetail.Area, YEAR(accountdetail.AccountDate) ORDER BY YEAR(accountdetail.AccountDate)$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Pro_GetData_StatisticalForGraduatingYear` (IN `$StartYear` INT(11), IN `$EndYear` INT(11))  select YEAR(accountdetail.AccountDate) as 'Year', COUNT(accountdetail.AccountID) AS Number from accountdetail WHERE accountdetail.GraduatingYear != 0 and accountdetail.GraduatingYear <= YEAR(now()) and (YEAR(accountdetail.AccountDate) BETWEEN $StartYear and $EndYear) GROUP BY year(accountdetail.AccountDate) ORDER by YEAR(accountdetail.AccountDate) DESC$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Pro_GetData_StatisticalForProvince` (IN `$StartYear` INT(11), IN `$EndYear` INT(11))  SELECT accountdetail.ProvinceName, YEAR(accountdetail.AccountDate) as 'Year' , COUNT(accountdetail.AccountID) as Number from accountdetail WHERE YEAR(accountdetail.AccountDate) BETWEEN $StartYear and $EndYear GROUP BY accountdetail.ProvinceName, YEAR(accountdetail.AccountDate) ORDER BY YEAR(accountdetail.AccountDate)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Pro_Get_ListProvinceName` ()  SELECT * from province$$
@@ -51,7 +53,7 @@ CREATE TABLE `account` (
   `AccountType` int(11) DEFAULT NULL COMMENT 'Loại người dùng đăng nhập 1- trung tâm khảo thí, 2- thí sinh',
   `FullName` varchar(255) NOT NULL COMMENT 'tên người dùng',
   `AccountDate` datetime NOT NULL,
-  `GroupDate` varchar(11) NOT NULL COMMENT 'group tháng/ năm đăng ký'
+  `GroupDate` varchar(50) NOT NULL COMMENT 'group tháng/ năm đăng ký'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -63,7 +65,9 @@ INSERT INTO `account` (`AccountID`, `Username`, `Password`, `AccountType`, `Full
 ('f3db119b44b7f23e1aa72d7a0346939c', '123', '202cb962ac59075b964b07152d234b70', 2, '', '2021-04-26 16:25:09', '04/21'),
 ('63cdaaabdde8cc10383783072795074b', 'ptthuy2', '202cb962ac59075b964b07152d234b70', 2, '', '2021-04-26 16:25:20', '04/21'),
 ('7034490c975d7a63e33e8c27544963a8', 'pttthuy1999@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 2, '', '2021-04-26 17:36:01', '04/21'),
-('43e6ad61cb670bf1104966a97862eaca', 'trungthuy99xx', '81dc9bdb52d04dc20036dbd8313ed055', 2, '', '2021-05-01 04:35:57', '05/21');
+('43e6ad61cb670bf1104966a97862eaca', 'trungthuy99xx', '81dc9bdb52d04dc20036dbd8313ed055', 2, '', '2021-05-01 04:35:57', '05/21'),
+('7f84b77d61769a5df735cd0dc1b422fb', 'phamtrungthuy', '25d55ad283aa400af464c76d713c07ad', 2, '', '2021-05-02 16:23:25', '05/21'),
+('acf2b190d317338aec0a61e61d1b0f51', 'ptthuy2021', '25d55ad283aa400af464c76d713c07ad', 2, '', '2021-05-02 16:32:23', '05/2021');
 
 -- --------------------------------------------------------
 
@@ -113,11 +117,13 @@ CREATE TABLE `accountdetail` (
 --
 
 INSERT INTO `accountdetail` (`AccountDetailID`, `AccountID`, `Email`, `DateOfBirth`, `Gender`, `FullName`, `Identification`, `PhoneNumber`, `PermanentResidence`, `Address`, `ProvinceName`, `IsPrioritize`, `Area`, `GraduatingYear`, `HKIGrade10`, `HKIIGrade10`, `TBGrade10`, `HKIGrade11`, `HKIIGrade11`, `TBGrade11`, `HKIGrade12`, `HKIIGrade12`, `TBGrade12`, `Math`, `Literature`, `English`, `Physics`, `Chemistry`, `Biology`, `History`, `Geography`, `GDCD`, `Nation`, `AccountDate`) VALUES
-(8, '6a1ea72d66d3531dbb879edba1660eaa', 'trungthuy99xx@gmail.com', '1970-01-01', 'Nam', 'Phạm Trung Thủy', '1', '0378734454', '1', 'Binh giang-hd', 'Hải Dương', 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.07, 1, 'Kinh', '2021-04-19 21:33:35'),
-(9, 'f3db119b44b7f23e1aa72d7a0346939c', '', '2005-01-01', 'Nam', '123', '', '', '', '', 'Hải Dương', 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2020-11-17 21:33:44'),
+(8, '6a1ea72d66d3531dbb879edba1660eaa', 'trungthuy99xx@gmail.com', '1970-01-01', 'Nam', 'Phạm Trung Thủy', '1', '0378734454', '1', 'Binh giang-hd', 'Hải Dương', 1, 4, 2015, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.07, 1, 'Kinh', '2021-04-19 21:33:35'),
+(9, 'f3db119b44b7f23e1aa72d7a0346939c', '', '2005-01-01', 'Nam', '123', '', '', '', '', 'Hải Dương', 1, 2, 2020, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2020-11-17 21:33:44'),
 (10, '63cdaaabdde8cc10383783072795074b', '', '2005-01-01', 'Nam', '123', '', '', '', '', 'Hải Dương', 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2021-03-08 21:33:57'),
-(11, '7034490c975d7a63e33e8c27544963a8', '', '2005-01-01', 'Nam', 'Phạm Trung Thủy', '', '', '', '', 'Hà Nội', 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2021-03-02 21:33:50'),
-(12, '43e6ad61cb670bf1104966a97862eaca', '', '1970-01-01', 'Nam', 'phamtrungthuy', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2021-05-01 04:35:57');
+(11, '7034490c975d7a63e33e8c27544963a8', '', '2005-01-01', 'Nam', 'Phạm Trung Thủy', '', '', '', '', 'Hà Nội', 2, 2, 2021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2021-03-02 21:33:50'),
+(12, '43e6ad61cb670bf1104966a97862eaca', '', '1970-01-01', 'Nam', 'phamtrungthuy', '', '', '', '', '', 0, 0, 2024, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2021-05-01 04:35:57'),
+(13, '7f84b77d61769a5df735cd0dc1b422fb', '', '1970-01-01', 'Nam', 'pham thuy', '', '123', '', '', '', 0, 0, 2023, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2021-05-02 16:23:25'),
+(14, 'acf2b190d317338aec0a61e61d1b0f51', '', '1970-01-01', 'Nam', 'thuy', '', '', '', '', '', 0, 0, 2016, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2021-05-02 16:32:23');
 
 -- --------------------------------------------------------
 
@@ -278,7 +284,7 @@ ALTER TABLE `registexaminfor`
 -- AUTO_INCREMENT cho bảng `accountdetail`
 --
 ALTER TABLE `accountdetail`
-  MODIFY `AccountDetailID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'khoa chính', AUTO_INCREMENT=13;
+  MODIFY `AccountDetailID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'khoa chính', AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT cho bảng `province`

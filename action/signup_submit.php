@@ -3,7 +3,7 @@
     include '../config.php';
     $accountID = bin2hex(openssl_random_pseudo_bytes(16));
     $accountDate = date("Y-m-d H:i:s");
-    $groupDate =  date('m/y');
+    $groupDate =  date('m/Y');
     $fullName = $_POST["fullName"];
     $gender = $_POST["gender"];
     $phone = $_POST["phone"];

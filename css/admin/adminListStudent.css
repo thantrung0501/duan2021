@@ -7,22 +7,60 @@ body {
 }
 
 table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
+    display: block;
+    margin: auto;
+    border-spacing: 30px;
+    border: 3px solid green;
+    border-style: dotted;
+}
+
+table td {
+    width: 20vw;
+    height: 40vh;
+    vertical-align: top;
+    overflow: auto;
+}
+
+table td:last-child {
+    width: 60vw;
+}
+
+ul.list {
+    list-style-type: none;
+    width: 90%;
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+.list li {
+    display: block;
     width: 100%;
-    border: 2px solid #111;
 }
 
-th {
-    border: 2px solid #111;
-    text-align: center;
-    padding: 8px;
+.list li a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    padding: 0.5vh 0 0.5vh 1vw;
+    font-size: 20px;
+    cursor: pointer;
+    color: #404040;
+    background-color: #f2f2f2;
+    border: 1px solid #dddddd;
+    border-left: 1px solid #111;
+    border-right: 1px solid #111;
 }
 
-td {
-    border-top: 1px solid #dddddd;
-    border-left: 2px solid #111;
-    border-right: 2px solid #111;
-    text-align: left;
-    padding: 8px;
+.list li:first-child a {
+    border-top: 1px solid #111;
+}
+
+.list li:last-child a {
+    border-bottom: 1px solid #111;
+}
+
+.list li a:hover {
+    background-color: #b3b3b3;
+    color: #111;
 }

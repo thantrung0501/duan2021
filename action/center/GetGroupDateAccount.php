@@ -4,6 +4,7 @@
 
 	$sql = "SELECT DISTINCT account.GroupDate from account WHERE account.AccountType = 2 ORDER BY account.AccountDate DESC";
 	$query = mysqli_query($conn, $sql);
+	$listGroupAccount = [];
 
 	$listGroupAccount = array();
 	if(mysqli_num_rows($query) > 0){

@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="../../css/admin/adminListStudent.css">
     <link rel="stylesheet" href="../../css/topNavBar.css">
     <link rel="stylesheet" href="../../css/sideNavBar.css">
@@ -40,121 +39,20 @@
       </ul>
 
       <div class="container">
-        <form>
-          <label for="">Danh sách đăng ký:</label>
-          <select name="month">
-            <option value="january">Tháng 1</option>
-            <option value="february">Tháng 2</option>
-            <option value="march">Tháng 3</option>
-            <option value="aprial">Tháng 4</option>
-            <option value="may">Tháng 5</option>
-            <option value="june">Tháng 6</option>         
-            <option value="july">Tháng 7</option>
-            <option value="august">Tháng 8</option>
-            <option value="september">Tháng 9</option>
-            <option value="october">Tháng 10</option>
-            <option value="november">Tháng 11</option>
-            <option value="december">Tháng 12</option>
-
-          </select>
-          <select name="year">
-            <option value="2019">Năm 2019</option>
-            <option value="2020">Năm 2020</option>
-            <option value="2021">Năm 2021</option>
-
-          </select>
-
-          <button class="search" id="search">Tìm kiếm</button>
-        </form>
-          <div class="month1">
-            <h4>Tháng 1</h4>
-
-            <form>
-              <table>
-                <thead>
-                  <tr>
-                    <th>STT</th>
-                    <th>Tên thí sinh</th>
-                    <th>Thời gian đăng ký</th>
-                    
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-                <tr>
-                    <td>2</td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-            </form>
-        </div>
-
-        <div class="month2">
-              <h4>Tháng 2</h4>
-
-              <form>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>STT</th>
-                      <th>Tên thí sinh</th>
-                      <th>Thời gian đăng ký</th>
-                      
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                  <tr>
-                      <td>2</td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </form>
-          </div>
-
-          <div class="month3">
-                <h4>Tháng 3</h4>
-
-                <form>
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>STT</th>
-                        <th>Tên thí sinh</th>
-                        <th>Thời gian đăng ký</th>
-                        
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                    </tbody>
-                    <tr>
-                        <td>2</td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </form>
-          </div>
+          <h1 style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif">Danh sách thí sinh đã đăng ký</h1>
+          <table>
+            <tr>
+              <td>
+                <ul id="yearList" class="list"></ul>
+              </td>
+              <td>
+                <ul id="monthList" class="list"></ul>
+              </td>
+              <td>
+                <ul id="participantList" class="list"></ul>
+              </td>
+            </tr>
+          </table>
       </div>
 
     </div>

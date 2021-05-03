@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+}
+
+.container {
+    margin: 30px;
+}
+
+table {
+    border-spacing: 5px;
+    margin: 15px;
+  }
+  
+th {
+    text-align: left;
+    font-size: 1.1em;
+}
+
+.final-score {
+    border-spacing: 1px;
+    width: 50%;
+    border: 1px solid #111;
+}
+
+.final-score td, .final-score th {
+    text-align: center;
+    border: 1px solid #111;
+}
+
+.final-score td {
+    width: 11.11%;
+}

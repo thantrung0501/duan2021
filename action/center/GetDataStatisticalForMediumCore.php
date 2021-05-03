@@ -19,7 +19,7 @@
 			break;
 		default:
 			# code...
-		$sql = ""
+		$sql = "";
 			break;
 	}
 

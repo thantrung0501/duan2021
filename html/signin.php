@@ -35,11 +35,16 @@
 			<h1>Đăng nhập</h1>
 				<?php 	
 					if(isset($_SESSION["notice"])){
-						echo '<div class="alert">
-							<span class="closebtn">&times;</span>' 
-							.$_SESSION["notice"].
-							'</div>';
-						unset($_SESSION['notice']);
+						if($_SESSION["notice"]=="Bạn đã đăng ký thành công"){
+							echo '<script> alert("' .$_SESSION["notice"].'")</script>';
+							unset($_SESSION['notice']);
+						}else{
+							echo '<div class="alert">
+								<span class="closebtn">&times;</span>' 
+								.$_SESSION["notice"].
+								'</div>';
+							unset($_SESSION['notice']);	
+						}	
 					}
 				 ?>
 			

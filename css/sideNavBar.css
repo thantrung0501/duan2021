@@ -19,7 +19,11 @@
     font-size: 1.3em;
     color: #8c8c8c;
     display: block;
-    transition: 0.3s;
+    width: auto;
+    max-width: 0%;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: max-width 0.5s linear;
   }
   
   /* When you mouse over the navigation links, change their color */

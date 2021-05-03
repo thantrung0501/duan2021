@@ -43,25 +43,25 @@
       <tr><th colspan="4">THÔNG TIN CÁ NHÂN</th></tr>
       <tr>
         <td style="width: 30%">Họ, chữ đệm và tên:</td>
-        <td style="width: 35%"></td>
+        <td style="width: 35%"><p id="fullName"></p></td>
         <td style="width: 9%">Giới tính:</td>
-        <td style="width: 26%"></td>
+        <td style="width: 26%"><p id="sex"></p></td>
       </tr>
       <tr>
         <td>Ngày sinh:</td>
-        <td></td>
+        <td><p id="dateTime"></p></td>
         <td>Dân tộc:</td>
-        <td></td>
+        <td><p id="nation"></p></td>
       </tr>
       <tr>
         <td>CMND/CCCD:</td>
-        <td></td>
+        <td><p id="CMND"></p></td>
       </tr>
       <tr>
         <td>Hộ khẩu thường trú (Huyện - Tỉnh):</td>
-        <td></td>
+        <td><p id="adaress"></p></td>
         <td>Nơi sinh:</td>
-        <td></td>
+        <td><p id="dateBorn"></p></td>
       </tr>
     </table>
 
@@ -69,15 +69,15 @@
       <tr><th colspan="2">THÔNG TIN LIÊN HỆ</th></tr>
       <tr>
         <td style="width: 15%;">Địa chỉ email:</td>
-        <td style="width: 85%;"></td>
+        <td style="width: 85%;"><p id="email"></p></td>
       </tr>
       <tr>
         <td>Số điện thoại:</td>
-        <td></td>
+        <td><p id="phone"></p></td>
       </tr>
       <tr>
         <td>Địa chỉ (cụ thể):</td>
-        <td></td>
+        <td><p id="address1"></p></td>
       </tr>
     </table>
 
@@ -85,9 +85,9 @@
       <tr><th colspan="4">THÔNG TIN PHỤC VỤ THI ĐGNL</th></tr>
       <tr>
         <td style="width: 25%">Đội tượng ưu tiên:</td>
-        <td style="width: 18%;"></td>
+        <td style="width: 18%;"><p id="dtut"></p></td>
         <td style="width: 10%;">Khu vực:</td>
-        <td style="width: 47%;"></td>
+        <td style="width: 47%;"><p id="erea"></p></td>
       </tr>
       <tr><td>Trung bình chung học tập:</td></tr>
       <tr>
@@ -109,15 +109,15 @@
             <td>Cả năm</td>
           </tr>
           <tr>
-            <td>&nbsp;</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><p id="hk1L10"></p>&nbsp;</td>
+            <td><p id="hk2L10"></p></td>
+            <td><p id="l10"></p></td>
+            <td><p id="hk1L11"></p></td>
+            <td><p id="hk2L11"></p></td>
+            <td><p id="l11"></p></td>
+            <td><p id="hk1L12"></p></td>
+            <td><p id="hk2L12"></p></td>
+            <td><p id="l12"></p></td>
           </tr>
         </tr>
       </table>
@@ -126,7 +126,7 @@
       <tr><th colspan="2">THÔNG TIN TỐT NGHIỆP</th></tr>
       <tr>
         <td style="width: 50%;">Năm tốt nghiệp THPT:</td>
-        <td style="width: 50%;"></td>
+        <td style="width: 50%;"><p id="dateOut"></p></td>
       </tr>
       <tr><td>Kết quả tốt nghiệp THPT:</td></tr>
       <tr>
@@ -143,15 +143,15 @@
             <td>GDCD</td>
           </tr>
           <tr>
-            <td>&nbsp;</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><p id="math"></p>&nbsp;</td>
+            <td><p id="liter"></p></td>
+            <td><p id="eng"></p></td>
+            <td><p id="physic"></p></td>
+            <td><p id="chem"></p></td>
+            <td><p id="bio"></p></td>
+            <td><p id="his"></p></td>
+            <td><p id="geo"></p></td>
+            <td><p id="GDCD"></p></td>
           </tr>
         </table>
       </tr>

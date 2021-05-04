@@ -14,7 +14,7 @@
     $password = $_POST["password"];
     $enterpassword = $_POST["enterpassword"];
     $stringDate = $_POST['day'].'/'.$_POST['month'].'/'.$_POST['year'];
-    $dateofBirth = date('Y-m-d',strtotime($stringDate));
+    $dateofBirth = date('Y-m-d',strtotime(str_replace('/', '-', $stringDate)));
 
     //mã hóa
     $password = md5($password);

@@ -12,7 +12,8 @@
 	    $address = $_POST["address"];
 	    $email = $_POST["email"];
 	    $stringDate = $_POST['day'].'/'.$_POST['month'].'/'.$_POST['year'];
-    	$dateofBirth = date('Y-m-d',strtotime($stringDate));
+
+    	$dateofBirth = date('Y-m-d',strtotime(str_replace('/', '-', $stringDate)));
         $PermanentResidence = $_POST["PermanentResidence"];
         $ProvinceName = $_POST["ProvinceName"];
         $IsPrioritize =$_POST["IsPrioritize"];

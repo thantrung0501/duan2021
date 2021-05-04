@@ -5,13 +5,10 @@
 	include '../../config.php';
 
 	$Subject1 = $_POST("Subject1");
-	$Grade1 = $_POST("Grade1");
 	$Subject2 = $_POST("Subject2");
-	$Grade2 = $_POST("Grade2");
 	$Subject3 = $_POST("Subject3");
-	$Grade3 = $_POST("Grade3");
 
-	$SumSubject = $Grade2 + $Grade3 + $Grade1;
+	$SumSubject = $_POST("SumSubject");
 
 	$sql = "SELECT YEAR(accountdetail.AccountDate) as 'Year', COUNT(accountdetail.AccountID) as 'Number' FROM accountdetail WHERE $Subject1 + $Subject2 + $Subject3 >= $SumSubject GROUP BY YEAR(accountdetail.AccountDate) ORDER BY YEAR(accountdetail.AccountDate) DESC";
 	

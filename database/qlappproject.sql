@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 03, 2021 lúc 04:46 PM
+-- Thời gian đã tạo: Th5 05, 2021 lúc 04:08 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -29,7 +29,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `Pro_GetData_StaticForPrioritize` (I
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Pro_GetData_StatisticalForArea` (IN `$StartYear` INT(11), IN `$EndYear` INT(11))  SELECT accountdetail.Area, YEAR(accountdetail.AccountDate) as 'Year', COUNT(accountdetail.AccountID) as Number FROM accountdetail WHERE YEAR(accountdetail.AccountDate) BETWEEN $StartYear and $EndYear GROUP bY accountdetail.Area, YEAR(accountdetail.AccountDate) ORDER BY YEAR(accountdetail.AccountDate)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Pro_GetData_StatisticalForGraduatingYear` (IN `$StartYear` INT(11), IN `$EndYear` INT(11))  select YEAR(accountdetail.AccountDate) as 'Year', COUNT(accountdetail.AccountID) AS Number from accountdetail WHERE accountdetail.GraduatingYear != 0 and accountdetail.GraduatingYear <= YEAR(now()) and (YEAR(accountdetail.AccountDate) BETWEEN $StartYear and $EndYear) GROUP BY year(accountdetail.AccountDate) ORDER by YEAR(accountdetail.AccountDate) DESC$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Pro_GetData_StatisticalForGraduatingYear` (IN `$StartYear` INT(11), IN `$EndYear` INT(11))  select YEAR(accountdetail.AccountDate) as 'Year', COUNT(accountdetail.AccountID) AS Number, 1 as 'IsGraduate' from accountdetail WHERE accountdetail.GraduatingYear != 0 and accountdetail.GraduatingYear <= YEAR(now()) and (YEAR(accountdetail.AccountDate) BETWEEN $StartYear and $EndYear) GROUP BY year(accountdetail.AccountDate) ORDER by YEAR(accountdetail.AccountDate) DESC$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Pro_GetData_StatisticalForNotGraduatingYear` (IN `$StartYear` INT(11), IN `$EndYear` INT(11))  select YEAR(accountdetail.AccountDate) as 'Year', COUNT(accountdetail.AccountID) AS Number, 0 as 'IsGraduate' from accountdetail WHERE (accountdetail.GraduatingYear = 0 OR accountdetail.GraduatingYear > YEAR(now())) and (YEAR(accountdetail.AccountDate) BETWEEN $StartYear and $EndYear) GROUP BY year(accountdetail.AccountDate) ORDER by YEAR(accountdetail.AccountDate) DESC$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Pro_GetData_StatisticalForProvince` (IN `$StartYear` INT(11), IN `$EndYear` INT(11))  SELECT accountdetail.ProvinceName, YEAR(accountdetail.AccountDate) as 'Year' , COUNT(accountdetail.AccountID) as Number from accountdetail WHERE YEAR(accountdetail.AccountDate) BETWEEN $StartYear and $EndYear GROUP BY accountdetail.ProvinceName, YEAR(accountdetail.AccountDate) ORDER BY YEAR(accountdetail.AccountDate)$$
 
@@ -125,7 +127,7 @@ INSERT INTO `accountdetail` (`AccountDetailID`, `AccountID`, `Email`, `DateOfBir
 (12, '43e6ad61cb670bf1104966a97862eaca', '', '1970-01-01', 'Nam', 'phamtrungthuy', '', '', '', '', '', 0, 0, 2024, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2021-05-01 04:35:57'),
 (13, '7f84b77d61769a5df735cd0dc1b422fb', '', '1970-01-01', 'Nam', 'pham thuy', '', '123', '', '', '', 0, 0, 2023, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2021-05-02 16:23:25'),
 (14, 'acf2b190d317338aec0a61e61d1b0f51', '', '1970-01-01', 'Nam', 'thuy', '', '', '', '', '', 0, 0, 2016, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2021-05-02 16:32:23'),
-(15, '4f0791b886bf1c5217ce00cf7b874c4d', '', '1999-01-01', 'Nam', 'Pham Trung Thủy', '142779716', '0378734454', '', 'Hải Dương', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2021-05-03 15:38:44');
+(15, '4f0791b886bf1c5217ce00cf7b874c4d', 'trungthuy99xx@gmail.com', '1988-08-20', 'Nam', 'Pham Trung Thủy', '142779716', '0378734454', 'Binh Giang  - Hải Dương', 'Hải Dương', 'Hải Dương', 1, 3, 2014, 7, 8, 8, 8, 8, 8, 9, 10, 9, 9, 6, 9, 9, 9, 7, 9, 7, 7, 'KInh', '2021-05-03 15:38:44');
 
 -- --------------------------------------------------------
 

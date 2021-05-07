@@ -8,16 +8,52 @@ $.ajax({
     success: function (response) {
         $("#fullName").text(response.FullName);
         $("#gender").text(response.Gender);
-        $("#birthday").text(response.DateOfBirth);
+        var _birthday = response.DateOfBirth.split("-");
+        var birthday = _birthday[2] + "/" + _birthday[1] + "/" +_birthday[0];
+        $("#birthday").text(birthday);
         $("#nation").text(response.Nation);
         $("#CMND").text(response.Identification);
         $("#residence").text(response.PermanentResidence);
-        $("placeOfBirth").text(response.ProvinceName);
+        $("#placeOfBirth").text(response.ProvinceName);
         $("#email").text(response.Email);
         $("#phone").text(response.PhoneNumber);
         $("#address").text(response.Address);
-        $("#priority").text(response.IsPrioritize);
-        $("#area").text(response.Area);
+        var isPrioritized;
+        switch (response.IsPrioritize) {
+            case "0":
+                isPrioritized ="Trống";
+                break;
+            case "1":
+                isPrioritized ="Không ưu tiên";
+                break;
+            case "2":
+                isPrioritized ="Có ưu tiên";
+                break;
+            default:
+                break;
+        }
+        $("#priority").text(isPrioritized);
+        var area;
+        switch (response.Area) {
+            case "0":
+                area ="Trống";
+                break;
+            case "1":
+                area ="KV1";
+                break;
+            case "2":
+                area ="KV2-NT";
+                break;
+            case "3":
+                area ="KV2";
+                break;
+            case "4":
+                area ="KV3";
+                break;        
+            default:
+                break;
+        }
+        $("#area").text(area);
         $("#hk1L10").text(response.HKIGrade10);
         $("#hk2L10").text(response.HKIIGrade10);
         $("#l10").text(response.TBGrade10);
@@ -37,7 +73,6 @@ $.ajax({
         $("#his").text(response.History);
         $("#geo").text(response.Geography);
         $("#GDCD").text(response.GDCD);
-        console.log(response);
     }
 });
 

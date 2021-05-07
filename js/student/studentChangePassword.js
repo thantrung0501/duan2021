@@ -19,21 +19,3 @@ validateForm = () => {
     }
     return true;
 }
-
-$().ready(function () {
-    $("form").submit(function (e) { 
-        try {
-            if(validateForm()){
-                console.log(JSON.stringify($("form").serializeJSON())); 
-            }else{
-                console.log("fail");
-            }
-            e.preventDefault();
-            e.stopPropagation();   
-        } catch (error) {
-            console.log(error);
-            e.preventDefault();
-            e.stopPropagation();
-        } 
-    });
-});

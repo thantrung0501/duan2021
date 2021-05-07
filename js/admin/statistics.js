@@ -310,6 +310,7 @@ function convertPriority(p) {
 }
 
 $("#fetchForGraduating").click(function (e) { 
+  console.log(1);
   e.preventDefault();
   $.ajax({
     type: "POST",
@@ -317,6 +318,7 @@ $("#fetchForGraduating").click(function (e) {
     data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
     dataType: "json",
     success: function (response) {
+      console.log(2);
       console.log(response);
     }
   }); 

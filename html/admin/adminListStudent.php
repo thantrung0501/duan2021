@@ -42,13 +42,18 @@
           <h1 style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif">Danh sách thí sinh đã đăng ký</h1>
           <table>
             <tr>
-              <td>
-                <ul id="yearList" class="list"></ul>
+              <td style="width: 30%">
+                <label for="year">Năm:</label>
+                <select name="year" id="year"></select>
+                <label for="month">Tháng:</label>
+                <select name="month" id="month"></select>
               </td>
-              <td>
-                <ul id="monthList" class="list"></ul>
-              </td>
-              <td>
+              <td  style="width: 70%">
+                <button type="button" id="sbbtn" name="sbbtn" class="sbbtn">Truy vấn</button>
+              </td> 
+            </tr>
+            <tr>
+              <td colspan="3">
                 <ul id="participantList" class="list"></ul>
               </td>
             </tr>

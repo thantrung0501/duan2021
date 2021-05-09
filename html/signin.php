@@ -2,7 +2,6 @@
 	session_start();
  ?>
 <!DOCTYPE html>
-<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,7 +35,6 @@
 				<?php 	
 					if(isset($_SESSION["notice"])){
 						if($_SESSION["notice"]=="Bạn đã đăng ký thành công"){
-							echo '<script> alert("' .$_SESSION["notice"].'")</script>';
 							unset($_SESSION['notice']);
 						}else{
 							echo '<div class="alert">
@@ -58,7 +56,7 @@
 				<a href="../html/resetpassword.php">Quên mật khẩu?</a>
 			</div>
 			<div class="form-element">
-				<button class="btn-login" type="submit" value="" name="submit">Đăng nhập</button>
+				<button class="btn-login" type="submit" name="submit">Đăng nhập</button>
 			</div>
 			<div class="sign-up-suggest">
 				Chưa có tài khoản? Đăng ký ngay <a href="../html/signup.php">tại đây</a>

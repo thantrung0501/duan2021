@@ -51,7 +51,7 @@ validateCitizenID = id =>{
 } 
 
 validatePhoneNumber = phone => {
-    if(phone.length != 10 && phone.length != 11)
+    if(phone.length != 10)
     return false;
     for(let i = 0; i<phone.length; i++){
         if(isNaN(phone[i])) return false;

@@ -5,7 +5,7 @@ body {
 
 .login-partial {
 	width: 100%;
-	margin: 0px;
+	margin: 0;
 	height: 100vh;
 }
 .logo {
@@ -83,6 +83,8 @@ body {
 	margin: auto;
 	display: block;
 	height: 4.5vh;
+	font-size: 1.2em;
+	padding-left: 10px;
 }
 
 .form-element a {

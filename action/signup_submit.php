@@ -79,7 +79,7 @@
                 
                 if ($addMember&&$addAccount){
                      $_SESSION["notice"] = "Bạn đã đăng ký thành công";
-                     header("location: ../html/signin.php");
+                     header("location: ../html/signupSuccess.php");
                 } else {
                      $_SESSION["notice"] =  "Có lỗi trong quá trình đăng ký. Vui lòng thử lại sau";
                      header("location: ../html/signup.php");

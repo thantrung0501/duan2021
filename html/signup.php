@@ -77,7 +77,7 @@ session_start();
 					<p style="color: red; font-style: italic;">(*) Không được bỏ trống</p>
 				</div>
 				<div class="form-element">
-					<button type="submit" name="sbmbtn" id="sdmbtn" class="submit-btn" onclick="return validate()">Đăng ký</button>
+					<button type="submit" name="sbmbtn" id="sbmbtn" class="submit-btn" onclick="return validate()">Đăng ký</button>
 					<button type="reset" name="exitbtn" id="exitbtn" class="exit-btn">Hủy</button>
 				</div>
 			</form>

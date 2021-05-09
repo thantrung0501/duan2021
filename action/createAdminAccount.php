@@ -60,7 +60,7 @@
                 $addAccount = mysqli_query($conn, $data);
                 
                 if ($addMember&&$addAccount){
-                    header("location: ../html/signin.php");
+                    header("location: ../html/signupSuccess.php");
                 } else {
                     header("location: ../html/adminSignUp.php");
                 }

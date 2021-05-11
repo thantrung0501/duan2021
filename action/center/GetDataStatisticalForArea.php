@@ -6,7 +6,7 @@
 	$StartYear = $_POST["FindYear"]?$_POST["FindYear"]:1;
 	$EndYear = $_POST["EndYear"]?$_POST["EndYear"]:1;
 	// lấy dữ liệu thống kê theo tỉnh
-	$sql = "CALL Pro_GetData_StatisticalForArea($StartYear,$StartYear)";
+	$sql = "CALL Pro_GetData_StatisticalForArea($StartYear,$EndYear)";
 
 	$query = mysqli_query($conn, $sql);
 	$listGroupAccount = array();

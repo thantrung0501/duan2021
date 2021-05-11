@@ -95,59 +95,67 @@ function selectiveCheck (event) {
 }
 
 /* Control fetching */
+var finalProvinceResult;
 $("#fetchForProvince").click(function (e) { 
   e.preventDefault();
-  $.ajax({
-    type: "POST",
-    url: "../../action/center/GetDataStatisticalForProvince.php",
-    data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
-    dataType: "json",
-    success: function (response) {
-      /* Clear screen */
-      $("#tableContainer table").remove();
-      $("#curve_chart").css("display", "none");
-      $("#tableContainer h1").remove();
-      /* Establish content table */
-      var year;
-      $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Tỉnh/Thành phố</th style='width: 30%'><th>Số lượng</th></tr></table>");
-      for (let i = 0; i < response.length; i++) {
-        if(response[i].Year != year){
-          year=response[i].Year;
-          $("#tableContainer tr:last").after('<tr><td id='+year+' style="text-align:center;">'+year+"</td><td>"+convertProvince(response[i].ProvinceName)+'</td><td>'+response[i].Number+'</td></tr>');
-        }else{
-          $("#tableContainer tr:last").after('<tr><td>'+convertProvince(response[i].ProvinceName)+'</td><td>'+response[i].Number+'</td></tr>');
-        }
-      }
-      year = 0;
-      var count = 0;
-      for (let x = 0; x < response.length; x++) {
-        if(response[x].Year != year){
-          if(year == 0){
-            year = response[x].Year;
-            count++;
-          }else{
-            $("#"+year).attr("rowspan", count);
-            year = 0;
-            count = 0;
-          }
-        }else{
-          count ++;
-        }
-        if(x==response.length-1){
-          $("#"+year).attr("rowspan", count);
-        }
+  $.when(
+    $.ajax({
+      type: "GET",
+      url: "../../action/center_student/GetListProvinceName.php",
+      data: [],
+      dataType: "json",
+    }),
+    $.ajax({
+      type: "POST",
+      url: "../../action/center/GetDataStatisticalForProvince.php",
+      data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
+      dataType: "json",
+    })
+  ).then(function (pList, rep) {
+    /* Clear screen */
+    $("#tableContainer table").remove();
+    $("#curve_chart").css("display", "none");
+    $("#tableContainer h1").remove();
+    /* Establish content table */
+    finalProvinceResult = processProvinceData(pList[0], rep[0]);
+    $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Tỉnh/Thành phố</th style='width: 30%'><th>Số lượng</th></tr></table>");
+    for (let i = 0; i < finalProvinceResult.length; i++) {
+      if(i%63==0){
+        $("#tableContainer tr:last").after('<tr><td id='+finalProvinceResult[i].year+' rowspan="63" style="text-align:center;">'+finalProvinceResult[i].year+"</td><td>"+finalProvinceResult[i].province+'</td><td>'+finalProvinceResult[i].amount+'</td></tr>');
+      }else{
+        $("#tableContainer tr:last").after('<tr><td>'+finalProvinceResult[i].province+'</td><td>'+finalProvinceResult[i].amount+'</td></tr>');
       }
     }
   });
 });
 
-function convertProvince(p) {
+function processProvinceData (province, data) { 
+  var after = [];
+  var year = parseInt($("#from").val());
+  var i = 0;
+  while (year<parseInt($("#to").val())+1) {
+    var filter = data.find(function (item) { return (item.Year==year && item.ProvinceName==this); }, province[i].ProvinceName);
+    if(filter){
+      after.push({year: String(year), province: province[i].ProvinceName, amount: filter.Number});
+    }else{
+      after.push({year: String(year), province: province[i].ProvinceName, amount: 0});
+    }
+    if(i==62){
+      i=0;
+      year++;
+    }
+    else i++;
+  }
+  return after; 
+}
+
+/* function convertProvince(p) {
   if(p!=""){
     return p;
   }else{
     return "Chưa điền";
   }
-}
+} */
 
 $("#fetchForArea").click(function (e) { 
   e.preventDefault();
@@ -310,19 +318,81 @@ function convertPriority(p) {
 }
 
 $("#fetchForGraduating").click(function (e) { 
-  console.log(1);
   e.preventDefault();
-  $.ajax({
-    type: "POST",
-    url: "../../action/center/GetDataStatisticalForGraduating.php",
-    data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
-    dataType: "json",
-    success: function (response) {
-      console.log(2);
-      console.log(response);
-    }
+  $.when(
+    $.ajax({
+      type: "POST",
+      url: "../../action/center/GetDataStatisticalForGraduating.php",
+      data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
+      dataType: "json",
+    }),
+    $.ajax({
+      type: "POST",
+      url: "../../action/center/GetDataStatisticalForNotGraduating.php",
+      data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
+      dataType: "json",
+    })
+  ).then(function (rep1, rep2) {
+      /* Clear screen */
+      $("#tableContainer table").remove();
+      $("#tableContainer h1").remove();
+      /* Clear chart property */
+      property.data = [];
+      property.element = [];
+      /* Refill chart property */
+      property.element.push("Có ưu tiên");
+      property.element.push("Không ưu tiên");
+      property.element.push("Chưa điền");
+      /* Establish content of chart and table */
+      var finalGraduateResult = processGraduateData(rep1[0], rep2[0]);
+      var column = [];
+      $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Tình trạng học tập</th><th style='width: 30%'>Số lượng</th></tr></table>");
+      for (let i = 0; i < finalGraduateResult.length; i++) {
+        if(i%2==0){
+          if (i%4==2) {
+            $("#tableContainer tr:last").after('<tr><td id='+finalGraduateResult[i].year+' rowspan="2" style="text-align:center; background-color:white">'+finalGraduateResult[i].year+"</td><td>Đã tốt nghiệp</td><td>"+finalGraduateResult[i].amount+'</td></tr>');
+            column.push(finalGraduateResult[i].year);
+            column.push(parseInt(finalGraduateResult[i].amount));
+          } else {
+            $("#tableContainer tr:last").after('<tr><td id='+finalGraduateResult[i].year+' rowspan="2" style="text-align:center;">'+finalGraduateResult[i].year+"</td><td>Đã tốt nghiệp</td><td>"+finalGraduateResult[i].amount+'</td></tr>');
+            column.push(finalGraduateResult[i].year);
+            column.push(parseInt(finalGraduateResult[i].amount));
+          }
+        }else{
+          $("#tableContainer tr:last").after('<tr><td>Chưa tốt nghiệp</td><td>'+finalGraduateResult[i].amount+'</td></tr>');
+          column.push(parseInt(finalGraduateResult[i].amount));
+          property.data.push(column);
+          column=[];
+        }
+      }
+      property.data.unshift(['Year', 'Đã tốt nghiệp', 'Chưa tốt nghiệp']);
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(function(){drawChart(property.data)});
+      $("#curve_chart").css("display", "block"); 
   }); 
 });
+
+function processGraduateData (a, b) { 
+  var after = [];
+  var i = 0;
+  var start = false;
+  for (let year = parseInt($("#from").val()); year < (parseInt($("#to").val())+1); year++) {
+      if(a[i].Year == year) {
+        after.push({year: String(year), amount: a[i].Number, isGraduate: true});
+        start = true;
+      }else{
+        after.push({year: String(year), amount: 0, isGraduate: true});
+      }
+      if(b[i].Year == year) {
+        after.push({year: String(year), amount: b[i].Number, isGraduate: false});
+        start = true;
+      }else{
+        after.push({year: String(year), amount: 0, isGraduate: false});
+      }
+      if (start) i++;
+  }
+  return after; 
+}
 
 $("#queryBtn02").click(function (e) { 
   e.preventDefault();

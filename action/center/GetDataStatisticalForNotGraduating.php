@@ -2,8 +2,6 @@
   	session_start();
 	include '../../config.php';
 
-	
-
 	$StartYear = $_POST["FindYear"]?$_POST["FindYear"]:1;
 	$EndYear = $_POST["EndYear"]?$_POST["EndYear"]:1;
 	// lấy dữ liệu thống kê chưa tốt nghiệp

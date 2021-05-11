@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 05, 2021 lúc 04:08 PM
+-- Thời gian đã tạo: Th5 11, 2021 lúc 03:20 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -70,7 +70,9 @@ INSERT INTO `account` (`AccountID`, `Username`, `Password`, `AccountType`, `Full
 ('43e6ad61cb670bf1104966a97862eaca', 'trungthuy99xx', '81dc9bdb52d04dc20036dbd8313ed055', 2, '', '2021-05-01 04:35:57', '05/2021'),
 ('7f84b77d61769a5df735cd0dc1b422fb', 'phamtrungthuy', '25d55ad283aa400af464c76d713c07ad', 2, '', '2021-05-02 16:23:25', '05/2021'),
 ('acf2b190d317338aec0a61e61d1b0f51', 'ptthuy2021', '25d55ad283aa400af464c76d713c07ad', 2, '', '2021-05-02 16:32:23', '05/2021'),
-('4f0791b886bf1c5217ce00cf7b874c4d', 'thuydeptrai', '25d55ad283aa400af464c76d713c07ad', 2, '', '2021-05-03 15:38:44', '05/2021');
+('4f0791b886bf1c5217ce00cf7b874c4d', 'thuydeptrai', '25d55ad283aa400af464c76d713c07ad', 2, '', '2021-05-03 15:38:44', '05/2021'),
+('85530651ceb912c20a392214789aca82', 'nguyenvanduc', '25d55ad283aa400af464c76d713c07ad', 2, '', '2021-05-11 15:12:47', '05/2021'),
+('89c6b4f140af933c7a2ffaa2175a9282', 'nguyennghianam', '25d55ad283aa400af464c76d713c07ad', 2, '', '2021-05-11 15:14:21', '05/2021');
 
 -- --------------------------------------------------------
 
@@ -120,14 +122,16 @@ CREATE TABLE `accountdetail` (
 --
 
 INSERT INTO `accountdetail` (`AccountDetailID`, `AccountID`, `Email`, `DateOfBirth`, `Gender`, `FullName`, `Identification`, `PhoneNumber`, `PermanentResidence`, `Address`, `ProvinceName`, `IsPrioritize`, `Area`, `GraduatingYear`, `HKIGrade10`, `HKIIGrade10`, `TBGrade10`, `HKIGrade11`, `HKIIGrade11`, `TBGrade11`, `HKIGrade12`, `HKIIGrade12`, `TBGrade12`, `Math`, `Literature`, `English`, `Physics`, `Chemistry`, `Biology`, `History`, `Geography`, `GDCD`, `Nation`, `AccountDate`) VALUES
-(8, '6a1ea72d66d3531dbb879edba1660eaa', 'trungthuy99xx@gmail.com', '1970-01-01', 'Nam', 'Phạm Trung Thủy', '1', '0378734454', '1', 'Binh giang-hd', 'Hải Dương', 1, 4, 2015, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.07, 1, 'Kinh', '2021-04-19 21:33:35'),
+(8, '6a1ea72d66d3531dbb879edba1660eaa', 'trungthuy99xx@gmail.com', '1970-01-01', 'Nam', 'Phạm Trung Thủy', '1', '0378734454', '1', 'Binh giang-hd', 'Hải Dương', 1, 4, 2015, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.07, 1, 'Kinh', '2021-04-08 21:33:35'),
 (9, 'f3db119b44b7f23e1aa72d7a0346939c', '', '2005-01-01', 'Nam', '123', '', '', '', '', 'Hải Dương', 1, 2, 2020, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2020-11-17 21:33:44'),
 (10, '63cdaaabdde8cc10383783072795074b', '', '2005-01-01', 'Nam', '123', '', '', '', '', 'Hải Dương', 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2021-03-08 21:33:57'),
 (11, '7034490c975d7a63e33e8c27544963a8', '', '2005-01-01', 'Nam', 'Phạm Trung Thủy', '', '', '', '', 'Hà Nội', 2, 2, 2021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2021-03-02 21:33:50'),
-(12, '43e6ad61cb670bf1104966a97862eaca', '', '1970-01-01', 'Nam', 'phamtrungthuy', '', '', '', '', '', 0, 0, 2024, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2021-05-01 04:35:57'),
+(12, '43e6ad61cb670bf1104966a97862eaca', '', '1970-01-01', 'Nam', 'phamtrungthuy', '', '', '', '', '', 0, 0, 2024, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2019-05-16 04:35:57'),
 (13, '7f84b77d61769a5df735cd0dc1b422fb', '', '1970-01-01', 'Nam', 'pham thuy', '', '123', '', '', '', 0, 0, 2023, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2021-05-02 16:23:25'),
-(14, 'acf2b190d317338aec0a61e61d1b0f51', '', '1970-01-01', 'Nam', 'thuy', '', '', '', '', '', 0, 0, 2016, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2021-05-02 16:32:23'),
-(15, '4f0791b886bf1c5217ce00cf7b874c4d', 'trungthuy99xx@gmail.com', '1988-08-20', 'Nam', 'Pham Trung Thủy', '142779716', '0378734454', 'Binh Giang  - Hải Dương', 'Hải Dương', 'Hải Dương', 1, 3, 2014, 7, 8, 8, 8, 8, 8, 9, 10, 9, 9, 6, 9, 9, 9, 7, 9, 7, 7, 'KInh', '2021-05-03 15:38:44');
+(14, 'acf2b190d317338aec0a61e61d1b0f51', '', '1970-01-01', 'Nam', 'thuy', '', '', '', '', '', 0, 0, 2016, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2014-05-22 16:32:23'),
+(15, '4f0791b886bf1c5217ce00cf7b874c4d', 'trungthuy99xx@gmail.com', '1988-08-20', 'Nam', 'Pham Trung Thủy', '142779716', '0378734454', 'Binh Giang  - Hải Dương', 'Hải Dương', 'Hải Dương', 1, 3, 2014, 7, 8, 8, 8, 8, 8, 9, 10, 9, 9, 6, 9, 9, 9, 7, 9, 7, 7, 'KInh', '2021-05-03 15:38:44'),
+(16, '85530651ceb912c20a392214789aca82', 'Noojivanduc@gmail.com', '1978-10-09', 'Nam', 'Nguyễn Văn Đức', '142779716', '0378734454', '', 'Hà Nội', 'Điện Biên', 1, 2, 2018, 6, 7, 8, 9, 8.5, 9, 7.8, 8.2, 8.6, 9, 6.25, 7.26, 8.25, 9.25, 4.5, 4, 7.5, 8.5, 'Kinh', '2018-05-15 15:12:47'),
+(17, '89c6b4f140af933c7a2ffaa2175a9282', 'nghianam@gmail.com', '1998-09-24', 'Nam', 'Nguyễn Nghĩa Nam', '143556745', '0912263511', '', 'Ha Tay', 'Hà Tĩnh', 2, 1, 2015, 9, 8, 8, 9, 9, 9, 7, 9, 8, 9, 7, 8, 9.5, 8.5, 10, 7, 6, 9, 'Kinh', '2021-05-11 15:14:21');
 
 -- --------------------------------------------------------
 
@@ -221,6 +225,14 @@ CREATE TABLE `registexam` (
   `RegistNumber` int(11) NOT NULL COMMENT 'đợt thi'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `registexam`
+--
+
+INSERT INTO `registexam` (`RegistExamID`, `RegistNumber`) VALUES
+('e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', 1),
+('1f700fc3-b0d6-11eb-8267-9840bb0282e0', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -232,13 +244,25 @@ CREATE TABLE `registexamdetail` (
   `RegistExamID` varchar(36) NOT NULL COMMENT 'id bảng  registexam',
   `StartedDate` datetime NOT NULL COMMENT 'Ngay mo dang ky',
   `FinishDate` datetime NOT NULL COMMENT 'ngay dong dang ky',
-  `ExamDate` datetime NOT NULL COMMENT 'ngày thi',
+  `ExamDate` date NOT NULL COMMENT 'ngày thi',
   `Examee` int(11) NOT NULL COMMENT 'số lượng thí sinh đã đăng ký',
   `ExameeMax` int(11) NOT NULL COMMENT 'số lượng thí sinh tối da',
   `Location` varchar(500) NOT NULL COMMENT 'địa điểm thi',
-  `IsRegist` int(11) NOT NULL COMMENT 'mở đóng đăng ký',
-  `UnitExam` int(11) NOT NULL COMMENT 'ca thi số mấy'
+  `IsRegist` bit(1) NOT NULL COMMENT 'mở đóng đăng ký',
+  `UnitExam` int(11) NOT NULL COMMENT 'ca thi số mấy',
+  `ExamTime` varchar(50) NOT NULL COMMENT 'thoi gian'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `registexamdetail`
+--
+
+INSERT INTO `registexamdetail` (`RegistExamDetailID`, `RegistExamID`, `StartedDate`, `FinishDate`, `ExamDate`, `Examee`, `ExameeMax`, `Location`, `IsRegist`, `UnitExam`, `ExamTime`) VALUES
+('65e69cb6-b0d4-11eb-8267-9840bb0282e0', '1f700fc3-b0d6-11eb-8267-9840bb0282e0', '2021-05-09 16:38:52', '2021-05-09 16:38:52', '2021-05-28', 0, 160, '108-GĐ2', b'0', 1, '07:00'),
+('8e51f117-b0d4-11eb-8267-9840bb0282e0', '1f700fc3-b0d6-11eb-8267-9840bb0282e0', '2021-05-09 16:40:04', '2021-05-09 16:40:04', '2021-05-17', 0, 300, '308-G2', b'0', 2, '10:00'),
+('a629279f-b0d3-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-09 16:33:15', '2021-05-09 16:33:15', '2021-05-27', 0, 100, '303-G2', b'0', 1, '07:00'),
+('a7fd0610-b0d4-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-09 16:40:55', '2021-05-09 16:40:55', '2021-05-18', 0, 180, '301-G2', b'0', 3, '13:00'),
+('f82c0258-b0d3-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-09 16:35:45', '2021-05-09 16:35:45', '2021-05-21', 0, 150, '304-E3', b'0', 2, '13:30');
 
 -- --------------------------------------------------------
 
@@ -269,6 +293,12 @@ ALTER TABLE `province`
   ADD PRIMARY KEY (`ProvinceID`);
 
 --
+-- Chỉ mục cho bảng `registexam`
+--
+ALTER TABLE `registexam`
+  ADD PRIMARY KEY (`RegistNumber`);
+
+--
 -- Chỉ mục cho bảng `registexamdetail`
 --
 ALTER TABLE `registexamdetail`
@@ -288,13 +318,19 @@ ALTER TABLE `registexaminfor`
 -- AUTO_INCREMENT cho bảng `accountdetail`
 --
 ALTER TABLE `accountdetail`
-  MODIFY `AccountDetailID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'khoa chính', AUTO_INCREMENT=16;
+  MODIFY `AccountDetailID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'khoa chính', AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `province`
 --
 ALTER TABLE `province`
   MODIFY `ProvinceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+
+--
+-- AUTO_INCREMENT cho bảng `registexam`
+--
+ALTER TABLE `registexam`
+  MODIFY `RegistNumber` int(11) NOT NULL AUTO_INCREMENT COMMENT 'đợt thi', AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `registexaminfor`

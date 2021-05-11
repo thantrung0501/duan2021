@@ -4,11 +4,11 @@
 	session_start();
 	include '../../config.php';
 
-	$Subject1 = $_POST("Subject1");
-	$Subject2 = $_POST("Subject2");
-	$Subject3 = $_POST("Subject3");
+	$Subject1 = $_POST["Subject1"];
+	$Subject2 = $_POST["Subject2"];
+	$Subject3 = $_POST["Subject3"];
 
-	$SumSubject = $_POST("SumSubject");
+	$SumSubject = $_POST["SumSubject"];
 
 	$sql = "SELECT YEAR(accountdetail.AccountDate) as 'Year', COUNT(accountdetail.AccountID) as 'Number' FROM accountdetail WHERE $Subject1 + $Subject2 + $Subject3 < $SumSubject GROUP BY YEAR(accountdetail.AccountDate) ORDER BY YEAR(accountdetail.AccountDate) DESC";
 	

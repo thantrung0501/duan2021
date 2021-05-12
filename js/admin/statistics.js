@@ -95,9 +95,22 @@ function selectiveCheck (event) {
 }
 
 /* Control fetching */
+
+/* ******************************************************************************************** */
+/* ******************    PROVINCE    *********************** */
+/* ******************************************************************************************** */
 var finalProvinceResult;
+var from, to;
+var groupActive = true;
 $("#fetchForProvince").click(function (e) { 
   e.preventDefault();
+  /* Reset the variables related to the group buttons */
+  from = parseInt($("#from").val());
+  to = parseInt($("#to").val());
+  groupActive = true;
+  $("#groupBy").text("Năm");
+  $("#groupBy").css("width", "8vw");
+  /* End */
   $.when(
     $.ajax({
       type: "GET",
@@ -116,17 +129,76 @@ $("#fetchForProvince").click(function (e) {
     $("#tableContainer table").remove();
     $("#curve_chart").css("display", "none");
     $("#tableContainer h1").remove();
+    $("#optionContainer").css("display", "block");
     /* Establish content table */
     finalProvinceResult = processProvinceData(pList[0], rep[0]);
     $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Tỉnh/Thành phố</th style='width: 30%'><th>Số lượng</th></tr></table>");
     for (let i = 0; i < finalProvinceResult.length; i++) {
       if(i%63==0){
-        $("#tableContainer tr:last").after('<tr><td id='+finalProvinceResult[i].year+' rowspan="63" style="text-align:center;">'+finalProvinceResult[i].year+"</td><td>"+finalProvinceResult[i].province+'</td><td>'+finalProvinceResult[i].amount+'</td></tr>');
+        $("#tableContainer tr:last").after('<tr><td id='+finalProvinceResult[i].year+' class="always-show" rowspan="63" style="text-align:center;">'+finalProvinceResult[i].year+"</td><td>"+finalProvinceResult[i].province+'</td><td>'+finalProvinceResult[i].amount+'</td></tr>');
       }else{
         $("#tableContainer tr:last").after('<tr><td>'+finalProvinceResult[i].province+'</td><td>'+finalProvinceResult[i].amount+'</td></tr>');
       }
     }
+    $('html, body').animate({ scrollTop: 0 }, 'fast');
   });
+});
+
+/* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
+/* <<<<<<<<<<<<<<<<<<<    GROUP BY BUTTON    >>>>>>>>>>>>>>>>>>>>>>> */
+/* vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv */
+$("#groupBy").click(function (e) {
+  e.preventDefault();
+  if (groupActive) {
+    /* Clear screen */
+    $("#tableContainer table").remove();
+    $("#curve_chart").css("display", "none");
+    $("#tableContainer h1").remove();
+    $("#groupBy").text("Tỉnh/Thành phố");
+    $("#groupBy").css("width", "14vw");
+    /* Establish content table */
+    var clone = [...finalProvinceResult];
+    clone.sort(function (x, y) {  
+      if (x.province.localeCompare(y.province) !== 0) {
+          return x.province.localeCompare(y.province);
+      }
+
+      return x.year - y.year;
+    }); 
+    var rowspan = to - from +1;
+    $("#tableContainer").append("<table><tr><th style='width: 35%'>Tỉnh/Thành phố</th><th style='width: 35%'>Thời gian</th style='width: 30%'><th>Số lượng</th></tr></table>");
+    for (let i = 0; i < clone.length; i++) {
+      if(i%rowspan==0){
+        if(i/rowspan%2==0){
+          $("#tableContainer tr:last").after('<tr><td id='+clone[i].province+' rowspan='+rowspan+' class="always-show" style="text-align:center;">'+clone[i].province+"</td><td>"+clone[i].year+'</td><td>'+clone[i].amount+'</td></tr>');
+        }else{
+          $("#tableContainer tr:last").after('<tr><td id='+clone[i].province+' rowspan='+rowspan+' class="always-show" style="text-align:center; background-color: white">'+clone[i].province+"</td><td>"+clone[i].year+'</td><td>'+clone[i].amount+'</td></tr>');
+        } 
+      }else{
+        $("#tableContainer tr:last").after('<tr><td>'+clone[i].year+'</td><td>'+clone[i].amount+'</td></tr>');
+      }
+    }
+    groupActive = !groupActive;
+  }else{
+    
+    /* Clear screen */
+    $("#tableContainer table").remove();
+    $("#curve_chart").css("display", "none");
+    $("#tableContainer h1").remove();
+    $("#groupBy").text("Năm");
+    $("#groupBy").css("width", "8vw");
+    /* Establish content table */
+    var clone = [...finalProvinceResult];
+    $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Tỉnh/Thành phố</th style='width: 30%'><th>Số lượng</th></tr></table>");
+    for (let i = 0; i < clone.length; i++) {
+      if(i%63==0){
+        $("#tableContainer tr:last").after('<tr><td id='+clone[i].year+' rowspan="63" class="always-show" style="text-align:center;">'+clone[i].year+"</td><td>"+clone[i].province+'</td><td>'+clone[i].amount+'</td></tr>');
+      }else{
+        $("#tableContainer tr:last").after('<tr><td>'+clone[i].province+'</td><td>'+clone[i].amount+'</td></tr>');
+      }
+    }
+    groupActive = !groupActive;    
+  }
 });
 
 function processProvinceData (province, data) { 
@@ -149,6 +221,9 @@ function processProvinceData (province, data) {
   return after; 
 }
 
+/* ******************************************************************************************** */
+/* ******************    AREA    *********************** */
+/* ******************************************************************************************** */
 var finalAreaResult;
 $("#fetchForArea").click(function (e) { 
   e.preventDefault();
@@ -161,6 +236,7 @@ $("#fetchForArea").click(function (e) {
       /* Clear screen */
       $("#tableContainer table").remove();
       $("#tableContainer h1").remove();
+      $("#optionContainer").css("display", "none");
       /* Clear chart property */
       property.data = [];
       /* Establish content of chart and table */
@@ -230,6 +306,9 @@ function convertArea(n) {
   }
 }
 
+/* ******************************************************************************************** */
+/* ******************    PRIORITY    *********************** */
+/* ******************************************************************************************** */
 var finalPriorityResult;
 $("#fetchForPriority").click(function (e) { 
   e.preventDefault();
@@ -242,12 +321,13 @@ $("#fetchForPriority").click(function (e) {
       /* Clear screen */
       $("#tableContainer table").remove();
       $("#tableContainer h1").remove();
+      $("#optionContainer").css("display", "none");
       /* Clear chart property */
       property.data = [];
       /* Establish content of chart and table */
       finalPriorityResult = processPriorityData(response);
       var column = [];
-      $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Khu vực</th><th style='width: 30%'>Số lượng</th></tr></table>");
+      $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Đối tượng</th><th style='width: 30%'>Số lượng</th></tr></table>");
       for (let i = 0; i < finalPriorityResult.length; i++) {
         if(i%2==0){
           if (i/2%2==0) {
@@ -306,6 +386,9 @@ function convertPriority(p) {
   }
 }
 
+/* ******************************************************************************************** */
+/* ******************    GRADUATING    *********************** */
+/* ******************************************************************************************** */
 var finalGraduateResult;
 $("#fetchForGraduating").click(function (e) { 
   e.preventDefault();
@@ -326,6 +409,7 @@ $("#fetchForGraduating").click(function (e) {
       /* Clear screen */
       $("#tableContainer table").remove();
       $("#tableContainer h1").remove();
+      $("#optionContainer").css("display", "none");
       /* Clear chart property */
       property.data = [];
       /* Establish content of chart and table */
@@ -379,26 +463,26 @@ function processGraduateData (a, b) {
   return after; 
 }
 
-$("#queryBtn01").click(function (e) { 
+$("#cancelBtn01").click(function (e) { 
+  e.preventDefault();
+  modalparent[0].style.display = "none";
+});
+
+/* ******************************************************************************************** */
+/* ******************    SUBJECT COMBINATION    *********************** */
+/* ******************************************************************************************** */
+var finalCombiResult;
+$("#combiForm").submit(function (e) { 
   e.preventDefault();
   if(validateCombiForm()){
-    var input = $("#combiForm").serialize().split(/&|=/);
+    modalparent[0].style.display = "none";
+    var input = $(this).serialize().split(/&|=/);
     var i=0;
     while (i<input.length) {
       if(input[i]=="on" || input[i]=="combi") input.splice(i,1);
       i++
     }
-    console.log("SumSubject="+input[0]+"&Subject1="+input[1]+"&Subject2="+input[2]+"&Subject3="+input[3]);
-    $.ajax({
-      type: "POST",
-      url: "../../action/center/GetDataStatisticalForSubject.php",
-      data: "Subject1="+input[1]+"&Subject2="+input[2]+"&Subject3="+input[3]+"&SumSubject="+input[0],
-      dataType: "json",
-      success: function (res) {  
-        console.log(res);
-      }
-    });
-/*     $.when(
+    $.when(
       $.ajax({
         type: "POST",
         url: "../../action/center/GetDataStatisticalForSubject.php",
@@ -407,14 +491,44 @@ $("#queryBtn01").click(function (e) {
       }),
       $.ajax({
         type: "POST",
-        url: "../../action/center/GetDataStatisticalForSubject.php",
+        url: "../../action/center/GetDataStatisticalForNotSubject.php",
         data: "SumSubject="+input[0]+"&Subject1="+input[1]+"&Subject2="+input[2]+"&Subject3="+input[3],
         dataType: "json",
       })
-    ).then(function (rep1, rep2) {  
-      console.log(rep1[0]);
-      console.log(rep2[0]);
-    }); */
+    ).then(function (rep1, rep2) {
+      /* Clear screen */
+      $("#tableContainer table").remove();
+      $("#tableContainer h1").remove();
+      $("#optionContainer").css("display", "none");
+      /* Clear chart property */
+      property.data = [];
+      /* Establish content of chart and table */
+      finalCombiResult = processScoreData(rep1[0], rep2[0]);
+      var column = [];
+      $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Điều kiện</th><th style='width: 30%'>Số lượng</th></tr></table>");
+      for (let i = 0; i < finalCombiResult.length; i++) {
+        if(i%2==0){
+          if (i%4==2) {
+            $("#tableContainer tr:last").after('<tr><td id='+finalCombiResult[i].year+' rowspan="2" style="text-align:center; background-color:white">'+finalCombiResult[i].year+"</td><td>Trên "+$("#combi").val()+"</td><td>"+finalCombiResult[i].amount+'</td></tr>');
+            column.push(finalCombiResult[i].year);
+            column.push(parseInt(finalCombiResult[i].amount));
+          } else {
+            $("#tableContainer tr:last").after('<tr><td id='+finalCombiResult[i].year+' rowspan="2" style="text-align:center;">'+finalCombiResult[i].year+"</td><td>Trên "+$("#combi").val()+"</td><td>"+finalCombiResult[i].amount+'</td></tr>');
+            column.push(finalCombiResult[i].year);
+            column.push(parseInt(finalCombiResult[i].amount));
+          }
+        }else{
+          $("#tableContainer tr:last").after('<tr><td>Dưới '+$("#combi").val()+'</td><td>'+finalCombiResult[i].amount+'</td></tr>');
+          column.push(parseInt(finalCombiResult[i].amount));
+          property.data.push(column);
+          column=[];
+        }
+      }
+      property.data.unshift(['Year', 'Trên '+$("#combi").val(), 'Dưới '+$("#combi").val()]);
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(function(){drawChart(property.data)});
+      $("#curve_chart").css("display", "block");
+    });
   }
 });
 
@@ -431,25 +545,65 @@ function validateCombiForm () {
   return true;
 }
 
-$("#queryBtn02").click(function (e) { 
+$("#cancelBtn02").click(function (e) { 
+  e.preventDefault();
+  modalparent[1].style.display = "none";
+});
+
+/* ******************************************************************************************** */
+/* ******************    GRADE AVERAGE FINAL SCORE    *********************** */
+/* ******************************************************************************************** */
+var finalAverResult;
+$("#averForm").submit(function (e) { 
   e.preventDefault();
   if (validateAverForm()) {
+    modalparent[1].style.display = "none";
     $.when(
       $.ajax({
         type: "POST",
         url: "../../action/center/GetDataStatisticalForMediumCore.php",
-        data: $("#averForm").serialize(),
+        data: $(this).serialize(),
         dataType: "json",
       }),
       $.ajax({
         type: "POST",
         url: "../../action/center/GetDataStatisticalForNotMediumCore.php",
-        data: $("#averForm").serialize(),
+        data: $(this).serialize(),
         dataType: "json",
       })
-    ).then(function (rep1, rep2) {  
-      console.log(rep1[0]);
-      console.log(rep2[0]);
+    ).then(function (rep1, rep2) {
+      /* Clear screen */
+      $("#tableContainer table").remove();
+      $("#tableContainer h1").remove();
+      $("#optionContainer").css("display", "none");
+      /* Clear chart property */
+      property.data = [];
+      /* Establish content of chart and table */
+      finalAverResult = processScoreData(rep1[0], rep2[0]);
+      var column = [];
+      $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Điều kiện</th><th style='width: 30%'>Số lượng</th></tr></table>");
+      for (let i = 0; i < finalAverResult.length; i++) {
+        if(i%2==0){
+          if (i%4==2) {
+            $("#tableContainer tr:last").after('<tr><td id='+finalAverResult[i].year+' rowspan="2" style="text-align:center; background-color:white">'+finalAverResult[i].year+"</td><td>Trên "+$("#average").val()+"</td><td>"+finalAverResult[i].amount+'</td></tr>');
+            column.push(finalAverResult[i].year);
+            column.push(parseInt(finalAverResult[i].amount));
+          } else {
+            $("#tableContainer tr:last").after('<tr><td id='+finalAverResult[i].year+' rowspan="2" style="text-align:center;">'+finalAverResult[i].year+"</td><td>Trên "+$("#average").val()+"</td><td>"+finalAverResult[i].amount+'</td></tr>');
+            column.push(finalAverResult[i].year);
+            column.push(parseInt(finalAverResult[i].amount));
+          }
+        }else{
+          $("#tableContainer tr:last").after('<tr><td>Dưới '+$("#average").val()+'</td><td>'+finalAverResult[i].amount+'</td></tr>');
+          column.push(parseInt(finalAverResult[i].amount));
+          property.data.push(column);
+          column=[];
+        }
+      }
+      property.data.unshift(['Year', 'Trên '+$("#average").val(), 'Dưới '+$("#average").val()]);
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(function(){drawChart(property.data)});
+      $("#curve_chart").css("display", "block"); 
     });
   }
 });
@@ -460,4 +614,23 @@ function validateAverForm() {
     return false;
   }
   return true;
+}
+
+function processScoreData (a, b) { 
+  var after = [];
+  for (let year = parseInt($("#from").val()); year < (parseInt($("#to").val())+1); year++) {
+      var filterA = a.find(function (item) {  return item.Year==year; });
+      var filterB = b.find(function (item) {  return item.Year==year; });
+      if(filterA) {
+        after.push({year: String(year), amount: filterA.Number, isQualified: true});
+      }else{
+        after.push({year: String(year), amount: 0, isQualified: true});
+      }
+      if(filterB) {
+        after.push({year: String(year), amount: filterB.Number, isQualified: false});
+      }else{
+        after.push({year: String(year), amount: 0, isQualified: false});
+      }
+  }
+  return after; 
 }

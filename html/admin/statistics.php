@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../css/admin/statistics.css">
     <link rel="stylesheet" href="../../css/topNavBar.css">
     <link rel="stylesheet" href="../../css/sideNavBar.css">
+    <link rel="stylesheet" href="../../css/scrollToTopBtn.css">
     <title>Thống kê</title>
   </head>
   <body>
@@ -22,6 +23,8 @@
       <a href="statistics.php">Thống kê lượt đăng ký</a>
     </div>
 
+    <!-- Scroll to top button -->
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
     
     <div id="main" class="main">
       <!-- Topbar -->
@@ -70,6 +73,12 @@
       <div class="container">
         <div class="chart-container">
           <div id="curve_chart" style="height: 500px; display: none"></div>
+        </div>
+        <div class="option-container" id="optionContainer">
+          <label for="groupBy">Nhóm theo:</label>
+          <button id="groupBy" class="groupbtn">Năm</button>
+<!--           <div class="vl"></div>
+          <button id="filterZero" class="filterbtn">Lọc giá trị 0</button> -->
         </div>
         <div class="table-container" id="tableContainer">
           <h1 style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif">Chọn một danh mục để bắt đầu</h1>
@@ -170,4 +179,5 @@
   </body>
   <script src="../../js/sideNavBar.js"></script>
   <script src="../../js/admin/statistics.js"></script>
+  <script src="../../js/scrollToTopBtn.js"></script>
 </html>

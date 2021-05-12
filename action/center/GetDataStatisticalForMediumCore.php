@@ -23,7 +23,6 @@
 			break;
 	}
 
-
 	$query = mysqli_query($conn, $sql);
 	$listGroupAccount = array();
 	if(mysqli_num_rows($query) > 0){

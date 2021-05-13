@@ -34,11 +34,11 @@
 					$_SESSION["notice"] = "Đổi mật khẩu Thất bại!";
 					if($accountType==1){
 						// về màn hình của admin
-						header("location: ../../html/admin/admin.php");
+						header("location: ../../html/admin/adminChangePassword.php");
 					}
 					else{
 						// về màn hình của sinh viên
-						header("location: ../../html/student/studentChangeProfile.php");
+						header("location: ../../html/student/studentChangePassword.php");
 					}
 				}
 			}
@@ -46,11 +46,11 @@
 				$_SESSION["notice"] = "Mật khẩu nhập lại không khớp!";
 				if($accountType==1){
 					// về màn hình của admin
-					header("location: ../../html/admin/admin.php");
+					header("location: ../../html/admin/adminChangePassword.php");
 				}
 				else{
 					// về màn hình của sinh viên
-					header("location: ../../html/student/studentChangeProfile.php");
+					header("location: ../../html/student/studentChangePassword.php");
 				}
 			}
 		}
@@ -58,11 +58,11 @@
 			 $_SESSION["notice"] = "Mật khẩu không chính xác!";
 			 if($accountType==1){
 				// về màn hình của admin
-				header("location: ../../html/admin/admin.php");
+				header("location: ../../html/admin/adminChangePassword.php");
 			}
 			else{
 				// về màn hình của sinh viên
-				header("location: ../../html/student/studentChangeProfile.php");
+				header("location: ../../html/student/studentChangePassword.php");
 			}
 		}
 	}

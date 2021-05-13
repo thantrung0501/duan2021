@@ -3,6 +3,11 @@ validatePassword = () => {
     return false;
 }
 
+validatePasswordLength = () => {
+    if($("#newpw").val().length >= 8) return true;
+    return false;
+}
+
 validateInput = () => {
     if($("#oldpw").val()=="" || $("#newpw").val()=="" || $("#renewpw").val()=="") return false;
     return true;
@@ -11,6 +16,10 @@ validateInput = () => {
 validateForm = () => {
     if(!validateInput()){
         alert("Vui lòng điền đủ thông tin");
+        return false;
+    }
+    if (!validatePasswordLength()) {
+        alert("Mật khẩu phải bao gồm ít nhất 8 kí tự");
         return false;
     }
     if(!validatePassword()){

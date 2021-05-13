@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="../../css/admin/admin.css">
     <link rel="stylesheet" href="../../css/topNavBar.css">
     <link rel="stylesheet" href="../../css/sideNavBar.css">
@@ -33,7 +32,7 @@
             ?>
           </a>
           <div class="dropdown-content">
-            <a href="#">Đổi mật khẩu</a>
+            <a href="adminChangePassword.php">Đổi mật khẩu</a>
             <a href="../../action/logout.php">Đăng xuất</a>
           </div>
         </li>

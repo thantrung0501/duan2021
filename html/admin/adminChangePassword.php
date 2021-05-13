@@ -1,20 +1,23 @@
 <?php 
-  session_start();
+	session_start();
 ?>
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../css/w3.css">
-    <link rel="stylesheet" href="../../css/admin/adminListStudent.css">
+		<script src="../../js/serializeJSONPlugin.js"></script>
+    <link rel="stylesheet" href="../../css/student/studentChangePassword.css">
     <link rel="stylesheet" href="../../css/topNavBar.css">
     <link rel="stylesheet" href="../../css/sideNavBar.css">
-    <title>Danh sách thí sinh đăng ký</title>
   </head>
   <body>
+  <?php if(isset($_SESSION["notice"])){
+		echo '<script>  alert("'.$_SESSION["notice"].'");</script>';
+		unset($_SESSION["notice"]);	
+	}  
+	?>
     <!-- Side Bar -->
     <div id="mySidenav" class="sidenav">
       <a href="#">Chỉnh sửa lịch thi</a>
@@ -43,18 +46,30 @@
         </li>
       </ul>
 
-      <!-- Folder Bar -->
-      <div id="folder" class="w3-sidebar w3-bar-block w3-light-grey w3-card w3-global-font" style="width:15vw;">
-        <h3 class="w3-bar-item">Mục lục</h3>
-      </div>
-
-      <!-- Card Area -->
-      <div class="w3-container w3-global-font" style="margin-left:15vw">
-        <div id="participantList"></div>
+      <div class="container"> 
+        <div class="form-container">
+          <form id="pwform" name="pwform" action="../../action/center_student/ChangePassword.php" method="POST">
+            <div class="form-element">
+              <label for="oldpw">Mật khẩu cũ:</label>
+              <input type="password" name="passwordOld" id="oldpw">
+            </div>
+            <div class="form-element">
+                <label for="newpw">Mật khẩu mới:</label>  
+                <input type="password" name="passwordNew" id="newpw">
+            </div>
+            <div class="form-element">
+                <label for="renewpw">Nhập lại mật khẩu mới:</label>
+                <input type="password" name="rePassword" id="renewpw">
+            </div>
+            <div class="form-element">
+                <button type="submit" name="submit" id="savebtn" class="savebtn" onclick="return validateForm()">Lưu</button> 
+                <button type="reset" name="rsbtn" id="rsbtn" class="rsbtn">Hủy</button>
+            </div>        
+          </form>
+        </div>
       </div>
     </div>
 </body>
-
-<script src="../../js/sideNavBar.js"></script>
-<script src="../../js/admin/adminListStudent.js"></script>
+  <script src="../../js/student/studentChangePassword.js"></script>
+  <script src="../../js/sideNavBar.js"></script>
 </html>

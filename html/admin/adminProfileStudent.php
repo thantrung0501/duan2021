@@ -32,7 +32,7 @@
             ?>
           </a>
           <div class="dropdown-content">
-            <a href="#">Đổi mật khẩu</a>
+            <a href="adminChangePassword.php">Đổi mật khẩu</a>
             <a href="../../action/logout.php">Đăng xuất</a>
           </div>
         </li>

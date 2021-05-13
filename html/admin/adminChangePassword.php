@@ -21,7 +21,7 @@
     <!-- Side Bar -->
     <div id="mySidenav" class="sidenav">
       <a href="#">Chỉnh sửa lịch thi</a>
-      <a href="#">Mở đăng ký thi</a>
+      <a href="adminOpened.php">Mở đăng ký thi</a>
       <a href="adminListStudent.php">Hồ sơ người đăng ký</a>
       <a href="statistics.php">Thống kê lượt đăng ký</a>
     </div>

@@ -1,3 +1,4 @@
 bảng lưu thông tin đợt thi: RegistExam			
 RegistExamID	varchar(36)	primarykey	
 RegistNumber	int	        đợt thi	
+IsRegistAll		bit(1)		Mở đóng cả các ca thi

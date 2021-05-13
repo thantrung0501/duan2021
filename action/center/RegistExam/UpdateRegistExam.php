@@ -16,14 +16,6 @@
 
 	}
 
-	if($JDetailUpdate!=""){
-		$dataUpdate = json_decode($JDetailUpdate, true);
-		foreach ($dataUpdate as $row1) {
-			$sql = "UPDATE registexamdetail s SET s.ExamDate = '$row1["ExamDate"]',s.ExameeMax = '$row1["ExameeMax"]',s.Location ='$row1["Location"]', s.UnitExam = '$row1["UnitExam"]', s.ExamTime = '$row1["ExamTime"]' WHERE s.RegistExamDetailID = '$row1["RegistExamDetailID"]' ";
-			$query = mysqli_query($conn, $sql);
-		}
-
-	}
 	if($JDetailInsert!=""){
 
 		$dataInsert= json_decode($JDetailInsert, true);

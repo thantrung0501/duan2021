@@ -18,6 +18,7 @@
 			}
 			echo json_encode($listRegistAccount);
 		}
+		
 
 	}
 

@@ -62,6 +62,65 @@ button#btnCancel {
     margin-left: 5px;
 }
 
-input {
-    border: 0px;
+div#tab {
+    z-index: 1;
+    background: #E6E6FA;
+    width: 50%;
+    height: auto;
+    margin-left: 30%;
+    border-radius: 10px;
+}
+
+h1#notify {
+    text-align: center;
+}
+
+input#exam {
+    margin-top: 1%;
+    margin-left: 29.5%;
+}
+
+input#poetry {
+    margin-top: 1%;
+    margin-left: 30.5%;
+}
+
+input#address {
+    margin-top: 1%;
+    margin-left: 27.6%;
+}
+
+input#date {
+    margin-top: 1%;
+    margin-left: 27.5%;
+}
+
+input#time {
+    margin-top: 1%;
+    margin-left: 26.5%;
+}
+
+input#number {
+    margin-top: 1%;
+    margin-left: 27.3%;
+}
+
+button#addCa {
+    margin-left: 40%;
+    margin-top: 2%;
+    background-color: #3ae082;
+    margin-bottom: 1%;
+    width: 100px;
+    height: 30px;
+}
+
+b {
+    margin-left: 2%;
+}
+
+button#openTab {
+    background-color: #3ae082;
+    width: 100px;
+    height: 30px;
+    margin-left: 40%;
 }

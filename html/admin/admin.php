@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../../css/w3.css">
     <link rel="stylesheet" href="../../css/topNavBar.css">
     <link rel="stylesheet" href="../../css/sideNavBar.css">
-    <title>Danh sách thí sinh đăng ký</title>
+    <title>Trang chủ</title>
   </head>
   <body>
   <?php 
@@ -23,7 +23,7 @@
   ?>
     <!-- Side Bar -->
     <div id="mySidenav" class="sidenav">
-      <a href="adminManageExam.php">Quản lí lịch thi</a>
+      <a href="adminManageExam.php">Quản lý lịch thi</a>
       <a href="#">Chỉnh sửa lịch thi</a>
       <a href="adminListStudent.php">Hồ sơ người đăng ký</a>
       <a href="statistics.php">Thống kê lượt đăng ký</a>
@@ -48,6 +48,17 @@
           </div>
         </li>
       </ul>
+
+      <div class="container">
+        <div class="guide-row">
+            <button>Quản lý lich thi</button>
+            <button>Chỉnh sửa lịch thi</button>
+        </div>
+        <div class="guide-row">
+            <button>Danh sách người đăng ký</button>
+            <button>Thống kê</button>
+        </div>
+      </div>
     </div>
 </body>
 

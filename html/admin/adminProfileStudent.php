@@ -21,7 +21,7 @@
     }
   ?>
     <div id="mySidenav" class="sidenav">
-      <a href="adminManageExam.php">Quản lí lịch thi</a>
+      <a href="adminManageExam.php">Quản lý lịch thi</a>
       <a href="#">Chỉnh sửa lịch thi</a>
       <a href="adminListStudent.php">Hồ sơ người đăng ký</a>
       <a href="Statistics.php">Thống kê lượt đăng ký</a>

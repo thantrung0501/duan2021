@@ -10,8 +10,16 @@
 		<script src="../../js/serializeJSONPlugin.js"></script>
     <link rel="stylesheet" href="../../css/student/studentChangePassword.css">
     <link rel="stylesheet" href="../../css/topNavBar.css">
+    <title>Đổi mật khẩu</title>
   </head>
   <body>
+  <?php 
+  if(isset($_SESSION["AccountID"])){
+    if($_SESSION["AccountType"]==1) header("location: ../admin/admin.php");
+  }else{
+    header("location: ../signin.php");
+  }
+?>
   <?php if(isset($_SESSION["notice"])){
 		echo '<script>  alert("'.$_SESSION["notice"].'");</script>';
 		unset($_SESSION["notice"]);	

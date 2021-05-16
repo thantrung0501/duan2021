@@ -12,6 +12,13 @@
 		<title>Hồ sơ</title>
 	</head>
 	<body>
+	<?php 
+		if(isset($_SESSION["AccountID"])){
+			if($_SESSION["AccountType"]==1) header("location: ../admin/admin.php");
+		}else{
+			header("location: ../signin.php");
+		}
+	?>
 	<?php if(isset($_SESSION["notice"])){
 		echo '<script>  alert("'.$_SESSION["notice"].'");</script>';
 		unset($_SESSION["notice"]);	

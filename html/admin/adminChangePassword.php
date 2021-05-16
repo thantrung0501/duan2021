@@ -11,8 +11,16 @@
     <link rel="stylesheet" href="../../css/student/studentChangePassword.css">
     <link rel="stylesheet" href="../../css/topNavBar.css">
     <link rel="stylesheet" href="../../css/sideNavBar.css">
+    <title>Đổi mật khẩu</title>
   </head>
   <body>
+  <?php 
+    if(isset($_SESSION["AccountID"])){
+      if($_SESSION["AccountType"]!=1) header("location: ../student/studentHomepage.php");
+    }else{
+      header("location: ../signin.php");
+    }
+  ?>
   <?php if(isset($_SESSION["notice"])){
 		echo '<script>  alert("'.$_SESSION["notice"].'");</script>';
 		unset($_SESSION["notice"]);	
@@ -20,8 +28,8 @@
 	?>
     <!-- Side Bar -->
     <div id="mySidenav" class="sidenav">
+      <a href="admin.php">Quản lí lịch thi</a>
       <a href="#">Chỉnh sửa lịch thi</a>
-      <a href="adminOpened.php">Mở đăng ký thi</a>
       <a href="adminListStudent.php">Hồ sơ người đăng ký</a>
       <a href="statistics.php">Thống kê lượt đăng ký</a>
     </div>

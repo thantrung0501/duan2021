@@ -3,7 +3,7 @@
 	session_start();
 	include '../../../config.php';
 	// lấy những thằng có IsRegistAll = 1
-	$sql = "SELECT * FROM registexamdetail r INNER JOIN registexam r1 on r.RegistExamID = r1.RegistExamID  WHERE r.IsRegistAll = 1  ORDER BY r.UnitExam ";
+	$sql = "SELECT * FROM registexamdetail r INNER JOIN registexam r1 on r.RegistExamID = r1.RegistExamID  WHERE r1.IsRegistAll = 1  ORDER BY r.UnitExam";
 	$query = mysqli_query($conn, $sql);
 
 		$listRegistExam = [];

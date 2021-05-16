@@ -11,6 +11,13 @@
 	<title>Giấy báo dự thi</title>
 </head>
 <body>
+<?php 
+  if(isset($_SESSION["AccountID"])){
+    if($_SESSION["AccountType"]==1) header("location: ../admin/admin.php");
+  }else{
+    header("location: ../signin.php");
+  }
+?>
   <ul class="navbar">
     <li><a class="logo-container" href="./studentHomepage.php"><img class="logo" src="../../images/common/Logo-VNU-1995.jpg" /></a></li>
     <li><div class="web-name">Đăng ký thi đánh giá năng lực</div></li>

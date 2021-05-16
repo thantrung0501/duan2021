@@ -4,4 +4,75 @@ body {
 
 .container {
     margin: 30px;
+    margin-top: 5vh;
 }
+
+.guide-row {
+    text-align: center;
+    margin-top: 1vh;
+}
+  
+.button-container {
+    display: inline-block;
+}
+
+  a.slideButton {
+    display: flex;
+    width: 47vw;
+    height: 40vh;
+    line-height: 40px;
+    font-size: 18px;
+    font-family: sans-serif;
+    text-decoration: none;
+    color: #333;
+    border: 2px solid #333;
+    letter-spacing: 2px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: all .35s;
+  }
+  
+  a.slideButton span{
+    font-size: 2.1em;
+    position: relative;
+    z-index: 2;
+  }
+  
+  a.slideButton:after{
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    transition: all .35s;
+  }
+  
+  a.slideButton:hover{
+    color: #fff;
+  }
+  
+  a.slideButton:hover:after{
+    width: 100%;
+  }
+
+  .btn1:after {
+    background: #ff003b;
+  }
+  .btn2:after {
+    background: #0047b3;
+  }
+  .btn2 {
+    margin-left: 0.5vh;
+  }
+  .btn3:after {
+    background: #7300e6;
+  }
+  .btn4:after {
+    background: #ff9900;
+  }
+  .btn4 {
+    margin-left: 0.5vh;
+  }

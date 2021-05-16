@@ -43,7 +43,7 @@ body {
     to {transform: rotate(360deg);}
 }
 
-.openForm {
+.openForm, .close-button-container {
 	display: block;
 	margin-top: 9px;
 	float: right;
@@ -70,6 +70,7 @@ body {
 }
 
 .mybutton {
+	outline: none;
 	display: inline-block;
 	font-size: 1.2em;
 	margin-left: 1vw;
@@ -84,10 +85,25 @@ body {
   }
   
   .mybutton:active {
-	outline: none;
-	background-color: red;
 	box-shadow: 0 0px 6px 2px rgba(0, 0, 0, 0.2), 0 0px 20px 4px rgba(0, 0, 0, 0.19);
   }
+
+  .close-button {
+	display: inline-block;
+	outline: none;
+	font-size: 1.2em;
+	margin-left: 1vw;
+	border-radius: 20px;
+	padding: 0.5vh 2vw;
+	background-color: red;
+	color: white;
+}
+.close-button:hover {
+	background-color: #990000;
+}
+.close-button:active {
+	box-shadow: 0 0px 6px 2px rgba(0, 0, 0, 0.2), 0 0px 20px 4px rgba(0, 0, 0, 0.19);
+}
 
 .clearfix::after {
 	content: "";

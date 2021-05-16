@@ -7,12 +7,12 @@
 
 	// Đóng bang MasterDATE
 
-	$sql = "UPDATE registexam r SET r.IsRegistAll = 0 WHERE r.RegistExamID = '$RegistExamID' ";
+	$sql = "UPDATE registexam r SET r.IsRegistAll = 0 WHERE r.RegistExamID = '$registExamID' ";
 	$query = mysqli_query($conn, $sql);
 
 	// đóng tất cả các ca thi trong đợt thi đó
 
-	$sql1 = "UPDATE registexamdetail r SET r.IsRegist = = 0 WHERE r.RegistExamID = '$RegistExamID'";
+	$sql1 = "UPDATE registexamdetail r SET r.IsRegist = = 0 WHERE r.RegistExamID = '$registExamID'";
 
 	$query1 = mysqli_query($conn, $sql1);
 

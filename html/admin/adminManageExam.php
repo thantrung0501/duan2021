@@ -7,11 +7,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../css/w3.css">
+    <link rel="stylesheet" href="../../css/admin/adminManageExam.css">
     <link rel="stylesheet" href="../../css/topNavBar.css">
     <link rel="stylesheet" href="../../css/sideNavBar.css">
-    <title>Danh sách thí sinh đăng ký</title>
+    <title>Quản lí lịch thi</title>
   </head>
   <body>
   <?php 
@@ -21,16 +21,13 @@
       header("location: ../signin.php");
     }
   ?>
-    <!-- Side Bar -->
     <div id="mySidenav" class="sidenav">
       <a href="adminManageExam.php">Quản lí lịch thi</a>
       <a href="#">Chỉnh sửa lịch thi</a>
       <a href="adminListStudent.php">Hồ sơ người đăng ký</a>
-      <a href="statistics.php">Thống kê lượt đăng ký</a>
+      <a href="Statistics.php">Thống kê lượt đăng ký</a>
     </div>
-
     <div id="main" class="main">
-      <!-- Top Navigation Bar -->
       <ul class="navbar">
         <li><button class="side-bar-toggle" id="sideBarBtn">&#9776;</button></li>
         <li><a class="logo-container" href="./admin.php"><img class="logo" src="../../images/common/Logo-VNU-1995.jpg" /></a></li>
@@ -48,8 +45,11 @@
           </div>
         </li>
       </ul>
-    </div>
-</body>
 
+    <div id="tableList" class="container w3-global-font">
+    </div> 
+</div>
+</body>
+<script src="../../js/admin/adminManageExam.js"></script>
 <script src="../../js/sideNavBar.js"></script>
 </html>

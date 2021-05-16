@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 13, 2021 lúc 03:45 PM
+-- Thời gian đã tạo: Th5 16, 2021 lúc 12:06 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -36,9 +36,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `Pro_GetData_StatisticalForNotGradua
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Pro_GetData_StatisticalForProvince` (IN `$StartYear` INT(11), IN `$EndYear` INT(11))  SELECT accountdetail.ProvinceName, YEAR(accountdetail.AccountDate) as 'Year' , COUNT(accountdetail.AccountID) as Number from accountdetail WHERE YEAR(accountdetail.AccountDate) BETWEEN $StartYear and $EndYear GROUP BY accountdetail.ProvinceName, YEAR(accountdetail.AccountDate) ORDER BY YEAR(accountdetail.AccountDate)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Pro_Get_ListProvinceName` ()  SELECT * from province$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Pro_Get_ListRegistExamDetail` ()  SELECT * from registexamdetail r1 INNER join registexam r2 ON
-r1.RegistExamID = r2.RegistExamID order by r2.RegistNumber, r1.UnitExam$$
 
 DELIMITER ;
 
@@ -229,16 +226,18 @@ INSERT INTO `province` (`ProvinceID`, `ProvinceName`, `ProvinceCode`) VALUES
 CREATE TABLE `registexam` (
   `RegistExamID` varchar(36) NOT NULL COMMENT 'primarykey',
   `RegistNumber` int(11) NOT NULL COMMENT 'đợt thi',
-  `IsRegistAll` bit(1) NOT NULL COMMENT 'có lấy cả ca thi không,hoặc là đóng ca thi'
+  `IsRegistAll` bit(1) NOT NULL COMMENT 'có lấy cả ca thi không,hoặc là đóng ca thi',
+  `StartedDate` datetime DEFAULT NULL,
+  `FinishDate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `registexam`
 --
 
-INSERT INTO `registexam` (`RegistExamID`, `RegistNumber`, `IsRegistAll`) VALUES
-('e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', 1, b'1'),
-('1f700fc3-b0d6-11eb-8267-9840bb0282e0', 2, b'1');
+INSERT INTO `registexam` (`RegistExamID`, `RegistNumber`, `IsRegistAll`, `StartedDate`, `FinishDate`) VALUES
+('e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', 1, b'1', '2021-05-12 17:00:33', '2021-05-24 17:00:27'),
+('1f700fc3-b0d6-11eb-8267-9840bb0282e0', 2, b'1', '2021-05-19 17:00:30', '2021-05-31 17:00:39');
 
 -- --------------------------------------------------------
 
@@ -282,6 +281,15 @@ CREATE TABLE `registexaminfor` (
   `AccountID` varchar(36) NOT NULL COMMENT 'id bảng account',
   `RegistExamDetailID` varchar(36) NOT NULL COMMENT 'id bảng examdetail'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `registexaminfor`
+--
+
+INSERT INTO `registexaminfor` (`RegistExamInforID`, `AccountID`, `RegistExamDetailID`) VALUES
+(1, 'acf2b190d317338aec0a61e61d1b0f51', '65e69cb6-b0d4-11eb-8267-9840bb0282e0'),
+(2, 'acf2b190d317338aec0a61e61d1b0f51', 'a7fd0610-b0d4-11eb-8267-9840bb0282e0'),
+(3, '4f0791b886bf1c5217ce00cf7b874c4d', 'a7fd0610-b0d4-11eb-8267-9840bb0282e0');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -343,7 +351,7 @@ ALTER TABLE `registexam`
 -- AUTO_INCREMENT cho bảng `registexaminfor`
 --
 ALTER TABLE `registexaminfor`
-  MODIFY `RegistExamInforID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'khóa chính';
+  MODIFY `RegistExamInforID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'khóa chính', AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

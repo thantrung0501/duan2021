@@ -21,13 +21,13 @@
 			VALUES(
 			'$registExamDetailID',
 			'$registExamID',
-			'$row["ExamDate"]',
+			'".$row["ExamDate"]."',
 			0,
-			'$row["ExameeMax"]',
-			'$row["Location"]',
+			'".$row["ExameeMax"]."',
+			'".$row["Location"]."',
 			0,
-			'$row["UnitExam"]', 
-			'$row["ExamTime"]'
+			'".$row["UnitExam"]."', 
+			'".$row["ExamTime"]."'
 			)";
 		$query = mysqli_query($conn, $sql);
 	}

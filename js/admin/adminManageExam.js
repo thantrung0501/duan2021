@@ -124,12 +124,41 @@ closeRegistryHandler = (id) => {
             console.log(response);
         }
     });
+    /*var $data= [];
+    var datatable = $(document).find('#tableList').find('#tableOf_e3ee8e7f-b0d5-11eb-8267-9840bb0282e0 tr');
+    datatable.each(function(i) {
+         
+        if(i>0){
+        var x = $(this);
+        var cells = x.find('td');
+          var regist = {
+            "ExamDate" : cells[2].getInnerHTML(),
+            "UnitExam": cells[3].getInnerHTML().slice(0,1),
+            "ExamTime": cells[3].getInnerHTML().slice(1,cells[3].getInnerHTML().length).replace('(','').replace(')',''),
+            "ExameeMax": cells[4].getInnerHTML().slice(2),
+            "Location": cells[1].getInnerHTML()
+          }
+          $data.push(regist);
+        }
+        
+    });
+    $.ajax({
+        type: "POST",
+        url: "../../action/center/RegistExam/InsertRegistExam.php",
+        data: {UnitRegist: 1, JDetail: JSON.stringify($data)},
+        dataType: "json",
+        success: function (response) {
+            console.log(response);
+        }
+    });*/
+    
 }
 
 $("#openRegistry").click(function (e) { 
     e.preventDefault();
     $("#openForm").css("display", "none");
     $("#afterOpen").css("display", "block");
+
 });
 
 $("#closeRegistry").click(function (e) { 

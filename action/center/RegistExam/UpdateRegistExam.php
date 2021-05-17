@@ -10,7 +10,7 @@
 	if($JDetailUpdate!=""){
 		$dataUpdate = json_decode($JDetailUpdate, true);
 		foreach ($dataUpdate as $row1) {
-			$sql = "UPDATE registexamdetail s SET s.ExamDate = '$row1["ExamDate"]',s.ExameeMax = '$row1["ExameeMax"]',s.Location ='$row1["Location"]', s.UnitExam = '$row1["UnitExam"]', s.ExamTime = '$row1["ExamTime"]' WHERE s.RegistExamDetailID = '$row1["RegistExamDetailID"]' ";
+			$sql = "UPDATE registexamdetail s SET s.ExamDate = '".$row1["ExamDate"]."',s.ExameeMax = '".$row1["ExameeMax"]."',s.Location ='".$row1["Location"]."', s.UnitExam = '".$row1["UnitExam"]."', s.ExamTime = '".$row1["ExamTime"]."' WHERE s.RegistExamDetailID = '".$row1["RegistExamDetailID"]."' ";
 			$query = mysqli_query($conn, $sql);
 		}
 
@@ -26,14 +26,14 @@
 		$sql2 = "INSERT INTO registexamdetail(RegistExamDetailID, RegistExamID,  ExamDate, Examee, ExameeMax, Location,IsRegist, UnitExam, ExamTime) 
 			VALUES(
 			'$registExamDetailID',
-			'$row2["RegistExamID"]',
-			'$row2["ExamDate"]',
+			'".$row2["RegistExamID"]."',
+			'".$row2["ExamDate"]."',
 			0,
-			'$row2["ExameeMax"]',
-			'$row2["Location"]',
+			'".$row2["ExameeMax"]."',
+			'".$row2["Location"]."',
 			0,
-			'$row2["UnitExam"]', 
-			'$row2["ExamTime"]'
+			'".$row2["UnitExam"]."', 
+			'".$row2["ExamTime"]."'
 			)";
 		$query2 = mysqli_query($conn, $sql2);
 	}
@@ -44,7 +44,7 @@
 		$dataDelete= json_decode($JDetailDelete, true);
 
 		foreach ($dataDelete as $row2 ) {
-			$sqlDelete = "DELETE FROM registexamdetail WHERE RegistExamDetailID = '$row2["RegistExamDetailID"]'";
+			$sqlDelete = "DELETE FROM registexamdetail WHERE RegistExamDetailID = '".$row2["RegistExamDetailID"]."'";
 			$queryDelete = mysqli_query($conn, $sqlDelete);
 
 		}

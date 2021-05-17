@@ -7,7 +7,7 @@ body {
 }
 
 .table-container {
-	margin: 4vh 4vw 15vh 4vw;
+	margin: 4vh 4vw 10vh 4vw;
 }
 
 .table-header {
@@ -44,19 +44,18 @@ body {
 }
 
 .openForm, .close-button-container {
-	display: block;
 	margin-top: 9px;
 	float: right;
 }
 .afterOpen {
-	display: none;
-	margin-top: 10px;
+	margin-top: 16px;
 	float: right;
 }
 
 .afterOpen div {
-	display: inline-block;
 	font-size: 1.2em;
+	margin-right: 2vw;
+	border: 2px ;
 }
 
 .table-header label, .table-header input {

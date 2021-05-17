@@ -7,7 +7,6 @@ $(document).ready(function () {
         dataType: "json",
         success: function (response) {
             response.sort(compareItem);
-            console.log(response);
             createTable(response);
         }
     });
@@ -23,7 +22,7 @@ createTable = (data) => {
         if (data[i].RegistExamID!=current) {
             current = data[i].RegistExamID;
             $("#tableList").append('<div data-examination = '+current+' class="table-container w3-card-4 top-rounded"></div>');
-            createHeader(current, data[i].RegistNumber);
+            createHeader(current, data[i].RegistNumber, data[i].StartedDate, data[i].FinishDate);
             createBody(data[i], i);
         }else{
             createBody(data[i], i);
@@ -31,7 +30,8 @@ createTable = (data) => {
     }  
 }
 
-createHeader = (id, examNumber) => {
+createHeader = (id, examNumber, startDate, finishDate) => {
+    /* CREATE ID */
     var openFormId = "openFormOf_" + id;
     var formId = "formOf_" + id;
     var openButtonId = "openButtonOf_" + id;
@@ -40,11 +40,17 @@ createHeader = (id, examNumber) => {
     var closeButtonId = "closeButtonOf_" + id;
     var closeContainerId = "closeContainerOf_" + id;
     var tableId = "tableOf_"+id;
+    /* VARIABLE FOR CONTROLLER */
+    var now = new Date().toISOString().split('T')[0];
+    var openDisplay = (startDate!="" && finishDate!="" && compareDate(finishDate, now)) ? "none" : "block";
+    var closeDisplay = (startDate!="" && finishDate!="" && compareDate(finishDate, now)) ? "block" : "none";
+    var period = "Mở đăng ký từ " + convertDate(startDate.split(" ")[0])+ " đến " + convertDate(finishDate.split(" ")[0]);
+    /* APPEND ELEMENT */
     $("#tableList").find(".table-container[data-examination="+id+"]").append('<div class="w3-green top-rounded table-header clearfix">'+
         '<h3>Đợt '+examNumber+' năm 2021</h3>'+
         '<a href="adminChange.php" class="config-btn"><img src="../../images/config.svg" alt="Sửa"></a>'+
         '<div class="close-button-container" id='+closeContainerId+'><button class="close-button" id='+closeButtonId+' onclick="closeRegistryHandler(this.id)">Đóng đợt thi</button></div>'+
-        '<div class="openForm" id='+openFormId+'>'+
+        '<div class="openForm" id='+openFormId+' style="display:'+openDisplay+'">'+
         '<form id='+formId+'>'+
             '<input type="text" name="RegistExamID" value='+id+' style="display:none;">'+
             '<label for="from">Từ: </label>'+
@@ -54,7 +60,9 @@ createHeader = (id, examNumber) => {
             '<button type="button" class="mybutton" id='+openButtonId+' name="openRegistry" onclick="openRegistryHandler(this.id)">Mở đăng ký</button>'+
         '</form>'+
         '</div>'+
-        '<div class="afterOpen" id='+stopContainerId+'><div>dd/mm/yyyy - dd/mm/yyyy</div><button class="mybutton" id='+stopButtonId+'>Dừng đăng ký</button></div>'+
+        '<div class="afterOpen" id='+stopContainerId+' style="display='+closeDisplay+'">'+
+            '<div>'+period+'</div>'+
+        '</div>'+
     '</div>');
     $("#tableList").find(".table-container[data-examination="+id+"]").append('<table id='+tableId+' class="w3-table-all w3-hoverable w3-striped">'+
         '<tr>'+
@@ -88,19 +96,32 @@ convertDate = (date) => {
     return frag[2]+"/"+frag[1]+"/"+frag[0];
 }
 
-/* Set date handler */
-/* $(window).click(function (e) { 
-    e.preventDefault();
-    console.log(e.target.id);
-    var i = e.target.id.split("_")[1];
-    console.log(i);
-    console.log($("#formOf_"+i).serialize());
-}); */
+compareDate = (d1, d2) => {
+    var fd1 = d1.split("-");
+    var fd2 = d2.split("-");
+    if(fd1[0]>fd2[0]){
+        return true;
+    }else if (fd1[0]=fd2[0]) {
+        if(fd1[1]>fd2[1]) {
+            return true;  
+        } else if (fd1[1]=fd2[1]) {
+            if(fd1[2]>fd2[2]){
+                return true;
+            } else if (fd1[2]=fd2[2]) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }  
+}
 
 openRegistryHandler = (id) => {
-    console.log(id);
     var i = id.split("_")[1];
-    console.log($("#formOf_"+i).serialize());
     $.ajax({
         type: "POST",
         url: "../../action/center/RegistExam/OpenRegistExam.php",
@@ -108,7 +129,10 @@ openRegistryHandler = (id) => {
         dataType: "json",
         success: function (response) {
             console.log(response);
-        }
+            $("#formOf_"+i).css("display", "none");
+            $("#stopContainerOf_"+i).css("display", "block");
+        },
+        error: function (err) {console.log(err.responseText);  } 
     });
 }
 
@@ -122,47 +146,7 @@ closeRegistryHandler = (id) => {
         dataType: "json",
         success: function (response) {
             console.log(response);
-        }
+        },
+        error: function (err) {console.log(err.responseText);  }
     });
-    /*var $data= [];
-    var datatable = $(document).find('#tableList').find('#tableOf_e3ee8e7f-b0d5-11eb-8267-9840bb0282e0 tr');
-    datatable.each(function(i) {
-         
-        if(i>0){
-        var x = $(this);
-        var cells = x.find('td');
-          var regist = {
-            "ExamDate" : cells[2].getInnerHTML(),
-            "UnitExam": cells[3].getInnerHTML().slice(0,1),
-            "ExamTime": cells[3].getInnerHTML().slice(1,cells[3].getInnerHTML().length).replace('(','').replace(')',''),
-            "ExameeMax": cells[4].getInnerHTML().slice(2),
-            "Location": cells[1].getInnerHTML()
-          }
-          $data.push(regist);
-        }
-        
-    });
-    $.ajax({
-        type: "POST",
-        url: "../../action/center/RegistExam/InsertRegistExam.php",
-        data: {UnitRegist: 1, JDetail: JSON.stringify($data)},
-        dataType: "json",
-        success: function (response) {
-            console.log(response);
-        }
-    });*/
-    
 }
-
-$("#openRegistry").click(function (e) { 
-    e.preventDefault();
-    $("#openForm").css("display", "none");
-    $("#afterOpen").css("display", "block");
-
-});
-
-$("#closeRegistry").click(function (e) { 
-    e.preventDefault();
-    $("#openForm").css("display", "block");
-    $("#afterOpen").css("display", "none");
-});

@@ -1,27 +1,32 @@
 var id = parseURLParams(window.location.href).id[0];
 
+convertData = (data) => {
+    if(data!="" && data!="0") return data;
+    else return "(Trống)";
+} 
+
 $.ajax({
     type: "POST",
     url: "../../action/center/GetRegistAccountDetail.php",
     data: "accountID="+ id,
     dataType: "json",
     success: function (response) {
-        $("#fullName").text(response.FullName);
-        $("#gender").text(response.Gender);
+        $("#fullName").text(convertData(response.FullName));
+        $("#gender").text(convertData(response.Gender));
         var _birthday = response.DateOfBirth.split("-");
         var birthday = _birthday[2] + "/" + _birthday[1] + "/" +_birthday[0];
-        $("#birthday").text(birthday);
-        $("#nation").text(response.Nation);
-        $("#CMND").text(response.Identification);
-        $("#residence").text(response.PermanentResidence);
-        $("#placeOfBirth").text(response.ProvinceName);
-        $("#email").text(response.Email);
-        $("#phone").text(response.PhoneNumber);
-        $("#address").text(response.Address);
+        $("#birthday").text(convertData(birthday));
+        $("#nation").text(convertData(response.Nation));
+        $("#CMND").text(convertData(response.Identification));
+        $("#residence").text(convertData(response.PermanentResidence));
+        $("#placeOfBirth").text(convertData(response.ProvinceName));
+        $("#email").text(convertData(response.Email));
+        $("#phone").text(convertData(response.PhoneNumber));
+        $("#address").text(convertData(response.Address));
         var isPrioritized;
         switch (response.IsPrioritize) {
             case "0":
-                isPrioritized ="Trống";
+                isPrioritized ="(Trống)";
                 break;
             case "1":
                 isPrioritized ="Không ưu tiên";
@@ -32,11 +37,11 @@ $.ajax({
             default:
                 break;
         }
-        $("#priority").text(isPrioritized);
+        $("#priority").text(convertData(isPrioritized));
         var area;
         switch (response.Area) {
             case "0":
-                area ="Trống";
+                area ="(Trống)";
                 break;
             case "1":
                 area ="KV1";
@@ -53,26 +58,26 @@ $.ajax({
             default:
                 break;
         }
-        $("#area").text(area);
-        $("#hk1L10").text(response.HKIGrade10);
-        $("#hk2L10").text(response.HKIIGrade10);
-        $("#l10").text(response.TBGrade10);
-        $("#hk1L11").text(response.HKIGrade11);
-        $("#hk2L11").text(response.HKIIGrade11);
-        $("#l11").text(response.TBGrade11);
-        $("#hk1L12").text(response.HKIGrade12);
-        $("#hk2L12").text(response.HKIIGrade12);
-        $("#l12").text(response.TBGrade12);
-        $("#gradYear").text(response.GraduatingYear);
-        $("#math").text(response.Math);
-        $("#liter").text(response.Literature);
-        $("#eng").text(response.English);
-        $("#physic").text(response.Physics);
-        $("#chem").text(response.Chemistry);
-        $("#bio").text(response.Biology);
-        $("#his").text(response.History);
-        $("#geo").text(response.Geography);
-        $("#GDCD").text(response.GDCD);
+        $("#area").text(convertData(area));
+        $("#hk1L10").text(convertData(response.HKIGrade10));
+        $("#hk2L10").text(convertData(response.HKIIGrade10));
+        $("#l10").text(convertData(response.TBGrade10));
+        $("#hk1L11").text(convertData(response.HKIGrade11));
+        $("#hk2L11").text(convertData(response.HKIIGrade11));
+        $("#l11").text(convertData(response.TBGrade11));
+        $("#hk1L12").text(convertData(response.HKIGrade12));
+        $("#hk2L12").text(convertData(response.HKIIGrade12));
+        $("#l12").text(convertData(response.TBGrade12));
+        $("#gradYear").text(convertData(response.GraduatingYear));
+        $("#math").text(convertData(response.Math));
+        $("#liter").text(convertData(response.Literature));
+        $("#eng").text(convertData(response.English));
+        $("#physic").text(convertData(response.Physics));
+        $("#chem").text(convertData(response.Chemistry));
+        $("#bio").text(convertData(response.Biology));
+        $("#his").text(convertData(response.History));
+        $("#geo").text(convertData(response.Geography));
+        $("#GDCD").text(convertData(response.GDCD));
     }
 });
 

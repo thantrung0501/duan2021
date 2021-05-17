@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 16, 2021 lúc 12:06 PM
+-- Thời gian đã tạo: Th5 17, 2021 lúc 04:17 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -228,16 +228,18 @@ CREATE TABLE `registexam` (
   `RegistNumber` int(11) NOT NULL COMMENT 'đợt thi',
   `IsRegistAll` bit(1) NOT NULL COMMENT 'có lấy cả ca thi không,hoặc là đóng ca thi',
   `StartedDate` datetime DEFAULT NULL,
-  `FinishDate` datetime DEFAULT NULL
+  `FinishDate` datetime DEFAULT NULL,
+  `CreateYear` int(11) NOT NULL COMMENT 'Nam tao',
+  `UnitRegist` int(11) NOT NULL COMMENT 'so ca thi'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `registexam`
 --
 
-INSERT INTO `registexam` (`RegistExamID`, `RegistNumber`, `IsRegistAll`, `StartedDate`, `FinishDate`) VALUES
-('e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', 1, b'1', '2021-05-12 17:00:33', '2021-05-24 17:00:27'),
-('1f700fc3-b0d6-11eb-8267-9840bb0282e0', 2, b'1', '2021-05-19 17:00:30', '2021-05-31 17:00:39');
+INSERT INTO `registexam` (`RegistExamID`, `RegistNumber`, `IsRegistAll`, `StartedDate`, `FinishDate`, `CreateYear`, `UnitRegist`) VALUES
+('e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', 1, b'1', '2021-05-22 00:00:00', '2021-05-14 00:00:00', 2019, 1),
+('1f700fc3-b0d6-11eb-8267-9840bb0282e0', 2, b'1', '2021-05-19 17:00:30', '2021-05-31 17:00:39', 2021, 1);
 
 -- --------------------------------------------------------
 
@@ -266,9 +268,9 @@ CREATE TABLE `registexamdetail` (
 INSERT INTO `registexamdetail` (`RegistExamDetailID`, `RegistExamID`, `StartedDate`, `FinishDate`, `ExamDate`, `Examee`, `ExameeMax`, `Location`, `IsRegist`, `UnitExam`, `ExamTime`) VALUES
 ('65e69cb6-b0d4-11eb-8267-9840bb0282e0', '1f700fc3-b0d6-11eb-8267-9840bb0282e0', '2021-05-09 16:38:52', '2021-05-09 16:38:52', '2021-05-28', 0, 160, '108-GĐ2', b'0', 1, '07:00'),
 ('8e51f117-b0d4-11eb-8267-9840bb0282e0', '1f700fc3-b0d6-11eb-8267-9840bb0282e0', '2021-05-09 16:40:04', '2021-05-09 16:40:04', '2021-05-17', 0, 300, '308-G2', b'0', 2, '10:00'),
-('a629279f-b0d3-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-09 16:33:15', '2021-05-09 16:33:15', '2021-05-27', 0, 100, '303-G2', b'0', 1, '07:00'),
-('a7fd0610-b0d4-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-09 16:40:55', '2021-05-09 16:40:55', '2021-05-18', 0, 180, '301-G2', b'0', 3, '13:00'),
-('f82c0258-b0d3-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-09 16:35:45', '2021-05-09 16:35:45', '2021-05-21', 0, 150, '304-E3', b'0', 2, '13:30');
+('a629279f-b0d3-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-22 00:00:00', '2021-05-14 00:00:00', '2021-05-27', 0, 100, '303-G2', b'1', 1, '07:00'),
+('a7fd0610-b0d4-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-22 00:00:00', '2021-05-14 00:00:00', '2021-05-18', 0, 180, '301-G2', b'1', 3, '13:00'),
+('f82c0258-b0d3-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-22 00:00:00', '2021-05-14 00:00:00', '2021-05-21', 0, 150, '304-E3', b'1', 2, '13:30');
 
 -- --------------------------------------------------------
 
@@ -340,12 +342,6 @@ ALTER TABLE `accountdetail`
 --
 ALTER TABLE `province`
   MODIFY `ProvinceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
-
---
--- AUTO_INCREMENT cho bảng `registexam`
---
-ALTER TABLE `registexam`
-  MODIFY `RegistNumber` int(11) NOT NULL AUTO_INCREMENT COMMENT 'đợt thi', AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `registexaminfor`

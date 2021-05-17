@@ -2,12 +2,12 @@
   // insert đợi thi mới 
 	session_start();
 	include '../../../config.php';
-
+	$unitRegist = $_POST["UnitRegist"];
 	$JDetail = $_POST["JDetail"];
-
+	$createYear = date("Y");
 	$registExamID= bin2hex(openssl_random_pseudo_bytes(16));
 	// insert id vào bảng master 
-    $sql = "INSERT INTO registexam(RegistExamID, IsRegistAll) VALUES ('$registExamID', 1)";
+    $sql = "INSERT INTO registexam(RegistExamID, IsRegistAll, CreateYear, UnitRegist) VALUES ('$registExamID', 1, $createYear, $unitRegist)";
     $query = mysqli_query($conn, $sql);
 
     // json table ra mảng

@@ -22,7 +22,7 @@ createTable = (data) => {
         if (data[i].RegistExamID!=current) {
             current = data[i].RegistExamID;
             $("#tableList").append('<div data-examination = '+current+' class="table-container w3-card-4 top-rounded"></div>');
-            createHeader(current, data[i].RegistNumber, data[i].StartedDate, data[i].FinishDate);
+            createHeader(current, data[i].RegistNumber, data[i].CreateYear, data[i].StartedDate.split(" ")[0], data[i].FinishDate.split(" ")[0]);
             createBody(data[i], i);
         }else{
             createBody(data[i], i);
@@ -30,7 +30,7 @@ createTable = (data) => {
     }  
 }
 
-createHeader = (id, examNumber, startDate, finishDate) => {
+createHeader = (id, examNumber, year, startDate, finishDate) => {
     /* CREATE ID */
     var openFormId = "openFormOf_" + id;
     var formId = "formOf_" + id;
@@ -44,12 +44,12 @@ createHeader = (id, examNumber, startDate, finishDate) => {
     var now = new Date().toISOString().split('T')[0];
     var openDisplay = (startDate!="" && finishDate!="" && compareDate(finishDate, now)) ? "none" : "block";
     var closeDisplay = (startDate!="" && finishDate!="" && compareDate(finishDate, now)) ? "block" : "none";
-    var period = "Mở đăng ký từ " + convertDate(startDate.split(" ")[0])+ " đến " + convertDate(finishDate.split(" ")[0]);
+    var period = "Mở đăng ký từ " + convertDate(startDate)+ " đến " + convertDate(finishDate);
     /* APPEND ELEMENT */
     $("#tableList").find(".table-container[data-examination="+id+"]").append('<div class="w3-green top-rounded table-header clearfix">'+
-        '<h3>Đợt '+examNumber+' năm 2021</h3>'+
+        '<h3>Đợt '+examNumber+' năm '+year+'</h3>'+
         '<a href="adminChange.php" class="config-btn"><img src="../../images/config.svg" alt="Sửa"></a>'+
-        '<div class="close-button-container" id='+closeContainerId+'><button class="close-button" id='+closeButtonId+' onclick="closeRegistryHandler(this.id)">Đóng đợt thi</button></div>'+
+        '<div class="close-button-container" id='+closeContainerId+'><button class="close-button" id='+closeButtonId+' onclick="closeRegistryHandler(this.id)">Đóng đăng ký</button></div>'+
         '<div class="openForm" id='+openFormId+' style="display:'+openDisplay+'">'+
         '<form id='+formId+'>'+
             '<input type="text" name="RegistExamID" value='+id+' style="display:none;">'+
@@ -60,7 +60,7 @@ createHeader = (id, examNumber, startDate, finishDate) => {
             '<button type="button" class="mybutton" id='+openButtonId+' name="openRegistry" onclick="openRegistryHandler(this.id)">Mở đăng ký</button>'+
         '</form>'+
         '</div>'+
-        '<div class="afterOpen" id='+stopContainerId+' style="display='+closeDisplay+'">'+
+        '<div class="afterOpen" id='+stopContainerId+' style="display:'+closeDisplay+'">'+
             '<div>'+period+'</div>'+
         '</div>'+
     '</div>');
@@ -99,25 +99,12 @@ convertDate = (date) => {
 compareDate = (d1, d2) => {
     var fd1 = d1.split("-");
     var fd2 = d2.split("-");
-    if(fd1[0]>fd2[0]){
-        return true;
-    }else if (fd1[0]=fd2[0]) {
-        if(fd1[1]>fd2[1]) {
-            return true;  
-        } else if (fd1[1]=fd2[1]) {
-            if(fd1[2]>fd2[2]){
-                return true;
-            } else if (fd1[2]=fd2[2]) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    } else {
-        return false;
-    }  
+    if(fd1[0]>fd2[0]) return true;
+    if(fd1[0]<fd2[0]) return false;
+    if(fd1[1]>fd2[1]) return true;
+    if(fd1[1]<fd2[1]) return false;
+    if(fd1[2]>=fd2[2]) return true;
+    if(fd1[2]<fd2[2]) return false;  
 }
 
 openRegistryHandler = (id) => {

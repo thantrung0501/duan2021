@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="../../js/serializeJSONPlugin.js"></script>
+  <link rel="stylesheet" href="../../css/w3.css">
   <link rel="stylesheet" href="../../css/student/studentHomepage.css">
   <link rel="stylesheet" href="../../css/topNavBar.css">
 	<title>Trang chủ</title>
@@ -39,56 +39,51 @@
     </li>
   </ul>
 
-  <div class="container">
-    <div class="time-stamp">
-      <img src="../../images/common/clock.png" />
-      <p><strong>Hệ thống mở đăng ký đến 24:00 ngày</strong></p>
+  <div class="container w3-global-font">
+    <div class="wrapper clearfix">
+      <div class="header w3-green w3-row">
+        <div class="w3-col m5 l4">
+          <h3>Đợt 1 năm 2021</h3>
+        </div>
+        <div class="w3-col m7 l8">
+          <p class="timestamp"><img src="../../images/Time-long-icon.svg" alt="clock"> 24:00 dd/mm/yyyy</p>
+        </div>
+      </div>
+      <div class="schedule-container">
+        <form>
+          <table class="w3-table-all w3-striped w3-hoverable">
+            <tr>
+              <th style="width:5%">STT</th>
+              <th style="width:33%">Địa điểm</th>
+              <th style="width:22%">Ngày thi</th>
+              <th style="width:15%">Ca thi</th>
+              <th style="width:20%">Số lượng</th>
+              <th style="width:5%">ĐK</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><input type="radio" id="1" name="registry" value="1"/></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><input type="radio" id="2" name="registry" value="2"/></td>
+            </tr>
+          </table>
+          <div class="button-shelf">
+            <button type="reset" class="w3-button w3-red w3-ripple">Hủy</button>
+            <button type="submit" class="w3-button w3-green w3-ripple" id="cfBtn">Xác nhận</button>
+          </div>
+        </form>
+      </div>
     </div>
-    <div class="schedule-container">
-      <form>
-        <table>
-          <tr>
-            <th class="odn">STT</th>
-            <th class="place">Địa điểm</th>
-            <th class="exam-date">Ngày thi</th>
-            <th class="exam-shift">Ca thi</th>
-            <th class="amount">Số lượng</th>
-            <th class="registry">ĐK</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><input type="radio" id="1" name="registry" value="1"/></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><input type="radio" id="2" name="registry" value="2"/></td>
-          </tr>
-        </table>
-        <button type="reset" class="cancel-btn">Hủy</button>
-        <button type="submit" class="cf-btn" id="cfBtn">Xác nhận</button>
-      </form>
-    </div>
-  </div>
-  <!-- The Modal -->
-  <div id="cfModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h1>Đăng ký thành công</h1>
-    <div>
-    <button class="exit-btn" id="exitBtn">Thoát</button>
-    <button class="ok-btn" id="okBtn">OK</button>
-    <div>
-  </div>
   </div>
 </body>
 <script src="../../js/student/studentHomePage.js"></script>

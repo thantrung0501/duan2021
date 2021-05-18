@@ -29,7 +29,7 @@
       <a href="statistics.php">Thống kê lượt đăng ký</a>
     </div>
 
-    <div id="main" class="main">
+    <div id="main" class="main w3-light-grey">
       <!-- Top Navigation Bar -->
       <ul class="navbar">
         <li><button class="side-bar-toggle" id="sideBarBtn">&#9776;</button></li>
@@ -50,12 +50,12 @@
       </ul>
 
       <!-- Folder Bar -->
-      <div id="folder" class="w3-sidebar w3-bar-block w3-light-grey w3-card w3-global-font" style="width:15vw;">
+      <div id="folder" class="w3-sidebar w3-bar-block w3-light-grey w3-card w3-global-font" style="width:15vw; box-shadow:none">
         <h3 class="w3-bar-item">Mục lục</h3>
       </div>
 
       <!-- Card Area -->
-      <div class="w3-container w3-global-font" style="margin-left:15vw">
+      <div class="w3-container w3-global-font w3-white" style="margin-left:15vw">
         <div id="participantList"></div>
       </div>
     </div>

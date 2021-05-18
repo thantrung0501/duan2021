@@ -8,7 +8,6 @@
 		<link rel="stylesheet" href="../../css/student/studentChangeProfile.css">
 		<link rel="stylesheet" href="../../css/topNavBar.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="../../js/serializeJSONPlugin.js"></script>
 		<title>Hồ sơ</title>
 	</head>
 	<body>

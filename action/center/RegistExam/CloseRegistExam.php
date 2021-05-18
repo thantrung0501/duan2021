@@ -12,7 +12,7 @@
 
 	// đóng tất cả các ca thi trong đợt thi đó
 
-	$sql1 = "UPDATE registexamdetail r SET r.IsRegist = = 0 WHERE r.RegistExamID = '$registExamID'";
+	$sql1 = "UPDATE registexamdetail r SET r.IsRegist = 0 WHERE r.RegistExamID = '$registExamID'";
 
 	$query1 = mysqli_query($conn, $sql1);
 

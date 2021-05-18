@@ -35,7 +35,6 @@ createHeader = (id, examNumber, year, startDate, finishDate) => {
     var openFormId = "openFormOf_" + id;
     var formId = "formOf_" + id;
     var openButtonId = "openButtonOf_" + id;
-    var stopButtonId = "stopButtonOf_" + id;
     var stopContainerId = "stopContainerOf_" + id;
     var closeButtonId = "closeButtonOf_" + id;
     var closeContainerId = "closeContainerOf_" + id;
@@ -53,9 +52,9 @@ createHeader = (id, examNumber, year, startDate, finishDate) => {
         '<div class="openForm" id='+openFormId+' style="display:'+openDisplay+'">'+
         '<form id='+formId+'>'+
             '<input type="text" name="RegistExamID" value='+id+' style="display:none;">'+
-            '<label for="from">Từ: </label>'+
+            '<label>Từ: </label>'+
             '<input type="date" name="startedDate">'+
-            '<label for="to">Đến: </label>'+
+            '<label>Đến: </label>'+
             '<input type="date" name="finishDate">'+
             '<button type="button" class="mybutton" id='+openButtonId+' name="openRegistry" onclick="openRegistryHandler(this.id)">Mở đăng ký</button>'+
         '</form>'+
@@ -109,31 +108,55 @@ compareDate = (d1, d2) => {
 
 openRegistryHandler = (id) => {
     var i = id.split("_")[1];
-    $.ajax({
-        type: "POST",
-        url: "../../action/center/RegistExam/OpenRegistExam.php",
-        data: $("#formOf_"+i).serialize(),
-        dataType: "json",
-        success: function (response) {
-            console.log(response);
-            $("#formOf_"+i).css("display", "none");
-            $("#stopContainerOf_"+i).css("display", "block");
-        },
-        error: function (err) {console.log(err.responseText);  } 
-    });
+    if (validateOpenForm(i)) {
+       $.ajax({
+            type: "POST",
+            url: "../../action/center/RegistExam/OpenRegistExam.php",
+            data: $("#formOf_"+i).serialize(),
+            dataType: "json",
+            success: function (response) {
+                var newStartDate = $("#formOf_"+i).find('input[name="startedDate"]').val();
+                var newFinishDate = $("#formOf_"+i).find('input[name="finishDate"]').val();
+                var newPeriod = "Mở đăng ký từ " + convertDate(newStartDate)+ " đến " + convertDate(newFinishDate);
+                console.log(newStartDate);
+                console.log(newFinishDate);
+                console.log(newPeriod);
+                $("#stopContainerOf_"+i).find("div").text(newPeriod);
+                $("#formOf_"+i).css("display", "none");
+                $("#stopContainerOf_"+i).css("display", "block");
+            },
+            error: function (err) {console.log(err.responseText);  } 
+        }); 
+    }else{
+        alert("Ngày mở hoặc ngày đóng đăng ký không hợp lệ");
+    }
 }
 
 closeRegistryHandler = (id) => {
     var i = id.split("_")[1];
-    console.log(i);
     $.ajax({
         type: "POST",
         url: "../../action/center/RegistExam/CloseRegistExam.php",
         data: "RegistExamID="+i,
         dataType: "json",
         success: function (response) {
-            console.log(response);
+            $("#tableList").find(".table-container[data-examination="+i+"]").remove();
         },
         error: function (err) {console.log(err.responseText);  }
     });
+}
+
+validateOpenForm = (id) => {
+    var newStartDate = $("#formOf_"+id).find('input[name="startedDate"]').val();
+    var newFinishDate = $("#formOf_"+id).find('input[name="finishDate"]').val();
+    var _oldFinishDate = $("#stopContainerOf_"+id).find("div").text().split(" ")[6];
+    var oldFinishDate = _oldFinishDate.split("/")[2] + "-" + _oldFinishDate.split("/")[1] + "-" + _oldFinishDate.split("/")[0];
+    if (compareDate(newStartDate, oldFinishDate)) {
+        if (compareDate(newFinishDate, oldFinishDate)) {
+            if (compareDate(newFinishDate, newStartDate)) {
+                return true;
+            }
+        }
+    }
+    return false;
 }

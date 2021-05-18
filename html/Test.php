@@ -19,6 +19,7 @@
     <br>
     <a href="admin/admin.php">ADMIN</a><br><br>
     <a href="student/studentHomePage.php">STUDENT</a>
+    
 </body>
 <script>
 /*     $("form").submit(function (e) { 

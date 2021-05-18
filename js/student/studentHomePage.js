@@ -1,11 +1,3 @@
-$(document).ready(function () {
-  $.ajax({
-    type: "GET",
-    url: "../../action/student/RegistExam/GetListRegistExamForStudent.php",
-    data: [],
-    dataType: "json",
-    success: function (response) {
-      console.log(response);
-    }
-  });
-});
+var now = new Date().toISOString();
+var thisYear = now.split("-")[0];
+$("#time").text("Tuyển sinh "+ thisYear);

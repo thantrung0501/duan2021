@@ -134,16 +134,19 @@ openRegistryHandler = (id) => {
 
 closeRegistryHandler = (id) => {
     var i = id.split("_")[1];
-    $.ajax({
-        type: "POST",
-        url: "../../action/center/RegistExam/CloseRegistExam.php",
-        data: "RegistExamID="+i,
-        dataType: "json",
-        success: function (response) {
-            $("#tableList").find(".table-container[data-examination="+i+"]").remove();
-        },
-        error: function (err) {console.log(err.responseText);  }
-    });
+    var r = confirm("Đợt thi đã đóng sẽ không hiển thị lại. Bạn có chắc chắn muốn đóng đợt thi này không?");
+    if (r) {
+       $.ajax({
+            type: "POST",
+            url: "../../action/center/RegistExam/CloseRegistExam.php",
+            data: "RegistExamID="+i,
+            dataType: "json",
+            success: function (response) {
+                $("#tableList").find(".table-container[data-examination="+i+"]").remove();
+            },
+            error: function (err) {console.log(err.responseText);  }
+        }); 
+    }
 }
 
 validateOpenForm = (id) => {

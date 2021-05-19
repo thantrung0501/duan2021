@@ -31,10 +31,11 @@
       ?>
       </a>
       <div class="dropdown-content">
-        <a href="./studentChangePassword.php">Đổi mật khẩu</a>
+        <a href="studentRegistry.php">Đăng ký thi</a>
         <a href="./studentChangeProfile.php">Cập nhật thông tin</a>
         <a href="./entranceExaminationPaper.php">Xem giấy báo dự thi</a>
         <a href="../../action/logout.php">Đăng xuất</a>
+        <a href="./studentChangePassword.php">Đổi mật khẩu</a>
       </div>
     </li>
   </ul>

@@ -1,34 +1,118 @@
 body {
-    margin: 0;
-    background-color: #f2f2f2;
-  } 
+  margin: 0;
+  background-color: #f2f2f2;
+} 
 
-  .container {
-    margin: 30px;
-    font-size: 1.2em;
-  }
+.container {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 
-  table {
-    border-spacing: 5px;
-    margin: 15px;
-  }
+.warrning-container{
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border: 2px solid red;
+  border-radius: 5px;
+  background-color: #ffff00;
+}
+.warrning-container img {
+  width: 30px;
+  height: 30px;
+}
+.warrning-container div {
+  margin-left: 10px;
+  font-size: 1.2em;
+}
+
+.paper {
+  width: 700px;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 60px;
+  font-size: 1.1em;
+}
+
+.paperHeader, .paperName {
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.paperName {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.notice{
+  font-style: italic;
+}
+.info-block {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.info-block h3 {
+  margin-bottom: 5px;
+  font-weight: bolder;
+}
+.info-row {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+.info-row label, .info-row div {
+  display: inline-block;
+}
+.info-row label {
+  font-weight: bold;
+}
+
+.exam label {
+  width: 100px;
+}
+
+.personal label {
+  width: 250px;
+}
+.personal .label2 {
+  width: 70px;
+}
+.personal #birthday {
+  width: 220px;
+} 
+
+.contract label {
+  width: 150px;
+}
+
+.sidebtn {
+  outline: none;
+  position: fixed;
+  z-index: 2;
+  right: 5vw;
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  border: none;
   
-  th {
-    text-align: left;
-    font-size: 1.1em;
-  }
+}
+.sidebtn:hover{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
-  .final-score {
-    border-spacing: 1px;
-    width: 50%;
-    border: 1px solid #111;
-  }
+.pdf-btn {
+  top: 200px;
+  color: white;
+  background-image: radial-gradient(#ff3333, #cc0000);
+  font-size: 1.5em;
+  font-weight: bolder;
+}
 
-  .final-score td, .final-score th {
-    text-align: center;
-    border: 1px solid #111;
-  }
-
-  .final-score td {
-    width: 11.11%;
-  }
+.pay-btn {
+  top: 330px;
+  background-image: radial-gradient(#ffbf80, #ff8000);
+}
+.pay-btn img {
+  height: 40px;
+  width: 40px;
+}

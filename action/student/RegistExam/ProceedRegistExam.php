@@ -12,12 +12,12 @@
 		foreach ($dataRegist as $row) {
 			// tiến hành tăng số lượng thí sinh trong bảng registexamdetail
 
-			$updateRegist = "UPDATE registexamdetail r set r.Examee = r.Examee + 1 WHERE r.RegistExamDetailID = '$row["RegistExamDetailID"]'";
+			$updateRegist = "UPDATE registexamdetail r set r.Examee = r.Examee + 1 WHERE r.RegistExamDetailID = '".$row["RegistExamDetailID"]."'";
 			$resultUpdate = mysqli_query($conn, $updateRegist);
 
 			// insert thông tin vào bảng registExamInfor
 
-			$insertRegist = "INSERT INTO registexaminfor(AccountID, RegistExamDetailID) VALUES('$accountID','$row["RegistExamDetailID"]')";
+			$insertRegist = "INSERT INTO registexaminfor(AccountID, RegistExamDetailID) VALUES('$accountID','".$row["RegistExamDetailID"]."')";
 			$resultInsert = mysqli_query($conn, $insertRegist);
 		}
 		
@@ -28,11 +28,11 @@
 		foreach ($dataCancel as $row) {
 			// tiến hành giảm số lượng thí sinh trong bảng registexamdetail
 
-			$updateRegist = "UPDATE registexamdetail r set r.Examee = r.Examee - 1 WHERE r.RegistExamDetailID = '$row["RegistExamDetailID"]'";
+			$updateRegist = "UPDATE registexamdetail r set r.Examee = r.Examee - 1 WHERE r.RegistExamDetailID = '".$row["RegistExamDetailID"]."'";
 			$resultUpdate = mysqli_query($conn, $updateRegist);
 
 			// Xóa thông tin thí sinh ở bảng registexaminfor
-			$deleteRegist = "DELETE FROM registexaminfor WHERE AccountID = '$accountID' and RegistExamDetailID = '$row["RegistExamDetailID"]'";
+			$deleteRegist = "DELETE FROM registexaminfor WHERE AccountID = '$accountID' and RegistExamDetailID = '".$row["RegistExamDetailID"]."'";
 			
 			$resultDelete = mysqli_query($conn, $deleteRegist);
 		}

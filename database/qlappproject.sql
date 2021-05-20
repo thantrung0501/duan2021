@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 17, 2021 lúc 04:17 PM
+-- Thời gian đã tạo: Th5 20, 2021 lúc 03:53 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -139,6 +139,19 @@ INSERT INTO `accountdetail` (`AccountDetailID`, `AccountID`, `Email`, `DateOfBir
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `newfeed`
+--
+
+CREATE TABLE `newfeed` (
+  `NewFeedID` int(11) NOT NULL,
+  `Title` varchar(100) NOT NULL COMMENT 'tieu de',
+  `Content` longtext NOT NULL COMMENT 'nội dung',
+  `CreatedDate` date NOT NULL COMMENT 'Ngay tao'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `province`
 --
 
@@ -238,8 +251,9 @@ CREATE TABLE `registexam` (
 --
 
 INSERT INTO `registexam` (`RegistExamID`, `RegistNumber`, `IsRegistAll`, `StartedDate`, `FinishDate`, `CreateYear`, `UnitRegist`) VALUES
-('e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', 1, b'1', '2021-05-22 00:00:00', '2021-05-14 00:00:00', 2019, 1),
-('1f700fc3-b0d6-11eb-8267-9840bb0282e0', 2, b'1', '2021-05-19 17:00:30', '2021-05-31 17:00:39', 2021, 1);
+('f35cd8f7e61f68c22e6a38a18a468bbc', 0, b'0', NULL, NULL, 2021, 1),
+('e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', 1, b'0', '2021-05-28 00:00:00', '2021-05-29 00:00:00', 2019, 1),
+('1f700fc3-b0d6-11eb-8267-9840bb0282e0', 2, b'1', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2021, 1);
 
 -- --------------------------------------------------------
 
@@ -266,11 +280,14 @@ CREATE TABLE `registexamdetail` (
 --
 
 INSERT INTO `registexamdetail` (`RegistExamDetailID`, `RegistExamID`, `StartedDate`, `FinishDate`, `ExamDate`, `Examee`, `ExameeMax`, `Location`, `IsRegist`, `UnitExam`, `ExamTime`) VALUES
-('65e69cb6-b0d4-11eb-8267-9840bb0282e0', '1f700fc3-b0d6-11eb-8267-9840bb0282e0', '2021-05-09 16:38:52', '2021-05-09 16:38:52', '2021-05-28', 0, 160, '108-GĐ2', b'0', 1, '07:00'),
-('8e51f117-b0d4-11eb-8267-9840bb0282e0', '1f700fc3-b0d6-11eb-8267-9840bb0282e0', '2021-05-09 16:40:04', '2021-05-09 16:40:04', '2021-05-17', 0, 300, '308-G2', b'0', 2, '10:00'),
-('a629279f-b0d3-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-22 00:00:00', '2021-05-14 00:00:00', '2021-05-27', 0, 100, '303-G2', b'1', 1, '07:00'),
-('a7fd0610-b0d4-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-22 00:00:00', '2021-05-14 00:00:00', '2021-05-18', 0, 180, '301-G2', b'1', 3, '13:00'),
-('f82c0258-b0d3-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-22 00:00:00', '2021-05-14 00:00:00', '2021-05-21', 0, 150, '304-E3', b'1', 2, '13:30');
+('11e8775c5c6530625781a71dd0ef20e0', 'f35cd8f7e61f68c22e6a38a18a468bbc', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00', 0, 100, '303-G2', b'0', 1, '07:00'),
+('65e69cb6-b0d4-11eb-8267-9840bb0282e0', '1f700fc3-b0d6-11eb-8267-9840bb0282e0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2021-05-28', 0, 160, '108-GĐ2', b'1', 1, '07:00'),
+('8e51f117-b0d4-11eb-8267-9840bb0282e0', '1f700fc3-b0d6-11eb-8267-9840bb0282e0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2021-05-17', 0, 300, '308-G2', b'1', 2, '10:00'),
+('959deab41095defec002a4f4c85a5543', 'f35cd8f7e61f68c22e6a38a18a468bbc', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00', 0, 180, '301-G2', b'0', 3, '13:00'),
+('9a0883f50a390b62dce2d436f2431421', 'f35cd8f7e61f68c22e6a38a18a468bbc', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00', 0, 150, '304-E3', b'0', 2, '13:30'),
+('a629279f-b0d3-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-28 00:00:00', '2021-05-29 00:00:00', '2021-05-27', 0, 100, '303-G2', b'1', 1, '07:00'),
+('a7fd0610-b0d4-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-28 00:00:00', '2021-05-29 00:00:00', '2021-05-18', 0, 180, '301-G2', b'1', 3, '13:00'),
+('f82c0258-b0d3-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-28 00:00:00', '2021-05-29 00:00:00', '2021-05-21', 0, 150, '304-E3', b'1', 2, '13:30');
 
 -- --------------------------------------------------------
 
@@ -302,6 +319,12 @@ INSERT INTO `registexaminfor` (`RegistExamInforID`, `AccountID`, `RegistExamDeta
 --
 ALTER TABLE `accountdetail`
   ADD PRIMARY KEY (`AccountDetailID`);
+
+--
+-- Chỉ mục cho bảng `newfeed`
+--
+ALTER TABLE `newfeed`
+  ADD PRIMARY KEY (`NewFeedID`);
 
 --
 -- Chỉ mục cho bảng `province`
@@ -336,6 +359,12 @@ ALTER TABLE `registexaminfor`
 --
 ALTER TABLE `accountdetail`
   MODIFY `AccountDetailID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'khoa chính', AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT cho bảng `newfeed`
+--
+ALTER TABLE `newfeed`
+  MODIFY `NewFeedID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `province`

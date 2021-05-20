@@ -11,14 +11,19 @@
 		$dataRegist = json_decode($JDetailRegist, true);
 		foreach ($dataRegist as $row) {
 			// tiến hành tăng số lượng thí sinh trong bảng registexamdetail
-
-			$updateRegist = "UPDATE registexamdetail r set r.Examee = r.Examee + 1 WHERE r.RegistExamDetailID = '".$row["RegistExamDetailID"]."'";
+			if($row["FinishDate"]<date('Y-m-d H:i:s')){
+				echo "Ngoài thời hạn đăng ký";
+			}
+			else{
+				$updateRegist = "UPDATE registexamdetail r set r.Examee = r.Examee + 1 WHERE r.RegistExamDetailID = '".$row["RegistExamDetailID"]."'";
 			$resultUpdate = mysqli_query($conn, $updateRegist);
 
 			// insert thông tin vào bảng registExamInfor
 
 			$insertRegist = "INSERT INTO registexaminfor(AccountID, RegistExamDetailID) VALUES('$accountID','".$row["RegistExamDetailID"]."')";
 			$resultInsert = mysqli_query($conn, $insertRegist);
+			}
+			
 		}
 		
 	}

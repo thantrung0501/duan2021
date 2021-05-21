@@ -102,9 +102,6 @@ openRegistryHandler = (id) => {
                 var newStartDate = $("#formOf_"+i).find('input[name="startedDate"]').val();
                 var newFinishDate = $("#formOf_"+i).find('input[name="finishDate"]').val();
                 var newPeriod = "Mở đăng ký từ " + convertDate(newStartDate)+ " đến " + convertDate(newFinishDate);
-                console.log(newStartDate);
-                console.log(newFinishDate);
-                console.log(newPeriod);
                 $("#stopContainerOf_"+i).find("div").text(newPeriod);
                 $("#formOf_"+i).css("display", "none");
                 $("#stopContainerOf_"+i).css("display", "block");

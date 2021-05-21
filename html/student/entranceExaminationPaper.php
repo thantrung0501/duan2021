@@ -70,9 +70,6 @@
           <label for="examPlace">Địa điểm thi:</label><div id="examPlace"></div>
         </div>
         <div class="info-row">
-          <label for="room">Phòng thi:</label><div id="room"></div>
-        </div>
-        <div class="info-row">
           <label for="registryCode">Mã đăng ký:</label><div id="registryCode"></div>
         </div>
       </div>

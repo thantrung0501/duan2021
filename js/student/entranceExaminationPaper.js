@@ -17,6 +17,17 @@ $(document).ready(function () {
       $("#email").text(convertData(response.Email));
     }
   });
+
+  $.ajax({
+    type: "POST",
+    url: "../../action/student/RegistExam/GetListExamRegisted.php",
+    data: [],
+    dataType: "json",
+    success: function (response) {
+      console.log(response);
+    },
+    error: function (err) {console.log(err);}
+  });
 });
 
 convertData = data => {

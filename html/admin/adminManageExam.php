@@ -52,4 +52,5 @@
 </body>
 <script src="../../js/admin/adminManageExam.js"></script>
 <script src="../../js/sideNavBar.js"></script>
+<script src="../../js/dateSolution.js"></script>
 </html>

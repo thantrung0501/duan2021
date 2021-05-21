@@ -9,7 +9,6 @@ body {
 
 .guide-row {
     text-align: center;
-    margin-top: 1vh;
 }
   
 .button-container {
@@ -61,18 +60,15 @@ body {
   .btn1:after {
     background: #ff003b;
   }
+  .btn1, .btn2, .btn3, .btn4 {
+    margin-top: 4px;
+  }
   .btn2:after {
     background: #0047b3;
-  }
-  .btn2 {
-    margin-left: 0.5vh;
   }
   .btn3:after {
     background: #7300e6;
   }
   .btn4:after {
     background: #ff9900;
-  }
-  .btn4 {
-    margin-left: 0.5vh;
   }

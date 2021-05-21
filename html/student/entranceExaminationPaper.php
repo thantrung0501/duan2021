@@ -117,4 +117,5 @@
   </div>
 </body>
 <script src="../../js/student/entranceExaminationPaper.js"></script>
+<script src="../../js/dateSolution.js"></script>
 </html>

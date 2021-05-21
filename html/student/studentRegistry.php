@@ -40,52 +40,9 @@
     </li>
   </ul>
 
-  <div class="container w3-global-font">
-    <div class="wrapper clearfix">
-      <div class="header w3-green w3-row">
-        <div class="w3-col m5 l4">
-          <h3>Đợt 1 năm 2021</h3>
-        </div>
-        <div class="w3-col m7 l8">
-          <p class="timestamp"><img src="../../images/Time-long-icon.svg" alt="clock"> 24:00 dd/mm/yyyy</p>
-        </div>
-      </div>
-      <div class="schedule-container">
-        <form>
-          <table class="w3-table-all w3-striped w3-hoverable">
-            <tr>
-              <th style="width:5%">STT</th>
-              <th style="width:33%">Địa điểm</th>
-              <th style="width:22%">Ngày thi</th>
-              <th style="width:15%">Ca thi</th>
-              <th style="width:20%">Số lượng</th>
-              <th style="width:5%">ĐK</th>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td><input type="radio" id="1" name="registry" value="1"/></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td><input type="radio" id="2" name="registry" value="2"/></td>
-            </tr>
-          </table>
-          <div class="button-shelf">
-            <button type="reset" class="w3-button w3-red w3-ripple">Hủy</button>
-            <button type="submit" class="w3-button w3-green w3-ripple" id="cfBtn">Xác nhận</button>
-          </div>
-        </form>
-      </div>
-    </div>
+  <div class="container w3-global-font" id="container">
   </div>
 </body>
 <script src="../../js/student/studentRegistry.js"></script>
+<script src="../../js/dateSolution.js"></script>
 </html>

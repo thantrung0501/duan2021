@@ -23,10 +23,6 @@ convertData = data => {
   return data!="" ? data : "(Trống)";
 }
 
-convertDate = date => {
-  return date.split("-")[2] + "/" + date.split("-")[1] + "/" + date.split("-")[0];
-}
-
 // Save the PDF
 $("#export").click(function (e) { 
   e.preventDefault();

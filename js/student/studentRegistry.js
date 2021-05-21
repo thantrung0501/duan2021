@@ -157,9 +157,9 @@ submitHandler = (btnid) => {
         data: {"JDetailRegist": JSON.stringify(registData),"JDetailCancel":JSON.stringify(cancelData) },
         dataType: "json",
         success: function (response) {
-          alert("Đăng ký thành công");
         }
       });
+      location.reload();
     }
   } 
 }
@@ -168,8 +168,6 @@ cancelHandler = btnid => {
   id = btnid.split("_")[1];
   var oldshift = OLD_REGIST_ID[id];
   var deadline = $("#"+btnid).attr("data-finishYear");
-  console.log(deadline);
-  console.log(oldshift);
   var cancelData = oldshift ? [{"FinishDate": deadline, "RegistExamDetailID": oldshift}] : [];
   var r = confirm("Bạn chắc chắn muốn hủy đăng ký?");
   if (r) {
@@ -182,9 +180,9 @@ cancelHandler = btnid => {
         data: {"JDetailRegist": "","JDetailCancel":JSON.stringify(cancelData) },
         dataType: "json",
         success: function (response) {
-          alert("Hủy đăng ký thành công");
         }
       });
+      location.reload();
     }
   }
 }

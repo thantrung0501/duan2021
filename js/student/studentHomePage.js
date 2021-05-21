@@ -2,16 +2,36 @@ var now = new Date().toISOString();
 var thisYear = now.split("-")[0];
 $("#time").text("Tuyển sinh "+ thisYear);
 
+var hasAnyNotice = true;
+
 // Original title
 var ORIGINAL_TEXT = {};
 // Pagination variable
-pageSize = 4;
-incremSlide = 5;
+pageSize = 10;
+slideSize = 5;
 startPage = 0;
-numberPage = 0;
+currentSlide = 0;
 
-var pageCount =  $(".notice").length / pageSize;
-var totalSlidepPage = Math.floor(pageCount / incremSlide);
+var pageCount;
+var totalSlidepPage;
+
+var prev = $("<a/>").addClass("prev w3-button w3-bar-item").html("&laquo;").click(function(){
+    startPage-=5;
+    slideSize-=5;
+    currentSlide--;
+    slide();
+});
+
+prev.hide();
+
+var next = $("<a/>").addClass("next w3-button w3-bar-item").html("&raquo;").click(function(){
+    startPage+=5;
+    slideSize+=5;
+    currentSlide++;
+    slide();
+});
+
+next.hide();
 
 $(document).ready(function () {
     $.ajax({
@@ -27,21 +47,39 @@ $(document).ready(function () {
                     titleProcess(response[i].Title)+
                 '<span class="w3-tag w3-light-gray w3-right">'+date+'</span></a>');
             }
+        },
+        error: function () {
+            hasAnyNotice = false;
+            console.log(hasAnyNotice);
+        },
+        complete: function () {  
+            if (hasAnyNotice) {
+                pageCount =  $(".notice").length / pageSize;
+                totalSlidepPage = Math.ceil(pageCount / slideSize);
+                if(totalSlidepPage>slideSize) next.show();
+                for(var i = 0 ; i<totalSlidepPage;i++){
+                    $("#numList").append('<a href="#" id="item-'+i+'" class="w3-button w3-bar-item" onclick="pageClickHandler(this.id)">'+(i+1)+'</a>');
+                    if(i>=slideSize){
+                        $("#numList a").eq(i).hide();
+                    }
+                }
+                $("#numList").prepend(prev).append(next);
+                $("#item-0").addClass("w3-green");
+                showPage(1);
+            }else{
+                $("#notice-list").append('<p>Không có thông báo nào</p>');
+            }
         }
     });
-
-    for (let i = 0; i < (totalSlidepPage > incremSlide ? incremSlide : totalSlidepPage); i++) {
-        const element = pageSize
-        
-    }
-    $("#numList").append(content);
 });
 
 $(window).resize(function () { 
-    $.each($(".notice"), function (indexInArray, valueOfElement) { 
-        var text = ORIGINAL_TEXT[indexInArray];
-        $(".notice")[indexInArray].childNodes[0].nodeValue = titleProcess(text);
-    });
+    if (hasAnyNotice) {
+        $.each($(".notice"), function (indexInArray, valueOfElement) { 
+            var text = ORIGINAL_TEXT[indexInArray];
+            $(".notice")[indexInArray].childNodes[0].nodeValue = titleProcess(text);
+        });
+    }
 });
 
 titleProcess = title => {
@@ -59,18 +97,15 @@ titleProcess = title => {
     }
 }
 
-
-var prev = '<a href="#" class="w3-button">&laquo;</a>'
-slide = function(sens){
-    $("#pagin li").hide();
-    
-    for(t=startPage;t<incremSlide;t++){
-      $("#pagin li").eq(t+1).show();
+slide = function(){
+    $("#numList a").hide();
+    for(t=startPage;t<slideSize;t++){
+      $("#numList a").eq(t+1).show();
     }
     if(startPage == 0){
       next.show();
       prev.hide();
-    }else if(numberPage == totalSlidepPage ){
+    }else if(currentSlide == totalSlidepPage ){
       next.hide();
       prev.show();
     }else{
@@ -80,18 +115,15 @@ slide = function(sens){
 }
 
 showPage = function(page) {
-    $(".line-content").hide();
-    $(".line-content").each(function(n) {
+    $(".notice").hide();
+    $(".notice").each(function(n) {
         if (n >= pageSize * (page - 1) && n < pageSize * page)
             $(this).show();
     });        
 }
-  
-showPage(1);
-$("#pagin li a").eq(0).addClass("current");
 
-$("#pagin li a").click(function() {
-   $("#pagin li a").removeClass("current");
-   $(this).addClass("current");
-   showPage(parseInt($(this).text()));
-});
+pageClickHandler = (id) => {
+    $("#numList a").removeClass("w3-green");
+    $("#"+id).addClass("w3-green");
+    showPage(parseInt($("#"+id).text()));
+}

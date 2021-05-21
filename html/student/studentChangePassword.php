@@ -60,8 +60,8 @@
               <input type="password" name="rePassword" id="renewpw">
           </div>
           <div class="form-element">
-              <button type="submit" name="submit" id="savebtn" class="savebtn" onclick="return validateForm()">Lưu</button> 
               <button type="reset" name="rsbtn" id="rsbtn" class="rsbtn">Hủy</button>
+              <button type="submit" name="submit" id="savebtn" class="savebtn" onclick="return validateForm()">Lưu</button> 
           </div>        
         </form>
       </div>

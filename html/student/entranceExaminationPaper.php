@@ -104,7 +104,7 @@
           <label for="name2">Họ và tên thí sinh:</label><div id="name2"><strong></strong></div>
         </div>
         <div class="info-row">
-          <label for="address">Địa chỉ liên lạc:</label><div id="cmnd"></div>
+          <label for="address">Địa chỉ liên lạc:</label><div id="address"></div>
         </div>
         <div class="info-row">
           <label for="phone">Số điện thoại:</label><div id="phone"></div>

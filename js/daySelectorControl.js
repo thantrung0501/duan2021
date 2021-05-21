@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var thisYear = new Date().getFullYear();
-    for(i=1970; i<thisYear; i++){
+    for(i=thisYear; i>1969; i--){
         $("#year").append($('<option/>', { 
             value: i,
             text : i 

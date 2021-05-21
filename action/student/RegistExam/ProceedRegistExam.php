@@ -36,7 +36,6 @@
 		foreach ($dataCancel as $row) {
 			// tiến hành giảm số lượng thí sinh trong bảng registexamdetail
 
-			 $datesub = date_sub(date('Y-m-d', strtotime($row["FinishDate"])), $dateNow);
 			if(date('Y-m-d', strtotime($row["FinishDate"]))<$dateNow){
 				echo "Ngoài thời hạn đăng ký";
 			}else{

@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="../../js/serializeJSONPlugin.js"></script>
     <link rel="stylesheet" href="../../css/student/studentChangePassword.css">
     <link rel="stylesheet" href="../../css/topNavBar.css">
     <link rel="stylesheet" href="../../css/sideNavBar.css">
@@ -71,8 +70,8 @@
                 <input type="password" name="rePassword" id="renewpw">
             </div>
             <div class="form-element">
-                <button type="submit" name="submit" id="savebtn" class="savebtn" onclick="return validateForm()">Lưu</button> 
                 <button type="reset" name="rsbtn" id="rsbtn" class="rsbtn">Hủy</button>
+                <button type="submit" name="submit" id="savebtn" class="savebtn" onclick="return validateForm()">Lưu</button> 
             </div>        
           </form>
         </div>

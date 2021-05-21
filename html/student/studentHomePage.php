@@ -69,11 +69,18 @@
       </div>
     </div>
 
-    <div class="notice">
-      Thông báo của admin....<br>
-      Thông tin liên quan...
+    <div class="notice-container w3-global-font">
+      <h1 class="w3-text-deep-orange">Tin tức mới nhất</h1>
+      <div id="notice-list">
+      </div>
+      <div class="w3-center pagi-container">
+        <div class="w3-bar w3-border" id="pagination">
+          <div style="display:inline" id="numList"></div>
+        </div>
+      </div>
     </div>
   </div>
 </body>
 <script src="../../js/student/studentHomePage.js"></script>
+<script src="../../js/dateSolution.js"></script>
 </html>

@@ -26,6 +26,7 @@
       <a href="#">Chỉnh sửa lịch thi</a>
       <a href="adminListStudent.php">Hồ sơ người đăng ký</a>
       <a href="statistics.php">Thống kê lượt đăng ký</a>
+      <a href="adminWriteNotice.php">Viết thông báo</a>
     </div>
 
     <div id="main" class="main">

@@ -7,7 +7,6 @@ $(document).ready(function () {
     data: [],
     dataType: "json",
     success: function (response) {
-      console.log(response);
       var current = "";
       var isOpen = true;
       var isDisabled = false;
@@ -70,7 +69,6 @@ $(document).ready(function () {
           );
         }
       }
-      console.log(OLD_REGIST_ID); 
     }
   });
 });
@@ -106,7 +104,7 @@ createHeader = (id, examNum, examYear,startDate, finishDate, isDisabled, isOpen)
         '</table>' +
         '<div class="button-shelf">' +
           '<button type="reset" class="w3-button w3-red w3-ripple" '+(isDisabled || !isOpen ? "disabled": "")+'>Hủy</button>' +
-          '<button type="reset" class="w3-button w3-indigo w3-ripple" id='+cancelBtnId+' '+(isDisabled || !isOpen ? "disabled": "")+' onclick="submitHandler(this.id)">Hủy đăng ký</button>' +
+          '<button type="reset" class="w3-button w3-indigo w3-ripple" id='+cancelBtnId+' data-finishYear='+finishDate+' '+(isDisabled || !isOpen ? "disabled": "")+' onclick="cancelHandler(this.id)">Hủy đăng ký</button>' +
           '<button type="button" class="w3-button w3-green w3-ripple" id='+cfBtnId+' data-finishYear='+finishDate+' '+(isDisabled || !isOpen ? "disabled": "")+' onclick="submitHandler(this.id)">Đăng ký</button>' +
         '</div>' +
       '</form>' +
@@ -148,8 +146,6 @@ submitHandler = (btnid) => {
   var deadline = $("#"+btnid).attr("data-finishYear");
   var registData = newshift ? [{"FinishDate": deadline, "RegistExamDetailID": newshift}] : [];
   var cancelData = oldshift ? [{"FinishDate": deadline, "RegistExamDetailID": oldshift}] : [];
-  console.log(registData);
-  console.log(cancelData);
   var r = confirm("Bạn chắc chắn muốn đăng ký?");
   if (r) {
     if (newshift == oldshift) {
@@ -172,21 +168,23 @@ cancelHandler = btnid => {
   id = btnid.split("_")[1];
   var oldshift = OLD_REGIST_ID[id];
   var deadline = $("#"+btnid).attr("data-finishYear");
-  var cancelData = oldshift ? JSON.stringify({FinishDate: deadline, RegistExamDetailID: oldshift}) : "";
+  console.log(deadline);
+  console.log(oldshift);
+  var cancelData = oldshift ? [{"FinishDate": deadline, "RegistExamDetailID": oldshift}] : [];
   var r = confirm("Bạn chắc chắn muốn hủy đăng ký?");
   if (r) {
     if (oldshift=="") {
       alert("Bạn đăng ký bất kì ca thi nào");
     }else {
-  /*     $.ajax({
+      $.ajax({
         type: "POST",
         url: "../../action/student/RegistExam/ProceedRegistExam.php",
-        data: "JDetailRegist=&JDetailCancel="+cancelData,
+        data: {"JDetailRegist": "","JDetailCancel":JSON.stringify(cancelData) },
         dataType: "json",
         success: function (response) {
           alert("Hủy đăng ký thành công");
         }
-      }); */
+      });
     }
   }
 }

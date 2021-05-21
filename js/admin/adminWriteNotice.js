@@ -10,7 +10,7 @@ noticeSubmitHandler = () => {
         $.ajax({
             type: "POST",
             url: "../../action/center/InsertNewFeed.php",
-            data: "title="+title+"&content="+content,
+            data: {"title":title,"content":content},
             dataType: "json",
             success: function (response) {
                 alert("Đăng tải thành công");

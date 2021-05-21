@@ -28,8 +28,6 @@
 		}
 		
 	}
-	echo $JDetailCancel;
-	exit();
 	if($JDetailCancel!=[]){
 		$dataCancel = json_decode($JDetailCancel, true);
 	

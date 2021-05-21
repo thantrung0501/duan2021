@@ -7,6 +7,7 @@
 	$listNewFeed = [];
 	if(mysqli_num_rows($query) > 0){
 		while ($row = mysqli_fetch_array($query)) {
+			$row["Content"] = base64_decode($row["Content"]);
 			array_push($listNewFeed, $row);
 		}
 		echo json_encode($listNewFeed);

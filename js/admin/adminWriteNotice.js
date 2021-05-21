@@ -1,10 +1,11 @@
-CKEDITOR.replace( 'content' );
-CKEDITOR.replace( 'payPlace' );
+const config = {language: 'fr', htmlEncodeOutput: false, entities: false, entities_latin: false, ForceSimpleAmpersand: true}
+CKEDITOR.replace( 'content', config );
+CKEDITOR.replace( 'payPlace', config );
 
 noticeSubmitHandler = () => {
     var title = $("#title").val();
     var content = CKEDITOR.instances["content"].getData();
-    console.log("title="+title+"&content="+content);
+    console.log(content);
     var r = confirm("Bạn chắc chắn đăng tải thông báo này");
     if (r) {
         $.ajax({

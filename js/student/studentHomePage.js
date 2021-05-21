@@ -48,9 +48,9 @@ $(document).ready(function () {
                 '<span class="w3-tag w3-light-gray w3-right">'+date+'</span></a>');
             }
         },
-        error: function () {
+        error: function (err) {
+            console.log(err);
             hasAnyNotice = false;
-            console.log(hasAnyNotice);
         },
         complete: function () {  
             if (hasAnyNotice) {

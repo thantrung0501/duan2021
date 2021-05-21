@@ -5,7 +5,7 @@
 	$accountID = $_SESSION["AccountID"];
 	$title = $_POST['title'];
 
-	$content = base64_encode($_POST['content']);
+	$content = $_POST['content'];
 
 	$createdDate = date('Y-m-d H:i:s');
 	$sql = "INSERT INTO newfeed(Title,Content,CreatedDate ) VALUES('$title', '$content', '$createdDate')";

@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    background-color: #001a09;
+}
+
+.page {
+    display: block;
+    width: 70%;
+    margin: auto;
+    background-color: #f2f2f2;
+    padding: 50px;
+    min-height: 95vh;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.page h1 {
+    margin-bottom: 2px;
+    font-weight: 500;
+}
+
+.time {
+    margin: 0;
+    opacity: 0.7;
+}
+
+.content {
+    margin-top: 30px;
+}

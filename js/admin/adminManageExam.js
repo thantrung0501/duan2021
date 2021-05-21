@@ -120,7 +120,7 @@ closeRegistryHandler = (id) => {
        $.ajax({
             type: "POST",
             url: "../../action/center/RegistExam/CloseRegistExam.php",
-            data: "RegistExamID="+i,
+            data: {"RegistExamID":i},
             dataType: "json",
             success: function (response) {
                 $("#tableList").find(".table-container[data-examination="+i+"]").remove();

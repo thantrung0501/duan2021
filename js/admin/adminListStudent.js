@@ -45,7 +45,7 @@ $().ready(function () {
 				$.ajax({
 					type: "POST",
 					url: "../../action/center/GetListRegistAccount.php",
-					data: "GroupDate="+lastSearch,
+					data: {"GroupDate":lastSearch},
 					dataType: "json",
 					success: function (response) {
 						for (let i = 0; i < response.length; i++) {
@@ -78,7 +78,7 @@ function fetchStuList(searchTerm) {
   $.ajax({
     type: "POST",
     url: "../../action/center/GetListRegistAccount.php",
-    data: "GroupDate="+searchTerm,
+    data: {"GroupDate":searchTerm},
     dataType: "json",
     success: function (response) {
       for (let i = 0; i < response.length; i++) {

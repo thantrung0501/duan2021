@@ -146,8 +146,8 @@ submitHandler = (btnid) => {
   var newshift = $("#formOf_"+id+" input[type='radio']:checked").attr("id");
   var oldshift = OLD_REGIST_ID[id];
   var deadline = $("#"+btnid).attr("data-finishYear");
-  var registData = newshift ? JSON.stringify({FinishDate: deadline, RegistExamDetailID: newshift}) : "";
-  var cancelData = oldshift ? JSON.stringify({FinishDate: deadline, RegistExamDetailID: oldshift}) : "";
+  var registData = newshift ? [{"FinishDate": deadline, "RegistExamDetailID": newshift}] : [];
+  var cancelData = oldshift ? [{"FinishDate": deadline, "RegistExamDetailID": oldshift}] : [];
   console.log(registData);
   console.log(cancelData);
   var r = confirm("Bạn chắc chắn muốn đăng ký?");
@@ -155,15 +155,15 @@ submitHandler = (btnid) => {
     if (newshift == oldshift) {
       alert("Bạn không có sự thay đổi đăng ký nào");
     }else {
-  /*     $.ajax({
+       $.ajax({
         type: "POST",
         url: "../../action/student/RegistExam/ProceedRegistExam.php",
-        data: "JDetailRegist="+registData+"&JDetailCancel="+cancelData,
+        data: {"JDetailRegist": JSON.stringify(registData),"JDetailCancel":JSON.stringify(cancelData) },
         dataType: "json",
         success: function (response) {
           alert("Đăng ký thành công");
         }
-      }); */
+      });
     }
   } 
 }

@@ -6,12 +6,13 @@
 	$accountID = $_SESSION["AccountID"];
 	$JDetailRegist = $_POST["JDetailRegist"];
 	$JDetailCancel = $_POST["JDetailCancel"];
-
-	if($JDetailRegist !=""){
+	$dateNow = date('Y-m-d');
+	if($JDetailRegist !=[]){
 		$dataRegist = json_decode($JDetailRegist, true);
 		foreach ($dataRegist as $row) {
 			// tiến hành tăng số lượng thí sinh trong bảng registexamdetail
-			if($row["FinishDate"]<date('Y-m-d H:i:s')){
+			
+			if(date('Y-m-d', strtotime($row["FinishDate"]))<$dateNow){
 				echo "Ngoài thời hạn đăng ký";
 			}
 			else{
@@ -27,19 +28,28 @@
 		}
 		
 	}
-	
-	if($JDetailCancel!=""){
+	echo $JDetailCancel;
+	exit();
+	if($JDetailCancel!=[]){
 		$dataCancel = json_decode($JDetailCancel, true);
+	
 		foreach ($dataCancel as $row) {
 			// tiến hành giảm số lượng thí sinh trong bảng registexamdetail
 
-			$updateRegist = "UPDATE registexamdetail r set r.Examee = r.Examee - 1 WHERE r.RegistExamDetailID = '".$row["RegistExamDetailID"]."'";
-			$resultUpdate = mysqli_query($conn, $updateRegist);
+			 $datesub = date_sub(date('Y-m-d', strtotime($row["FinishDate"])), $dateNow);
+			if(date('Y-m-d', strtotime($row["FinishDate"]))<$dateNow){
+				echo "Ngoài thời hạn đăng ký";
+			}else{
+				$updateRegist = "UPDATE registexamdetail r set r.Examee = r.Examee - 1 WHERE r.RegistExamDetailID = '".$row["RegistExamDetailID"]."'";
+				$resultUpdate = mysqli_query($conn, $updateRegist);
 
 			// Xóa thông tin thí sinh ở bảng registexaminfor
 			$deleteRegist = "DELETE FROM registexaminfor WHERE AccountID = '$accountID' and RegistExamDetailID = '".$row["RegistExamDetailID"]."'";
 			
 			$resultDelete = mysqli_query($conn, $deleteRegist);
+
+			}
+			
 		}
 	}
 	

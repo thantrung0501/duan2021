@@ -8,13 +8,12 @@
 	<title>Đăng nhập</title>
 	<link rel="stylesheet" href="../css/signin.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="../js/serializeJSONPlugin.js"></script>
 </head>
 <body>
 	
 	<div class="login-partial">
 		<div class="logo">
-			<img src="../images/common/Logo-VNU-1995.jpg" style="max-width:40%;height:auto;">
+			<img src="../images/common/Logo-VNU-1995.jpg" style="max-width:390px;height:auto;">
 			<p class="web-name">Đăng ký thi đánh giá năng lực</p>
 			<p class="web-name">Đại học Quốc gia Hà Nội</p> 
 			<h1>VNU<small>test center</small></h1>

@@ -6,6 +6,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
   <link rel="stylesheet" href="../../css/student/entranceExaminationPaper.css">
   <link rel="stylesheet" href="../../css/topNavBar.css">
 	<title>Giấy báo dự thi</title>
@@ -17,159 +20,82 @@
   }else{
     header("location: ../signin.php");
   }
+  include './topNavBarStudent.php';
 ?>
-  <ul class="navbar">
-    <li><a class="logo-container" href="./studentHomepage.php"><img class="logo" src="../../images/common/Logo-VNU-1995.jpg" /></a></li>
-    <li><div class="web-name">Đăng ký thi đánh giá năng lực</div></li>
-    <li class="dropdown" style="float:right">
-      <a href="javascript:void(0)" class="dropbtn">
-      <?php 
-      if(isset($_SESSION["Username"])) echo $_SESSION["Username"];
-      else echo "Có lỗi xảy ra"
-      ?>
-      </a>
-      <div class="dropdown-content">
-        <a href="studentChangePassword.php">Đổi mật khẩu</a>
-        <a href="studentChangeProfile.php">Cập nhật thông tin</a>
-        <a href="entranceExaminationPaper.php">Xem giấy báo dự thi</a>
-        <a href="../../action/logout.php">Đăng xuất</a>
-      </div>
-    </li>
-  </ul>
+
   <div class="container">
-    <table class="exam">
-      <tr><th colspan="4">THÔNG TIN DỰ THI</th></tr>
-      <tr>
-        <td style="width: 10%">UID:</td>
-        <td style="width: 40%">123456789</td>
-      </tr>
-      <tr>
-        <td>Ngày thi:</td>
-        <td>1/1/2021</td>
-        <td style="width: 8%">Ca thi:</td>
-        <td style="width: 42%">Sáng(08:00)</td>
-      </tr>
-      <tr>
-        <td>Địa điểm:</td>
-        <td>Trung tâm ABC</td>
-      </tr>
-    </table>
-    <table class="personal">
-      <tr><th colspan="4">THÔNG TIN CÁ NHÂN</th></tr>
-      <tr>
-        <td style="width: 30%">Họ, chữ đệm và tên:</td>
-        <td style="width: 35%">Đặng Văn A</td>
-        <td style="width: 9%">Giới tính:</td>
-        <td style="width: 26%">Nam</td>
-      </tr>
-      <tr>
-        <td>Ngày sinh:</td>
-        <td>2/6/2004</td>
-        <td>Dân tộc:</td>
-        <td>Kinh</td>
-      </tr>
-      <tr>
-        <td>CMND/CCCD:</td>
-        <td>0012224445566</td>
-      </tr>
-      <tr>
-        <td>Hộ khẩu thường trú (Huyện - Tỉnh):</td>
-        <td>Đông Anh, Hà Nội</td>
-        <td>Nơi sinh:</td>
-        <td>Hà Nội</td>
-      </tr>
-    </table>
-    <table class="contact">
-      <tr><th colspan="2">THÔNG TIN LIÊN HỆ</th></tr>
-      <tr>
-        <td style="width: 15%;">Địa chỉ email:</td>
-        <td style="width: 85%;">dangvana2605@gmail.com</td>
-      </tr>
-      <tr>
-        <td>Số điện thoại:</td>
-        <td>0913456733</td>
-      </tr>
-      <tr>
-        <td>Địa chỉ (cụ thể):</td>
-        <td>Số 134, Cầu Giấy, phường Quan Hoa, quận Cầu Giấy, thành phố Hà Nội</td>
-      </tr>
-    </table>
-    <table class="evaluate">
-      <tr><th colspan="4">THÔNG TIN PHỤC VỤ THI ĐGNL</th></tr>
-      <tr>
-        <td style="width: 25%">Đội tượng ưu tiên:</td>
-        <td style="width: 18%;">Có ưu tiên</td>
-        <td style="width: 10%;">Khu vực:</td>
-        <td style="width: 47%;">KV1</td>
-      </tr>
-      <tr><td>Trung bình chung học tập:</td></tr>
-      <tr>
-        <table class="final-score">
-          <tr>
-            <th colspan="3">Lớp 10</th>
-            <th colspan="3">Lớp 11</th>
-            <th colspan="3">Lớp 12</th>
-          </tr>
-          <tr>
-            <td>HKI</td>
-            <td>HKII</td>
-            <td>Cả năm</td>
-            <td>HKI</td>
-            <td>HKII</td>
-            <td>Cả năm</td>
-            <td>HKI</td>
-            <td>HKII</td>
-            <td>Cả năm</td>
-          </tr>
-          <tr>
-            <td>9</td>
-            <td>10</td>
-            <td>9.5</td>
-            <td>8</td>
-            <td>10</td>
-            <td>9</td>
-            <td>10</td>
-            <td>10</td>
-            <td>10</td>
-          </tr>
-        </tr>
-      </table>
-    </table>
-    <table class="graduation">
-      <tr><th colspan="2">THÔNG TIN TỐT NGHIỆP</th></tr>
-      <tr>
-        <td style="width: 50%;">Năm tốt nghiệp THPT:</td>
-        <td style="width: 50%;">2022</td>
-      </tr>
-      <tr><td>Kết quả tốt nghiệp THPT:</td></tr>
-      <tr>
-        <table class="final-score">
-          <tr>
-            <td>Toán</td>
-            <td>Văn</td>
-            <td>Ngoại ngữ</td>
-            <td>Lý</td>
-            <td>Hóa</td>
-            <td>Sinh</td>
-            <td>Sử</td>
-            <td>Địa</td>
-            <td>GDCD</td>
-          </tr>
-          <tr>
-            <td>10</td>
-            <td>9</td>
-            <td>9</td>
-            <td>8.5</td>
-            <td>10</td>
-            <td>9</td>
-            <td>10</td>
-            <td>9.5</td>
-            <td>10</td>
-          </tr>
-        </table>
-      </tr>
-    </table>
+    <button class="sidebtn pdf-btn" id="export">PDF</button>
+    <button class="sidebtn pay-btn"><img src="../../images/coin-dollar.svg" alt="Coin"></button>
+    <div class="warrning-container">
+      <img src="../../images/alert.png" alt="warrning">
+      <div>Giấy báo dự thi có thể không có hiệu lực nếu bạn chưa điền đủ thông tin cá nhân trong phần hồ sơ.</div> 
+    </div>
+    <div class="paper" id="paper-content">
+      <div class="paperHeader">
+        <div>ĐẠI HỌC QUỐC GIA THÀNH PHỐ HÀ NỘI</div>
+        <div><strong>TRUNG TÂM KHẢO THÍ VÀ ĐÁNH GIÁ CHẤT LƯỢNG ĐÀO TẠO</strong></div>
+      </div>
+      
+      <div class="paperName">
+        <div><strong>GIẤY BÁO DỰ THI</strong></div>
+        <div><strong>KỲ THI ĐÁNH GIÁ NĂNG LỰC ĐHQGHN</strong></div>
+      </div>
+
+      <div class="info-block exam">
+        <h3>THÔNG TIN DỰ THI</h3>
+        <div class="info-row">
+          <label for="id">Số báo danh:</label><div id="id"></div>
+        </div>
+        <div class="info-row">
+          <label for="examDate">Ngày giờ thi:</label><div id="examDate"></div>
+        </div>
+        <div class="info-row">
+          <label for="examPlace">Địa điểm thi:</label><div id="examPlace"></div>
+        </div>
+        <div class="info-row">
+          <label for="registryCode">Mã đăng ký:</label><div id="registryCode"></div>
+        </div>
+      </div>
+      
+      <p class="notice">Thí sinh phải có mặt trước giờ thi 30 phút. <br>
+      Thí sinh phải mang theo giấy báo dự thi (bản in từ trang web đăng ký hoặc bản nhận được qua bưu điện) và Chứng mình nhân dân/Căn cước công dân/Hộ chiếu.
+      </p>
+
+      <div class="info-block personal">
+        <h3>THÔNG TIN CÁ NHÂN</h3>
+        <div class="info-row">
+          <label for="name">Họ và tên thí sinh:</label><div id="name"><strong></strong></div>
+        </div>
+        <div class="info-row">
+          <label for="birthday">Ngày, tháng, năm sinh:</label><div id="birthday"></div>
+          <label for="placeOfBirth" class="label2">Nơi sinh:</label><div id="placeOfBirth"></div>
+        </div>
+        <div class="info-row">
+          <label for="gender">Giới tính:</label><div id="gender"></div>
+        </div>
+        <div class="info-row">
+          <label for="cmnd">Số CMND/Căn cước công dân:</label><div id="cmnd"></div>
+        </div>
+      </div>
+
+      <div class="info-block contract">
+        <h3>THÔNG TIN LIÊN LẠC</h3>
+        <div class="info-row">
+          <label for="name2">Họ và tên thí sinh:</label><div id="name2"><strong></strong></div>
+        </div>
+        <div class="info-row">
+          <label for="address">Địa chỉ liên lạc:</label><div id="address"></div>
+        </div>
+        <div class="info-row">
+          <label for="phone">Số điện thoại:</label><div id="phone"></div>
+        </div>
+        <div class="info-row">
+          <label for="email">Email:</label><div id="email"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
-<script src="../../js/student"></script>
+<script src="../../js/student/entranceExaminationPaper.js"></script>
+<script src="../../js/dateSolution.js"></script>
 </html>

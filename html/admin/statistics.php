@@ -21,37 +21,14 @@
     }else{
       header("location: ../signin.php");
     }
+    include '../sideNavBar.php';
   ?>
-    <!-- Sidebar -->
-    <div id="mySidenav" class="sidenav">
-      <a href="adminManageExam.php">Quản lý lịch thi</a>
-      <a href="#">Chỉnh sửa lịch thi</a>
-      <a href="adminListStudent.php">Hồ sơ người đăng ký</a>
-      <a href="statistics.php">Thống kê lượt đăng ký</a>
-    </div>
 
     <!-- Scroll to top button -->
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
     
     <div id="main" class="main">
-      <!-- Topbar -->
-      <ul class="navbar">
-        <li><button class="side-bar-toggle" id="sideBarBtn">&#9776;</button></li>
-        <li><a class="logo-container" href="./admin.php"><img class="logo" src="../../images/common/Logo-VNU-1995.jpg" /></a></li>
-        <li><div class="web-name">Đăng ký thi đánh giá năng lực</div></li>
-        <li class="dropdown" style="float:right">
-          <a href="javascript:void(0)" class="dropbtn">
-          <?php 
-            if(isset($_SESSION["Username"])) echo $_SESSION["Username"];
-            else echo "Có lỗi xảy ra"
-            ?>
-          </a>
-          <div class="dropdown-content">
-            <a href="adminChangePassword.php">Đổi mật khẩu</a>
-            <a href="../../action/logout.php">Đăng xuất</a>
-          </div>
-        </li>
-      </ul>
+    <?php include './topNavBarAdmin.php' ?>
 
       <!-- Menubar -->
       <ul class="menu-bar">
@@ -73,7 +50,7 @@
         <li><a id="fetchForGraduating">Tình trạng học tập</a></li>
         <li><a class="myBtn_multi">Tổ hợp điểm</a></li>
         <li><a class="myBtn_multi">Trung bình học tập</a></li>
-        <li><a id="fetchForFill">Trạng thái hồ sơ</a></li>
+<!--         <li><a id="fetchForFill">Trạng thái hồ sơ</a></li> -->
       </ul>
 
       <!-- ContentPage -->

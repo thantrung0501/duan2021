@@ -9,7 +9,6 @@ session_start();
 	<link rel="stylesheet" href="../css/signup.css">
 	<link rel="stylesheet" href="../css/topNavBar.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="../js/serializeJSONPlugin.js"></script>
 </head>
 <body class="sign_up">
 	<ul class="navbar">
@@ -77,8 +76,8 @@ session_start();
 					<p style="color: red; font-style: italic;">(*) Không được bỏ trống</p>
 				</div>
 				<div class="form-element">
-					<button type="submit" name="sbmbtn" id="sbmbtn" class="submit-btn" onclick="return validate()">Đăng ký</button>
 					<button type="reset" name="exitbtn" id="exitbtn" class="exit-btn">Hủy</button>
+					<button type="submit" name="sbmbtn" id="sbmbtn" class="submit-btn" onclick="return validate()">Đăng ký</button>
 				</div>
 			</form>
 		</div>

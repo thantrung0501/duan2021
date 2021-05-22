@@ -20,34 +20,11 @@
     }else{
       header("location: ../signin.php");
     }
+    include '../sideNavBar.php'
   ?>
-    <!-- Side Bar -->
-    <div id="mySidenav" class="sidenav">
-      <a href="adminManageExam.php">Quản lý lịch thi</a>
-      <a href="#">Chỉnh sửa lịch thi</a>
-      <a href="adminListStudent.php">Hồ sơ người đăng ký</a>
-      <a href="statistics.php">Thống kê lượt đăng ký</a>
-    </div>
 
     <div id="main" class="main w3-light-grey">
-      <!-- Top Navigation Bar -->
-      <ul class="navbar">
-        <li><button class="side-bar-toggle" id="sideBarBtn">&#9776;</button></li>
-        <li><a class="logo-container" href="./admin.php"><img class="logo" src="../../images/common/Logo-VNU-1995.jpg" /></a></li>
-        <li><div class="web-name">Đăng ký thi đánh giá năng lực</div></li>
-        <li class="dropdown" style="float:right">
-          <a href="javascript:void(0)" class="dropbtn">
-          <?php 
-            if(isset($_SESSION["Username"])) echo $_SESSION["Username"];
-            else echo "Có lỗi xảy ra"
-            ?>
-          </a>
-          <div class="dropdown-content">
-            <a href="adminChangePassword.php">Đổi mật khẩu</a>
-            <a href="../../action/logout.php">Đăng xuất</a>
-          </div>
-        </li>
-      </ul>
+    <?php include './topNavBarAdmin.php' ?>
 
       <!-- Folder Bar -->
       <div id="folder" class="w3-sidebar w3-bar-block w3-light-grey w3-card w3-global-font" style="width:15vw; box-shadow:none">

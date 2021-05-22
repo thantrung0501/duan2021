@@ -18,7 +18,7 @@ body {
 
 .personInfo {
     font-size: 1.2em;
-    padding:  4vh 4vw;
+    padding:  55px 0 0 130px;
 }
 
 .header {
@@ -36,7 +36,7 @@ body {
     display: inline-block;
 }
 .info-row label {
-    width: 8vw;
+    width: 150px;
 }
 .info-row p {
     margin-left: 2vw;
@@ -108,7 +108,7 @@ body {
   }
   a.anibtn:hover + .icon{
     border: 3px solid #2ecc71;
-    left: -2.7vw;
+    left: -47px;
   }
 
 .contract {

@@ -90,22 +90,6 @@ createBody = (data, index) => {
     '</tr>');
 } 
 
-convertDate = (date) => {
-    var frag = date.split("-");
-    return frag[2]+"/"+frag[1]+"/"+frag[0];
-}
-
-compareDate = (d1, d2) => {
-    var fd1 = d1.split("-");
-    var fd2 = d2.split("-");
-    if(fd1[0]>fd2[0]) return true;
-    if(fd1[0]<fd2[0]) return false;
-    if(fd1[1]>fd2[1]) return true;
-    if(fd1[1]<fd2[1]) return false;
-    if(fd1[2]>=fd2[2]) return true;
-    if(fd1[2]<fd2[2]) return false;  
-}
-
 openRegistryHandler = (id) => {
     var i = id.split("_")[1];
     if (validateOpenForm(i)) {
@@ -118,9 +102,6 @@ openRegistryHandler = (id) => {
                 var newStartDate = $("#formOf_"+i).find('input[name="startedDate"]').val();
                 var newFinishDate = $("#formOf_"+i).find('input[name="finishDate"]').val();
                 var newPeriod = "Mở đăng ký từ " + convertDate(newStartDate)+ " đến " + convertDate(newFinishDate);
-                console.log(newStartDate);
-                console.log(newFinishDate);
-                console.log(newPeriod);
                 $("#stopContainerOf_"+i).find("div").text(newPeriod);
                 $("#formOf_"+i).css("display", "none");
                 $("#stopContainerOf_"+i).css("display", "block");
@@ -139,7 +120,7 @@ closeRegistryHandler = (id) => {
        $.ajax({
             type: "POST",
             url: "../../action/center/RegistExam/CloseRegistExam.php",
-            data: "RegistExamID="+i,
+            data: {"RegistExamID":i},
             dataType: "json",
             success: function (response) {
                 $("#tableList").find(".table-container[data-examination="+i+"]").remove();

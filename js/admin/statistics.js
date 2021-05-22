@@ -121,7 +121,7 @@ $("#fetchForProvince").click(function (e) {
     $.ajax({
       type: "POST",
       url: "../../action/center/GetDataStatisticalForProvince.php",
-      data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
+      data: {"FindYear": $("#from").val(), "EndYear": $("#to").val()},
       dataType: "json",
     })
   ).then(function (pList, rep) {
@@ -230,7 +230,7 @@ $("#fetchForArea").click(function (e) {
   $.ajax({
     type: "POST",
     url: "../../action/center/GetDataStatisticalForArea.php",
-    data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
+    data: {"FindYear": $("#from").val() ,"EndYear": $("#to").val()},
     dataType: "json",
     success: function (response) {
       /* Clear screen */
@@ -315,7 +315,7 @@ $("#fetchForPriority").click(function (e) {
   $.ajax({
     type: "POST",
     url: "../../action/center/GetDataStatisticalForPrioritize.php",
-    data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
+    data: {"FindYear": $("#from").val() ,"EndYear": $("#to").val()},
     dataType: "json",
     success: function (response) {
       /* Clear screen */
@@ -396,13 +396,13 @@ $("#fetchForGraduating").click(function (e) {
     $.ajax({
       type: "POST",
       url: "../../action/center/GetDataStatisticalForGraduating.php",
-      data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
+      data: {"FindYear": $("#from").val() ,"EndYear": $("#to").val()},
       dataType: "json",
     }),
     $.ajax({
       type: "POST",
       url: "../../action/center/GetDataStatisticalForNotGraduating.php",
-      data: "FindYear="+ $("#from").val() +"&EndYear=" + $("#to").val(),
+      data: {"FindYear": $("#from").val() ,"EndYear": $("#to").val()},
       dataType: "json",
     })
   ).then(function (rep1, rep2) {
@@ -486,13 +486,13 @@ $("#combiForm").submit(function (e) {
       $.ajax({
         type: "POST",
         url: "../../action/center/GetDataStatisticalForSubject.php",
-        data: "SumSubject="+input[0]+"&Subject1="+input[1]+"&Subject2="+input[2]+"&Subject3="+input[3],
+        data: {"SumSubject":input[0],"Subject1":input[1],"Subject2": input[2],"Subject3": input[3]},
         dataType: "json",
       }),
       $.ajax({
         type: "POST",
         url: "../../action/center/GetDataStatisticalForNotSubject.php",
-        data: "SumSubject="+input[0]+"&Subject1="+input[1]+"&Subject2="+input[2]+"&Subject3="+input[3],
+        data: {"SumSubject":input[0],"Subject1":input[1],"Subject2": input[2],"Subject3": input[3]},
         dataType: "json",
       })
     ).then(function (rep1, rep2) {

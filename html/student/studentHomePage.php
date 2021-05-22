@@ -19,25 +19,8 @@
   }else{
     header("location: ../signin.php");
   }
+  include './topNavBarStudent.php';
 ?>
-  <ul class="navbar">
-    <li><a class="logo-container" href="./studentHomepage.php"><img class="logo" src="../../images/common/Logo-VNU-1995.jpg" /></a></li>
-    <li><div class="web-name">Đăng ký thi đánh giá năng lực</div></li>
-    <li class="dropdown" style="float:right">
-      <a href="javascript:void(0)" class="dropbtn">
-      <?php 
-      if(isset($_SESSION["Username"])) echo $_SESSION["Username"];
-      else echo "Có lỗi xảy ra"
-      ?>
-      </a>
-      <div class="dropdown-content">
-        <a href="./studentChangePassword.php">Đổi mật khẩu</a>
-        <a href="./studentChangeProfile.php">Cập nhật thông tin</a>
-        <a href="./entranceExaminationPaper.php">Xem giấy báo dự thi</a>
-        <a href="../../action/logout.php">Đăng xuất</a>
-      </div>
-    </li>
-  </ul>
 
   <div class="container">
     <div class="banner">
@@ -68,11 +51,19 @@
       </div>
     </div>
 
-    <div class="notice">
-      Thông báo của admin....<br>
-      Thông tin liên quan...
+    <div class="notice-container w3-global-font">
+      <h1 class="w3-text-deep-orange" style="text-align: center;">Tin tức mới nhất</h1>
+      <div id="notice-list">
+      </div>
+      <div class="w3-center pagi-container">
+        <div class="w3-bar w3-border" id="pagination">
+          <div style="display:inline" id="numList"></div>
+        </div>
+      </div>
     </div>
   </div>
 </body>
 <script src="../../js/student/studentHomePage.js"></script>
+<script src="../../js/dateSolution.js"></script>
+<script src="../../js/titleSolution.js"></script>
 </html>

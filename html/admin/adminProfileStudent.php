@@ -167,7 +167,7 @@
 </div>
 
 </body>
+<script src="../../js/parseURLParams.js"></script>
 <script src="../../js/admin/adminProfileStudent.js"></script>
 <script src="../../js/sideNavBar.js"></script>
-<script src="../../js/parseURLParams.js"></script>
 </html>

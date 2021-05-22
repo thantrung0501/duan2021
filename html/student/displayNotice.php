@@ -31,13 +31,25 @@
 
     <div class="container w3-global-font"> 
       <div class="page">
-        <h1 class="w3-text-purple" id="title"></h1>
-        <p class="time" id="date"></p>
+        <div class="w3-indigo header">
+          <h1 id="title"></h1>
+          <p class="time" id="date"></p>
+        </div>
+
         <div class="content" id="content"></div>
+      </div>
+      <div class="notice-list w3-indigo">
+        <h3>Bài viết khác:</h3>
+        <ul id="notice-list"></ul>
+      </div>
+      <div class="w3-bar pagination">
+        <a id="prev" class="w3-button">&#10094; Trước</a>
+        <a id="next" class="w3-button w3-right">Tiếp &#10095;</a>
       </div>
     </div>
   </body>
   <script src="../../js/parseURLParams.js"></script>
   <script src="../../js/student/displayNotice.js"></script>
   <script src="../../js/dateSolution.js"></script>
+  <script src="../../js/titleSolution.js"></script>
 </html>

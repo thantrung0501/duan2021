@@ -52,7 +52,7 @@
     </div>
 
     <div class="notice-container w3-global-font">
-      <h1 class="w3-text-deep-orange">Tin tức mới nhất</h1>
+      <h1 class="w3-text-deep-orange" style="text-align: center;">Tin tức mới nhất</h1>
       <div id="notice-list">
       </div>
       <div class="w3-center pagi-container">
@@ -65,4 +65,5 @@
 </body>
 <script src="../../js/student/studentHomePage.js"></script>
 <script src="../../js/dateSolution.js"></script>
+<script src="../../js/titleSolution.js"></script>
 </html>

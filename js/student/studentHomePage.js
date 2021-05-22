@@ -7,7 +7,7 @@ var hasAnyNotice = true;
 // Original title
 var ORIGINAL_TEXT = {};
 // Pagination variable
-pageSize = 10;
+pageSize = 4;
 slideSize = 5;
 startPage = 0;
 currentSlide = 0;
@@ -40,12 +40,20 @@ $(document).ready(function () {
         data: [],
         dataType: "json",
         success: function (response) {
-            for (let i = 0; i < (response.length<10 ? response.length : 10); i++) {
+            for (let i = 0; i < response.length; i++) {
                 var date = convertDate(response[i].CreatedDate);
                 ORIGINAL_TEXT[i] = response[i].Title;
-                $("#notice-list").append('<a class="notice" id="link-'+response[i].NewFeedID+'" href="displayNotice.php?id='+response[i].NewFeedID+'">'+
-                    titleProcess(response[i].Title)+
-                '<span class="w3-tag w3-light-gray w3-right">'+date+'</span></a>');
+                $("#notice-list").append('<div class="notice" id="link-'+response[i].NewFeedID+'">'+
+                    '<div class="w3-card-4" style="width:100%">'+
+                        '<header class="w3-container w3-indigo">'+
+                            '<h3>'+titleProcess(response[i].Title)+'</h3>'+
+                            '<p>'+date+'</p>'+
+                        '</header>'+
+                        '<div class="w3-container">'+
+                            '<div style="overflow:hidden; height:200px">'+response[i].Content+'</div>'+
+                        '</div>'+
+                        '<button class="w3-button w3-block w3-indigo" id='+response[i].NewFeedID+' onclick="noticeClickHandler(this.id)">Xem chi tiết</button>'+
+                '</div></div>');
             }
         },
         error: function (err) {
@@ -57,8 +65,8 @@ $(document).ready(function () {
                 pageCount =  $(".notice").length / pageSize;
                 totalSlidepPage = Math.ceil(pageCount / slideSize);
                 if(totalSlidepPage>slideSize) next.show();
-                for(var i = 0 ; i<totalSlidepPage;i++){
-                    $("#numList").append('<a href="#" id="item-'+i+'" class="w3-button w3-bar-item" onclick="pageClickHandler(this.id)">'+(i+1)+'</a>');
+                for(var i = 0 ; i<pageCount;i++){
+                    $("#numList").append('<a id="item-'+i+'" class="w3-button w3-bar-item" onclick="pageClickHandler(this.id)">'+(i+1)+'</a>');
                     if(i>=slideSize){
                         $("#numList a").eq(i).hide();
                     }
@@ -81,21 +89,6 @@ $(window).resize(function () {
         });
     }
 });
-
-titleProcess = title => {
-    if ($(window).width() < 850) {
-        if (title.length > 20) return title.slice(0, 20) + "...";
-        else return title;
-
-    }else if ($(window).width() > 850 && $(window).width() < 1400) {
-        if (title.length > 60) return title.slice(0, 40) + "...";
-        else return title;
-
-    } else {
-        if (title.length > 60) return title.slice(0, 60) + "...";
-        else return title;
-    }
-}
 
 slide = function(){
     $("#numList a").hide();
@@ -126,4 +119,8 @@ pageClickHandler = (id) => {
     $("#numList a").removeClass("w3-green");
     $("#"+id).addClass("w3-green");
     showPage(parseInt($("#"+id).text()));
+}
+
+noticeClickHandler = (id) => {
+    window.location.href = "displayNotice.php?id=" + id;
 }

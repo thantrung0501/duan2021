@@ -19,14 +19,20 @@ $(document).ready(function () {
   });
 
   $.ajax({
-    type: "POST",
+    type: "GET",
     url: "../../action/student/RegistExam/GetListExamRegisted.php",
     data: [],
     dataType: "json",
     success: function (response) {
       console.log(response);
+      response.reverse();
+      $("#examPlace").text(response[0].Location);
+      var examTime = "Ca "+ response[0].UnitExam + " ("+ response[0].ExamTime + ") ngày " + convertDate(response[0].ExamDate);
+      $("#examDate").text(examTime);
     },
-    error: function (err) {console.log(err);}
+    error: function (err) {
+
+    }
   });
 });
 

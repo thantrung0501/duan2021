@@ -18,15 +18,15 @@
   </head>
   <body>
     <div id="mySidenav" class="sidenav">
-      <a href="#">Chỉnh sửa lịch thi</a>
-      <a href="../../html/admin/adminOpen.php">Mở đăng ký thi</a>
-      <a href="#">Hồ sơ người đăng ký</a>
-      <a href="#">Thống kê lượt đăng ký</a>
+      <a href="./adminManageExam.php">Quản lý lịch thi</a>
+      <a href="./adminChange.php">Chỉnh sửa lịch thi</a>
+      <a href="./adminListStudent.php">Hồ sơ người đăng ký</a>
+      <a href="./statistics.php">Thống kê lượt đăng ký</a>
     </div>
     <div id="main" class="main">
       <ul class="navbar">
         <!--<li><button class="side-bar-toggle" id="sideBarBtn">&#9776;</button></li>-->
-        <li><a class="logo-container" href="./admin.html"><img class="logo" src="../../images/common/Logo-VNU-1995.jpg" /></a></li>
+        <li><a class="logo-container" href="./admin.php"><img class="logo" src="../../images/common/Logo-VNU-1995.jpg" /></a></li>
         <li><div class="web-name">Đăng ký thi đánh giá năng lực</div></li>
         <li class="dropdown" style="float:right">
           <a href="javascript:void(0)" class="dropbtn">
@@ -59,50 +59,6 @@
         </thead>
         <tbody id="dataList">
         
-           <!-- <tr>
-                <th scope="row">1</th>
-                <td><input type="text" id="address" name="address"></td>
-                <td><input type="text" id="date" name="date"></td>
-                <td><input type="text" id="poetry" name="poetry"></td>
-                <td><input type="text" id="time" name="time"></td>
-                <td><input type="text" id="number" name="number"></td>
-                <td>
-                    <a href="#" class="btn-link">
-                        <img src="../../images/common/printer.png" width="30px" height="30px">
-                    </a>
-                </td>
-                <td><button>Sửa</button></td>
-                <td><button>Xóa</button></td>
-
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td><input type="text" id="address" name="address"></td>
-                <td><input type="text" id="date" name="date"></td>
-                <td><input type="text" id="poetry" name="poetry"></td>
-                <td><input type="text" id="time" name="time"></td>
-                <td><input type="text" id="number" name="number"></td>
-                <td>
-                    <a href="#" class="btn-link">
-                        <img src="../../images/common/printer.png" width="30px" height="30px">
-                    </a>
-                </td>
-                <td><input type="checkbox" name="selcet"></td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td><input type="text" id="address" name="address"></td>
-                <td><input type="text" id="date" name="date"></td>
-                <td><input type="text" id="poetry" name="poetry"></td>
-                <td><input type="text" id="time" name="time"></td>
-                <td><input type="text" id="number" name="number"></td>
-                <td>
-                    <a href="#" class="btn-link">
-                        <img src="../../images/common/printer.png" width="30px" height="30px">
-                    </a>
-                </td>
-                <td><input type="checkbox" name="selcet"></td>
-            </tr>-->
         </tbody>
     </table>
 
@@ -118,7 +74,13 @@
     </div>
     
 
-  <button id="openTab" class="addDot">Thêm đợt thi</button>
+  <button id="openTab" class="addDot">Thêm ca thi</button>
+
+  <div id="container"></div>
+	
+  	<button value="Tạo table" onclick="return createTable()">
+
+  	<button value="Them id" onclick="createId()">
   
 
 
@@ -128,19 +90,7 @@
 <script src="../../js/sideNavBar.js"></script>
 
 <script language="javascript">
-/*	function add(myTable){
- var table = document.getElementById(myTable);
-//var row = document.getElementById("myTable");
-var row = table.getElementsByTagName('tr');
-var row = row[row.length-1].outerHTML;
-table.innerHTML = table.innerHTML + row;
-var row = table.getElementsByTagName('tr');
-    var row = row[row.length-1].getElementsByTagName('td');
-    for(i=0; i<row.length; i++) {
-        row[i].innerHTML = '';
-    } 
-}
-*/
+
 
 //an hien thong bao;
 
@@ -178,20 +128,6 @@ function addRow(){
     curIndex = -1;
     diplayAll()
   }
- /* var table = document.getElementsByTagName('table')[0];
-  
-  var newRow = table.insertRow(table.rows.length);
-  
-  var cell1 = newRow.insertCell(0);
-  var cell2 = newRow.insertCell(1);
-  var cell3 = newRow.insertCell(2);
-  var cell4 = newRow.insertCell(3);
-
-  cell1.innerHTML = dotThi;
-  cell2.innerHTML = caThi;
-  cell3.innerHTML = diaDiem;
-  cell4.innerHTML = "<tr><button>Sửa</button></tr>"
-*/
 
   document.getElementById("tab").style.display = 'none';
   document.getElementById("openTab").style.display = 'block';
@@ -258,13 +194,81 @@ function edit(index){
 
 }
 
+function createTable() {
+  
+  var container = document.getElementById("container");
 
-/*function delete(index){
-  var i = index.parentNode.parentNode.rowIndex;
-  document.getElementById("tblSample").deleteRow(i);
-}*/
+  
+  var tagTable = document.createElement("table");
+  
+  
 
- 
+  for (var i = 0; i < 1; i++) {
+      var tagRow = document.createElement("tr");
+      tagTable.appendChild(tagRow);
+      
+    for(var j = 0; j < 7; j++) {
+      
+      if(j=1){
+        var tagColumn = document.createElement("th");
+        var textNode = document.createTextNode("STT");
+        tagColumn.appendChild(textNode);
+        tagRow.appendChild(tagColumn);
+      }
+      if(j=2){
+        var tagColumn = document.createElement("th");
+        var textNode = document.createTextNode("Đợt thi");
+        tagColumn.appendChild(textNode);
+        tagRow.appendChild(tagColumn);
+      }
+      if(j=3){
+        var tagColumn = document.createElement("th");
+        var textNode = document.createTextNode("Ca thi");
+        tagColumn.appendChild(textNode);
+        tagRow.appendChild(tagColumn);
+      }
+      if(j=4){
+        var tagColumn = document.createElement("th");
+        var textNode = document.createTextNode("Địa điểm");
+        tagColumn.appendChild(textNode);
+        tagRow.appendChild(tagColumn);
+      }
+      if(j=5){
+        var tagColumn = document.createElement("th");
+        var textNode = document.createTextNode("Ngày thi");
+        tagColumn.appendChild(textNode);
+        tagRow.appendChild(tagColumn);
+      }
+      if(j=6){
+        var tagColumn = document.createElement("th");
+        var textNode = document.createTextNode("Thời gian");
+        tagColumn.appendChild(textNode);
+        tagRow.appendChild(tagColumn);
+      }
+      if(j=7){
+        var tagColumn = document.createElement("th");
+        var textNode = document.createTextNode("Số lượng");
+        tagColumn.appendChild(textNode);
+        tagRow.appendChild(tagColumn);
+      }
+
+    }
+  }
+
+  container.appendChild(tagTable);
+
+
+  return true;
+  
+}
+
+
+function createId(){
+ for(var i=0; i<100; i++){
+     var tableNew = document.querySelector('table')[i];
+     tableNew.id = 'i';
+}
+} 
           
 
 

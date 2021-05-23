@@ -1,126 +1,66 @@
 body {
-    margin: 0;
+  margin: 0;
+  background-color: #f2f2f2;
 }
 
 .container {
-    margin: 30px;
+  margin: 30px;
 }
 
-table {
-    margin: 3%;
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 80%;
-    border: 2px solid #111;
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
-th {
-    border: 2px solid #111;
-    text-align: center;
-    padding: 8px;
+.wrapper {
+  margin: 60px 0 40px 0;
 }
 
-tr {
-    border: 2px solid #111;
-    text-align: center;
-    padding: 8px;
+.header {
+  padding: 8px 20px;
+}
+.header a {
+  float: right;
+  margin: 5px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: 900;
+}
+.header a:hover {
+  color: black;
+}
+.header input[type=number] {
+  width: 100px;
 }
 
-td {
-    border-top: 1px solid #dddddd;
-    border-left: 2px solid #111;
-    border-right: 2px solid #111;
-    text-align: center;
+td input {
+  width: 100%;
 }
 
-button {
-    box-shadow: 1px 1px 1px 1px black;
-    border-radius: 6px;
+.interactbtn{
+  padding: 5px;
+}
+.interactbtn img{
+  width: 20px;
+  height: 20px;
 }
 
-div.add {
-    margin-left: 80%;
+.button-shelf button {
+  float: right;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
-div.change {
-    margin-left: 70%;
-    margin-top: 3%;
+.addbtn {
+  font-weight: 900;
 }
 
-button#btnSuccess {
-    background: #219653;
-    width: 75px;
-    height: 30px;
-    color: white;
+.add-wrapper{
+  margin: 30px 0;
 }
-
-button#btnCancel {
-    background: red;
-    width: 75px;
-    height: 30px;
-    color: white;
-    margin-left: 5px;
-}
-
-div#tab {
-    z-index: 1;
-    background: #E6E6FA;
-    width: 50%;
-    height: auto;
-    margin-left: 30%;
-    border-radius: 10px;
-}
-
-h1#notify {
-    text-align: center;
-}
-
-input#exam {
-    margin-top: 1%;
-    margin-left: 29.5%;
-}
-
-input#poetry {
-    margin-top: 1%;
-    margin-left: 30.5%;
-}
-
-input#address {
-    margin-top: 1%;
-    margin-left: 27.6%;
-}
-
-input#date {
-    margin-top: 1%;
-    margin-left: 27.5%;
-}
-
-input#time {
-    margin-top: 1%;
-    margin-left: 26.5%;
-}
-
-input#number {
-    margin-top: 1%;
-    margin-left: 27.3%;
-}
-
-button#addCa {
-    margin-left: 40%;
-    margin-top: 2%;
-    background-color: #3ae082;
-    margin-bottom: 1%;
-    width: 100px;
-    height: 30px;
-}
-
-b {
-    margin-left: 2%;
-}
-
-button#openTab {
-    background-color: #3ae082;
-    width: 100px;
-    height: 30px;
-    margin-left: 40%;
+.add-wrapper button {
+  width: 100%;
+  font-size: 2em;
 }

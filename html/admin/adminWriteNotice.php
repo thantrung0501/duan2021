@@ -48,19 +48,6 @@
         </div>
       </div>
 
-      <div class="w3-deep-purple container" style="min-height: 30vw;">
-        <div class="form-container place-to-pay">
-          <h1>Địa điểm thanh toán</h1>
-          <div class="form-element">
-            <textarea id="payPlace" name="payPlace"></textarea>
-          </div>
-          <div class="form-element">
-            <button type="reset" class="w3-button w3-red w3-right w3-ripple">Hủy</button>
-            <button type="button" class="w3-button w3-green w3-right w3-ripple">Lưu thay đổi</button>
-          </div>   
-        </div>
-      </div>
-
     </div>
   </div>
 </body>

@@ -26,7 +26,6 @@
 
   <div class="container">
     <button class="sidebtn pdf-btn" id="export">PDF</button>
-    <button class="sidebtn pay-btn" onclick="document.getElementById('payPlace').style.display='block'"><img src="../../images/coin-dollar.svg" alt="Coin"></button>
     <div class="warrning-container">
       <img src="../../images/alert.png" alt="warrning">
       <div>Giấy báo dự thi có thể không có hiệu lực nếu bạn chưa điền đủ thông tin cá nhân trong phần hồ sơ.</div> 
@@ -92,20 +91,6 @@
         </div>
         <div class="info-row">
           <label for="email">Email:</label><div id="email"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- The Modal -->
-    <div id="payPlace" class="w3-modal">
-      <div class="w3-modal-content">
-        <div class="w3-container">
-          <span onclick="document.getElementById('payPlace').style.display='none'"
-          class="w3-button w3-display-topright">&times;</span>
-          <h3>Địa điểm đóng phí</h3>
-          <div>
-            dấdadad
-          </div>
         </div>
       </div>
     </div>

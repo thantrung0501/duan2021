@@ -32,7 +32,7 @@ $(document).ready(function () {
           }
           /* Render */
           current = response[i].RegistExamID;
-          createHeader(current, response[i].RegistNumber, response[i].CreateYear, response[i].StartedDate.split(" ")[0], response[i].FinishDate.split(" ")[0], isDisabled, isOpen);
+          createHeader(current, response[i].UnitRegist, response[i].CreateYear, response[i].StartedDate.split(" ")[0], response[i].FinishDate.split(" ")[0], isDisabled, isOpen);
           createContent(
             current, 
             i+1, 

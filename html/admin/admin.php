@@ -32,7 +32,7 @@
             <a href="adminManageExam.php" class="slideButton btn1"><span>Quản lý lịch thi</span></a>
           </div>
           <div class="button-container">
-            <a href="#" class="slideButton btn2"><span>Chỉnh sửa lịch thi</span></a>
+            <a href="adminChange.php" class="slideButton btn2"><span>Chỉnh sửa lịch thi</span></a>
           </div> 
         </div>
         <div class="guide-row">

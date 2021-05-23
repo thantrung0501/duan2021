@@ -1,6 +1,5 @@
 const config = {language: 'fr', htmlEncodeOutput: false, entities: false, entities_latin: false, ForceSimpleAmpersand: true}
 CKEDITOR.replace( 'content', config );
-CKEDITOR.replace( 'payPlace', config );
 
 noticeSubmitHandler = () => {
     var title = $("#title").val();

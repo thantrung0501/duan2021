@@ -22,7 +22,7 @@ createTable = (data) => {
         if (data[i].RegistExamID!=current) {
             current = data[i].RegistExamID;
             $("#tableList").append('<div data-examination = '+current+' class="table-container w3-card-4 top-rounded"></div>');
-            createHeader(current, data[i].RegistNumber, data[i].CreateYear, data[i].StartedDate.split(" ")[0], data[i].FinishDate.split(" ")[0]);
+            createHeader(current, data[i].UnitRegist, data[i].CreateYear, data[i].StartedDate.split(" ")[0], data[i].FinishDate.split(" ")[0]);
             createBody(data[i], i);
         }else{
             createBody(data[i], i);

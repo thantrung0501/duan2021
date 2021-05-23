@@ -83,7 +83,7 @@ createBody = (data, index) => {
         '<td>'+data.UnitExam+'('+data.ExamTime+')'+'</td>'+
         '<td>'+data.Examee+'/'+data.ExameeMax+'</td>'+
         '<td>'+
-          '<a href="../admin/adminPrint.php?id='+data.RegistExamDetailID+'" class="btn-link">'+
+          '<a id='+data.RegistExamDetailID+' onclick="printHandler(this.id)" class="btn-link">'+
             '<img src="../../images/export.svg" alt="In">'+
           '</a>'+
         '</td>'+
@@ -143,4 +143,8 @@ validateOpenForm = (id) => {
         }
     }
     return false;
+}
+
+printHandler = id => {
+    window.open("adminPrint.php?id="+id);
 }

@@ -184,7 +184,6 @@ submitNew = id => {
   var data = $("#"+ formId).serialize().split(/&|=/);
   var r = confirm("Bạn muốn lưu bản ghi này?");
   var valid = true;
-  var jsonArray = {};
   var jdetail = [];
   if (r) {
     for (let i = 0; i < data.length; i++) {
@@ -194,8 +193,6 @@ submitNew = id => {
       } 
     }
     if (valid) {
-      jsonArray["UnitRegist"] = data[1];
-      jsonArray["CreateYear"] = data[3];
       var jsonItem = {};
       var count = 1;
       for (let i = 4; i < data.length; i+=2) {
@@ -211,12 +208,10 @@ submitNew = id => {
           jsonItem = {};
         }else{ count++; }
       }
-      jsonArray["JDetail"] = jdetail;
-      console.log(JSON.stringify(jsonArray));
       $.ajax({
         type: "POST",
         url: "../../action/center/RegistExam/InsertRegistExam.php",
-        data: JSON.stringify(jsonArray),
+        data: {"UnitRegist": data[1],"CreateYear":data[3], "JDetail": JSON.stringify(jdetail)},
         dataType: "json",
         success: function (response) {
           

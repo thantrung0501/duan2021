@@ -40,15 +40,18 @@ convertData = data => {
   return data!="" ? data : "(Trống)";
 }
 
+const ORIGINAL_WIDTH = $("body").width();
 // Save the PDF
 $("#export").click(function (e) { 
   e.preventDefault();
-    html2canvas($("#paper-content"), {
-        onrendered: function (canvas) {  
-            var img = canvas.toDataURL("image/png");
-            var doc = jsPDF();
-            doc.addImage(img, "JPEG", 0, 0);
-            doc.save('Giấy báo dự thi.pdf');
-        }
-    });
+  $("body").width(ORIGINAL_WIDTH-1);
+  html2canvas($("#paper-content"), {      
+    onrendered: function (canvas) {  
+      var img = canvas.toDataURL('image/jpeg', 1.0);           
+      var doc = jsPDF();      
+      doc.addImage(img, "JPEG", 0, 0);      
+      doc.save('Giấy báo dự thi.pdf');      
+    }
+  });
+  setTimeout(function(){ $("body").width(ORIGINAL_WIDTH); }, 1000);
 });

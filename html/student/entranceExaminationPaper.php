@@ -9,6 +9,7 @@
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+  <link rel="stylesheet" href="../../css/w3.css">
   <link rel="stylesheet" href="../../css/student/entranceExaminationPaper.css">
   <link rel="stylesheet" href="../../css/topNavBar.css">
 	<title>Giấy báo dự thi</title>
@@ -25,7 +26,7 @@
 
   <div class="container">
     <button class="sidebtn pdf-btn" id="export">PDF</button>
-    <button class="sidebtn pay-btn"><img src="../../images/coin-dollar.svg" alt="Coin"></button>
+    <button class="sidebtn pay-btn" onclick="document.getElementById('payPlace').style.display='block'"><img src="../../images/coin-dollar.svg" alt="Coin"></button>
     <div class="warrning-container">
       <img src="../../images/alert.png" alt="warrning">
       <div>Giấy báo dự thi có thể không có hiệu lực nếu bạn chưa điền đủ thông tin cá nhân trong phần hồ sơ.</div> 
@@ -33,16 +34,16 @@
     <div class="paper" id="paper-content">
       <div class="paperHeader">
         <div>ĐẠI HỌC QUỐC GIA THÀNH PHỐ HÀ NỘI</div>
-        <div><strong>TRUNG TÂM KHẢO THÍ VÀ ĐÁNH GIÁ CHẤT LƯỢNG ĐÀO TẠO</strong></div>
+        <div class="header3"><strong>TRUNG TÂM KHẢO THÍ VÀ ĐÁNH GIÁ CHẤT LƯỢNG ĐÀO TẠO</strong></div>
       </div>
       
       <div class="paperName">
-        <div><strong>GIẤY BÁO DỰ THI</strong></div>
-        <div><strong>KỲ THI ĐÁNH GIÁ NĂNG LỰC ĐHQGHN</strong></div>
+        <div class="header3"><strong>GIẤY BÁO DỰ THI</strong></div>
+        <div class="header3"><strong>KỲ THI ĐÁNH GIÁ NĂNG LỰC ĐHQGHN</strong></div>
       </div>
 
       <div class="info-block exam">
-        <h3>THÔNG TIN DỰ THI</h3>
+        <div class="header3"><strong>THÔNG TIN DỰ THI</strong></div>
         <div class="info-row">
           <label for="id">Số báo danh:</label><div id="id"></div>
         </div>
@@ -62,7 +63,7 @@
       </p>
 
       <div class="info-block personal">
-        <h3>THÔNG TIN CÁ NHÂN</h3>
+        <div class="header3"><strong>THÔNG TIN CÁ NHÂN</strong></div>
         <div class="info-row">
           <label for="name">Họ và tên thí sinh:</label><div id="name"><strong></strong></div>
         </div>
@@ -79,7 +80,7 @@
       </div>
 
       <div class="info-block contract">
-        <h3>THÔNG TIN LIÊN LẠC</h3>
+        <div class="header3"><strong>THÔNG TIN LIÊN LẠC</strong></div>
         <div class="info-row">
           <label for="name2">Họ và tên thí sinh:</label><div id="name2"><strong></strong></div>
         </div>
@@ -91,6 +92,20 @@
         </div>
         <div class="info-row">
           <label for="email">Email:</label><div id="email"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="payPlace" class="w3-modal">
+      <div class="w3-modal-content">
+        <div class="w3-container">
+          <span onclick="document.getElementById('payPlace').style.display='none'"
+          class="w3-button w3-display-topright">&times;</span>
+          <h3>Địa điểm đóng phí</h3>
+          <div>
+            dấdadad
+          </div>
         </div>
       </div>
     </div>

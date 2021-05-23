@@ -46,7 +46,7 @@ $(document).ready(function () {
                 $("#notice-list").append('<div class="notice" id="link-'+response[i].NewFeedID+'">'+
                     '<div class="w3-card-4" style="width:100%">'+
                         '<header class="w3-container w3-indigo">'+
-                            '<h3>'+titleProcess(response[i].Title)+'</h3>'+
+                            '<h3>'+titleProcessSmall(response[i].Title)+'</h3>'+
                             '<p>'+date+'</p>'+
                         '</header>'+
                         '<div class="w3-container">'+
@@ -83,9 +83,9 @@ $(document).ready(function () {
 
 $(window).resize(function () { 
     if (hasAnyNotice) {
-        $.each($(".notice"), function (indexInArray, valueOfElement) { 
+        $.each($(".notice").find("h3"), function (indexInArray, valueOfElement) { 
             var text = ORIGINAL_TEXT[indexInArray];
-            $(".notice")[indexInArray].childNodes[0].nodeValue = titleProcess(text);
+            $(".notice").find("h3")[indexInArray].childNodes[0].nodeValue = titleProcessSmall(text);
         });
     }
 });

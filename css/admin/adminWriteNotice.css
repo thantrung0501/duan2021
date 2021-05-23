@@ -3,12 +3,6 @@ body {
     background-color: #f2f2f2;
 }
 
-.horizon {
-    width: 70%;
-    margin: auto;
-    border: 1px solid lightgray;
-}
-
 .container {
     padding: 30px;
 }
@@ -47,5 +41,5 @@ body {
 }
 
 .place-to-pay {
-    margin-top: 100px;
+    margin-top: 0px;
 }

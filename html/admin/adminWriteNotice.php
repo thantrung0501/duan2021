@@ -24,12 +24,14 @@
     include '../sideNavBar.php';
   ?>
 
-    <div id="main" class="main">
-    <?php include './topNavBarAdmin.php' ?>
+  <div id="main" class="main">
+  <?php include './topNavBarAdmin.php' ?>
 
-      <div class="container w3-global-font">
+    <div class="w3-global-font">
+
+      <div class="container">
         <div class="form-container">
-          <h1 class="w3-text-indigo">Thông báo</h1>
+          <h1 class="w3-text-deep-purple">Thông báo</h1>
           <form action="">
             <div class="form-element">
               <label for="title">Tiêu đề</label>
@@ -44,9 +46,11 @@
             </div> 
           </form>
         </div>
-        <div class="horizon"></div>
+      </div>
+
+      <div class="w3-deep-purple container" style="min-height: 30vw;">
         <div class="form-container place-to-pay">
-          <h1 class="w3-text-indigo">Địa điểm thanh toán</h1>
+          <h1>Địa điểm thanh toán</h1>
           <div class="form-element">
             <textarea id="payPlace" name="payPlace"></textarea>
           </div>
@@ -56,7 +60,9 @@
           </div>   
         </div>
       </div>
+
     </div>
+  </div>
 </body>
 <script src="../../js/admin/adminWriteNotice.js"></script>
 <script src="../../js/sideNavBar.js"></script>

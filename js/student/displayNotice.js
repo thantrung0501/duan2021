@@ -17,7 +17,7 @@ $(document).ready(function () {
           $("#content").html(sequence[i].Content);
         }else{
           $("#notice-list").append('<li><a href="displayNotice.php?id='+response[i].NewFeedID+'">'+
-            '['+convertDate(sequence[i].CreatedDate)+'] '+titleProcess(sequence[i].Title)+
+            '['+convertDate(sequence[i].CreatedDate)+'] '+titleProcessLarge(sequence[i].Title)+
             '</a></li>');
         }
       }

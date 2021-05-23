@@ -9,7 +9,7 @@
 
 	// truy vấn lấy ra danh sách sinh viên
 
-	$sql = "SELECT ac.AccountID, ac.FullName, ac.Gender, ac.DateOfBirth  from accountdetail ac INNER JOIN registexaminfor r on ac.AccountID = r.AccountID WHERE r.RegistExamDetailID = '$registExamDetailID'";
+	$sql = "SELECT *  from accountdetail ac INNER JOIN registexaminfor r on ac.AccountID = r.AccountID WHERE r.RegistExamDetailID = '$registExamDetailID'";
 
 	$query = mysqli_query($conn, $sql);
 	$listRegistExamInfor = [];

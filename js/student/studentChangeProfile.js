@@ -33,7 +33,7 @@ validateForm = () => {
             }
         }
     } 
-    return true;
+    return false;
 }
 
 validateEmail = email => {
@@ -122,9 +122,5 @@ $(function () {
                    $("#morality").val(data.GDCD);   
                 }
     });  
-});
-
-$("cfBtn").click(function () { 
-    return validateForm();
 });
 

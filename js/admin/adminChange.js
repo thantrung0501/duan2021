@@ -112,11 +112,9 @@ createContentForOldExam = (index, id, place, date, shift, time, amount) => {
 createHeaderForNewExam = (id) => {
   var now = new Date().getFullYear();
   var deleteExamBtnId = "deleteExamBtnOf_" + id;
-  var examNumId = "examNumOf_" + id;
-  var examYearId = "examYearOf_" + id;
   return '<div class="w3-green header w3-row">'+
     '<div class="w3-col m6 l6">'+
-      '<h3>Đợt <input type="number" id='+examNumId+' min="0"> năm <input type="number" id='+examYearId+' min='+now+'></h3>'+
+      '<h3>Đợt <input type="number" name="UnitRegist" min="0"> năm <input type="number" name="CreateYear" min='+now+'></h3>'+
     '</div>'+
     '<div class="w3-col m6 l6 clearfix delete-container">'+
       '<a id='+deleteExamBtnId+' onclick="removeExamHandler(this.id)">&times;</a>'+
@@ -135,17 +133,13 @@ const tableHeadForNewExam = '<tr>'+
 
 createContentForNewExam = (index, id) => {
   var rowId = "rowNum_"+index+"_Of_" + id
-  var placeId = "placeNum_"+index+"_Of_" + id;
-  var dateId = "dateNum_"+index+"_Of_" + id;
-  var shiftId = "shiftNum_"+index+"_Of_" + id;
-  var amountId = "amountNum_"+index+"_Of_" + id;
   var deleteShiftBtnId = "deleteShiftBtnNum_"+index+"_Of_" + id;
   $("#tableOf_"+id+" tr:last").after('<tr id='+rowId+'>'+
     '<td>'+index+'</td>'+
-    '<td><input type="text" id='+placeId+'></td>'+
-    '<td><input type="date" id='+dateId+'></td>'+
-    '<td><input type="text" id='+shiftId+'></td>'+
-    '<td><input type="text" id='+amountId+' min="0"></td>'+
+    '<td><input type="text" name="Location"></td>'+
+    '<td><input type="date" name="ExamDate"></td>'+
+    '<td><input type="text" name="ExamShift"></td>'+
+    '<td><input type="text" name="ExameeMax" min="0"></td>'+
     '<td><button type="button" class="interactbtn" id='+deleteShiftBtnId+' onclick="removeRow(this.id)"><img src="../../images/recycle-bin.svg" alt="delete"></button></td>'+
   '</tr>');
 }
@@ -187,6 +181,51 @@ removeRow = (id) => {
 
 submitNew = id => {
   var formId = "formOf_" + id.split("_")[1];
-  console.log($("#"+ formId));
-  console.log($("#"+ formId).serialize());
+  var data = $("#"+ formId).serialize().split(/&|=/);
+  var r = confirm("Bạn muốn lưu bản ghi này?");
+  var valid = true;
+  var jsonArray = {};
+  var jdetail = [];
+  if (r) {
+    for (let i = 0; i < data.length; i++) {
+      if(data[i]=="") {
+        valid = false;
+        break;
+      } 
+    }
+    if (valid) {
+      jsonArray["UnitRegist"] = data[1];
+      jsonArray["CreateYear"] = data[3];
+      var jsonItem = {};
+      var count = 1;
+      for (let i = 4; i < data.length; i+=2) {
+        if (count == 3) {
+          jsonItem["UnitExam"] = data[i+1].split(/[()]/)[0];
+          jsonItem["ExamTime"] = data[i+1].split(/[()]/)[1];
+        }else{
+          jsonItem[data[i]] = data[i+1];
+        }
+        if (count == 4) {
+          count = 1;
+          jdetail.push(jsonItem);
+          jsonItem = {};
+        }else{ count++; }
+      }
+      jsonArray["JDetail"] = jdetail;
+      console.log(JSON.stringify(jsonArray));
+      $.ajax({
+        type: "POST",
+        url: "../../action/center/RegistExam/InsertRegistExam.php",
+        data: JSON.stringify(jsonArray),
+        dataType: "json",
+        success: function (response) {
+          
+        },
+        error: function (err) { console.log(err); },
+        complete: function (xhr, status) { if(status=="success")location.reload(); }
+      });
+    }else{
+      alert("Điền thiếu thông tin");
+    }
+  }
 }

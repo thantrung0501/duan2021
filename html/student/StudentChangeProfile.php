@@ -220,7 +220,7 @@
 				<h4>Chú ý: Một số trường thông tin đánh dấu (*) là không bắt buộc nên có thể bỏ qua hoặc cập nhật sau</h4>
 
         		<button type="reset" class="cancel-btn" name="cancelBtn">Hủy</button>
-				<button type="submit" class="cf-btn" name="cfBtn">Lưu</button>		
+				<button type="submit" class="cf-btn" name="cfBtn" onclick="return validateForm()">Lưu</button>		
 			</form>
 		</div>
 	</body>

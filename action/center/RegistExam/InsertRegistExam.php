@@ -3,8 +3,9 @@
 	session_start();
 	include '../../../config.php';
 	$unitRegist = $_POST["UnitRegist"];
+	$createYear = $_POST["CreateYear"];
 	$JDetail = $_POST["JDetail"];
-	$createYear = date("Y");
+	
 	$registExamID= bin2hex(openssl_random_pseudo_bytes(16));
 	// insert id vào bảng master 
     $sql = "INSERT INTO registexam(RegistExamID, IsRegistAll, CreateYear, UnitRegist) VALUES ('$registExamID', 1, $createYear, $unitRegist)";

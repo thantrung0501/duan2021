@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 20, 2021 lúc 03:53 PM
+-- Thời gian đã tạo: Th5 23, 2021 lúc 05:53 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -149,6 +149,14 @@ CREATE TABLE `newfeed` (
   `CreatedDate` date NOT NULL COMMENT 'Ngay tao'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `newfeed`
+--
+
+INSERT INTO `newfeed` (`NewFeedID`, `Title`, `Content`, `CreatedDate`) VALUES
+(9, 'thủy', 'PHA+UGjhuqFtIFRydW5nIFRo4buneSDEkeG6uXAgdHJhaSB0JmFncmF2ZTtpIGdp4buPaTwvcD4K', '2021-05-21'),
+(10, 'thủy', 'PHA+UGjhuqFtIFRydW5nIFRo4buneSDEkeG6uXAgdHJhaSB0JmFncmF2ZTtpIGdp4buPaTwvcD4K', '2021-05-21');
+
 -- --------------------------------------------------------
 
 --
@@ -240,8 +248,8 @@ CREATE TABLE `registexam` (
   `RegistExamID` varchar(36) NOT NULL COMMENT 'primarykey',
   `RegistNumber` int(11) NOT NULL COMMENT 'đợt thi',
   `IsRegistAll` bit(1) NOT NULL COMMENT 'có lấy cả ca thi không,hoặc là đóng ca thi',
-  `StartedDate` datetime DEFAULT NULL,
-  `FinishDate` datetime DEFAULT NULL,
+  `StartedDate` datetime NOT NULL,
+  `FinishDate` datetime NOT NULL,
   `CreateYear` int(11) NOT NULL COMMENT 'Nam tao',
   `UnitRegist` int(11) NOT NULL COMMENT 'so ca thi'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -251,8 +259,8 @@ CREATE TABLE `registexam` (
 --
 
 INSERT INTO `registexam` (`RegistExamID`, `RegistNumber`, `IsRegistAll`, `StartedDate`, `FinishDate`, `CreateYear`, `UnitRegist`) VALUES
-('f35cd8f7e61f68c22e6a38a18a468bbc', 0, b'0', NULL, NULL, 2021, 1),
-('e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', 1, b'0', '2021-05-28 00:00:00', '2021-05-29 00:00:00', 2019, 1),
+('f35cd8f7e61f68c22e6a38a18a468bbc', 0, b'1', '2021-05-14 15:59:52', '2021-05-05 15:59:55', 2021, 1),
+('e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', 1, b'0', '2021-05-06 00:00:00', '2021-05-29 00:00:00', 2019, 1),
 ('1f700fc3-b0d6-11eb-8267-9840bb0282e0', 2, b'1', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2021, 1);
 
 -- --------------------------------------------------------
@@ -280,14 +288,14 @@ CREATE TABLE `registexamdetail` (
 --
 
 INSERT INTO `registexamdetail` (`RegistExamDetailID`, `RegistExamID`, `StartedDate`, `FinishDate`, `ExamDate`, `Examee`, `ExameeMax`, `Location`, `IsRegist`, `UnitExam`, `ExamTime`) VALUES
-('11e8775c5c6530625781a71dd0ef20e0', 'f35cd8f7e61f68c22e6a38a18a468bbc', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00', 0, 100, '303-G2', b'0', 1, '07:00'),
-('65e69cb6-b0d4-11eb-8267-9840bb0282e0', '1f700fc3-b0d6-11eb-8267-9840bb0282e0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2021-05-28', 0, 160, '108-GĐ2', b'1', 1, '07:00'),
-('8e51f117-b0d4-11eb-8267-9840bb0282e0', '1f700fc3-b0d6-11eb-8267-9840bb0282e0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2021-05-17', 0, 300, '308-G2', b'1', 2, '10:00'),
-('959deab41095defec002a4f4c85a5543', 'f35cd8f7e61f68c22e6a38a18a468bbc', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00', 0, 180, '301-G2', b'0', 3, '13:00'),
-('9a0883f50a390b62dce2d436f2431421', 'f35cd8f7e61f68c22e6a38a18a468bbc', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00', 0, 150, '304-E3', b'0', 2, '13:30'),
-('a629279f-b0d3-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-28 00:00:00', '2021-05-29 00:00:00', '2021-05-27', 0, 100, '303-G2', b'1', 1, '07:00'),
-('a7fd0610-b0d4-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-28 00:00:00', '2021-05-29 00:00:00', '2021-05-18', 0, 180, '301-G2', b'1', 3, '13:00'),
-('f82c0258-b0d3-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-28 00:00:00', '2021-05-29 00:00:00', '2021-05-21', 0, 150, '304-E3', b'1', 2, '13:30');
+('11e8775c5c6530625781a71dd0ef20e0', 'f35cd8f7e61f68c22e6a38a18a468bbc', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2021-05-21', 0, 100, '303-G2', b'0', 1, '07:00'),
+('65e69cb6-b0d4-11eb-8267-9840bb0282e0', '1f700fc3-b0d6-11eb-8267-9840bb0282e0', '0000-00-00 00:00:00', '2021-05-22 12:40:46', '2021-05-28', 4, 160, '108-GĐ2', b'1', 1, '07:00'),
+('8e51f117-b0d4-11eb-8267-9840bb0282e0', '1f700fc3-b0d6-11eb-8267-9840bb0282e0', '0000-00-00 00:00:00', '2021-05-29 12:40:41', '2021-05-17', 1, 300, '308-G2', b'1', 2, '10:00'),
+('959deab41095defec002a4f4c85a5543', 'f35cd8f7e61f68c22e6a38a18a468bbc', '0000-00-00 00:00:00', '2021-05-26 12:40:52', '2020-05-01', 0, 180, '301-G2', b'0', 3, '13:00'),
+('9a0883f50a390b62dce2d436f2431421', 'f35cd8f7e61f68c22e6a38a18a468bbc', '0000-00-00 00:00:00', '2021-05-29 12:40:35', '2021-05-21', 0, 150, '304-E3', b'0', 2, '13:30'),
+('a629279f-b0d3-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-28 00:00:00', '2021-05-29 00:00:00', '2021-05-27', 0, 100, '303-G2', b'0', 1, '07:00'),
+('a7fd0610-b0d4-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-28 00:00:00', '2021-05-29 00:00:00', '2021-05-18', 0, 180, '301-G2', b'0', 3, '13:00'),
+('f82c0258-b0d3-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-28 00:00:00', '2021-05-29 00:00:00', '2021-05-21', 0, 150, '304-E3', b'0', 2, '13:30');
 
 -- --------------------------------------------------------
 
@@ -298,17 +306,19 @@ INSERT INTO `registexamdetail` (`RegistExamDetailID`, `RegistExamID`, `StartedDa
 CREATE TABLE `registexaminfor` (
   `RegistExamInforID` int(11) NOT NULL COMMENT 'khóa chính',
   `AccountID` varchar(36) NOT NULL COMMENT 'id bảng account',
-  `RegistExamDetailID` varchar(36) NOT NULL COMMENT 'id bảng examdetail'
+  `RegistExamDetailID` varchar(36) NOT NULL COMMENT 'id bảng examdetail',
+  `IdentificationNumber` int(11) NOT NULL COMMENT 'sbd'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `registexaminfor`
 --
 
-INSERT INTO `registexaminfor` (`RegistExamInforID`, `AccountID`, `RegistExamDetailID`) VALUES
-(1, 'acf2b190d317338aec0a61e61d1b0f51', '65e69cb6-b0d4-11eb-8267-9840bb0282e0'),
-(2, 'acf2b190d317338aec0a61e61d1b0f51', 'a7fd0610-b0d4-11eb-8267-9840bb0282e0'),
-(3, '4f0791b886bf1c5217ce00cf7b874c4d', 'a7fd0610-b0d4-11eb-8267-9840bb0282e0');
+INSERT INTO `registexaminfor` (`RegistExamInforID`, `AccountID`, `RegistExamDetailID`, `IdentificationNumber`) VALUES
+(1, 'acf2b190d317338aec0a61e61d1b0f51', 'a7fd0610-b0d4-11eb-8267-9840bb0282e0', 1),
+(2, 'acf2b190d317338aec0a61e61d1b0f51', 'a629279f-b0d3-11eb-8267-9840bb0282e0', 1),
+(3, '4f0791b886bf1c5217ce00cf7b874c4d', 'a629279f-b0d3-11eb-8267-9840bb0282e0', 2),
+(10, '1eabbb613ae745a505acb01baeb5277a', 'a629279f-b0d3-11eb-8267-9840bb0282e0', 3);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -364,7 +374,7 @@ ALTER TABLE `accountdetail`
 -- AUTO_INCREMENT cho bảng `newfeed`
 --
 ALTER TABLE `newfeed`
-  MODIFY `NewFeedID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `NewFeedID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `province`
@@ -376,7 +386,7 @@ ALTER TABLE `province`
 -- AUTO_INCREMENT cho bảng `registexaminfor`
 --
 ALTER TABLE `registexaminfor`
-  MODIFY `RegistExamInforID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'khóa chính', AUTO_INCREMENT=4;
+  MODIFY `RegistExamInforID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'khóa chính', AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

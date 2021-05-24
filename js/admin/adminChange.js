@@ -1,4 +1,9 @@
-var INDEX_TREE = {};
+var INDEX_TREE = {}; /* Row's index will be saved in this object */
+
+/* Array for submitting */
+var JDetailUpdate = [];
+var JDetailInsert = [];
+var JDetailDelete = [];
 
 $(document).ready(function () {
   $.ajax({
@@ -7,7 +12,6 @@ $(document).ready(function () {
     data: [],
     dataType: "json",
     success: function (response) {
-      console.log(response);
       var current = "";
       var index = 1;
       for (let i = 0; i < response.length; i++) {
@@ -16,8 +20,9 @@ $(document).ready(function () {
           index = 1;
           createFrame(current, response[i].UnitRegist, response[i].CreateYear);
           createContentForOldExam(
-            index, 
+            index,
             current, 
+            response[i].RegistExamDetailID, 
             response[i].Location, 
             convertDate(response[i].ExamDate), 
             response[i].UnitExam, 
@@ -28,7 +33,8 @@ $(document).ready(function () {
           index++;
           createContentForOldExam(
             index, 
-            current, 
+            current,
+            response[i].RegistExamDetailID, 
             response[i].Location, 
             convertDate(response[i].ExamDate), 
             response[i].UnitExam, 
@@ -46,13 +52,17 @@ $(document).ready(function () {
 /* ******************************************************************************************** */
 
 createFrame = (id, examNumber = "", examYear = "") => {
+  /* Create element id */
   var containerId = "containerOf_" + id;
   var formId = "formOf_" + id;
   var tableId = "tableOf_" + id;
   var addBtnId = "addBtnOf_" + id;
   var saveBtnID = "saveBtnOf_" + id;
+  /* Config element according to new and old  */
   var header = (examYear==""||examNumber=="") ? createHeaderForNewExam(id) : createHeaderForOldExam(examNumber, examYear);
-  var tableHeader = (examYear==""||examNumber=="") ? tableHeadForNewExam : tableHeadForOldExam
+  var tableHeader = (examYear==""||examNumber=="") ? tableHeadForNewExam : tableHeadForOldExam;
+  var submitHandler = (examYear==""||examNumber=="") ? 'onclick="submitNew(this.id)"' : 'onclick="submitOld(this.id)"'
+  var addHandler = (examYear==""||examNumber=="") ? 'onclick="addNewRow(this.id)"' : 'onclick="addNewRowForOldExam(this.id)"';
   $("#container").append('<div class="wrapper clearfix" id='+containerId+'>'+
     '<form id='+formId+'>'+
       header+
@@ -62,11 +72,72 @@ createFrame = (id, examNumber = "", examYear = "") => {
         '</table>'+
       '</div>'+
       '<div class="button-shelf">'+
-        '<button type="button" class="w3-button w3-green w3-ripple" id='+saveBtnID+' onclick="submitNew(this.id)">Lưu</button>'+
-        '<button type="button" class="w3-button w3-indigo w3-ripple addbtn" id='+addBtnId+' onclick="addNewRow(this.id)">+</button>'+
+        '<button type="button" class="w3-button w3-green w3-ripple" id='+saveBtnID+' '+submitHandler+'>Lưu</button>'+
+        '<button type="button" class="w3-button w3-indigo w3-ripple addbtn" id='+addBtnId+' '+addHandler+'>+</button>'+
       '</div>'+
     '</form>'+
   '</div>');
+}
+
+reIndex = (tableId) => {
+  var newIndex = 1;
+  $.each($("#tableOf_"+tableId+" tr"), function (indexInArray, valueOfElement) { 
+    if (indexInArray!=0 && $("#tableOf_"+tableId+" tr")[indexInArray].className !="ignore") {
+      $("#tableOf_"+tableId+" tr")[indexInArray].firstChild.innerHTML=newIndex;
+      newIndex++;
+    }
+  });
+}
+
+pushJDetailDelete = (shiftId, tableId) => {
+  var buffer = {};
+  buffer["RegistExamDetailID"] = shiftId;
+  buffer["Location"] = $("#rowNum_"+shiftId+"_Of_"+tableId+" td")[1].innerHTML;
+  buffer["ExamDate"] = revertDate($("#rowNum_"+shiftId+"_Of_"+tableId+" td")[2].innerHTML);
+  buffer["UnitExam"] = $("#rowNum_"+shiftId+"_Of_"+tableId+" td")[3].innerHTML;
+  buffer["ExamTime"] = $("#rowNum_"+shiftId+"_Of_"+tableId+" td")[4].innerHTML;
+  buffer["ExameeMax"] = $("#rowNum_"+shiftId+"_Of_"+tableId+" td")[5].innerHTML;
+  JDetailDelete.push(buffer);
+}
+
+validateFill = formId => {
+  var isValid = true;
+  $.each($("#"+formId+" input"), function (indexInArray, valueOfElement) { 
+    var inputValue = valueOfElement.value
+    if(inputValue == "" || inputValue == null || inputValue < 0){
+        isValid = false;
+        return false;
+    }
+  });
+  return isValid;
+}
+
+validateChange = formId => {
+  var isValid = true;
+  if ($("#"+formId+" input").length == 0) {
+    isValid = false;
+  }
+  $.each($("#"+formId+" tr[data-interact='edit']"), function (indexInArray, valueOfElement) { 
+    /* Get old input value */
+    var rowId = valueOfElement.id.split("_")[1];
+    var i = JDetailDelete.findIndex(function (item) { return item.RegistExamDetailID == rowId; });
+    var originalData = JDetailDelete[i];
+    /* Get new input value */
+    var location = valueOfElement.childNodes[1].firstChild.value;
+    var date = valueOfElement.childNodes[2].firstChild.value;
+    var shift = valueOfElement.childNodes[3].firstChild.value;
+    var time = valueOfElement.childNodes[4].firstChild.value;
+    var amount = valueOfElement.childNodes[5].firstChild.value;
+    if (location == originalData.Location 
+      && date == revertDate(originalData.ExamDate) 
+      && shift == originalData.UnitExam 
+      && time == originalData.ExamTime 
+      && amount == originalData.ExameeMax) {
+      if(isValid) isValid = false;
+      return false;
+    }
+  });
+  return isValid;
 }
 
 /* ******************************************************************************************** */
@@ -84,24 +155,194 @@ const tableHeadForOldExam = '<tr>'+
   '<td style="width: 5%;">STT</td>'+
   '<td style="width: 35%;">Địa điểm</td>'+
   '<td style="width: 20%;">Ngày thi</td>'+
-  '<td style="width: 15%;">Ca thi</td>'+
+  '<td style="width: 6%;">Ca thi</td>'+
+  '<td style="width: 9%;">Giờ thi</td>'+
   '<td style="width: 15%;">Số lượng tối đa</td>'+
   '<td style="width: 5%;">Sửa</td>'+
   '<td style="width: 5%;">Xóa</td>'+
 '</tr>';
 
-createContentForOldExam = (index, id, place, date, shift, time, amount) => {
-  var editBtnId = "editBtnOf_" + id;
-  var deleteShiftBtnId = "deleteShiftBtnOf_" + id;
-  $("#tableOf_"+id+" tr:last").after('<tr>'+
+createContentForOldExam = (index, id, shiftId, place, date, shift, time, amount) => {
+  /* Create element id */
+  var rowId = "rowNum_"+shiftId+"_Of_"+id;
+  var editBtnId = "editBtnNum_"+shiftId+"_Of_" + id;
+  var deleteShiftBtnId = "deleteShiftBtnNum_"+shiftId+"_Of_" + id;
+  $("#tableOf_"+id+" tr:last").after('<tr id='+rowId+' data-interact="none">'+
     '<td>'+index+'</td>'+
     '<td>'+place+'</td>'+
     '<td>'+date+'</td>'+
-    '<td>'+shift+'('+time+')'+'</td>'+
+    '<td>'+shift+'</td>'+
+    '<td>'+time+'</td>'+
     '<td>'+amount+'</td>'+
-    '<td><button type="button" class="interactbtn" id='+editBtnId+'><img src="../../images/pen.svg" alt="edit"></button></td>'+
-    '<td><button type="button" class="interactbtn" id='+deleteShiftBtnId+'><img src="../../images/recycle-bin.svg" alt="delete"></button></td>'+
+    '<td><button type="button" class="interactbtn" id='+editBtnId+' onclick="editRow(this.id)"><img src="../../images/pen.svg" alt="edit"></button></td>'+
+    '<td><button type="button" class="interactbtn" id='+deleteShiftBtnId+' onclick="removeRowForOldExam(this.id)"><img src="../../images/recycle-bin.svg" alt="delete"></button></td>'+
   '</tr>');
+}
+
+addNewRowForOldExam = id => {
+  var tableId = id.split("_")[1];
+  /* Save current index */
+  INDEX_TREE[tableId] = $("#tableOf_"+tableId+" tr").length;
+  /* Create element id */
+  var shiftId = "rowNum_"+INDEX_TREE[tableId]+"_Of_" + tableId;
+  var deleteShiftBtnId = "deleteShiftBtnNum_"+INDEX_TREE[tableId]+"_Of_" + tableId;
+  $("#tableOf_"+tableId+" tr:last").after('<tr id='+shiftId+' data-interact="add">'+
+    '<td>'+INDEX_TREE[tableId]+'</td>'+
+    '<td><input type="text" name="Location"></td>'+
+    '<td><input type="date" name="ExamDate"></td>'+
+    '<td><input type="number" name="UnitExam" min="1"></td>'+
+    '<td><input type="text" name="ExamTime"></td>'+
+    '<td><input type="number" name="ExameeMax" min="0"></td>'+
+    '<td></td>'+
+    '<td><button type="button" class="interactbtn" id='+deleteShiftBtnId+' onclick="removeRowForOldExam(this.id)"><img src="../../images/recycle-bin.svg" alt="delete"></button></td>'+
+  '</tr>');
+}
+
+removeRowForOldExam = id => {
+  var tableId = id.split("_")[3];
+  var shiftId = id.split("_")[1];
+  var interaction = $("#rowNum_"+shiftId+"_Of_"+tableId).attr("data-interact");
+  if (interaction == "add") {
+    $("#rowNum_"+shiftId+"_Of_"+tableId).remove();
+    reIndex(tableId);
+  }
+  if (interaction == "none"){
+    /* Save data */
+    var buffer = {};
+    buffer["RegistExamDetailID"] = shiftId;
+    buffer["Location"] = $("#rowNum_"+shiftId+"_Of_"+tableId+" td")[1].innerHTML;
+    buffer["ExamDate"] = revertDate($("#rowNum_"+shiftId+"_Of_"+tableId+" td")[2].innerHTML);
+    buffer["UnitExam"] = $("#rowNum_"+shiftId+"_Of_"+tableId+" td")[3].innerHTML;
+    buffer["ExamTime"] = $("#rowNum_"+shiftId+"_Of_"+tableId+" td")[4].innerHTML;
+    buffer["ExameeMax"] = $("#rowNum_"+shiftId+"_Of_"+tableId+" td")[5].innerHTML;
+    JDetailDelete.push(buffer);
+    /* Create element id */
+    var undoBtnId = "undoBtnNum_"+shiftId+"_Of_"+tableId;
+    var rowId = "rowNum_"+shiftId+"_Of_"+tableId;
+    /* Rerender table */
+    $("#rowNum_"+shiftId+"_Of_"+tableId).replaceWith('<tr id='+rowId+' class="ignore">'+ 
+      '<td></td>'+ 
+      '<td></td>'+ 
+      '<td></td>'+ 
+      '<td></td>'+ 
+      '<td></td>'+ 
+      '<td></td>'+ 
+      '<td></td>'+ 
+      '<td><button type="button" class="interactbtn" id='+undoBtnId+' onclick="undoRemove(this.id)"><img src="../../images/undo-arrow.svg" alt="undo"></button></td>'+
+    '</tr>');
+    reIndex(tableId);
+  }
+  if (interaction == "edit") {
+    /* Create element id */
+    var undoBtnId = "undoBtnNum_"+shiftId+"_Of_"+tableId;
+    var rowId = "rowNum_"+shiftId+"_Of_"+tableId;
+    /* Rerender table */
+    $("#rowNum_"+shiftId+"_Of_"+tableId).replaceWith('<tr id='+rowId+' data-interact="none" class="ignore">'+ 
+      '<td></td>'+ 
+      '<td></td>'+ 
+      '<td></td>'+ 
+      '<td></td>'+ 
+      '<td></td>'+ 
+      '<td></td>'+ 
+      '<td></td>'+ 
+      '<td><button type="button" class="interactbtn" id='+undoBtnId+' onclick="undoRemove(this.id)"><img src="../../images/undo-arrow.svg" alt="undo"></button></td>'+
+    '</tr>');
+    reIndex(tableId);
+  }
+}
+
+undoRemove = id => {
+  var tableId = id.split("_")[3];
+  var shiftId = id.split("_")[1];
+  var rowId = "rowNum_"+shiftId+"_Of_"+tableId;
+  var editBtnId = "editBtnNum_"+shiftId+"_Of_" + tableId;
+  var deleteShiftBtnId = "deleteShiftBtnNum_"+shiftId+"_Of_" + tableId;
+  var i = JDetailDelete.findIndex(function (item) { return item.RegistExamDetailID == shiftId; });
+  $("#rowNum_"+shiftId+"_Of_"+tableId).replaceWith('<tr id='+rowId+' data-interact="none">'+
+    '<td></td>'+
+    '<td>'+JDetailDelete[i].Location+'</td>'+
+    '<td>'+convertDate(JDetailDelete[i].ExamDate)+'</td>'+
+    '<td>'+JDetailDelete[i].UnitExam+'</td>'+
+    '<td>'+JDetailDelete[i].ExamTime+'</td>'+
+    '<td>'+JDetailDelete[i].ExameeMax+'</td>'+
+    '<td><button type="button" class="interactbtn" id='+editBtnId+' onclick="editRow(this.id)"><img src="../../images/pen.svg" alt="edit"></button></td>'+
+    '<td><button type="button" class="interactbtn" id='+deleteShiftBtnId+' onclick="removeRowForOldExam(this.id)"><img src="../../images/recycle-bin.svg" alt="delete"></button></td>'+
+  '</tr>');
+  reIndex(tableId);
+  JDetailDelete.splice(i, 1);
+}
+
+editRow = id => {
+  var tableId = id.split("_")[3];
+  var shiftId = id.split("_")[1];
+  var rowId = "rowNum_"+shiftId+"_Of_"+tableId;
+  var redoBtnId = "redoBtnNum_"+shiftId+"_Of_"+tableId;
+  var deleteShiftBtnId = "deleteShiftBtnNum_"+shiftId+"_Of_" + tableId;
+  pushJDetailDelete(shiftId, tableId);
+  var i = JDetailDelete.findIndex(function (item) { return item.RegistExamDetailID == shiftId; });
+  $("#"+rowId).replaceWith('<tr id='+rowId+' data-interact="edit">'+
+    '<td></td>'+
+    '<td><input type="text" name="Location" value="'+JDetailDelete[i].Location+'"></td>'+
+    '<td><input type="date" name="ExamDate" value='+JDetailDelete[i].ExamDate+'></td>'+
+    '<td><input type="number" name="UnitExam" min="1" value='+JDetailDelete[i].UnitExam+'></td>'+
+    '<td><input type="text" name="ExamTime" value='+JDetailDelete[i].ExamTime+'></td>'+
+    '<td><input type="number" name="ExameeMax" min="0" value='+JDetailDelete[i].ExameeMax+'></td>'+
+    '<td><button type="button" class="interactbtn" id='+redoBtnId+' onclick="undoRemove(this.id)"><img src="../../images/undo-arrow.svg" alt="redo"></button></td>'+
+    '<td><button type="button" class="interactbtn" id='+deleteShiftBtnId+' onclick="removeRowForOldExam(this.id)"><img src="../../images/recycle-bin.svg" alt="delete"></button></td>'+
+  '</tr>');
+  reIndex(tableId);
+}
+
+submitOld = id => {
+  var tableId = id.split("_")[1];
+  var formId = "formOf_" + tableId;
+  var r = confirm("Bạn chắc chắn muốn lưu bản ghi này");
+  if (r) {
+    if (validateFill(formId)) {
+      if (validateChange(formId)) {
+        $.each($("#"+formId+" tr"), function (indexInArray, valueOfElement) { 
+          var interaction = valueOfElement.getAttribute("data-interact");
+          var shiftId = valueOfElement.id.split("_")[1];
+          /* Get new input value */
+          if (interaction!=null && interaction!="none") {
+            var location = valueOfElement.childNodes[1].firstChild.value;
+            var date = valueOfElement.childNodes[2].firstChild.value;
+            var shift = valueOfElement.childNodes[3].firstChild.value;
+            var time = valueOfElement.childNodes[4].firstChild.value;
+            var amount = valueOfElement.childNodes[5].firstChild.value;   
+          }
+          if (interaction == "add") { 
+            /* Package new row data */
+            var jsonInsertItem = {RegistExamID: tableId, Location: location, ExamDate: date, UnitExam: shift, ExamTime: time, ExameeMax: amount};
+            JDetailInsert.push(jsonInsertItem);
+          }
+          if (interaction == "edit") {
+            var jsonEditItem = {RegistExamID: tableId, Location: location, ExamDate: date, UnitExam: shift, ExamTime: time, ExameeMax: amount, RegistExamDetailID: shiftId};
+            var i = JDetailDelete.findIndex(function (item) { return item.RegistExamDetailID == shiftId; });
+            JDetailDelete.splice(i, 1);
+            JDetailUpdate.push(jsonEditItem);
+          }
+        });
+        /* Submit to server */
+        console.log({"JDetailUpdate": JSON.stringify(JDetailUpdate), "JDetailInsert": JSON.stringify(JDetailInsert), "JDetailDelete": JSON.stringify(JDetailDelete)});
+        $.ajax({
+          type: "POST",
+          url: "../../action/center/RegistExam/UpdateRegistExam.php",
+          data: {"JDetailUpdate": JSON.stringify(JDetailUpdate), "JDetailInsert": JSON.stringify(JDetailInsert), "JDetailDelete": JSON.stringify(JDetailDelete)},
+          dataType: "json",
+          success: function (response) {
+            
+          },
+          error: function (err) { console.log(err); },
+          complete: function (xhr, status) { if (status=="success") location.reload() }
+        });
+      } else {
+        alert("Không có sự thay đổi nào");
+      }
+    }else{
+      alert("Thông tin không hợp lệ");
+    }
+  }
 }
 
 /* ******************************************************************************************** */
@@ -114,7 +355,7 @@ createHeaderForNewExam = (id) => {
   var deleteExamBtnId = "deleteExamBtnOf_" + id;
   return '<div class="w3-green header w3-row">'+
     '<div class="w3-col m6 l6">'+
-      '<h3>Đợt <input type="number" name="UnitRegist" min="0"> năm <input type="number" name="CreateYear" min='+now+'></h3>'+
+      '<h3>Đợt <input type="number" name="UnitRegist" min="1"> năm <input type="number" name="CreateYear" min='+now+'></h3>'+
     '</div>'+
     '<div class="w3-col m6 l6 clearfix delete-container">'+
       '<a id='+deleteExamBtnId+' onclick="removeExamHandler(this.id)">&times;</a>'+
@@ -126,20 +367,23 @@ const tableHeadForNewExam = '<tr>'+
   '<td style="width: 5%;">STT</td>'+
   '<td style="width: 35%;">Địa điểm</td>'+
   '<td style="width: 20%;">Ngày thi</td>'+
-  '<td style="width: 15%;">Ca thi</td>'+
+  '<td style="width: 6%;">Ca thi</td>'+
+  '<td style="width: 9%;">Giờ thi</td>'+
   '<td style="width: 15%;">Số lượng tối đa</td>'+
   '<td style="width: 10%;">Xóa</td>'+
 '</tr>';
 
 createContentForNewExam = (index, id) => {
+  /* Create element id */
   var rowId = "rowNum_"+index+"_Of_" + id
   var deleteShiftBtnId = "deleteShiftBtnNum_"+index+"_Of_" + id;
   $("#tableOf_"+id+" tr:last").after('<tr id='+rowId+'>'+
     '<td>'+index+'</td>'+
     '<td><input type="text" name="Location"></td>'+
     '<td><input type="date" name="ExamDate"></td>'+
-    '<td><input type="text" name="ExamShift"></td>'+
-    '<td><input type="text" name="ExameeMax" min="0"></td>'+
+    '<td><input type="number" name="UnitExam" min="1"></td>'+
+    '<td><input type="text" name="ExamTime"></td>'+
+    '<td><input type="number" name="ExameeMax" min="0"></td>'+
     '<td><button type="button" class="interactbtn" id='+deleteShiftBtnId+' onclick="removeRow(this.id)"><img src="../../images/recycle-bin.svg" alt="delete"></button></td>'+
   '</tr>');
 }
@@ -182,27 +426,15 @@ removeRow = (id) => {
 submitNew = id => {
   var formId = "formOf_" + id.split("_")[1];
   var data = $("#"+ formId).serialize().split(/&|=/);
-  var r = confirm("Bạn muốn lưu bản ghi này?");
-  var valid = true;
+  var r = confirm("Bạn chắc chắn muốn lưu bản ghi này?");
   var jdetail = [];
   if (r) {
-    for (let i = 0; i < data.length; i++) {
-      if(data[i]=="") {
-        valid = false;
-        break;
-      } 
-    }
-    if (valid) {
+    if (validateFill(formId) && validateYear(formId, data[3])) {
       var jsonItem = {};
       var count = 1;
       for (let i = 4; i < data.length; i+=2) {
-        if (count == 3) {
-          jsonItem["UnitExam"] = data[i+1].split(/[()]/)[0];
-          jsonItem["ExamTime"] = data[i+1].split(/[()]/)[1];
-        }else{
-          jsonItem[data[i]] = data[i+1];
-        }
-        if (count == 4) {
+        jsonItem[data[i]] = decodeURIComponent(data[i+1]);
+        if (count == 5) {
           count = 1;
           jdetail.push(jsonItem);
           jsonItem = {};
@@ -220,7 +452,13 @@ submitNew = id => {
         complete: function (xhr, status) { if(status=="success")location.reload(); }
       });
     }else{
-      alert("Điền thiếu thông tin");
+      alert("Thông tin không hợp lệ");
     }
   }
+}
+
+validateYear = (id, createYear) => {
+  var thisYear = new Date().getFullYear();
+  if(createYear<thisYear) return false;
+  else return true;
 }

@@ -21,7 +21,7 @@ createTable = (data) => {
     for (let i = 0; i < data.length; i++) {
         if (data[i].RegistExamID!=current) {
             current = data[i].RegistExamID;
-            $("#tableList").append('<div data-examination = '+current+' class="table-container w3-card-4 top-rounded"></div>');
+            $("#tableList").append('<div data-examination = '+current+' class="table-container top-rounded"></div>');
             createHeader(current, data[i].UnitRegist, data[i].CreateYear, data[i].StartedDate.split(" ")[0], data[i].FinishDate.split(" ")[0]);
             createBody(data[i], i);
         }else{
@@ -48,7 +48,7 @@ createHeader = (id, examNumber, year, startDate, finishDate) => {
     $("#tableList").find(".table-container[data-examination="+id+"]").append('<div class="w3-green top-rounded table-header clearfix">'+
         '<h3>Đợt '+examNumber+' năm '+year+'</h3>'+
         '<a href="adminChange.php" class="config-btn"><img src="../../images/config.svg" alt="Sửa"></a>'+
-        '<div class="close-button-container" id='+closeContainerId+'><button class="close-button" id='+closeButtonId+' onclick="closeRegistryHandler(this.id)">Đóng đăng ký</button></div>'+
+        '<div class="close-button-container" id='+closeContainerId+'><button class="close-button" id='+closeButtonId+' onclick="closeRegistryHandler(this.id)">Đóng</button></div>'+
         '<div class="openForm" id='+openFormId+' style="display:'+openDisplay+'">'+
         '<form id='+formId+'>'+
             '<input type="text" name="RegistExamID" value='+id+' style="display:none;">'+
@@ -56,7 +56,7 @@ createHeader = (id, examNumber, year, startDate, finishDate) => {
             '<input type="date" name="startedDate">'+
             '<label>Đến: </label>'+
             '<input type="date" name="finishDate">'+
-            '<button type="button" class="mybutton" id='+openButtonId+' name="openRegistry" onclick="openRegistryHandler(this.id)">Mở đăng ký</button>'+
+            '<button type="button" class="mybutton" id='+openButtonId+' name="openRegistry" onclick="openRegistryHandler(this.id)">Mở</button>'+
         '</form>'+
         '</div>'+
         '<div class="afterOpen" id='+stopContainerId+' style="display:'+closeDisplay+'">'+

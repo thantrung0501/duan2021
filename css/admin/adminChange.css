@@ -47,6 +47,10 @@ td input {
   height: 20px;
 }
 
+.ignore {
+  opacity: 0.7;
+}
+
 .button-shelf button {
   float: right;
   margin-top: 10px;

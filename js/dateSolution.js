@@ -12,3 +12,7 @@ compareDate = (d1, d2) => {
     if(fd1[2]>=fd2[2]) return true;
     if(fd1[2]<fd2[2]) return false;  
 }
+
+revertDate = date => {
+    return date.split("/")[2] + "-" + date.split("/")[1] + "-" + date.split("/")[0];
+}

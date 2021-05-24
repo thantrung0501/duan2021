@@ -43,8 +43,8 @@
 
 		$dataDelete= json_decode($JDetailDelete, true);
 
-		foreach ($dataDelete as $row2 ) {
-			$sqlDelete = "DELETE FROM registexamdetail WHERE RegistExamDetailID = '".$row2["RegistExamDetailID"]."'";
+		foreach ($dataDelete as $row3 ) {
+			$sqlDelete = "DELETE FROM registexamdetail WHERE RegistExamDetailID = '".$row3["RegistExamDetailID"]."'";
 			$queryDelete = mysqli_query($conn, $sqlDelete);
 
 		}

@@ -53,5 +53,5 @@ $("#export").click(function (e) {
       doc.save('Giấy báo dự thi.pdf');      
     }
   });
-  setTimeout(function(){ $("body").width(ORIGINAL_WIDTH); }, 1000);
+  setTimeout(function(){ location.reload(); }, 1000);
 });

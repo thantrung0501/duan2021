@@ -89,7 +89,7 @@ body {
   outline: none;
   position: fixed;
   z-index: 2;
-  right: 5vw;
+  right: 20px;
   width: 80px;
   height: 80px;
   border-radius: 20px;
@@ -97,11 +97,14 @@ body {
   
 }
 .sidebtn:hover{
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: radial-gradient(lightgray, gray);
+}
+.sidebtn:active {
+  box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.2), 0 0 20px 2px rgba(0, 0, 0, 0.19);
 }
 
 .pdf-btn {
-  top: 200px;
+  bottom: 20px;
   color: white;
   background-image: radial-gradient(#ff3333, #cc0000);
   font-size: 1.5em;

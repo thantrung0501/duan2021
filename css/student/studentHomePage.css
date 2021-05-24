@@ -170,6 +170,10 @@ path.two {
   width: 25%;
 }
 
+.empty-notice {
+  text-align: center;
+}
+
 .pagi-container {
   margin: 30px 0;
 }

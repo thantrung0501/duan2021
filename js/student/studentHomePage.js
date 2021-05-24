@@ -75,7 +75,7 @@ $(document).ready(function () {
                 $("#item-0").addClass("w3-green");
                 showPage(1);
             }else{
-                $("#notice-list").append('<p>Không có thông báo nào</p>');
+                $("#notice-list").append('<p class="empty-notice">Không có thông báo nào</p>');
             }
         }
     });

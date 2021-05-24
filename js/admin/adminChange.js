@@ -47,6 +47,10 @@ $(document).ready(function () {
           );
         } 
       }
+    },
+    error: function (err) {  
+      console.log(err);
+      $("#container").append('<div class="empty-background" id="empty-background"><h1>Nhấn nút <strong>+</strong> để thêm đợt thi </h1></div>');
     }
   });
 });
@@ -339,7 +343,6 @@ submitOld = id => {
         var stringUpdate = JDetailUpdate.length > 0 ? JSON.stringify(JDetailUpdate) : "";
         var stringInsert = JDetailInsert.length > 0 ? JSON.stringify(JDetailInsert) : "";
         var stringDelete = JDetailDelete.length > 0 ? JSON.stringify(JDetailDelete) : "";
-        console.log({"JDetailUpdate": stringUpdate, "JDetailInsert": stringInsert, "JDetailDelete": stringDelete});
         $.ajax({
           type: "POST",
           url: "../../action/center/RegistExam/UpdateRegistExam.php",
@@ -349,7 +352,12 @@ submitOld = id => {
             
           },
           error: function (err) { console.log(err); },
-          complete: function (xhr, status) { if (status=="success") location.reload() }
+          complete: function (xhr, status) { 
+            if (status=="success") {
+              alert("Thay đổi thành công")
+              location.reload()
+            }
+          }
         });
       } else {
         alert("Không có sự thay đổi nào");
@@ -407,6 +415,9 @@ var idForNew = 1;
 /* OPEN NEW EXAM */
 $("#addExam").click(function (e) { 
   e.preventDefault();
+  if ($("#empty-background")) {
+    $("#empty-background").remove();
+  }
   INDEX_TREE[idForNew]=1;
   createFrame(idForNew);
   createContentForNewExam(INDEX_TREE[idForNew], idForNew);
@@ -416,6 +427,9 @@ $("#addExam").click(function (e) {
 removeExamHandler = id => {
   var containerId = "containerOf_" + id.split("_")[1];
   $("#" + containerId).remove();
+  if ($(".wrapper").length == 0) {
+    $("#container").append('<div class="empty-background" id="empty-background"><h1>Nhấn nút <strong>+</strong> để thêm đợt thi </h1></div>');
+  }
 }
 
 addNewRow = (id) => {
@@ -444,7 +458,7 @@ submitNew = id => {
   var r = confirm("Bạn chắc chắn muốn lưu bản ghi này?");
   var jdetail = [];
   if (r) {
-    if (validateFill(formId) && validateYear(formId, data[3])) {
+    if (validateFill(formId) && validateYear(data[3])) {
       var jsonItem = {};
       var count = 1;
       for (let i = 4; i < data.length; i+=2) {
@@ -464,7 +478,12 @@ submitNew = id => {
           
         },
         error: function (err) { console.log(err); },
-        complete: function (xhr, status) { if(status=="success")location.reload(); }
+        complete: function (xhr, status) { 
+          if(status=="success") {
+            alert("Tạo thành công");
+            location.reload();
+          } 
+        }
       });
     }else{
       alert("Thông tin không hợp lệ");
@@ -472,7 +491,7 @@ submitNew = id => {
   }
 }
 
-validateYear = (id, createYear) => {
+validateYear = (createYear) => {
   var thisYear = new Date().getFullYear();
   if(createYear<thisYear) return false;
   else return true;

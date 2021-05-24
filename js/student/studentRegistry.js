@@ -69,6 +69,10 @@ $(document).ready(function () {
           );
         }
       }
+    },
+    error: function (err) {  
+      console.log(err);
+      $("#container").append('<div class="empty-background"><h1>Hiện tại không có đợt thi nào</h1></div>')
     }
   });
 });

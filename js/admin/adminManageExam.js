@@ -6,15 +6,18 @@ $(document).ready(function () {
         data: [],
         dataType: "json",
         success: function (response) {
-            response.sort(compareItem);
+            response.sort(function (a, b) {  
+                return parseInt(a.CreateYear) - parseInt(b.CreateYear) || parseInt(b.UnitRegist) - parseInt(a.UnitRegist);
+            });
             createTable(response);
+
+        },
+        error: function (err) { 
+            console.log(err);
+            $("#tableList").append('<div class="empty-background"><h1>Chưa có đợt thi nào được tạo</h1></div>'); 
         }
     });
 });
-
-compareItem = (a, b) => {
-    return -a.RegistExamID.localeCompare(b.RegistExamID) || a.RegistExamDetailID.localeCompare(b.RegistExamDetailID);
-}
 
 createTable = (data) => {
     var current = "";

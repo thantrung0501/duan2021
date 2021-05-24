@@ -12,6 +12,10 @@ $(document).ready(function () {
     data: [],
     dataType: "json",
     success: function (response) {
+      console.log(response);
+      response.sort(function (a, b) {  
+        return parseInt(a.CreateYear) - parseInt(b.CreateYear) || parseInt(b.UnitRegist) - parseInt(a.UnitRegist);
+      });
       var current = "";
       var index = 1;
       for (let i = 0; i < response.length; i++) {
@@ -137,6 +141,14 @@ validateChange = formId => {
       return false;
     }
   });
+  if (!isValid) {
+    $.each($("#"+formId+" tr"), function (indexInArray, valueOfElement) { 
+      if (valueOfElement.className=="ignore") {
+        isValid = true;
+        return false;
+      }
+    });
+  }
   return isValid;
 }
 
@@ -324,11 +336,14 @@ submitOld = id => {
           }
         });
         /* Submit to server */
-        console.log({"JDetailUpdate": JSON.stringify(JDetailUpdate), "JDetailInsert": JSON.stringify(JDetailInsert), "JDetailDelete": JSON.stringify(JDetailDelete)});
+        var stringUpdate = JDetailUpdate.length > 0 ? JSON.stringify(JDetailUpdate) : "";
+        var stringInsert = JDetailInsert.length > 0 ? JSON.stringify(JDetailInsert) : "";
+        var stringDelete = JDetailDelete.length > 0 ? JSON.stringify(JDetailDelete) : "";
+        console.log({"JDetailUpdate": stringUpdate, "JDetailInsert": stringInsert, "JDetailDelete": stringDelete});
         $.ajax({
           type: "POST",
           url: "../../action/center/RegistExam/UpdateRegistExam.php",
-          data: {"JDetailUpdate": JSON.stringify(JDetailUpdate), "JDetailInsert": JSON.stringify(JDetailInsert), "JDetailDelete": JSON.stringify(JDetailDelete)},
+          data: {"JDetailUpdate": stringUpdate, "JDetailInsert": stringInsert, "JDetailDelete": stringDelete},
           dataType: "json",
           success: function (response) {
             

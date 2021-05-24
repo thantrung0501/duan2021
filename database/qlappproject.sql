@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 24, 2021 lúc 05:50 AM
+-- Thời gian đã tạo: Th5 24, 2021 lúc 05:51 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -254,13 +254,6 @@ CREATE TABLE `registexam` (
   `UnitRegist` int(11) NOT NULL COMMENT 'so ca thi'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Đang đổ dữ liệu cho bảng `registexam`
---
-
-INSERT INTO `registexam` (`RegistExamID`, `RegistNumber`, `IsRegistAll`, `StartedDate`, `FinishDate`, `CreateYear`, `UnitRegist`) VALUES
-('31d1ac84b4df86f53fbee4257d5f40c6', 1, b'1', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2020, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -281,24 +274,6 @@ CREATE TABLE `registexamdetail` (
   `ExamTime` varchar(50) NOT NULL COMMENT 'thoi gian'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Đang đổ dữ liệu cho bảng `registexamdetail`
---
-
-INSERT INTO `registexamdetail` (`RegistExamDetailID`, `RegistExamID`, `StartedDate`, `FinishDate`, `ExamDate`, `Examee`, `ExameeMax`, `Location`, `IsRegist`, `UnitExam`, `ExamTime`) VALUES
-('085eb28917aec02b3045072ac6987edd', '31d1ac84b4df86f53fbee4257d5f40c6', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2021-05-05', 0, 30, 'GD2', b'0', 1, '7H30'),
-('11e8775c5c6530625781a71dd0ef20e0', 'f35cd8f7e61f68c22e6a38a18a468bbc', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2021-05-21', 0, 100, '303-G2', b'0', 1, '07:00'),
-('65e69cb6-b0d4-11eb-8267-9840bb0282e0', '1f700fc3-b0d6-11eb-8267-9840bb0282e0', '0000-00-00 00:00:00', '2021-05-22 12:40:46', '2021-05-28', 4, 160, '108-GĐ2', b'1', 1, '07:00'),
-('82e022ec41913309617b58156490c667', '18f8d1a0a162c4f5b2098be524a4107d', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2021-05-20', 0, 100, 'GD3', b'0', 1, ''),
-('8e51f117-b0d4-11eb-8267-9840bb0282e0', '1f700fc3-b0d6-11eb-8267-9840bb0282e0', '0000-00-00 00:00:00', '2021-05-29 12:40:41', '2021-05-17', 1, 300, '308-G2', b'1', 2, '10:00'),
-('959deab41095defec002a4f4c85a5543', 'f35cd8f7e61f68c22e6a38a18a468bbc', '0000-00-00 00:00:00', '2021-05-26 12:40:52', '2020-05-01', 0, 180, '301-G2', b'0', 3, '13:00'),
-('9a0883f50a390b62dce2d436f2431421', 'f35cd8f7e61f68c22e6a38a18a468bbc', '0000-00-00 00:00:00', '2021-05-29 12:40:35', '2021-05-21', 0, 150, '304-E3', b'0', 2, '13:30'),
-('a629279f-b0d3-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-28 00:00:00', '2021-05-29 00:00:00', '2021-05-27', 0, 100, '303-G2', b'0', 1, '07:00'),
-('a7fd0610-b0d4-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-28 00:00:00', '2021-05-29 00:00:00', '2021-05-18', 0, 180, '301-G2', b'0', 3, '13:00'),
-('b87f927f3085346cb1be52441c5dc62f', '9e64d74343a12c0c149d3ca590d7d4b1', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2021-05-27', 0, 11, 'G2', b'0', 2, '7H30'),
-('e6c438c5d72da867fc89b11cea637a82', '9e64d74343a12c0c149d3ca590d7d4b1', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2021-05-28', 0, 10, 'B2', b'0', 1, '7H30'),
-('f82c0258-b0d3-11eb-8267-9840bb0282e0', 'e3ee8e7f-b0d5-11eb-8267-9840bb0282e0', '2021-05-28 00:00:00', '2021-05-29 00:00:00', '2021-05-21', 0, 150, '304-E3', b'0', 2, '13:30');
-
 -- --------------------------------------------------------
 
 --
@@ -311,16 +286,6 @@ CREATE TABLE `registexaminfor` (
   `RegistExamDetailID` varchar(36) NOT NULL COMMENT 'id bảng examdetail',
   `IdentificationNumber` int(11) NOT NULL COMMENT 'sbd'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `registexaminfor`
---
-
-INSERT INTO `registexaminfor` (`RegistExamInforID`, `AccountID`, `RegistExamDetailID`, `IdentificationNumber`) VALUES
-(1, 'acf2b190d317338aec0a61e61d1b0f51', 'a7fd0610-b0d4-11eb-8267-9840bb0282e0', 1),
-(2, 'acf2b190d317338aec0a61e61d1b0f51', 'a629279f-b0d3-11eb-8267-9840bb0282e0', 1),
-(3, '4f0791b886bf1c5217ce00cf7b874c4d', 'a629279f-b0d3-11eb-8267-9840bb0282e0', 2),
-(10, '1eabbb613ae745a505acb01baeb5277a', 'a629279f-b0d3-11eb-8267-9840bb0282e0', 3);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -388,7 +353,7 @@ ALTER TABLE `province`
 -- AUTO_INCREMENT cho bảng `registexam`
 --
 ALTER TABLE `registexam`
-  MODIFY `RegistNumber` int(11) NOT NULL AUTO_INCREMENT COMMENT 'đợt thi', AUTO_INCREMENT=2;
+  MODIFY `RegistNumber` int(11) NOT NULL AUTO_INCREMENT COMMENT 'đợt thi', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `registexaminfor`

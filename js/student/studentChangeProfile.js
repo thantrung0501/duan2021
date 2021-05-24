@@ -33,7 +33,7 @@ validateForm = () => {
             }
         }
     } 
-    return false;
+    return true;
 }
 
 validateEmail = email => {

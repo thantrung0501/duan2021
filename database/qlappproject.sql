@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 24, 2021 lúc 05:51 PM
+-- Thời gian đã tạo: Th5 25, 2021 lúc 12:12 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -271,7 +271,7 @@ CREATE TABLE `registexamdetail` (
   `Location` varchar(500) NOT NULL COMMENT 'địa điểm thi',
   `IsRegist` bit(1) NOT NULL COMMENT 'mở đóng đăng ký',
   `UnitExam` int(11) NOT NULL COMMENT 'ca thi số mấy',
-  `ExamTime` varchar(50) NOT NULL COMMENT 'thoi gian'
+  `ExamTime` varchar(30) NOT NULL COMMENT 'thoi gian'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -353,7 +353,7 @@ ALTER TABLE `province`
 -- AUTO_INCREMENT cho bảng `registexam`
 --
 ALTER TABLE `registexam`
-  MODIFY `RegistNumber` int(11) NOT NULL AUTO_INCREMENT COMMENT 'đợt thi', AUTO_INCREMENT=4;
+  MODIFY `RegistNumber` int(11) NOT NULL AUTO_INCREMENT COMMENT 'đợt thi', AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT cho bảng `registexaminfor`

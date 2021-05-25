@@ -12,7 +12,6 @@ $(document).ready(function () {
     data: [],
     dataType: "json",
     success: function (response) {
-      console.log(response);
       response.sort(function (a, b) {  
         return parseInt(a.CreateYear) - parseInt(b.CreateYear) || parseInt(b.UnitRegist) - parseInt(a.UnitRegist);
       });
@@ -110,10 +109,15 @@ pushJDetailDelete = (shiftId, tableId) => {
 
 validateFill = formId => {
   var isValid = true;
+  var now = new Date().toISOString().split("T")[0];
   $.each($("#"+formId+" input"), function (indexInArray, valueOfElement) { 
     var inputValue = valueOfElement.value
     if(inputValue == "" || inputValue == null || inputValue < 0){
         isValid = false;
+        return false;
+    }
+    if(valueOfElement.type == "date" && compareDate(now, inputValue)) {
+      isValid = false;
         return false;
     }
   });

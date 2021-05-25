@@ -8,6 +8,11 @@ $(document).ready(function () {
     dataType: "json",
     success: function (response) {
       console.log(response);
+      if (response[0].IdentificationNumber != 0) {
+        response.sort(function (a, b) {
+          return parseInt(a.IdentificationNumber) - parseInt(b.IdentificationNumber); 
+        })
+      }
       for (let i = 0; i < response.length; i++) {
         $("#infoTable tr:last").after('<tr>'+
           '<td>'+(i+1)+'</td>'+
@@ -46,7 +51,7 @@ $(document).ready(function () {
         '</tr>');
       }
     },
-    complete: function () {  
+    complete: function (xhr, status) {  
       exportTableToExcel('infoTable', 'Danh sách thí sinh');
     }
   });

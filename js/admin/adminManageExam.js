@@ -126,7 +126,7 @@ closeRegistryHandler = (id) => {
             data: {"RegistExamID":i},
             dataType: "json",
             success: function (response) {
-                $("#tableList").find(".table-container[data-examination="+i+"]").remove();
+                $("#closeButtonOf_" + i).remove();
             },
             error: function (err) {console.log(err.responseText);  }
         }); 

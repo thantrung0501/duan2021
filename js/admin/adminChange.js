@@ -19,7 +19,7 @@ $(document).ready(function () {
       var current = "";
       var index = 1;
       for (let i = 0; i < response.length; i++) {
-        if (response[i].IsRegist == 2) continue;
+        if (response[i].IsRegist !=0 ) continue;
         if (response[i].RegistExamID != current) {
           current = response[i].RegistExamID;
           index = 1;
@@ -47,6 +47,10 @@ $(document).ready(function () {
             response[i].ExameeMax
           );
         } 
+      }
+      if ($(".wrapper").length == 0) {
+        $("#container").append('<div class="empty-background" id="empty-background"><h1>Nhấn nút <strong>+</strong> để thêm đợt thi </h1></div>');
+        $("#addExam").css("width", "20%")
       }
     },
     error: function (err) {  

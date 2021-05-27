@@ -1,5 +1,5 @@
 validatePassword = () => {
-    if($("#newpw").val() === $("#renewpw").val()) return true;
+    if($("#newpw").val() == $("#renewpw").val()) return true;
     return false;
 }
 
@@ -13,6 +13,11 @@ validateInput = () => {
     return true;
 }
 
+validateDuplicate = () => {
+    if($("#newpw").val() == $("#oldpw").val()) return false;
+    return true;
+}
+
 validateForm = () => {
     if(!validateInput()){
         alert("Vui lòng điền đủ thông tin");
@@ -20,6 +25,10 @@ validateForm = () => {
     }
     if (!validatePasswordLength()) {
         alert("Mật khẩu phải bao gồm ít nhất 8 kí tự");
+        return false;
+    }
+    if (!validateDuplicate()) {
+        alert("Mật khẩu mới trùng với mật khẩu cũ");
         return false;
     }
     if(!validatePassword()){

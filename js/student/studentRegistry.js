@@ -22,7 +22,7 @@ $(document).ready(function () {
             isDisabled=true;
           }
           /* Check if open */
-          if (compareDate(response[i].StartedDate.split(" ")[0], now)) {
+          if (!compareDate(now, response[i].StartedDate.split(" ")[0])) {
             isOpen = false;
           }
           /* Check if close to expiration */

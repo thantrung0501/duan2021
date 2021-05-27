@@ -44,8 +44,8 @@ body {
     to {transform: rotate(360deg);}
 }
 
-.openForm, .close-button-container {
-	margin-top: 9px;
+.openForm, .single-button-container {
+	margin-top: 6px;
 	float: right;
 }
 .afterOpen {
@@ -61,55 +61,29 @@ body {
 
 .table-header label, .table-header input {
 	display: inline-block;
-	padding: 5px 10px;
+	padding: 5px 5px;
 	font-size: 1.2em;
 }
 
 .table-header label {
-	margin-left: 1vw;
+	margin-left: 7px;
 }
 
-.mybutton {
-	outline: none;
-	display: inline-block;
-	font-size: 1.2em;
-	margin-left: 1vw;
-	border-radius: 20px;
-	padding: 5px 20px;
-	background-color: #4d79ff;
-	color: white;
-}
-
-.mybutton:hover {
-	background-color: #ff8000;
-  }
-  
-  .mybutton:active {
-	box-shadow: 0 0px 6px 2px rgba(0, 0, 0, 0.2), 0 0px 20px 4px rgba(0, 0, 0, 0.19);
-  }
-
-  .close-button {
+.close-button, .hide-button, .mybutton {
 	display: inline-block;
 	outline: none;
 	font-size: 1.2em;
-	margin-left: 1vw;
+	margin-left: 15px;
 	border-radius: 20px;
-	padding: 5px 20px;
-	background-color: red;
-	color: white;
-}
-.close-button:hover {
-	background-color: #990000;
-}
-.close-button:active {
-	box-shadow: 0 0px 6px 2px rgba(0, 0, 0, 0.2), 0 0px 20px 4px rgba(0, 0, 0, 0.19);
+	border: 1px outset gray;
+	vertical-align: bottom;
 }
 
 .clearfix::after {
 	content: "";
 	clear: both;
 	display: table;
-  }
+}
 
 .table-container table{
 	width: 100%;
@@ -132,15 +106,25 @@ body {
 }
 
 .btn-link img {
-	width: 100%;
-	height: 100%;
+	width: 35px;
+	height: 35px;
 }
 
 .empty-background {
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-end;
 	width: 100%;
-	height: 80vh;
+	height: 40vh;
 	opacity: 0.7;
+}
+
+.redirect-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.redirect-button {
+	font-size: 1.2em;
 }

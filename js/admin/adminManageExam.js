@@ -14,7 +14,10 @@ $(document).ready(function () {
         },
         error: function (err) { 
             console.log(err);
-            $("#tableList").append('<div class="empty-background"><h1>Chưa có đợt thi nào được tạo</h1></div>'); 
+            $("#tableList").append('<div class="empty-background"><h1>Chưa có đợt thi nào được tạo</h1></div>'+
+            '<div class="redirect-wrapper">'+
+                '<a class="redirect-button w3-button w3-green" href="adminChange.php">Chuyển đến trang tạo lịch thi</a>'+
+            '</div>'); 
         }
     });
 });
@@ -40,7 +43,7 @@ createHeader = (id, examNumber, year, startDate, finishDate) => {
     var openButtonId = "openButtonOf_" + id;
     var stopContainerId = "stopContainerOf_" + id;
     var closeButtonId = "closeButtonOf_" + id;
-    var closeContainerId = "closeContainerOf_" + id;
+    var deleteButtonId = "deleteButtonOf_" + id;
     var tableId = "tableOf_"+id;
     /* VARIABLE FOR CONTROLLER */
     var now = new Date().toISOString().split('T')[0];
@@ -51,7 +54,8 @@ createHeader = (id, examNumber, year, startDate, finishDate) => {
     $("#tableList").find(".table-container[data-examination="+id+"]").append('<div class="w3-green top-rounded table-header clearfix">'+
         '<h3>Đợt '+examNumber+' năm '+year+'</h3>'+
         '<a href="adminChange.php" class="config-btn"><img src="../../images/config.svg" alt="Sửa"></a>'+
-        '<div class="close-button-container" id='+closeContainerId+'><button class="close-button" id='+closeButtonId+' onclick="closeRegistryHandler(this.id)">Đóng</button></div>'+
+        '<div class="single-button-container"><button class="hide-button w3-button w3-red" id='+deleteButtonId+' onclick="hideRegistry(this.id)">Xóa</button></div>'+
+        '<div class="single-button-container"><button class="close-button w3-button w3-deep-orange" id='+closeButtonId+' onclick="closeRegistryHandler(this.id)">Đánh SBD</button></div>'+
         '<div class="openForm" id='+openFormId+' style="display:'+openDisplay+'">'+
         '<form id='+formId+'>'+
             '<input type="text" name="RegistExamID" value='+id+' style="display:none;">'+
@@ -59,7 +63,7 @@ createHeader = (id, examNumber, year, startDate, finishDate) => {
             '<input type="date" name="startedDate">'+
             '<label>Đến: </label>'+
             '<input type="date" name="finishDate">'+
-            '<button type="button" class="mybutton" id='+openButtonId+' name="openRegistry" onclick="openRegistryHandler(this.id)">Mở</button>'+
+            '<button type="button" class="mybutton w3-button w3-indigo" id='+openButtonId+' name="openRegistry" onclick="openRegistryHandler(this.id)">Mở</button>'+
         '</form>'+
         '</div>'+
         '<div class="afterOpen" id='+stopContainerId+' style="display:'+closeDisplay+'">'+
@@ -72,8 +76,8 @@ createHeader = (id, examNumber, year, startDate, finishDate) => {
         '<th style="width:35%">Địa điểm</th>'+
         '<th style="width:24%">Ngày thi</th>'+
         '<th style="width:18%">Ca thi</th>'+
-        '<th style="width:15%">Số lượng</th>'+
-        '<th style="width:3%">DS</th>'+
+        '<th style="width:14%">Số lượng</th>'+
+        '<th style="width:4%">DS</th>'+
         '</tr>'+
     '</table>');
 }
@@ -118,7 +122,24 @@ openRegistryHandler = (id) => {
 
 closeRegistryHandler = (id) => {
     var i = id.split("_")[1];
-    var r = confirm("Đợt thi đã đóng sẽ không hiển thị lại. Bạn có chắc chắn muốn đóng đợt thi này không?");
+    var r = confirm("Xác nhận đánh số báo danh?");
+    if (r) {
+       $.ajax({
+            type: "POST",
+            url: "../../action/center/RegistExam/CreateIdentificationNumber.php",
+            data: {"RegistExamID":i},
+            dataType: "json",
+            success: function (response) {
+                alert("Đánh số báo danh thành công");
+            },
+            error: function (err) {console.log(err.responseText);  }
+        }); 
+    }
+}
+
+hideRegistry = id => {
+    var i = id.split("_")[1];
+    var r = confirm("Đợt thi đã xóa sẽ không hiển thị lại. Bạn có chắc chắn muốn xóa đợt thi này không?");
     if (r) {
        $.ajax({
             type: "POST",
@@ -126,7 +147,13 @@ closeRegistryHandler = (id) => {
             data: {"RegistExamID":i},
             dataType: "json",
             success: function (response) {
-                $("#tableList").find(".table-container[data-examination="+i+"]").remove();
+                $(".table-container[data-examination="+i+"]").remove();
+                if ($(".table-container").length == 0) {
+                    $("#tableList").append('<div class="empty-background"><h1>Chưa có đợt thi nào được tạo</h1></div>'+
+                    '<div class="redirect-wrapper">'+
+                        '<a class="redirect-button w3-button w3-green" href="adminChange.php">Chuyển đến trang tạo lịch thi</a>'+
+                    '</div>'); 
+                }
             },
             error: function (err) {console.log(err.responseText);  }
         }); 
@@ -134,12 +161,11 @@ closeRegistryHandler = (id) => {
 }
 
 validateOpenForm = (id) => {
+    var now = new Date().toISOString().split("T")[0];
     var newStartDate = $("#formOf_"+id).find('input[name="startedDate"]').val();
     var newFinishDate = $("#formOf_"+id).find('input[name="finishDate"]').val();
-    var _oldFinishDate = $("#stopContainerOf_"+id).find("div").text().split(" ")[6];
-    var oldFinishDate = _oldFinishDate.split("/")[2] + "-" + _oldFinishDate.split("/")[1] + "-" + _oldFinishDate.split("/")[0];
-    if (compareDate(newStartDate, oldFinishDate)) {
-        if (compareDate(newFinishDate, oldFinishDate)) {
+    if (compareDate(newStartDate, now)) {
+        if (compareDate(newFinishDate, now)) {
             if (compareDate(newFinishDate, newStartDate)) {
                 return true;
             }

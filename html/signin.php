@@ -35,7 +35,10 @@
 					if(isset($_SESSION["notice"])){
 						if($_SESSION["notice"]=="Bạn đã đăng ký thành công"){
 							unset($_SESSION['notice']);
-						}else{
+						}else if($_SESSION["notice"]=="Đổi mật khẩu thành công!"){
+							echo '<script> alert("'.$_SESSION["notice"].'"); </script>';
+							unset($_SESSION['notice']);	
+						} else {
 							echo '<div class="alert">
 								<span class="closebtn">&times;</span>' 
 								.$_SESSION["notice"].
@@ -66,6 +69,5 @@
 
 
 </body>
-
 <script type="text/javascript" src="../js/signin.js"></script>
 </html>

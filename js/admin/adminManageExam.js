@@ -122,7 +122,13 @@ openRegistryHandler = (id) => {
 
 closeRegistryHandler = (id) => {
     var i = id.split("_")[1];
-    var r = confirm("Xác nhận đánh số báo danh?");
+    var now = new Date().toISOString().split("T")[0];
+    var deadline = revertDate($("#stopContainerOf_"+i).text().split(" ")[6]);
+    var confirmText = compareDate(deadline, now) ? 
+        "Chưa hết hạn đăng ký, bạn có thể phải đánh số báo danh lại trong tương lai. Bạn xác nhận vẫn đánh số báo danh?" 
+        :
+        "Xác nhận đánh số báo danh?"
+    var r = confirm(confirmText);
     if (r) {
        $.ajax({
             type: "POST",

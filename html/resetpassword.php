@@ -1,3 +1,6 @@
+<?php 
+session_start();
+ ?>
 <!DOCTYPE html> 
 <html> 
 	<head> 
@@ -16,7 +19,16 @@
 	</div>
 	<div class="rspw-form">
 			<form action="../action/repassword_submit.php" method="POST">
-			<h1>Đặt lại mật khẩu</h1>			
+			<h1>Đặt lại mật khẩu</h1>
+			<?php 	
+						if(isset($_SESSION["notice"])){
+							echo '<div class="alert">
+								<span class="closebtn">&times;</span>' 
+								.$_SESSION["notice"].
+								'</div>';
+							unset($_SESSION['notice']);
+						}
+			?>	
 			<div class="form-element">
 				<label for="email">Email:</label>
 				<input type="text" id="email" name="email">

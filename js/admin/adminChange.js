@@ -363,7 +363,10 @@ submitOld = id => {
           success: function (response) {
             
           },
-          error: function (err) { console.log(err); },
+          error: function (err) {
+            console.log(err); 
+            alert("Có lỗi xảy ra, vui lòng thử lại");
+          },
           complete: function (xhr, status) { 
             if (status=="success") {
               alert("Thay đổi thành công")
@@ -491,7 +494,10 @@ submitNew = id => {
         success: function (response) {
           
         },
-        error: function (err) { console.log(err); },
+        error: function (err) { 
+          console.log(err);
+          alert("Có lỗi xảy ra, vui lòng thử lại"); 
+        },
         complete: function (xhr, status) { 
           if(status=="success") {
             alert("Tạo thành công");

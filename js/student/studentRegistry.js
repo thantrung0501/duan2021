@@ -161,6 +161,10 @@ submitHandler = (btnid) => {
         data: {"JDetailRegist": JSON.stringify(registData),"JDetailCancel":JSON.stringify(cancelData) },
         dataType: "json",
         success: function (response) {
+          alert("Đăng ký thành công");
+        },
+        error: function (err) {  
+          alert("Đăng ký thất bại, vui lòng thử lại");
         }
       });
       location.reload();

@@ -35,6 +35,10 @@ $().ready(function () {
                     }
                 }
             }
+        },
+        error: function (err) {  
+          console.log(err);
+          $("#participantList").append('<h1 style="text-align: center">Chưa có thí sinh nào đăng ký vào hệ thống</h1>');
         }
     });
 

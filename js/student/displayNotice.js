@@ -24,8 +24,10 @@ $(document).ready(function () {
       setPrevLink(id);
       setNextLink(id, maxIndex);
     },
-    complete: function () {  
-      console.log(sequence);
+    complete: function (xhr, status) {  
+      if (status != "success") {
+        alert("Có lỗi xảy ra, vui lòng thử lại");
+      }
     }
   });
 });

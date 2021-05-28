@@ -47,14 +47,15 @@ createHeader = (id, examNumber, year, startDate, finishDate) => {
     var tableId = "tableOf_"+id;
     /* VARIABLE FOR CONTROLLER */
     var now = new Date().toISOString().split('T')[0];
-    var openDisplay = (startDate!="" && finishDate!="" && compareDate(finishDate, now)) ? "none" : "block";
-    var closeDisplay = (startDate!="" && finishDate!="" && compareDate(finishDate, now)) ? "block" : "none";
+    var openDisplay = compareDate(finishDate, now) ? "none" : "block";
+    var closeDisplay = compareDate(finishDate, now) ? "block" : "none";
     var period = "Mở đăng ký từ " + convertDate(startDate)+ " đến " + convertDate(finishDate);
+    var isDisabled = compareDate(finishDate, now) ? "disabled" : "";
     /* APPEND ELEMENT */
     $("#tableList").find(".table-container[data-examination="+id+"]").append('<div class="w3-green top-rounded table-header clearfix">'+
         '<h3>Đợt '+examNumber+' năm '+year+'</h3>'+
         '<a href="adminChange.php" class="config-btn"><img src="../../images/config.svg" alt="Sửa"></a>'+
-        '<div class="single-button-container"><button class="hide-button w3-button w3-red" id='+deleteButtonId+' onclick="hideRegistry(this.id)">Xóa</button></div>'+
+        '<div class="single-button-container"><button class="hide-button w3-button w3-red" id='+deleteButtonId+' onclick="hideRegistry(this.id)" '+isDisabled+'>Xóa</button></div>'+
         '<div class="single-button-container"><button class="close-button w3-button w3-deep-orange" id='+closeButtonId+' onclick="closeRegistryHandler(this.id)">Đánh SBD</button></div>'+
         '<div class="openForm" id='+openFormId+' style="display:'+openDisplay+'">'+
         '<form id='+formId+'>'+
@@ -113,7 +114,10 @@ openRegistryHandler = (id) => {
                 $("#formOf_"+i).css("display", "none");
                 $("#stopContainerOf_"+i).css("display", "block");
             },
-            error: function (err) {console.log(err.responseText);  } 
+            error: function (err) {
+                console.log(err.responseText);
+                alert("Có lỗi xảy ra, vui lòng thử lại");   
+            } 
         }); 
     }else{
         alert("Ngày mở hoặc ngày đóng đăng ký không hợp lệ");
@@ -138,7 +142,10 @@ closeRegistryHandler = (id) => {
             success: function (response) {
                 alert("Đánh số báo danh thành công");
             },
-            error: function (err) {console.log(err.responseText);  }
+            error: function (err) {
+                console.log(err.responseText);
+                alert("Có lỗi xảy ra, vui lòng thử lại");    
+            }
         }); 
     }
 }
@@ -161,7 +168,10 @@ hideRegistry = id => {
                     '</div>'); 
                 }
             },
-            error: function (err) {console.log(err.responseText);  }
+            error: function (err) {
+                console.log(err.responseText);
+                alert("Có lỗi xảy ra, vui lòng thử lại");    
+            }
         }); 
     }
 }

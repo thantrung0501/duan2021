@@ -125,22 +125,30 @@ $("#fetchForProvince").click(function (e) {
       dataType: "json",
     })
   ).then(function (pList, rep) {
-    /* Clear screen */
-    $("#tableContainer table").remove();
-    $("#curve_chart").css("display", "none");
-    $("#tableContainer h1").remove();
-    $("#optionContainer").css("display", "block");
-    /* Establish content table */
-    finalProvinceResult = processProvinceData(pList[0], rep[0]);
-    $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Tỉnh/Thành phố</th style='width: 30%'><th>Số lượng</th></tr></table>");
-    for (let i = 0; i < finalProvinceResult.length; i++) {
-      if(i%63==0){
-        $("#tableContainer tr:last").after('<tr><td id='+finalProvinceResult[i].year+' class="always-show" rowspan="63" style="text-align:center;">'+finalProvinceResult[i].year+"</td><td>"+finalProvinceResult[i].province+'</td><td>'+finalProvinceResult[i].amount+'</td></tr>');
-      }else{
-        $("#tableContainer tr:last").after('<tr><td>'+finalProvinceResult[i].province+'</td><td>'+finalProvinceResult[i].amount+'</td></tr>');
+    if(pList[1] == "success" && rep[1] == "success") {
+      /* Clear screen */
+      $("#tableContainer table").remove();
+      $("#curve_chart").css("display", "none");
+      $("#tableContainer h1").remove();
+      $("#optionContainer").css("display", "block");
+      /* Establish content table */
+      finalProvinceResult = processProvinceData(pList[0], rep[0]);
+      $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Tỉnh/Thành phố</th style='width: 30%'><th>Số lượng</th></tr></table>");
+      for (let i = 0; i < finalProvinceResult.length; i++) {
+        if(i%63==0){
+          $("#tableContainer tr:last").after('<tr><td id='+finalProvinceResult[i].year+' class="always-show" rowspan="63" style="text-align:center;">'+finalProvinceResult[i].year+"</td><td>"+finalProvinceResult[i].province+'</td><td>'+finalProvinceResult[i].amount+'</td></tr>');
+        }else{
+          $("#tableContainer tr:last").after('<tr><td>'+finalProvinceResult[i].province+'</td><td>'+finalProvinceResult[i].amount+'</td></tr>');
+        }
       }
+      $('html, body').animate({ scrollTop: 0 }, 'fast');
+    }else{
+      /* Clear screen */
+      $("#tableContainer table").remove();
+      $("#curve_chart").css("display", "none");
+      $("#tableContainer h1").remove();
+      $("#tableContainer").append('<h1 style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif">Chưa có thí sinh nào đăng ký vào hệ thống</h1>');
     }
-    $('html, body').animate({ scrollTop: 0 }, 'fast');
   });
 });
 
@@ -267,6 +275,16 @@ $("#fetchForArea").click(function (e) {
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(function(){drawChart(property.data)});
       $("#curve_chart").css("display", "block");      
+    },
+    error: function (err) {  
+      console.log(err);
+      /* Clear screen */
+      $("#tableContainer table").remove();
+      $("#tableContainer h1").remove();
+      $("#optionContainer").css("display", "none");
+      /* Clear chart property */
+      property.data = [];
+      $("#tableContainer").append('<h1 style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif">Chưa có thí sinh nào đăng ký vào hệ thống</h1>');
     }
   });
 });
@@ -350,6 +368,16 @@ $("#fetchForPriority").click(function (e) {
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(function(){drawChart(property.data)});
       $("#curve_chart").css("display", "block");
+    },
+    error: function (err) {  
+      console.log(err);
+      /* Clear screen */
+      $("#tableContainer table").remove();
+      $("#tableContainer h1").remove();
+      $("#optionContainer").css("display", "none");
+      /* Clear chart property */
+      property.data = [];
+      $("#tableContainer").append('<h1 style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif">Chưa có thí sinh nào đăng ký vào hệ thống</h1>');
     }
   });
 });
@@ -406,6 +434,7 @@ $("#fetchForGraduating").click(function (e) {
       dataType: "json",
     })
   ).then(function (rep1, rep2) {
+    if (rep1[1] == "success" && rep2[1] == "success") {
       /* Clear screen */
       $("#tableContainer table").remove();
       $("#tableContainer h1").remove();
@@ -437,7 +466,16 @@ $("#fetchForGraduating").click(function (e) {
       property.data.unshift(['Year', 'Đã tốt nghiệp', 'Chưa tốt nghiệp']);
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(function(){drawChart(property.data)});
-      $("#curve_chart").css("display", "block"); 
+      $("#curve_chart").css("display", "block");
+    } else {
+      /* Clear screen */
+      $("#tableContainer table").remove();
+      $("#tableContainer h1").remove();
+      $("#optionContainer").css("display", "none");
+      /* Clear chart property */
+      property.data = [];
+      $("#tableContainer").append('<h1 style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif">Chưa có thí sinh nào đăng ký vào hệ thống</h1>');
+    }
   }); 
 });
 
@@ -496,38 +534,48 @@ $("#combiForm").submit(function (e) {
         dataType: "json",
       })
     ).then(function (rep1, rep2) {
-      /* Clear screen */
-      $("#tableContainer table").remove();
-      $("#tableContainer h1").remove();
-      $("#optionContainer").css("display", "none");
-      /* Clear chart property */
-      property.data = [];
-      /* Establish content of chart and table */
-      finalCombiResult = processScoreData(rep1[0], rep2[0]);
-      var column = [];
-      $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Điều kiện</th><th style='width: 30%'>Số lượng</th></tr></table>");
-      for (let i = 0; i < finalCombiResult.length; i++) {
-        if(i%2==0){
-          if (i%4==2) {
-            $("#tableContainer tr:last").after('<tr><td id='+finalCombiResult[i].year+' rowspan="2" style="text-align:center; background-color:white">'+finalCombiResult[i].year+"</td><td>Trên "+$("#combi").val()+"</td><td>"+finalCombiResult[i].amount+'</td></tr>');
-            column.push(finalCombiResult[i].year);
+      if (rep1[1] == "success" && rep2[1] == "success") {
+        /* Clear screen */
+        $("#tableContainer table").remove();
+        $("#tableContainer h1").remove();
+        $("#optionContainer").css("display", "none");
+        /* Clear chart property */
+        property.data = [];
+        /* Establish content of chart and table */
+        finalCombiResult = processScoreData(rep1[0], rep2[0]);
+        var column = [];
+        $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Điều kiện</th><th style='width: 30%'>Số lượng</th></tr></table>");
+        for (let i = 0; i < finalCombiResult.length; i++) {
+          if(i%2==0){
+            if (i%4==2) {
+              $("#tableContainer tr:last").after('<tr><td id='+finalCombiResult[i].year+' rowspan="2" style="text-align:center; background-color:white">'+finalCombiResult[i].year+"</td><td>Trên "+$("#combi").val()+"</td><td>"+finalCombiResult[i].amount+'</td></tr>');
+              column.push(finalCombiResult[i].year);
+              column.push(parseInt(finalCombiResult[i].amount));
+            } else {
+              $("#tableContainer tr:last").after('<tr><td id='+finalCombiResult[i].year+' rowspan="2" style="text-align:center;">'+finalCombiResult[i].year+"</td><td>Trên "+$("#combi").val()+"</td><td>"+finalCombiResult[i].amount+'</td></tr>');
+              column.push(finalCombiResult[i].year);
+              column.push(parseInt(finalCombiResult[i].amount));
+            }
+          }else{
+            $("#tableContainer tr:last").after('<tr><td>Dưới '+$("#combi").val()+'</td><td>'+finalCombiResult[i].amount+'</td></tr>');
             column.push(parseInt(finalCombiResult[i].amount));
-          } else {
-            $("#tableContainer tr:last").after('<tr><td id='+finalCombiResult[i].year+' rowspan="2" style="text-align:center;">'+finalCombiResult[i].year+"</td><td>Trên "+$("#combi").val()+"</td><td>"+finalCombiResult[i].amount+'</td></tr>');
-            column.push(finalCombiResult[i].year);
-            column.push(parseInt(finalCombiResult[i].amount));
+            property.data.push(column);
+            column=[];
           }
-        }else{
-          $("#tableContainer tr:last").after('<tr><td>Dưới '+$("#combi").val()+'</td><td>'+finalCombiResult[i].amount+'</td></tr>');
-          column.push(parseInt(finalCombiResult[i].amount));
-          property.data.push(column);
-          column=[];
         }
+        property.data.unshift(['Year', 'Trên '+$("#combi").val(), 'Dưới '+$("#combi").val()]);
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(function(){drawChart(property.data)});
+        $("#curve_chart").css("display", "block");  
+      } else {
+        /* Clear screen */
+        $("#tableContainer table").remove();
+        $("#tableContainer h1").remove();
+        $("#optionContainer").css("display", "none");
+        /* Clear chart property */
+        property.data = [];
+        $("#tableContainer").append('<h1 style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif">Chưa có thí sinh nào đăng ký vào hệ thống</h1>');
       }
-      property.data.unshift(['Year', 'Trên '+$("#combi").val(), 'Dưới '+$("#combi").val()]);
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(function(){drawChart(property.data)});
-      $("#curve_chart").css("display", "block");
     });
   }
 });
@@ -572,38 +620,48 @@ $("#averForm").submit(function (e) {
         dataType: "json",
       })
     ).then(function (rep1, rep2) {
-      /* Clear screen */
-      $("#tableContainer table").remove();
-      $("#tableContainer h1").remove();
-      $("#optionContainer").css("display", "none");
-      /* Clear chart property */
-      property.data = [];
-      /* Establish content of chart and table */
-      finalAverResult = processScoreData(rep1[0], rep2[0]);
-      var column = [];
-      $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Điều kiện</th><th style='width: 30%'>Số lượng</th></tr></table>");
-      for (let i = 0; i < finalAverResult.length; i++) {
-        if(i%2==0){
-          if (i%4==2) {
-            $("#tableContainer tr:last").after('<tr><td id='+finalAverResult[i].year+' rowspan="2" style="text-align:center; background-color:white">'+finalAverResult[i].year+"</td><td>Trên "+$("#average").val()+"</td><td>"+finalAverResult[i].amount+'</td></tr>');
-            column.push(finalAverResult[i].year);
+      if (rep1[1] == "success" && rep2[1] == "success") {
+        /* Clear screen */
+        $("#tableContainer table").remove();
+        $("#tableContainer h1").remove();
+        $("#optionContainer").css("display", "none");
+        /* Clear chart property */
+        property.data = [];
+        /* Establish content of chart and table */
+        finalAverResult = processScoreData(rep1[0], rep2[0]);
+        var column = [];
+        $("#tableContainer").append("<table><tr><th style='width: 25%'>Thời gian</th><th style='width: 45%'>Điều kiện</th><th style='width: 30%'>Số lượng</th></tr></table>");
+        for (let i = 0; i < finalAverResult.length; i++) {
+          if(i%2==0){
+            if (i%4==2) {
+              $("#tableContainer tr:last").after('<tr><td id='+finalAverResult[i].year+' rowspan="2" style="text-align:center; background-color:white">'+finalAverResult[i].year+"</td><td>Trên "+$("#average").val()+"</td><td>"+finalAverResult[i].amount+'</td></tr>');
+              column.push(finalAverResult[i].year);
+              column.push(parseInt(finalAverResult[i].amount));
+            } else {
+              $("#tableContainer tr:last").after('<tr><td id='+finalAverResult[i].year+' rowspan="2" style="text-align:center;">'+finalAverResult[i].year+"</td><td>Trên "+$("#average").val()+"</td><td>"+finalAverResult[i].amount+'</td></tr>');
+              column.push(finalAverResult[i].year);
+              column.push(parseInt(finalAverResult[i].amount));
+            }
+          }else{
+            $("#tableContainer tr:last").after('<tr><td>Dưới '+$("#average").val()+'</td><td>'+finalAverResult[i].amount+'</td></tr>');
             column.push(parseInt(finalAverResult[i].amount));
-          } else {
-            $("#tableContainer tr:last").after('<tr><td id='+finalAverResult[i].year+' rowspan="2" style="text-align:center;">'+finalAverResult[i].year+"</td><td>Trên "+$("#average").val()+"</td><td>"+finalAverResult[i].amount+'</td></tr>');
-            column.push(finalAverResult[i].year);
-            column.push(parseInt(finalAverResult[i].amount));
+            property.data.push(column);
+            column=[];
           }
-        }else{
-          $("#tableContainer tr:last").after('<tr><td>Dưới '+$("#average").val()+'</td><td>'+finalAverResult[i].amount+'</td></tr>');
-          column.push(parseInt(finalAverResult[i].amount));
-          property.data.push(column);
-          column=[];
         }
+        property.data.unshift(['Year', 'Trên '+$("#average").val(), 'Dưới '+$("#average").val()]);
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(function(){drawChart(property.data)});
+        $("#curve_chart").css("display", "block");   
+      } else {
+        /* Clear screen */
+        $("#tableContainer table").remove();
+        $("#tableContainer h1").remove();
+        $("#optionContainer").css("display", "none");
+        /* Clear chart property */
+        property.data = [];
+        $("#tableContainer").append('<h1 style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif">Chưa có thí sinh nào đăng ký vào hệ thống</h1>');
       }
-      property.data.unshift(['Year', 'Trên '+$("#average").val(), 'Dưới '+$("#average").val()]);
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(function(){drawChart(property.data)});
-      $("#curve_chart").css("display", "block"); 
     });
   }
 });

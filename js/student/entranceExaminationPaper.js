@@ -30,9 +30,6 @@ $(document).ready(function () {
       $("#examDate").text(examTime);
       var participationId = response[0].IdentificationNumber != 0 ? response[0].IdentificationNumber : ""
 ;      $("#id").text(participationId);
-    },
-    error: function (err) {
-
     }
   });
 });

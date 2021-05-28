@@ -56,7 +56,7 @@ createHeader = (id, examNumber, year, startDate, finishDate) => {
         '<h3>Đợt '+examNumber+' năm '+year+'</h3>'+
         '<a href="adminChange.php" class="config-btn"><img src="../../images/config.svg" alt="Sửa"></a>'+
         '<div class="single-button-container"><button class="hide-button w3-button w3-red" id='+deleteButtonId+' onclick="hideRegistry(this.id)" '+isDisabled+'>Xóa</button></div>'+
-        '<div class="single-button-container"><button class="close-button w3-button w3-deep-orange" id='+closeButtonId+' onclick="closeRegistryHandler(this.id)">Đánh SBD</button></div>'+
+        '<div class="single-button-container"><button class="close-button w3-button w3-deep-orange" id='+closeButtonId+' onclick="closeRegistryHandler(this.id)" '+isDisabled+'>Đánh SBD</button></div>'+
         '<div class="openForm" id='+openFormId+' style="display:'+openDisplay+'">'+
         '<form id='+formId+'>'+
             '<input type="text" name="RegistExamID" value='+id+' style="display:none;">'+

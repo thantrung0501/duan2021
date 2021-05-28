@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 25, 2021 lúc 12:12 PM
+-- Thời gian đã tạo: Th5 28, 2021 lúc 06:22 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -50,7 +50,6 @@ CREATE TABLE `account` (
   `Username` varchar(100) DEFAULT NULL COMMENT 'tên đăng nhập',
   `Password` varchar(100) DEFAULT NULL COMMENT 'mật khẩu',
   `AccountType` int(11) DEFAULT NULL COMMENT 'Loại người dùng đăng nhập 1- trung tâm khảo thí, 2- thí sinh',
-  `FullName` varchar(255) NOT NULL COMMENT 'tên người dùng',
   `AccountDate` datetime NOT NULL,
   `GroupDate` varchar(50) NOT NULL COMMENT 'group tháng/ năm đăng ký'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -59,22 +58,22 @@ CREATE TABLE `account` (
 -- Đang đổ dữ liệu cho bảng `account`
 --
 
-INSERT INTO `account` (`AccountID`, `Username`, `Password`, `AccountType`, `FullName`, `AccountDate`, `GroupDate`) VALUES
-('6a1ea72d66d3531dbb879edba1660eaa', 'trinhxinhgai', '81dc9bdb52d04dc20036dbd8313ed055', 2, '', '2021-04-23 17:05:22', '05/2021'),
-('f3db119b44b7f23e1aa72d7a0346939c', '123', '202cb962ac59075b964b07152d234b70', 2, '', '2021-04-26 16:25:09', '04/2021'),
-('63cdaaabdde8cc10383783072795074b', 'ptthuy2', '202cb962ac59075b964b07152d234b70', 2, '', '2021-04-26 16:25:20', '04/2021'),
-('7034490c975d7a63e33e8c27544963a8', 'pttthuy1999@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 2, '', '2021-04-26 17:36:01', '04/2021'),
-('43e6ad61cb670bf1104966a97862eaca', 'trungthuy99xx', '81dc9bdb52d04dc20036dbd8313ed055', 2, '', '2021-05-01 04:35:57', '05/2021'),
-('7f84b77d61769a5df735cd0dc1b422fb', 'phamtrungthuy', '25d55ad283aa400af464c76d713c07ad', 2, '', '2021-05-02 16:23:25', '05/2021'),
-('acf2b190d317338aec0a61e61d1b0f51', 'ptthuy2021', '25d55ad283aa400af464c76d713c07ad', 2, '', '2021-05-02 16:32:23', '05/2021'),
-('4f0791b886bf1c5217ce00cf7b874c4d', 'thuydeptrai', '25d55ad283aa400af464c76d713c07ad', 2, '', '2021-05-03 15:38:44', '05/2021'),
-('85530651ceb912c20a392214789aca82', 'nguyenvanduc', '25d55ad283aa400af464c76d713c07ad', 2, '', '2021-05-11 15:12:47', '05/2021'),
-('89c6b4f140af933c7a2ffaa2175a9282', 'nguyennghianam', '25d55ad283aa400af464c76d713c07ad', 2, '', '2021-05-11 15:14:21', '05/2021'),
-('1eabbb613ae745a505acb01baeb5277a', 'ptthuy123', '81dc9bdb52d04dc20036dbd8313ed055', 2, '', '2021-05-11 15:24:57', '05/2021'),
-('c071e870-b25e-11eb-ac0d-9840bb0282e0', 'admin', '81dc9bdb52d04dc20036dbd8313ed055', 1, 'admin', '2021-05-11 15:41:44', ''),
-('f18547f1-b25f-11eb-ac0d-9840bb0282e0', 'admin1', '81dc9bdb52d04dc20036dbd8313ed055', 1, 'admin1', '2021-05-11 15:49:37', ''),
-('08129169-b260-11eb-ac0d-9840bb0282e0', 'admin2', '81dc9bdb52d04dc20036dbd8313ed055', 1, 'admin2', '2021-05-11 15:51:31', ''),
-('13577bbd-b260-11eb-ac0d-9840bb0282e0', 'admin3', '81dc9bdb52d04dc20036dbd8313ed055', 1, 'admin3', '2021-05-11 15:51:50', '');
+INSERT INTO `account` (`AccountID`, `Username`, `Password`, `AccountType`, `AccountDate`, `GroupDate`) VALUES
+('08129169-b260-11eb-ac0d-9840bb0282e0', 'admin2', '81dc9bdb52d04dc20036dbd8313ed055', 1, '2021-05-11 15:51:31', ''),
+('13577bbd-b260-11eb-ac0d-9840bb0282e0', 'admin3', '81dc9bdb52d04dc20036dbd8313ed055', 1, '2021-05-11 15:51:50', ''),
+('1eabbb613ae745a505acb01baeb5277a', 'ptthuy123', '81dc9bdb52d04dc20036dbd8313ed055', 2, '2021-05-11 15:24:57', '05/2021'),
+('43e6ad61cb670bf1104966a97862eaca', 'trungthuy99xx', '81dc9bdb52d04dc20036dbd8313ed055', 2, '2021-05-01 04:35:57', '05/2021'),
+('4f0791b886bf1c5217ce00cf7b874c4d', 'thuydeptrai', '25d55ad283aa400af464c76d713c07ad', 2, '2021-05-03 15:38:44', '05/2021'),
+('63cdaaabdde8cc10383783072795074b', 'ptthuy2', '202cb962ac59075b964b07152d234b70', 2, '2021-04-26 16:25:20', '04/2021'),
+('6a1ea72d66d3531dbb879edba1660eaa', 'trinhxinhgai', '81dc9bdb52d04dc20036dbd8313ed055', 2, '2021-04-23 17:05:22', '05/2021'),
+('7034490c975d7a63e33e8c27544963a8', 'pttthuy1999@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 2, '2021-04-26 17:36:01', '04/2021'),
+('7f84b77d61769a5df735cd0dc1b422fb', 'phamtrungthuy', '25d55ad283aa400af464c76d713c07ad', 2, '2021-05-02 16:23:25', '05/2021'),
+('85530651ceb912c20a392214789aca82', 'nguyenvanduc', '25d55ad283aa400af464c76d713c07ad', 2, '2021-05-11 15:12:47', '05/2021'),
+('89c6b4f140af933c7a2ffaa2175a9282', 'nguyennghianam', '25d55ad283aa400af464c76d713c07ad', 2, '2021-05-11 15:14:21', '05/2021'),
+('acf2b190d317338aec0a61e61d1b0f51', 'ptthuy2021', '25d55ad283aa400af464c76d713c07ad', 2, '2021-05-02 16:32:23', '05/2021'),
+('c071e870-b25e-11eb-ac0d-9840bb0282e0', 'admin', '81dc9bdb52d04dc20036dbd8313ed055', 1, '2021-05-11 15:41:44', ''),
+('f18547f1-b25f-11eb-ac0d-9840bb0282e0', 'admin1', '81dc9bdb52d04dc20036dbd8313ed055', 1, '2021-05-11 15:49:37', ''),
+('f3db119b44b7f23e1aa72d7a0346939c', '123', '202cb962ac59075b964b07152d234b70', 2, '2021-04-26 16:25:09', '04/2021');
 
 -- --------------------------------------------------------
 
@@ -246,13 +245,20 @@ INSERT INTO `province` (`ProvinceID`, `ProvinceName`, `ProvinceCode`) VALUES
 
 CREATE TABLE `registexam` (
   `RegistExamID` varchar(36) NOT NULL COMMENT 'primarykey',
-  `RegistNumber` int(11) NOT NULL COMMENT 'đợt thi',
   `IsRegistAll` bit(1) NOT NULL COMMENT 'có lấy cả ca thi không,hoặc là đóng ca thi',
   `StartedDate` datetime NOT NULL,
   `FinishDate` datetime NOT NULL,
   `CreateYear` int(11) NOT NULL COMMENT 'Nam tao',
   `UnitRegist` int(11) NOT NULL COMMENT 'so ca thi'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `registexam`
+--
+
+INSERT INTO `registexam` (`RegistExamID`, `IsRegistAll`, `StartedDate`, `FinishDate`, `CreateYear`, `UnitRegist`) VALUES
+('5b81c54439c6fa62a4add4abdb9fa573', b'1', '2021-05-28 00:00:00', '2021-05-30 00:00:00', 2021, 2),
+('de22d6d746003555ee933281e1759206', b'1', '2021-06-06 00:00:00', '2021-06-06 00:00:00', 2021, 1);
 
 -- --------------------------------------------------------
 
@@ -274,6 +280,14 @@ CREATE TABLE `registexamdetail` (
   `ExamTime` varchar(30) NOT NULL COMMENT 'thoi gian'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `registexamdetail`
+--
+
+INSERT INTO `registexamdetail` (`RegistExamDetailID`, `RegistExamID`, `StartedDate`, `FinishDate`, `ExamDate`, `Examee`, `ExameeMax`, `Location`, `IsRegist`, `UnitExam`, `ExamTime`) VALUES
+('8840876ffbf9a2d58cf6aad6710209dd', '5b81c54439c6fa62a4add4abdb9fa573', '2021-05-28 00:00:00', '2021-05-30 00:00:00', '2021-06-05', 0, 20, 'G4', b'1', 4, '13h'),
+('dbdb01834223ece80e2ff1434f15a161', 'de22d6d746003555ee933281e1759206', '2021-06-06 00:00:00', '2021-06-06 00:00:00', '2021-05-29', 0, 3, 'GD3', b'1', 1, '7h');
+
 -- --------------------------------------------------------
 
 --
@@ -292,10 +306,17 @@ CREATE TABLE `registexaminfor` (
 --
 
 --
+-- Chỉ mục cho bảng `account`
+--
+ALTER TABLE `account`
+  ADD PRIMARY KEY (`AccountID`);
+
+--
 -- Chỉ mục cho bảng `accountdetail`
 --
 ALTER TABLE `accountdetail`
-  ADD PRIMARY KEY (`AccountDetailID`);
+  ADD PRIMARY KEY (`AccountDetailID`),
+  ADD KEY `Fk_Account_AccountDetail` (`AccountID`);
 
 --
 -- Chỉ mục cho bảng `newfeed`
@@ -313,19 +334,22 @@ ALTER TABLE `province`
 -- Chỉ mục cho bảng `registexam`
 --
 ALTER TABLE `registexam`
-  ADD PRIMARY KEY (`RegistNumber`);
+  ADD PRIMARY KEY (`RegistExamID`);
 
 --
 -- Chỉ mục cho bảng `registexamdetail`
 --
 ALTER TABLE `registexamdetail`
-  ADD PRIMARY KEY (`RegistExamDetailID`);
+  ADD PRIMARY KEY (`RegistExamDetailID`),
+  ADD KEY `Fk_registexamdetail_registexam` (`RegistExamID`);
 
 --
 -- Chỉ mục cho bảng `registexaminfor`
 --
 ALTER TABLE `registexaminfor`
-  ADD PRIMARY KEY (`RegistExamInforID`);
+  ADD PRIMARY KEY (`RegistExamInforID`),
+  ADD KEY `FK_Registexaminfo_registexamdetail` (`RegistExamDetailID`),
+  ADD KEY `Fk_RegistExamInfo_accountid` (`AccountID`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -350,16 +374,33 @@ ALTER TABLE `province`
   MODIFY `ProvinceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
--- AUTO_INCREMENT cho bảng `registexam`
---
-ALTER TABLE `registexam`
-  MODIFY `RegistNumber` int(11) NOT NULL AUTO_INCREMENT COMMENT 'đợt thi', AUTO_INCREMENT=16;
-
---
 -- AUTO_INCREMENT cho bảng `registexaminfor`
 --
 ALTER TABLE `registexaminfor`
-  MODIFY `RegistExamInforID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'khóa chính', AUTO_INCREMENT=11;
+  MODIFY `RegistExamInforID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'khóa chính', AUTO_INCREMENT=14;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `accountdetail`
+--
+ALTER TABLE `accountdetail`
+  ADD CONSTRAINT `Fk_Account_AccountDetail` FOREIGN KEY (`AccountID`) REFERENCES `account` (`AccountID`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `registexamdetail`
+--
+ALTER TABLE `registexamdetail`
+  ADD CONSTRAINT `Fk_registexamdetail_registexam` FOREIGN KEY (`RegistExamID`) REFERENCES `registexam` (`RegistExamID`);
+
+--
+-- Các ràng buộc cho bảng `registexaminfor`
+--
+ALTER TABLE `registexaminfor`
+  ADD CONSTRAINT `FK_Registexaminfo_registexamdetail` FOREIGN KEY (`RegistExamDetailID`) REFERENCES `registexamdetail` (`RegistExamDetailID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `Fk_RegistExamInfo_accountid` FOREIGN KEY (`AccountID`) REFERENCES `account` (`AccountID`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

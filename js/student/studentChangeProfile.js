@@ -65,62 +65,66 @@ validateCompulsoryScore = (score) => {
 }
 
 $(function () {
-    $.ajax({
-        method: "GET",
-        url: "../../action/center_student/GetListProvinceName.php",
-        data: {},
-        dataType: "json",
-        success: function (response) {
-            for(i=0; i<63; i++){
-                $("#placeOfBirth").append($('<option/>', { 
-                    value: response[i].ProvinceName ,
-                    text : response[i].ProvinceName
-                }));
-            }
-        }
-    });
-
-    $.ajax({
-        url : "../../action/student/GetAccountDetail.php",
+    $.when(
+        $.ajax({
+            method: "GET",
+            url: "../../action/center_student/GetListProvinceName.php",
+            data: {},
+            dataType: "json",
+        }),
+        $.ajax({
+            url : "../../action/student/GetAccountDetail.php",
             method: 'GET',
-                data: {},
-                dataType: "json",
-                success: function(data){
-                   var dateOfBirth = new Date(data.DateOfBirth);
-                   $("#fullname").val(data.FullName);
-                   $("#"+data.Gender).prop("checked", true);
-                   $("#year").val(dateOfBirth.getFullYear());
-                   $("#month").val(dateOfBirth.getMonth()+1);
-                   $("#day").val(dateOfBirth.getDate());
-                   $("#race").val(data.Nation);
-                   $("#cmnd").val(data.Identification);
-                   $("#residence").val(data.PermanentResidence);
-                   $("#placeOfBirth").val(data.ProvinceName);
-                   $("#email").val(data.Email); 
-                   $("#phone").val(data.PhoneNumber); 
-                   $("#address").val(data.Address);
-                   $("#priority").val(data.IsPrioritize);
-                   $("#area").val(data.Area);
-                   $("#10hk1").val(data.HKIGrade10);
-                   $("#10hk2").val(data.HKIIGrade10);   
-                   $("#10all").val(data.TBGrade10);   
-                   $("#11hk1").val(data.HKIGrade11);   
-                   $("#11hk2").val(data.HKIIGrade11);            
-                   $("#11all").val(data.TBGrade11);   
-                   $("#12hk1").val(data.HKIGrade12);   
-                   $("#12hk2").val(data.HKIIGrade12);   
-                   $("#12all").val(data.TBGrade12);   
-                   $("#gradYear").val(data.GraduatingYear);   
-                   $("#math").val(data.Math); 
-                   $("#literature").val(data.Literature); 
-                   $("#foreignLan").val(data.English); 
-                   $("#physic").val(data.Physics); 
-                   $("#chemistry").val(data.Chemistry); 
-                   $("#biology").val(data.Biology); 
-                   $("#history").val(data.History); 
-                   $("#geography").val(data.Geography); 
-                   $("#morality").val(data.GDCD);   
-                }
-    });  
+            data: {},
+            dataType: "json",
+        }) 
+    ).then(function (rep1, rep2) {
+        var provinceList = rep1[0];  
+        for(i=0; i<63; i++){
+            $("#placeOfBirth").append($('<option/>', { 
+                value: provinceList[i].ProvinceName ,
+                text : provinceList[i].ProvinceName
+            }));
+        }
+        var data = rep2[0];
+        var dateOfBirth = new Date(data.DateOfBirth);
+        $("#fullname").val(data.FullName);
+        $("#"+data.Gender).prop("checked", true);
+        $("#year").val(dateOfBirth.getFullYear());
+        $("#month").val(dateOfBirth.getMonth()+1);
+        $("#day").val(dateOfBirth.getDate());
+        $("#race").val(data.Nation);
+        $("#cmnd").val(data.Identification);
+        $("#residence").val(data.PermanentResidence);
+        $("#placeOfBirth").val(data.ProvinceName);
+        $("#email").val(data.Email); 
+        $("#phone").val(data.PhoneNumber); 
+        $("#address").val(data.Address);
+        $("#priority").val(data.IsPrioritize);
+        $("#area").val(data.Area);
+        $("#10hk1").val(data.HKIGrade10);
+        $("#10hk2").val(data.HKIIGrade10);   
+        $("#10all").val(data.TBGrade10);   
+        $("#11hk1").val(data.HKIGrade11);   
+        $("#11hk2").val(data.HKIIGrade11);            
+        $("#11all").val(data.TBGrade11);   
+        $("#12hk1").val(data.HKIGrade12);   
+        $("#12hk2").val(data.HKIIGrade12);   
+        $("#12all").val(data.TBGrade12);              
+        $("#gradYear").val(data.GraduatingYear);               
+        $("#math").val(data.Math); 
+        $("#literature").val(data.Literature); 
+        $("#foreignLan").val(data.English);             
+        $("#physic").val(data.Physics); 
+        $("#chemistry").val(data.Chemistry); 
+        $("#biology").val(data.Biology); 
+        $("#history").val(data.History);         
+        $("#geography").val(data.Geography);  
+        $("#morality").val(data.GDCD);
+        setTimeout(() => {
+            if (noticeText != "") {
+                alert(noticeText);
+            }
+        }, 100);
+    }); 
 });
-

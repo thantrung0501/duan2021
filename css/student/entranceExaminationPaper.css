@@ -68,17 +68,17 @@ body {
 }
 
 .exam label {
-  width: 100px;
+  width: 120px;
 }
 
 .personal label {
   width: 250px;
 }
 .personal .label2 {
-  width: 70px;
+  width: 90px;
 }
 .personal #birthday {
-  width: 220px;
+  width: 200px;
 } 
 
 .contract label {

@@ -155,6 +155,7 @@ submitHandler = (btnid) => {
     if (newshift == oldshift) {
       alert("Bạn không có sự thay đổi đăng ký nào");
     }else {
+      console.log({"JDetailRegist": JSON.stringify(registData),"JDetailCancel":JSON.stringify(cancelData)});
        $.ajax({
         type: "POST",
         url: "../../action/student/RegistExam/ProceedRegistExam.php",
@@ -162,12 +163,12 @@ submitHandler = (btnid) => {
         dataType: "json",
         success: function (response) {
           alert("Đăng ký thành công");
+          location.reload();
         },
         error: function (err) {  
           alert("Đăng ký thất bại, vui lòng thử lại");
         }
       });
-      location.reload();
     }
   } 
 }
@@ -188,9 +189,13 @@ cancelHandler = btnid => {
         data: {"JDetailRegist": "","JDetailCancel":JSON.stringify(cancelData) },
         dataType: "json",
         success: function (response) {
+          alert("Hủy đăng ký thành công");
+          location.reload();
+        },
+        error: function (err) {  
+          alert("Thao tác thất bại, vui lòng thử lại");
         }
       });
-      location.reload();
     }
   }
 }

@@ -58,11 +58,12 @@ $().ready(function () {
 							}
 							var _birthday = response[i].DateOfBirth.split("-");
 							var birthday = _birthday[2] + "/" + _birthday[1] + "/" +_birthday[0];
+              var placeOfBirth = response[i].ProvinceName != "" ? response[i].ProvinceName : "(Trống)";
 							var accID = response[i].AccountID;
 							var btnID = "id="+accID;
 							$("#participantList").find(".card-table tr:last").append('<td><div id='+accID+' class="w3-card-4" style="width:100%"></div></td>');
 							$("#participantList").find("#"+ accID).append('<header class="w3-container w3-blue"><h3>'+response[i].FullName+'</h3></header>');
-							$("#participantList").find("#"+ accID).append('<div class="w3-container"><p>Ngày sinh: '+birthday+'<br>ID:<br> '+accID+'</p></div>');
+							$("#participantList").find("#"+ accID).append('<div class="w3-container"><p>Ngày sinh: '+birthday+'<br>Nơi sinh: '+placeOfBirth+'</p></div>');
 							$("#participantList").find("#"+ accID).append('<button id='+btnID+' class="w3-button w3-block w3-indigo" onclick="moveHandler(this.id)">Xem chi tiết ></button>');
 						}   
 					},
@@ -91,11 +92,12 @@ function fetchStuList(searchTerm) {
 				}
         var _birthday = response[i].DateOfBirth.split("-");
         var birthday = _birthday[2] + "/" + _birthday[1] + "/" +_birthday[0];
+        var placeOfBirth = response[i].ProvinceName != "" ? response[i].ProvinceName : "(Trống)";
 				var accID = response[i].AccountID;
 				var btnID = "id="+accID;
         $("#participantList").find(".card-table tr:last").append('<td><div id='+accID+' class="w3-card-4" style="width:100%"></div></td>');
         $("#participantList").find("#"+ accID).append('<header class="w3-container w3-blue"><h3>'+response[i].FullName+'</h3></header>');
-        $("#participantList").find("#"+ accID).append('<div class="w3-container"><p>Ngày sinh: '+birthday+'<br>ID:<br> '+accID+'</p></div>');
+        $("#participantList").find("#"+ accID).append('<div class="w3-container"><p>Ngày sinh: '+birthday+'<br>Nơi sinh: '+placeOfBirth+'</p></div>');
         $("#participantList").find("#"+ accID).append('<button id='+btnID+' class="w3-button w3-block w3-indigo" onclick="moveHandler(this.id)">Xem chi tiết ></button>');
       }   
     },

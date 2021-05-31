@@ -20,12 +20,13 @@
 	?>
 	<?php 
 		if(isset($_SESSION["notice"])){
-			echo '<script>  alert("'.$_SESSION["notice"].'");</script>';
+			echo '<script> var noticeText = "'.$_SESSION["notice"].'" </script>';
 			unset($_SESSION["notice"]);	
+		} else {
+			echo '<script> var noticeText = "" </script>';
 		}
 		include './topNavBarStudent.php';  
 	?>
-
 		<div class="information">
 			<form name="profileForm" id="profileForm" action="../../action/student/UpdateAccountDetail.php" method="post">
 				<fieldset>

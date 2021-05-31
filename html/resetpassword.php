@@ -10,7 +10,7 @@ session_start();
 		<link rel="stylesheet" href="../css/resetpassword.css">
 		<title>Đặt lại mật khẩu</title>
 	</head>
-<body class="reset_password">
+<body class="reset_password clearfix">
 	<div class="logo">
 		<img src="../images/common/Logo-VNU-1995.jpg" style="max-width:50%;height:auto;">
 		<p class="web-name">Đăng ký thi đánh giá năng lực</p>

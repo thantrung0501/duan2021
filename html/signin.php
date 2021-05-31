@@ -11,7 +11,7 @@
 </head>
 <body>
 	
-	<div class="login-partial">
+	<div class="login-partial clearfix">
 		<div class="logo">
 			<img src="../images/common/Logo-VNU-1995.jpg" style="max-width:50%;height:auto;">
 			<p class="web-name">Đăng ký thi đánh giá năng lực</p>

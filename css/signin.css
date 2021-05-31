@@ -21,6 +21,7 @@ body {
 	background-color: #219653;
 	width: 50%;
 	float: left;
+	min-height: 100vh;
 	text-align: center;
 }
 .logo img{

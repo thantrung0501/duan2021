@@ -125,6 +125,6 @@ $(function () {
             if (noticeText != "") {
                 alert(noticeText);
             }
-        }, 100);
+        }, 1);
     }); 
 });

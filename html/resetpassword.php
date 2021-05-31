@@ -12,7 +12,7 @@ session_start();
 	</head>
 <body class="reset_password">
 	<div class="logo">
-		<img src="../images/common/Logo-VNU-1995.jpg" style="max-width:390px;height:auto;">
+		<img src="../images/common/Logo-VNU-1995.jpg" style="max-width:50%;height:auto;">
 		<p class="web-name">Đăng ký thi đánh giá năng lực</p>
 		<p class="web-name">Đại học Quốc gia Hà Nội</p> 
 		<h1>VNU<small>test center</small></h1>

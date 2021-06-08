@@ -7,7 +7,7 @@ $(document).ready(function () {
         dataType: "json",
         success: function (response) {
             response.sort(function (a, b) {  
-                return parseInt(a.CreateYear) - parseInt(b.CreateYear) || parseInt(b.UnitRegist) - parseInt(a.UnitRegist);
+                return parseInt(b.CreateYear) - parseInt(a.CreateYear) || parseInt(b.UnitRegist) - parseInt(a.UnitRegist);
             });
             createTable(response);
 

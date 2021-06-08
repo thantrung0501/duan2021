@@ -28,8 +28,8 @@ $().ready(function () {
                     year = date[1];
                     $("#folder").append('<button class="w3-button w3-block w3-left-align" onclick="myAccFunc('+ year +')">Năm '+ year +'<i class="fa fa-caret-down"></i></button>');
                     $("#folder").append('<div id='+ year +' class="w3-hide w3-white w3-card"></div>');
-                    for(i=1; i<13; i++){
-                        var n = String(i<10 ? ("0"+i) : i);
+                    for(k=1; k<13; k++){
+                        var n = String(k<10 ? ("0"+k) : k);
                         var id = String(n + "/" + year);
                         $("#folder").find("#"+year).append('<a id='+id+' class="w3-bar-item w3-button" onclick="fetchStuList(this.id)">Tháng '+n+'</a>');
                     }
